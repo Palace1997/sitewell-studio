@@ -735,19 +735,10 @@ body:not(.is-routed) #faq { margin-top: -140px; }
 .footer__crisis { margin-top: 22px; font-size: 13.5px; color: var(--g-400); }
 .footer__crisis b { color: var(--paper); font-weight: 600; }
 
-/* ---- Auto-hiding scrollbar (visible only while scrolling) ------------
-   The thumb is transparent at rest and fades in when html.is-scrolling is set
-   by js/main.js, then fades out shortly after scrolling stops. A fixed-width
-   transparent track keeps the gutter stable so nothing shifts. */
-@media (hover: hover) and (pointer: fine) {
-  html { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color .35s; }
-  html.is-scrolling { scrollbar-color: rgba(27,24,18,.32) transparent; }
-  html::-webkit-scrollbar { width: 12px; height: 12px; }
-  html::-webkit-scrollbar-track { background: transparent; }
-  html::-webkit-scrollbar-thumb { background-color: transparent; border: 3px solid transparent; border-radius: 10px; background-clip: padding-box; transition: background-color .35s; }
-  html.is-scrolling::-webkit-scrollbar-thumb { background-color: rgba(27,24,18,.32); background-clip: padding-box; }
-  html.is-scrolling::-webkit-scrollbar-thumb:hover { background-color: rgba(27,24,18,.5); background-clip: padding-box; }
-}
+/* Use the browser's native overlay scrollbar: it does not reserve a gutter
+   (so no strip shows over the full-bleed hero) and auto-hides, appearing only
+   while scrolling. No custom ::-webkit-scrollbar, which would force a classic,
+   always-reserved bar. */
 
 /* ---- Reveal-on-scroll ------------------------------------------------ */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
