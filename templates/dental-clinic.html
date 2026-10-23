@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate Dental, Confident smiles start here</title>
+<meta name="description" content="Northgate Dental, modern, gentle general, cosmetic and implant dentistry. Bright, friendly care with transparent pricing. Confident smiles start here.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='10' fill='%231F9BAA'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>N</text></svg>">
+<style>
+/* ==========  NORTHGATE DENTAL, bespoke bright / rounded identity  ========== */
+:root{
+  --nd-round:22px;
+  --nd-round-lg:34px;
+  --nd-round-xl:48px;
+  --nd-pill:999px;
+  --nd-soft:#EAF3F4;
+  --nd-soft-2:#DFE9EC;
+  --nd-ring:0 1px 0 rgba(16,51,58,.05),0 18px 46px -22px rgba(16,51,58,.30);
+  --nd-ring-sm:0 1px 0 rgba(16,51,58,.05),0 10px 26px -16px rgba(16,51,58,.24);
+  /* Fresh Teal palette, scoped overrides of template.css tokens */
+  --accent:#1F9BAA;
+  --accent-dark:#16808D;
+  --ink:#16262A;
+  --ink-2:#16808D;
+  --paper:#F6FAFB;
+  --line:#DFE9EC;
+  --g-700:#3A4B4F;
+  --g-500:#758488;
+  --g-400:#8A999D;
+  --g-300:#B8C6C9;
+  --g-200:#D6E2E4;
+}
+img{filter:none;}
+.nd-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
+.nd-sec{padding:clamp(56px,8vw,104px) 0;}
+
+/* ---- NAV ---- */
+.nd-nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nd-nav__in{display:flex;align-items:center;gap:24px;height:74px;}
+.nd-logo{display:flex;align-items:center;gap:11px;font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-.02em;}
+.nd-mark{width:38px;height:38px;border-radius:13px;background:var(--accent);color:#FFFFFF;display:grid;place-items:center;font-family:var(--font-sans);font-weight:700;font-size:17px;}
+.nd-links{display:flex;gap:30px;margin-left:auto;}
+.nd-links a{font-size:15px;font-weight:500;color:var(--g-700);transition:color .2s;}
+.nd-links a:hover{color:var(--ink);}
+.nd-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:var(--nd-pill);background:var(--accent);color:#FFFFFF;font-size:14.5px;font-weight:600;border:1.5px solid var(--accent);transition:transform .2s var(--ease),background .2s,border-color .2s;}
+.nd-cta:hover{transform:translateY(-2px);background:var(--accent-dark);border-color:var(--accent-dark);}
+.nd-cta--ghost{background:transparent;color:var(--accent);border-color:var(--accent);}
+.nd-cta--ghost:hover{background:var(--nd-soft);color:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);}
+.nd-cta--lg{padding:16px 30px;font-size:15.5px;}
+.nd-cta--wide{width:100%;}
+
+/* ---- HERO ---- */
+.nd-hero{background:linear-gradient(180deg,var(--paper) 0%,var(--nd-soft) 100%);position:relative;overflow:hidden;}
+.nd-hero::before{content:"";position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:#fff;opacity:.6;filter:blur(10px);}
+.nd-hero__grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;padding:clamp(48px,7vw,84px) 0 clamp(56px,8vw,96px);position:relative;}
+.nd-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:var(--nd-pill);background:#fff;border:1px solid var(--line);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--g-500);box-shadow:var(--nd-ring-sm);}
+.nd-eyebrow .nd-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+.nd-h1{font-family:var(--font-display);font-weight:500;font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-.025em;margin:24px 0 0;}
+.nd-h1 em{font-style:italic;font-weight:400;}
+.nd-lede{font-size:clamp(17px,1.7vw,20px);color:var(--g-500);line-height:1.55;max-width:46ch;margin:22px 0 0;}
+.nd-hero__btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+.nd-rating{display:flex;align-items:center;gap:12px;margin-top:28px;}
+.nd-rating .nd-stars{display:flex;gap:2px;color:var(--accent);}
+.nd-stars svg{width:17px;height:17px;}
+.nd-rating span{font-size:14.5px;color:var(--g-500);}
+.nd-rating b{color:var(--ink);font-weight:600;}
+.nd-hero__media{position:relative;}
+.nd-hero__img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--nd-round-xl);box-shadow:var(--nd-ring);display:block;}
+.nd-hero__badge{position:absolute;left:-14px;bottom:34px;background:#fff;border-radius:var(--nd-round);padding:16px 20px;box-shadow:var(--nd-ring);display:flex;align-items:center;gap:14px;max-width:240px;}
+.nd-hero__badge .nd-bico{width:44px;height:44px;flex:none;border-radius:14px;background:var(--nd-soft);display:grid;place-items:center;}
+.nd-hero__badge .nd-bico svg{width:24px;height:24px;stroke:var(--accent);}
+.nd-hero__badge b{display:block;font-family:var(--font-display);font-size:19px;line-height:1.1;}
+.nd-hero__badge small{color:var(--g-500);font-size:12.5px;}
+
+/* ---- ACCREDITATION STRIP ---- */
+.nd-accr{background:linear-gradient(180deg,#10333A 0%,#0A2329 100%);color:#FFFFFF;}
+.nd-accr__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 40px;padding:26px 0;}
+.nd-accr span{font-family:var(--font-display);font-size:19px;color:rgba(255,255,255,.62);white-space:nowrap;}
+.nd-accr .nd-sep{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3);}
+
+/* ---- SECTION HEAD ---- */
+.nd-head{max-width:620px;margin:0 auto clamp(38px,5vw,56px);text-align:center;}
+.nd-head--left{margin-left:0;text-align:left;}
+.nd-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-.025em;margin:16px 0 0;}
+.nd-h2 em{font-style:italic;font-weight:400;}
+.nd-head .nd-lede{margin:18px auto 0;}
+.nd-head--left .nd-lede{margin-left:0;}
+
+/* ---- SERVICES ---- */
+.nd-services{background:var(--nd-soft);}
+.nd-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.nd-card{background:#fff;border-radius:var(--nd-round-lg);padding:34px 30px;box-shadow:var(--nd-ring-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+.nd-card:hover{transform:translateY(-6px);box-shadow:var(--nd-ring);}
+.nd-card__ic{width:56px;height:56px;border-radius:18px;background:var(--nd-soft);display:grid;place-items:center;margin-bottom:22px;}
+.nd-card__ic svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.5;}
+.nd-card h3{font-family:var(--font-display);font-weight:500;font-size:22px;letter-spacing:-.02em;margin:0 0 10px;}
+.nd-card p{color:var(--g-500);font-size:15px;line-height:1.55;margin:0;}
+
+/* ---- APPROACH ---- */
+.nd-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;}
+.nd-split__img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--nd-round-xl);box-shadow:var(--nd-ring);display:block;}
+.nd-checks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:16px;}
+.nd-checks li{display:flex;gap:16px;align-items:flex-start;}
+.nd-tick{flex:none;width:42px;height:42px;border-radius:14px;background:var(--nd-soft);display:grid;place-items:center;}
+.nd-tick svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2.4;}
+.nd-checks b{display:block;font-size:16.5px;font-weight:600;margin-bottom:2px;}
+.nd-checks p{margin:0;color:var(--g-500);font-size:14.5px;line-height:1.5;}
+
+/* ---- STATS ---- */
+.nd-stats{background:var(--nd-soft);}
+.nd-stats__panel{background:#fff;border-radius:var(--nd-round-xl);padding:clamp(34px,4vw,52px);box-shadow:var(--nd-ring-sm);display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.nd-stat{text-align:center;}
+.nd-stat b{display:block;font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4vw,48px);letter-spacing:-.03em;line-height:1;}
+.nd-stat span{display:block;margin-top:10px;color:var(--g-500);font-size:14px;}
+
+/* ---- TEAM ---- */
+.nd-team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.nd-member{background:#fff;border-radius:var(--nd-round-lg);overflow:hidden;box-shadow:var(--nd-ring-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+.nd-member:hover{transform:translateY(-6px);box-shadow:var(--nd-ring);}
+.nd-member img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.nd-member__body{padding:20px 22px 24px;}
+.nd-member h4{font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:-.02em;margin:0 0 4px;}
+.nd-member span{color:var(--g-500);font-size:13.5px;}
+
+/* ---- PRICES ---- */
+.nd-prices{background:var(--nd-soft);}
+.nd-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
+.nd-plan{background:#fff;border-radius:var(--nd-round-lg);padding:34px 30px;box-shadow:var(--nd-ring-sm);display:flex;flex-direction:column;}
+.nd-plan--feature{background:linear-gradient(180deg,#10333A 0%,#0A2329 100%);color:#FFFFFF;box-shadow:var(--nd-ring);transform:translateY(-8px);}
+.nd-plan__tag{display:inline-flex;align-self:flex-start;padding:5px 12px;border-radius:var(--nd-pill);background:var(--accent);color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;}
+.nd-plan__name{font-family:var(--font-display);font-weight:500;font-size:23px;letter-spacing:-.02em;}
+.nd-plan__price{font-family:var(--font-display);font-weight:500;font-size:46px;letter-spacing:-.03em;margin:10px 0 2px;line-height:1;}
+.nd-plan__price small{font-family:var(--font-sans);font-size:16px;font-weight:500;color:var(--g-500);}
+.nd-plan--feature .nd-plan__price small{color:var(--g-300);}
+.nd-plan__sub{color:var(--g-500);font-size:14.5px;margin-bottom:22px;}
+.nd-plan--feature .nd-plan__sub{color:var(--g-300);}
+.nd-plan ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:13px;flex:1;}
+.nd-plan li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--g-700);}
+.nd-plan--feature li{color:var(--g-300);}
+.nd-plan li svg{flex:none;width:19px;height:19px;stroke:var(--accent);fill:none;stroke-width:2.6;margin-top:1px;}
+.nd-plan--feature li svg{stroke:#FFFFFF;}
+.nd-plan .nd-cta{margin-top:auto;}
+.nd-plan--feature .nd-cta{background:#FFFFFF;color:var(--accent-dark);border-color:#FFFFFF;}
+.nd-plan--feature .nd-cta:hover{background:var(--nd-soft);color:var(--accent-dark);border-color:var(--nd-soft);}
+
+/* ---- CONTACT ---- */
+.nd-contact__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;}
+.nd-info{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:18px;}
+.nd-info li{display:flex;gap:16px;align-items:center;}
+.nd-info__ic{flex:none;width:48px;height:48px;border-radius:15px;background:var(--nd-soft);display:grid;place-items:center;}
+.nd-info__ic svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.6;}
+.nd-info span{display:block;font-size:12.5px;color:var(--g-400);text-transform:uppercase;letter-spacing:.1em;}
+.nd-info b{font-size:16px;font-weight:600;}
+.nd-form{background:#fff;border-radius:var(--nd-round-xl);padding:clamp(28px,3vw,40px);box-shadow:var(--nd-ring);display:grid;gap:18px;}
+.nd-field{display:grid;gap:8px;}
+.nd-field label{font-size:13.5px;font-weight:600;color:var(--g-700);}
+.nd-field input,.nd-field select,.nd-field textarea{width:100%;box-sizing:border-box;padding:14px 16px;border:1.5px solid var(--line);border-radius:16px;font-family:inherit;font-size:15px;background:var(--paper);color:var(--ink);transition:border-color .2s,box-shadow .2s;}
+.nd-field input:focus,.nd-field select:focus,.nd-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(31,155,170,.15);}
+.nd-field textarea{resize:vertical;min-height:110px;}
+
+/* ---- FOOTER ---- */
+.nd-footer{background:linear-gradient(180deg,#10333A 0%,#0A2329 100%);color:#FFFFFF;padding:clamp(48px,6vw,72px) 0 34px;}
+.nd-footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12);}
+.nd-footer .nd-logo{color:#FFFFFF;}
+.nd-footer .nd-mark{background:var(--accent);color:#FFFFFF;}
+.nd-footer__brand p{color:var(--g-400);font-size:14.5px;max-width:34ch;margin:18px 0 0;line-height:1.6;}
+.nd-footer h4{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--g-400);margin:0 0 16px;}
+.nd-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:11px;}
+.nd-footer a{color:var(--g-300);font-size:14.5px;transition:color .2s;}
+.nd-footer a:hover{color:var(--paper);}
+.nd-footer__bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:26px;color:var(--g-400);font-size:13px;}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:960px){
+  .nd-cards,.nd-team,.nd-plans{grid-template-columns:repeat(2,1fr);}
+  .nd-stats__panel{grid-template-columns:repeat(2,1fr);gap:32px 24px;}
+  .nd-plan--feature{transform:none;}
+}
+@media(max-width:820px){
+  .nd-links{display:none;}
+  .nd-hero__grid,.nd-split,.nd-contact__grid{grid-template-columns:1fr;}
+  .nd-hero__media{order:-1;}
+  .nd-hero__img{aspect-ratio:4/3;}
+  .nd-footer__top{grid-template-columns:1fr 1fr;}
+  .nd-footer__brand{grid-column:1/-1;}
+}
+@media(max-width:560px){
+  .nd-cards,.nd-team,.nd-plans,.nd-stats__panel{grid-template-columns:1fr;}
+  .nd-footer__top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nd-nav">
+  <div class="nd-wrap nd-nav__in">
+    <a href="#" class="nd-logo"><span class="nd-mark" data-field="brandMark">N</span> <span data-field="brandName">Northgate Dental</span></a>
+    <nav class="nd-links">
+      <a href="#services">Services</a>
+      <a href="#treatments">Treatments</a>
+      <a href="#team">Team</a>
+      <a href="#prices">Prices</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nd-cta" data-field="navCta">Book appointment</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="nd-hero">
+  <div class="nd-wrap">
+    <div class="nd-hero__grid">
+      <div class="reveal">
+        <span class="nd-eyebrow" data-field="heroEyebrow"><span class="nd-dot"></span> General · Cosmetic · Implant dentistry</span>
+        <h1 class="nd-h1" data-field="heroTitle">Confident smiles <em>start here.</em></h1>
+        <p class="nd-lede" data-field="heroSub">Northgate Dental is a bright, modern practice where gentle care comes first. From routine check-ups to complete smile makeovers, you're in kind, expert hands.</p>
+        <div class="nd-hero__btns">
+          <a href="#contact" class="nd-cta nd-cta--lg" data-field="heroCta1">Book appointment</a>
+          <a href="tel:02079460188" class="nd-cta nd-cta--ghost nd-cta--lg" data-field="heroCta2">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg>
+            Call us
+          </a>
+        </div>
+        <div class="nd-rating">
+          <span class="nd-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+          </span>
+          <span data-field="trustText">Rated <b>4.9</b> by <b>25,000+</b> patients</span>
+        </div>
+      </div>
+      <div class="nd-hero__media reveal">
+        <img class="nd-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1400&q=80" alt="A bright, modern dental treatment room at Northgate Dental" width="1400" height="1750">
+        <div class="nd-hero__badge">
+          <span class="nd-bico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span>
+          <div><b>Same-day</b><small>emergency appointments available</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATION STRIP -->
+<section class="nd-accr">
+  <div class="nd-wrap nd-accr__in reveal">
+    <span>GDC</span><span class="nd-sep"></span>
+    <span>Invisalign Provider</span><span class="nd-sep"></span>
+    <span>CQC</span><span class="nd-sep"></span>
+    <span>BDA</span><span class="nd-sep"></span>
+    <span>Denplan</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="nd-sec nd-services" id="services">
+  <div class="nd-wrap">
+    <div class="nd-head reveal">
+      <span class="nd-eyebrow"><span class="nd-dot"></span> What we do</span>
+      <h2 class="nd-h2" data-field="servicesTitle">Everything your smile <em>needs.</em></h2>
+      <p class="nd-lede" data-field="servicesSub">From routine care to full smile makeovers, every treatment is delivered gently by a team who genuinely cares.</p>
+    </div>
+    <div class="nd-cards reveal">
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><path d="M12 3c1.5 0 2.3.8 3.2.8S17 3 18.3 3C20 3 21 4.7 21 7.5c0 3.3-.8 5-1.7 7.4-.5 1.5-1.1 2.6-2 2.6-1 0-1.2-1.7-2.3-1.7s-1.3 1.7-2.3 1.7c-1.1 0-1.7-1.1-2.4-3C7.4 12.5 6.7 11 6.7 7.5 6.7 4.7 7.7 3 9.5 3c1.3 0 1.7.8 2.5.8z"/></svg></div>
+        <h3 data-field="svc1Title">General dentistry</h3>
+        <p data-field="svc1Desc">Routine check-ups, fillings, crowns and preventive care to keep your teeth healthy for life.</p>
+      </div>
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 21v-4M5 8l2.5 1.5M19 8l-2.5 1.5M5 16l2.5-1.5M19 16l-2.5-1.5"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 data-field="svc2Title">Dental hygiene</h3>
+        <p data-field="svc2Desc">Professional cleaning, scaling and polishing that leaves your mouth fresh and your gums healthy.</p>
+      </div>
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9l-4.5 3.8L17 19l-5-3.2L7 19l1.5-6.2L4 9l5.8-.4z"/></svg></div>
+        <h3 data-field="svc3Title">Cosmetic dentistry</h3>
+        <p data-field="svc3Desc">Teeth whitening, veneers and bonding to refine, brighten and perfect your smile.</p>
+      </div>
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><path d="M12 2v9M9 5h6M10 11h4l-.6 8a1.4 1.4 0 01-2.8 0z"/></svg></div>
+        <h3 data-field="svc4Title">Dental implants</h3>
+        <p data-field="svc4Desc">Natural-looking, permanent replacements for missing teeth, restoring bite, function and confidence.</p>
+      </div>
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="3"/><path d="M7 9v6M11 9v6M15 9v6"/></svg></div>
+        <h3 data-field="svc5Title">Invisalign &amp; orthodontics</h3>
+        <p data-field="svc5Desc">Discreet clear aligners and braces that straighten teeth without disrupting your daily life.</p>
+      </div>
+      <div class="nd-card">
+        <div class="nd-card__ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/><path d="M12 8v4M10 10h4"/></svg></div>
+        <h3 data-field="svc6Title">Emergency care</h3>
+        <p data-field="svc6Desc">Same-day appointments for pain, breakages and accidents, we'll get you comfortable, fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="nd-sec" id="treatments">
+  <div class="nd-wrap">
+    <div class="nd-split reveal">
+      <img class="nd-split__img" data-img="about" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" alt="A gentle dental appointment in progress" loading="lazy" width="900" height="900">
+      <div>
+        <span class="nd-eyebrow"><span class="nd-dot"></span> Our approach</span>
+        <h2 class="nd-h2" data-field="aboutTitle">Modern dentistry, <em>without the nerves.</em></h2>
+        <p class="nd-lede" data-field="aboutText">We know a trip to the dentist isn't everyone's favourite. So we've built a practice designed to put you at ease, gentle hands, honest advice and no surprises.</p>
+        <ul class="nd-checks">
+          <li>
+            <span class="nd-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+            <div><b data-field="check1">Gentle care</b><p>Unhurried appointments from a team you'll come to trust, at a pace that suits you.</p></div>
+          </li>
+          <li>
+            <span class="nd-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+            <div><b data-field="check2">The latest technology</b><p>From digital scans to painless treatment, we invest in comfort as much as results.</p></div>
+          </li>
+          <li>
+            <span class="nd-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+            <div><b data-field="check3">Transparent pricing</b><p>Every cost is agreed with you before treatment begins, never a surprise bill.</p></div>
+          </li>
+          <li>
+            <span class="nd-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+            <div><b data-field="check4">Anxious-patient friendly</b><p>Nervous? Tell us. We take extra time to help you feel calm and in control.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="nd-sec nd-stats">
+  <div class="nd-wrap">
+    <div class="nd-stats__panel reveal">
+      <div class="nd-stat"><b data-field="stat1Num">25,000+</b><span data-field="stat1Label">Patients cared for</span></div>
+      <div class="nd-stat"><b data-field="stat2Num">98%</b><span data-field="stat2Label">Would recommend us</span></div>
+      <div class="nd-stat"><b data-field="stat3Num">Same day</b><span data-field="stat3Label">Emergency appointments</span></div>
+      <div class="nd-stat"><b>0%</b><span>Finance on treatment</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="nd-sec" id="team">
+  <div class="nd-wrap">
+    <div class="nd-head reveal">
+      <span class="nd-eyebrow"><span class="nd-dot"></span> Meet the team</span>
+      <h2 class="nd-h2">The people behind <em>your smile.</em></h2>
+      <p class="nd-lede">Every clinician at Northgate is fully registered, insured and continually trained, and, above all, kind.</p>
+    </div>
+    <div class="nd-team reveal">
+      <div class="nd-member">
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Dr. Amara Reid, Principal Dentist" loading="lazy" width="600" height="750">
+        <div class="nd-member__body"><h4>Dr. Amara Reid</h4><span>Principal Dentist · Founder</span></div>
+      </div>
+      <div class="nd-member">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Dr. Samuel Cho, Implant &amp; Cosmetic Dentist" loading="lazy" width="600" height="750">
+        <div class="nd-member__body"><h4>Dr. Samuel Cho</h4><span>Implant &amp; Cosmetic Dentist</span></div>
+      </div>
+      <div class="nd-member">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Lena Fischer, Dental Hygienist" loading="lazy" width="600" height="750">
+        <div class="nd-member__body"><h4>Lena Fischer</h4><span>Dental Hygienist</span></div>
+      </div>
+      <div class="nd-member">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Marcus Doyle, Orthodontic Therapist" loading="lazy" width="600" height="750">
+        <div class="nd-member__body"><h4>Marcus Doyle</h4><span>Orthodontic Therapist</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICES -->
+<section class="nd-sec nd-prices" id="prices">
+  <div class="nd-wrap">
+    <div class="nd-head reveal">
+      <span class="nd-eyebrow"><span class="nd-dot"></span> Membership plans</span>
+      <h2 class="nd-h2">Simple, transparent <em>pricing.</em></h2>
+      <p class="nd-lede">Spread the cost of your care with a monthly plan, no surprise bills, just healthy teeth.</p>
+    </div>
+    <div class="nd-plans reveal">
+      <div class="nd-plan">
+        <div class="nd-plan__name">Essential</div>
+        <div class="nd-plan__price">£12.99<small>/mo</small></div>
+        <div class="nd-plan__sub">The healthy-smile basics</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Two check-ups a year</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> One hygiene visit a year</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> 10% off further treatment</li>
+        </ul>
+        <a href="#contact" class="nd-cta nd-cta--ghost nd-cta--wide">Choose Essential</a>
+      </div>
+      <div class="nd-plan nd-plan--feature">
+        <span class="nd-plan__tag">Most popular</span>
+        <div class="nd-plan__name">Complete</div>
+        <div class="nd-plan__price">£22.99<small>/mo</small></div>
+        <div class="nd-plan__sub">Our most popular plan</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Two check-ups &amp; two hygiene visits</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Annual X-rays included</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> 20% off further treatment</li>
+        </ul>
+        <a href="#contact" class="nd-cta nd-cta--wide">Choose Complete</a>
+      </div>
+      <div class="nd-plan">
+        <div class="nd-plan__name">Family</div>
+        <div class="nd-plan__price">£39.99<small>/mo</small></div>
+        <div class="nd-plan__sub">Cover for the whole household</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Up to two adults &amp; three children</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> All check-ups &amp; hygiene visits</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> 20% off further treatment</li>
+        </ul>
+        <a href="#contact" class="nd-cta nd-cta--ghost nd-cta--wide">Choose Family</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="nd-sec" id="contact">
+  <div class="nd-wrap">
+    <div class="nd-contact__grid">
+      <div class="reveal">
+        <span class="nd-eyebrow"><span class="nd-dot"></span> Get in touch</span>
+        <h2 class="nd-h2" data-field="contactTitle">Book your <em>visit.</em></h2>
+        <p class="nd-lede" data-field="contactSub">New patients are always welcome. Send us a message and our friendly reception team will be in touch within one working day to find a time that suits you.</p>
+        <ul class="nd-info">
+          <li><span class="nd-info__ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg></span><div><span>Phone</span><b data-field="phone">020 7946 0188</b></div></li>
+          <li><span class="nd-info__ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><span>Email</span><b data-field="email">hello@northgatedental.co.uk</b></div></li>
+          <li><span class="nd-info__ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span>Practice</span><b data-field="address">42 Northgate Street, London EC1</b></div></li>
+          <li><span class="nd-info__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><span>Opening hours</span><b data-field="hours">Mon–Fri 8am–6pm · Sat 9am–1pm</b></div></li>
+        </ul>
+      </div>
+      <form class="nd-form reveal" onsubmit="return false">
+        <div class="nd-field"><label for="nd-name">Your name</label><input id="nd-name" type="text" placeholder="Jane Doe" required></div>
+        <div class="nd-field"><label for="nd-email">Email</label><input id="nd-email" type="email" placeholder="you@email.com" required></div>
+        <div class="nd-field"><label for="nd-help">What can we help with?</label>
+          <select id="nd-help"><option>General check-up</option><option>Dental hygiene</option><option>Cosmetic dentistry</option><option>Dental implants</option><option>Invisalign &amp; orthodontics</option><option>Emergency appointment</option></select>
+        </div>
+        <div class="nd-field"><label for="nd-msg">Message</label><textarea id="nd-msg" placeholder="Tell us a little about what you're looking for…"></textarea></div>
+        <button type="submit" class="nd-cta nd-cta--lg nd-cta--wide">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="nd-footer">
+  <div class="nd-wrap">
+    <div class="nd-footer__top">
+      <div class="nd-footer__brand">
+        <a href="#" class="nd-logo"><span class="nd-mark" data-field="brandMark">N</span> <span data-field="brandName">Northgate Dental</span></a>
+        <p data-field="footerText">Modern, gentle dental care for the whole family, general, cosmetic and implant dentistry under one roof.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">General dentistry</a></li><li><a href="#services">Cosmetic dentistry</a></li><li><a href="#services">Dental implants</a></li><li><a href="#services">Invisalign &amp; orthodontics</a></li></ul></div>
+      <div><h4>Practice</h4><ul><li><a href="#team">Our team</a></li><li><a href="#prices">Membership plans</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy &amp; complaints</a></li></ul></div>
+    </div>
+    <div class="nd-footer__bot">
+      <span data-field="footerLegal">© 2026 Northgate Dental. All rights reserved.</span>
+      <span>Dental emergency out of hours? Call NHS 111 for urgent advice.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

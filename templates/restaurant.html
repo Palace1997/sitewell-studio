@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember &amp; Oak, Wood-fired kitchen &amp; bar</title>
+<meta name="description" content="Ember & Oak, a wood-fired kitchen & bar. Seasonal plates cooked over open flame, natural wines and warm hospitality. Cooked over flame, served with soul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23191512'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>E</text></svg>">
+<style>
+  /* ============================================================
+     EMBER & OAK, bespoke dark, cinematic, image-forward layout
+     Namespaced .em-* components. Monochrome. Uses :root tokens.
+     ============================================================ */
+  :root{
+    --em-bg:#191512;
+    --em-bg-2:#14100d;
+    --em-bg-3:#211b16;
+    --em-line:rgba(245,239,231,.16);
+    --em-line-soft:rgba(245,239,231,.09);
+    --em-text:#f5efe7;
+    --em-dim:#a79c8e;
+    --em-faint:rgba(167,156,142,.72);
+    --em-accent:var(--acc,#c2703d);
+    --em-accent-dark:var(--acc2,#a65d2f);
+  }
+  .em-page{
+    background:var(--em-bg);
+    color:var(--em-text);
+    font-family:var(--font-sans, Inter, system-ui, sans-serif);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .em-page img{
+    display:block;
+    max-width:100%;
+  }
+  .em-wrap{
+    width:100%;
+    max-width:var(--maxw, 1200px);
+    margin:0 auto;
+    padding:0 var(--gutter, 24px);
+  }
+  .em-eyebrow{
+    font-size:12px;
+    letter-spacing:.30em;
+    text-transform:uppercase;
+    color:var(--em-accent);
+    font-weight:600;
+    display:inline-block;
+  }
+  .em-display{
+    font-family:var(--font-display, Fraunces, Georgia, serif);
+    font-weight:400;
+    line-height:.98;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .em-italic{ font-style:italic; font-weight:400; }
+
+  /* ---------- NAV ---------- */
+  .em-nav{
+    position:absolute;
+    top:0; left:0; right:0;
+    z-index:40;
+    padding:26px 0;
+  }
+  .em-nav__in{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .em-logo{
+    display:inline-flex;
+    align-items:center;
+    gap:11px;
+    text-decoration:none;
+    color:var(--em-text);
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:22px;
+    letter-spacing:.01em;
+  }
+  .em-logo__mark{
+    width:34px; height:34px;
+    display:grid; place-items:center;
+    border:1px solid var(--em-line);
+    border-radius:50%;
+    font-size:15px;
+    font-family:var(--font-display, Fraunces, serif);
+    font-style:italic;
+  }
+  .em-nav__links{
+    display:flex;
+    gap:30px;
+    align-items:center;
+  }
+  .em-nav__links a{
+    color:var(--em-dim);
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:.02em;
+    transition:color .3s var(--ease, ease);
+  }
+  .em-nav__links a:hover{ color:var(--em-accent); }
+  .em-book{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 22px;
+    border:1px solid var(--em-accent);
+    border-radius:999px;
+    background:var(--em-accent);
+    color:#fff;
+    text-decoration:none;
+    font-size:13.5px;
+    font-weight:500;
+    letter-spacing:.03em;
+    transition:background .35s var(--ease, ease), border-color .35s var(--ease, ease);
+  }
+  .em-book:hover{ background:var(--em-accent-dark); border-color:var(--em-accent-dark); color:#fff; }
+
+  /* ---------- HERO ---------- */
+  .em-hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    background:#0f0c0a;
+  }
+  .em-hero__img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    opacity:.72;
+  }
+  .em-hero__scrim{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(to top, rgba(15,12,10,.96) 0%, rgba(15,12,10,.55) 38%, rgba(15,12,10,.15) 68%, rgba(15,12,10,.55) 100%);
+  }
+  .em-hero__in{
+    position:relative;
+    z-index:5;
+    width:100%;
+    padding-bottom:70px;
+    padding-top:120px;
+  }
+  .em-hero h1{
+    font-size:clamp(52px, 10vw, 132px);
+    max-width:15ch;
+    margin:20px 0 0;
+  }
+  .em-hero__lede{
+    margin:28px 0 0;
+    max-width:46ch;
+    font-size:clamp(15px,1.6vw,18px);
+    line-height:1.6;
+    color:var(--em-dim);
+  }
+  .em-hero__cta{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-top:38px;
+  }
+  .em-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:16px 30px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:.02em;
+    transition:transform .3s var(--ease, ease), background .3s var(--ease, ease), color .3s var(--ease, ease);
+  }
+  .em-btn--solid{ background:var(--em-accent); color:#fff; }
+  .em-btn--solid:hover{ transform:translateY(-2px); background:var(--em-accent-dark); }
+  .em-btn--line{ border:1px solid var(--em-line); color:var(--em-text); }
+  .em-btn--line:hover{ background:rgba(194,112,61,.14); border-color:var(--em-accent); }
+  .em-hero__meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:34px 52px;
+    margin-top:52px;
+    padding-top:30px;
+    border-top:1px solid var(--em-line-soft);
+  }
+  .em-hero__meta b{
+    display:block;
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:24px;
+    font-weight:400;
+  }
+  .em-hero__meta span{
+    display:block;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    color:var(--em-faint);
+    margin-top:4px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- INTRO STATEMENT ---------- */
+  .em-intro{
+    padding:clamp(90px,14vw,170px) 0;
+    background:var(--em-bg);
+    border-bottom:1px solid var(--em-line-soft);
+  }
+  .em-intro p{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:clamp(26px,4.2vw,52px);
+    line-height:1.18;
+    letter-spacing:-.01em;
+    max-width:20ch;
+    margin:0;
+  }
+  .em-intro .em-eyebrow{ margin-bottom:34px; }
+  .em-intro em{ font-style:italic; color:var(--em-dim); }
+
+  /* ---------- MENU ---------- */
+  .em-menu{
+    padding:clamp(80px,11vw,140px) 0;
+    background:var(--em-bg-2);
+  }
+  .em-menu__head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-bottom:64px;
+  }
+  .em-menu__head h2{
+    font-size:clamp(38px,6vw,72px);
+    margin-top:16px;
+  }
+  .em-menu__note{
+    max-width:34ch;
+    color:var(--em-dim);
+    font-size:15px;
+    line-height:1.6;
+  }
+  .em-menu__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px 72px;
+    align-items:start;
+  }
+  .em-cat + .em-cat{ margin-top:56px; }
+  .em-cat__title{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:15px;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--em-faint);
+    margin:0 0 26px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--em-line-soft);
+  }
+  .em-item{ margin-bottom:26px; }
+  .em-item__top{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .em-item__name{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:20px;
+    font-weight:400;
+    margin:0;
+    flex:0 1 auto;
+  }
+  .em-item__lead{
+    flex:1 1 auto;
+    border-bottom:1px dotted rgba(194,112,61,.5);
+    transform:translateY(-4px);
+    min-width:16px;
+  }
+  .em-item__price{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:18px;
+    color:var(--em-accent);
+    flex:0 0 auto;
+  }
+  .em-item__desc{
+    margin:7px 0 0;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--em-dim);
+    max-width:52ch;
+  }
+  .em-menu__figure{
+    position:relative;
+    border-radius:var(--radius-lg, 16px);
+    overflow:hidden;
+    margin-top:14px;
+  }
+  .em-menu__figure img{
+    width:100%;
+    height:100%;
+    min-height:340px;
+    object-fit:cover;
+    opacity:.85;
+  }
+  .em-menu__figure figcaption{
+    position:absolute;
+    left:22px; bottom:20px;
+    right:22px;
+    font-family:var(--font-display, Fraunces, serif);
+    font-style:italic;
+    font-size:18px;
+    text-shadow:0 2px 18px rgba(0,0,0,.8);
+  }
+
+  /* ---------- FULL-WIDTH IMAGE BREAK ---------- */
+  .em-break{
+    position:relative;
+    height:min(78vh, 720px);
+    display:flex;
+    align-items:flex-end;
+  }
+  .em-break img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    opacity:.7;
+  }
+  .em-break::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(15,12,10,.9), rgba(15,12,10,.2) 60%, rgba(15,12,10,.5));
+  }
+  .em-break__cap{
+    position:relative;
+    z-index:2;
+    padding-bottom:56px;
+  }
+  .em-break__cap p{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:clamp(24px,3.6vw,44px);
+    line-height:1.12;
+    max-width:22ch;
+    margin:14px 0 0;
+  }
+
+  /* ---------- STORY SPLIT ---------- */
+  .em-story{
+    padding:clamp(80px,11vw,140px) 0;
+    background:var(--em-bg);
+  }
+  .em-story__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:72px;
+    align-items:center;
+  }
+  .em-story__media{
+    border-radius:var(--radius-lg, 16px);
+    overflow:hidden;
+    aspect-ratio:4/5;
+  }
+  .em-story__media img{
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .em-story h2{
+    font-size:clamp(34px,5vw,60px);
+    margin:16px 0 0;
+  }
+  .em-story__body{
+    margin:24px 0 0;
+    color:var(--em-dim);
+    font-size:16px;
+    line-height:1.7;
+  }
+  .em-story__body p + p{ margin-top:16px; }
+  .em-sign{
+    margin-top:30px;
+    font-family:var(--font-display, Fraunces, serif);
+    font-style:italic;
+    font-size:22px;
+  }
+  .em-sign span{
+    display:block;
+    font-family:var(--font-sans, Inter, sans-serif);
+    font-style:normal;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--em-faint);
+    margin-top:6px;
+  }
+
+  /* ---------- GALLERY (asymmetric) ---------- */
+  .em-gallery{
+    padding:clamp(80px,11vw,140px) 0;
+    background:var(--em-bg-2);
+  }
+  .em-gallery__head{ margin-bottom:52px; }
+  .em-gallery__head h2{
+    font-size:clamp(34px,5vw,60px);
+    margin-top:14px;
+  }
+  .em-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-auto-rows:200px;
+    gap:16px;
+  }
+  .em-grid figure{
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius, 12px);
+    margin:0;
+  }
+  .em-grid img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .8s var(--ease, ease), opacity .5s ease;
+    opacity:.9;
+  }
+  .em-grid figure:hover img{ transform:scale(1.05); opacity:1; }
+  .em-g1{ grid-column:span 3; grid-row:span 2; }
+  .em-g2{ grid-column:span 3; grid-row:span 1; }
+  .em-g3{ grid-column:span 3; grid-row:span 1; }
+  .em-g4{ grid-column:span 2; grid-row:span 2; }
+  .em-g5{ grid-column:span 2; grid-row:span 1; }
+  .em-g6{ grid-column:span 2; grid-row:span 1; }
+
+  /* ---------- RESERVATIONS / CONTACT ---------- */
+  .em-reserve{
+    padding:clamp(80px,11vw,140px) 0;
+    background:var(--em-bg);
+    border-top:1px solid var(--em-line-soft);
+  }
+  .em-reserve__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:start;
+  }
+  .em-reserve h2{
+    font-size:clamp(36px,5.5vw,64px);
+    margin:16px 0 0;
+  }
+  .em-reserve__lede{
+    margin:24px 0 40px;
+    color:var(--em-dim);
+    font-size:16px;
+    line-height:1.7;
+    max-width:44ch;
+  }
+  .em-info{ list-style:none; margin:0; padding:0; }
+  .em-info li{
+    display:flex;
+    gap:14px;
+    padding:18px 0;
+    border-top:1px solid var(--em-line-soft);
+    align-items:baseline;
+  }
+  .em-info li:last-child{ border-bottom:1px solid var(--em-line-soft); }
+  .em-info dt{
+    flex:0 0 130px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--em-faint);
+  }
+  .em-info dd{
+    margin:0;
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:18px;
+  }
+  .em-info dd small{
+    display:block;
+    font-family:var(--font-sans, Inter, sans-serif);
+    font-size:13px;
+    color:var(--em-dim);
+    margin-top:2px;
+  }
+  .em-form{
+    background:var(--em-bg-3);
+    border:1px solid var(--em-line-soft);
+    border-radius:var(--radius-lg, 16px);
+    padding:38px;
+  }
+  .em-form__title{
+    font-family:var(--font-display, Fraunces, serif);
+    font-size:24px;
+    margin:0 0 24px;
+  }
+  .em-field{ margin-bottom:20px; }
+  .em-field label{
+    display:block;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--em-faint);
+    margin-bottom:9px;
+  }
+  .em-field input,
+  .em-field select,
+  .em-field textarea{
+    width:100%;
+    background:transparent;
+    border:1px solid var(--em-line);
+    border-radius:var(--radius, 10px);
+    padding:13px 15px;
+    color:var(--em-text);
+    font-family:inherit;
+    font-size:15px;
+    transition:border-color .3s var(--ease, ease);
+  }
+  .em-field input::placeholder,
+  .em-field textarea::placeholder{ color:var(--em-faint); }
+  .em-field input:focus,
+  .em-field select:focus,
+  .em-field textarea:focus{
+    outline:none;
+    border-color:var(--em-accent);
+  }
+  .em-field select{ appearance:none; cursor:pointer; }
+  .em-field textarea{ resize:vertical; min-height:90px; }
+  .em-field--row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .em-submit{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    background:var(--em-accent);
+    color:#fff;
+    padding:16px;
+    border-radius:999px;
+    font-family:inherit;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+    transition:background .3s var(--ease, ease);
+  }
+  .em-submit:hover{ background:var(--em-accent-dark); }
+
+  /* ---------- FOOTER ---------- */
+  .em-footer{
+    background:#0f0c0a;
+    padding:80px 0 40px;
+    border-top:1px solid var(--em-line-soft);
+  }
+  .em-footer__top{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:48px;
+    padding-bottom:52px;
+    border-bottom:1px solid var(--em-line-soft);
+  }
+  .em-footer__brand p{
+    margin:20px 0 0;
+    color:var(--em-dim);
+    font-size:14.5px;
+    line-height:1.7;
+    max-width:38ch;
+  }
+  .em-footer h4{
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--em-faint);
+    margin:0 0 18px;
+    font-weight:600;
+  }
+  .em-footer ul{ list-style:none; margin:0; padding:0; }
+  .em-footer li{ margin-bottom:11px; }
+  .em-footer a{
+    color:var(--em-dim);
+    text-decoration:none;
+    font-size:14.5px;
+    transition:color .3s var(--ease, ease);
+  }
+  .em-footer a:hover{ color:var(--em-accent); }
+  .em-footer__bot{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:34px;
+    font-size:12.5px;
+    color:var(--em-faint);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:920px){
+    .em-menu__grid,
+    .em-story__grid,
+    .em-reserve__grid{ grid-template-columns:1fr; gap:48px; }
+    .em-footer__top{ grid-template-columns:1fr 1fr; }
+    .em-story__media{ aspect-ratio:16/10; }
+    .em-grid{ grid-auto-rows:150px; }
+  }
+  @media (max-width:640px){
+    .em-nav__links{ display:none; }
+    .em-hero__meta{ gap:22px 34px; }
+    .em-grid{
+      grid-template-columns:repeat(2, 1fr);
+      grid-auto-rows:150px;
+    }
+    .em-g1,.em-g2,.em-g3,.em-g4,.em-g5,.em-g6{ grid-column:span 1; grid-row:span 1; }
+    .em-g1{ grid-column:span 2; grid-row:span 2; }
+    .em-field--row{ grid-template-columns:1fr; }
+    .em-footer__top{ grid-template-columns:1fr; }
+    .em-form{ padding:26px; }
+  }
+</style>
+</head>
+<body class="em-page">
+
+<!-- NAV -->
+<header class="em-nav">
+  <div class="em-wrap em-nav__in">
+    <a href="#" class="em-logo"><span class="em-logo__mark" data-field="brandMark">E</span> <span data-field="brandName">Ember &amp; Oak</span></a>
+    <nav class="em-nav__links">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Reservations</a>
+    </nav>
+    <a href="#contact" class="em-book" data-field="navCta">Book a table</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="em-hero">
+  <img class="em-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80" alt="Dimly lit dining room lit by open flame">
+  <div class="em-hero__scrim"></div>
+  <div class="em-hero__in">
+    <div class="em-wrap reveal">
+      <span class="em-eyebrow" data-field="heroEyebrow">Wood-fired kitchen &amp; bar · Est. 2016</span>
+      <h1 class="em-display" data-field="heroTitle">Cooked over <span class="em-italic">flame</span>,<br>served with soul.</h1>
+      <p class="em-hero__lede" data-field="heroSub">A neighbourhood kitchen built around a single open fire. Seasonal produce, live-fire cooking and a low-intervention wine list, in a room that glows.</p>
+      <div class="em-hero__cta">
+        <a href="#contact" class="em-btn em-btn--solid" data-field="heroCta1">Reserve a table</a>
+        <a href="#menu" class="em-btn em-btn--line" data-field="heroCta2">Read the menu</a>
+      </div>
+      <div class="em-hero__meta">
+        <div><b data-field="stat1Num">4.8&#9733;</b><span data-field="stat1Label">Across 900+ reviews</span></div>
+        <div><b data-field="stat2Num">One fire</b><span data-field="stat2Label">Everything, over oak</span></div>
+        <div><b data-field="stat3Num">Warren St</b><span data-field="stat3Label">London&nbsp;W1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO STATEMENT -->
+<section class="em-intro">
+  <div class="em-wrap reveal">
+    <span class="em-eyebrow">The idea</span>
+    <p>Honest food over live flame, <em>no fuss, no shortcuts.</em> Just fire, smoke and time.</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="em-menu" id="menu">
+  <div class="em-wrap">
+    <div class="em-menu__head reveal">
+      <div>
+        <span class="em-eyebrow">The menu</span>
+        <h2 class="em-display" data-field="servicesTitle">A short list,<br>changed often.</h2>
+      </div>
+      <p class="em-menu__note" data-field="servicesSub">We cook what's good right now, so the menu shifts with the seasons and the market. Here's a taste of tonight.</p>
+    </div>
+
+    <div class="em-menu__grid reveal">
+      <div>
+        <div class="em-cat">
+          <h3 class="em-cat__title">Small plates</h3>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc1Title">Charred sourdough &amp; bone marrow</h4><span class="em-item__lead"></span><span class="em-item__price">9</span></div>
+            <p class="em-item__desc" data-field="svc1Desc">House levain grilled over the coals, roasted marrow, sea salt, lemon.</p>
+          </div>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc2Title">Ember-roasted beetroot &amp; goat's curd</h4><span class="em-item__lead"></span><span class="em-item__price">11</span></div>
+            <p class="em-item__desc" data-field="svc2Desc">Slow-cooked in the embers, toasted hazelnut, aged sherry dressing.</p>
+          </div>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc3Title">Flame-grilled octopus &amp; 'nduja</h4><span class="em-item__lead"></span><span class="em-item__price">14</span></div>
+            <p class="em-item__desc" data-field="svc3Desc">Cornish octopus, smoked paprika oil, chickpeas, salsa verde.</p>
+          </div>
+        </div>
+
+        <div class="em-cat">
+          <h3 class="em-cat__title">Desserts</h3>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc4Title">Burnt Basque cheesecake</h4><span class="em-item__lead"></span><span class="em-item__price">8</span></div>
+            <p class="em-item__desc" data-field="svc4Desc">Caramelised top, soft centre, poached quince.</p>
+          </div>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc5Title">Wood-smoked chocolate tart</h4><span class="em-item__lead"></span><span class="em-item__price">9</span></div>
+            <p class="em-item__desc" data-field="svc5Desc">Dark chocolate ganache, smoked cream, sea salt, cocoa nib.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="em-cat">
+          <h3 class="em-cat__title">From the fire</h3>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name" data-field="svc6Title">Dry-aged Hereford ribeye, 400g</h4><span class="em-item__lead"></span><span class="em-item__price">34</span></div>
+            <p class="em-item__desc" data-field="svc6Desc">35-day aged, grilled over oak, burnt onion, bone-marrow butter. For sharing.</p>
+          </div>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name">Whole plaice, brown butter &amp; capers</h4><span class="em-item__lead"></span><span class="em-item__price">26</span></div>
+            <p class="em-item__desc">Day-boat plaice cooked on the bone, seaweed butter, charred lemon.</p>
+          </div>
+          <div class="em-item">
+            <div class="em-item__top"><h4 class="em-item__name">Fire-roasted celeriac &amp; wild mushroom</h4><span class="em-item__lead"></span><span class="em-item__price">24</span></div>
+            <p class="em-item__desc">Whole celeriac cooked in the embers, hen-of-the-woods, truffle, thyme.</p>
+          </div>
+        </div>
+
+        <figure class="em-menu__figure">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="A plated dish resting on a dark table">
+          <figcaption>Everything leaves the pass touched by smoke.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-WIDTH IMAGE BREAK -->
+<section class="em-break reveal">
+  <img loading="lazy" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=80" alt="Flames rising in the wood-fired grill">
+  <div class="em-wrap em-break__cap">
+    <span class="em-eyebrow">At the heart of the room</span>
+    <p class="em-display">One fire, lit before dawn, kept alive until the last plate.</p>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="em-story" id="about">
+  <div class="em-wrap">
+    <div class="em-story__grid reveal">
+      <div class="em-story__media">
+        <img loading="lazy" data-img="about" src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1200&q=80" alt="Chef working the open kitchen pass">
+      </div>
+      <div>
+        <span class="em-eyebrow">Our story</span>
+        <h2 class="em-display" data-field="aboutTitle">Great ingredients, nothing to hide.</h2>
+        <div class="em-story__body">
+          <p data-field="aboutText">We opened Ember &amp; Oak with one idea: cook honest food over live flame and let the produce do the talking. Seasonal vegetables picked fresh each morning, meat and fish from named farms and day-boats we trust, all finished over sustainable British oak and charcoal.</p>
+          <p>The wine follows the same instinct, low-intervention, poured by people who genuinely love it. The room is warm, the fire is loud, and the welcome is meant to feel like the best kind of dinner party.</p>
+        </div>
+        <p class="em-sign">Harriet &amp; Tom<span>Founders &amp; head of the fire</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="em-gallery" id="gallery">
+  <div class="em-wrap">
+    <div class="em-gallery__head reveal">
+      <span class="em-eyebrow">The room &amp; the plates</span>
+      <h2 class="em-display">A look inside.</h2>
+    </div>
+    <div class="em-grid reveal">
+      <figure class="em-g1"><img loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="The dining room lit by candlelight and flame"></figure>
+      <figure class="em-g2"><img loading="lazy" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="A finished plate at the pass"></figure>
+      <figure class="em-g3"><img loading="lazy" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" alt="Guests dining at a warmly lit table"></figure>
+      <figure class="em-g4"><img loading="lazy" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Grilled meat resting after the fire"></figure>
+      <figure class="em-g5"><img loading="lazy" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Flames in the wood-fired grill"></figure>
+      <figure class="em-g6"><img loading="lazy" src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=800&q=80" alt="The kitchen team working the pass"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATIONS / CONTACT -->
+<section class="em-reserve" id="contact">
+  <div class="em-wrap">
+    <div class="em-reserve__grid">
+      <div class="reveal">
+        <span class="em-eyebrow">Reservations</span>
+        <h2 class="em-display" data-field="contactTitle">Come and sit<br>by the fire.</h2>
+        <p class="em-reserve__lede" data-field="contactSub">Tables can be booked up to eight weeks ahead. For parties larger than six, or private hire of the fire counter, drop us a line and we'll sort the rest.</p>
+        <dl class="em-info">
+          <li><dt>Opening hours</dt><dd data-field="hours">Tue–Sun, 5pm–late<small>Sunday lunch 12–4pm</small></dd></li>
+          <li><dt>Find us</dt><dd data-field="address">42 Warren Street<small>London W1, near the tube</small></dd></li>
+          <li><dt>Phone</dt><dd data-field="phone">020 7946 0318</dd></li>
+          <li><dt>Email</dt><dd data-field="email">bookings@emberandoak.co.uk</dd></li>
+        </dl>
+      </div>
+
+      <form class="em-form reveal">
+        <h3 class="em-form__title">Request a table</h3>
+        <div class="em-field">
+          <label for="em-name">Your name</label>
+          <input id="em-name" type="text" placeholder="Jane Doe" required>
+        </div>
+        <div class="em-field">
+          <label for="em-email">Email</label>
+          <input id="em-email" type="email" placeholder="you@email.com" required>
+        </div>
+        <div class="em-field--row">
+          <div class="em-field">
+            <label for="em-date">Preferred date</label>
+            <input id="em-date" type="date">
+          </div>
+          <div class="em-field">
+            <label for="em-party">Party size</label>
+            <select id="em-party">
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4 guests</option>
+              <option>5 guests</option>
+              <option>6 guests</option>
+              <option>7+ (we'll be in touch)</option>
+            </select>
+          </div>
+        </div>
+        <div class="em-field">
+          <label for="em-msg">Anything we should know?</label>
+          <textarea id="em-msg" placeholder="Time preference, allergies, a birthday to celebrate…"></textarea>
+        </div>
+        <button type="submit" class="em-submit">Request a table</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="em-footer">
+  <div class="em-wrap">
+    <div class="em-footer__top">
+      <div class="em-footer__brand">
+        <a href="#" class="em-logo"><span class="em-logo__mark" data-field="brandMark">E</span> <span data-field="brandName">Ember &amp; Oak</span></a>
+        <p data-field="footerText">A wood-fired kitchen &amp; bar, seasonal plates cooked over open flame, poured with natural wine and served with warmth.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#menu">The menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Reservations</a></li>
+          <li><a href="#contact">Private hire</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>The place</h4>
+        <ul>
+          <li><a href="#about">Our story</a></li>
+          <li><a href="#contact">Find us</a></li>
+          <li><a href="#contact">Opening hours</a></li>
+          <li><a href="#">Gift vouchers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="em-footer__bot">
+      <span data-field="footerLegal">© 2026 Ember &amp; Oak. All rights reserved.</span>
+      <span>Please tell us of any allergies, our kitchen handles nuts, gluten &amp; shellfish.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

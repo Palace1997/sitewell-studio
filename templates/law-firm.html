@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashcroft Legal, Considered counsel. Decisive results.</title>
+<meta name="description" content="Ashcroft Legal, a full-service law firm offering corporate, property, family, employment and dispute resolution advice. Considered counsel you can rely on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231A1416'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>A</text></svg>">
+
+<style>
+/* =====================================================================
+   ASHCROFT LEGAL, bespoke architectural / traditional-modern layout
+   Custom 'al-' components. Reuses :root tokens + .reveal + .t-ribbon.
+   ===================================================================== */
+/* --- Palette override: "Oxblood & Ink" --- */
+:root{
+  --accent:#7C2A32;
+  --accent-dark:#641F27;
+  --ink:#1A1416;
+  --paper:#F8F5F2;
+  --paper-2:#F0EAE5;
+  --paper-3:#F0EAE5;
+  --line:#E6DED9;
+  --text:#1E1618;
+  --g-700:#4A4042;
+  --g-500:#837873;
+  --g-400:#9C918B;
+  --g-300:#C9BEB8;
+}
+.al-page{overflow-x:hidden}
+
+/* --- Serif-forward primitives --- */
+.al-serif{font-family:var(--font-display)}
+.al-italic{font-style:italic}
+.al-kicker{font-family:var(--font-sans);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.32em;color:var(--g-500)}
+.al-kicker--pale{color:var(--g-400)}
+.al-rule{width:44px;height:1px;background:var(--accent);margin:22px auto}
+.al-rule--pale{background:rgba(255,255,255,.55)}
+.al-wrap{max-width:1160px;margin:0 auto;padding:0 var(--gutter)}
+.al-wrap--tight{max-width:900px}
+
+/* --- Top bar (formal, centred logo with links either side) --- */
+.al-topline{background:linear-gradient(90deg,#1A1416,#0F0B0C);color:var(--g-300);font-size:12.5px;letter-spacing:.06em}
+.al-topline__in{max-width:1160px;margin:0 auto;padding:9px var(--gutter);display:flex;justify-content:space-between;gap:18px}
+.al-topline a{color:var(--g-300)}
+.al-topline a:hover{color:var(--paper)}
+@media(max-width:760px){.al-topline__in span:last-child{display:none}}
+
+.al-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line);transition:.3s}
+.al-nav.scrolled{box-shadow:0 1px 0 var(--line),0 10px 30px rgba(10,10,10,.05)}
+.al-nav__in{max-width:1160px;margin:0 auto;padding:0 var(--gutter);height:88px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.al-nav__side{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--g-700)}
+.al-nav__side--r{justify-content:flex-end}
+.al-nav__side a{transition:color .2s}
+.al-nav__side a:hover{color:var(--ink)}
+.al-brand{display:flex;flex-direction:column;align-items:center;line-height:1;text-align:center}
+.al-brand__mark{width:40px;height:40px;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:7px}
+.al-brand__name{font-family:var(--font-display);font-size:19px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.al-nav__cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border-bottom:1.5px solid var(--accent);padding-bottom:3px;transition:.2s}
+.al-nav__cta:hover{color:var(--accent-dark);border-color:var(--accent-dark);opacity:1}
+@media(max-width:920px){.al-nav__side{display:none}.al-nav__in{grid-template-columns:1fr}.al-brand{grid-column:1}}
+
+/* --- HERO, centred serif over architectural band w/ dark overlay --- */
+.al-hero{position:relative;color:var(--paper);text-align:center;isolation:isolate}
+.al-hero__bg{position:absolute;inset:0;z-index:-2}
+.al-hero__bg img{width:100%;height:100%;object-fit:cover;filter:contrast(1.02) brightness(.92)}
+.al-hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,22,.78),rgba(20,15,17,.66) 55%,rgba(15,11,12,.88))}
+.al-hero__in{max-width:900px;margin:0 auto;padding:clamp(96px,16vw,190px) var(--gutter) clamp(84px,13vw,150px)}
+.al-hero__est{font-family:var(--font-sans);font-size:11.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--g-300)}
+.al-hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(42px,7.6vw,88px);line-height:1.03;letter-spacing:-.02em;margin:26px 0 0}
+.al-hero h1 .al-italic{font-weight:500}
+.al-hero__lede{font-size:clamp(16px,1.9vw,19.5px);line-height:1.6;color:var(--g-300);max-width:56ch;margin:28px auto 0}
+.al-hero__cta{display:inline-flex;align-items:center;gap:10px;margin-top:40px;font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#FFFFFF;padding:17px 34px;transition:.25s var(--ease)}
+.al-hero__cta:hover{background:var(--accent-dark)}
+.al-hero__cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.al-hero__scroll{margin-top:56px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--g-400)}
+
+/* --- PRACTICE AREAS, elegant two-column serif list, no cards --- */
+.al-sect{padding:var(--section-y) 0}
+.al-sect--soft{background:var(--paper-2)}
+.al-sect--paper3{background:var(--paper-3)}
+.al-head{text-align:center;max-width:640px;margin:0 auto clamp(46px,7vw,70px)}
+.al-head h2{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,4.6vw,52px);letter-spacing:-.02em;margin:16px 0 0}
+.al-head p{color:var(--g-500);font-size:clamp(16px,1.7vw,18px);margin:18px auto 0;max-width:52ch;line-height:1.6}
+
+.al-areas{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,7vw,96px);border-top:1px solid var(--line)}
+.al-area{border-bottom:1px solid var(--line);padding:30px 4px;display:grid;grid-template-columns:auto 1fr;column-gap:24px;align-items:baseline;transition:padding-left .3s var(--ease)}
+.al-area:hover{padding-left:16px}
+.al-area__no{font-family:var(--font-display);font-size:15px;font-style:italic;color:var(--accent);line-height:1.7}
+.al-area h3{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,2.6vw,27px);letter-spacing:-.01em;margin:0}
+.al-area p{color:var(--g-500);font-size:15px;margin:9px 0 0;line-height:1.55;max-width:40ch}
+@media(max-width:760px){.al-areas{grid-template-columns:1fr}}
+
+/* --- APPROACH, tall architectural image split --- */
+.al-approach{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(36px,6vw,84px);align-items:center}
+.al-approach__media{position:relative;aspect-ratio:3/4;overflow:hidden}
+.al-approach__media img{width:100%;height:100%;object-fit:cover}
+.al-approach__media figcaption{position:absolute;left:0;bottom:0;right:0;padding:22px;background:linear-gradient(0deg,rgba(15,11,12,.82),transparent);color:var(--paper);font-family:var(--font-display);font-style:italic;font-size:15px;letter-spacing:.02em}
+.al-approach h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em;margin:16px 0 0}
+.al-approach__lede{color:var(--g-500);font-size:clamp(16px,1.7vw,18px);line-height:1.6;margin:20px 0 34px;max-width:48ch}
+.al-points{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--line);background:var(--line)}
+.al-point{background:var(--paper);padding:26px 24px}
+.al-point__n{font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--accent)}
+.al-point h4{font-family:var(--font-display);font-weight:500;font-size:19px;margin:12px 0 8px;letter-spacing:-.01em}
+.al-point p{color:var(--g-500);font-size:14.5px;line-height:1.55;margin:0}
+@media(max-width:860px){.al-approach{grid-template-columns:1fr}.al-approach__media{aspect-ratio:16/12}}
+@media(max-width:520px){.al-points{grid-template-columns:1fr}}
+
+/* --- STATS band on dark, serif numerals --- */
+.al-stats{background:linear-gradient(160deg,#1A1416,#0F0B0C);color:var(--paper)}
+.al-stats__in{max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,92px) var(--gutter);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;text-align:center}
+.al-stat{padding:12px 16px;position:relative}
+.al-stat+.al-stat::before{content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;background:rgba(255,255,255,.16)}
+.al-stat b{display:block;font-family:var(--font-display);font-weight:400;font-size:clamp(38px,5.4vw,62px);line-height:1;letter-spacing:-.02em}
+.al-stat span{display:block;margin-top:12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--g-400)}
+@media(max-width:760px){.al-stats__in{grid-template-columns:1fr 1fr;gap:36px 1px}.al-stat:nth-child(3)::before,.al-stat:nth-child(1)::before{display:none}}
+
+/* --- PEOPLE, formal portrait grid --- */
+.al-people{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,34px)}
+.al-person figure{margin:0}
+.al-person__frame{aspect-ratio:3/4;overflow:hidden;border:1px solid var(--line);background:var(--paper-3)}
+.al-person__frame img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.al-person:hover .al-person__frame img{transform:scale(1.04)}
+.al-person h4{font-family:var(--font-display);font-weight:500;font-size:20px;margin:18px 0 4px;letter-spacing:-.01em}
+.al-person span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--g-500)}
+@media(max-width:860px){.al-people{grid-template-columns:1fr 1fr;gap:34px}}
+
+/* --- PULL QUOTE --- */
+.al-quote{background:linear-gradient(160deg,#1A1416,#0F0B0C);color:var(--paper);text-align:center}
+.al-quote__in{max-width:880px;margin:0 auto;padding:clamp(64px,10vw,120px) var(--gutter)}
+.al-quote__mark{font-family:var(--font-display);font-size:80px;line-height:.6;color:var(--accent)}
+.al-quote blockquote{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(23px,3.3vw,36px);line-height:1.35;letter-spacing:-.01em}
+.al-quote cite{display:block;margin-top:30px;font-style:normal;font-family:var(--font-sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--g-400)}
+
+/* --- FEES + CONTACT --- */
+.al-fees{display:grid;gap:0;border-top:1px solid var(--line)}
+.al-fee{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;padding:30px 4px;border-bottom:1px solid var(--line)}
+.al-fee__name{font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:500;letter-spacing:-.01em}
+.al-fee__desc{color:var(--g-500);font-size:14.5px}
+.al-fee__price{font-family:var(--font-display);font-size:clamp(24px,3vw,34px);white-space:nowrap}
+.al-fee__price small{font-family:var(--font-sans);font-size:13px;color:var(--g-500);letter-spacing:.02em}
+.al-fee--feature{background:linear-gradient(120deg,#1A1416,#0F0B0C);color:var(--paper);padding-left:28px;padding-right:28px;border-color:var(--ink)}
+.al-fee--feature .al-fee__desc{color:var(--g-400)}
+.al-fee--feature .al-fee__tag{display:inline-block;margin-top:6px;font-family:var(--font-sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--g-400)}
+@media(max-width:640px){.al-fee{grid-template-columns:1fr auto;row-gap:6px}.al-fee__desc{grid-column:1/-1;order:3}}
+
+.al-contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,80px);align-items:start}
+.al-contact h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em;margin:16px 0 0}
+.al-contact p{color:var(--g-500);font-size:clamp(16px,1.7vw,18px);line-height:1.6;margin:18px 0 32px;max-width:44ch}
+.al-info{border-top:1px solid var(--line)}
+.al-info li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.al-info dt{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--g-500)}
+.al-info dd{margin:0;font-family:var(--font-display);font-size:17px}
+.al-form{display:grid;gap:18px;background:var(--paper);border:1px solid var(--line);padding:clamp(26px,4vw,40px)}
+.al-field{display:grid;gap:8px}
+.al-field label{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g-700)}
+.al-field input,.al-field select,.al-field textarea{font-family:var(--font-sans);font-size:15px;padding:14px 15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:0}
+.al-field textarea{resize:vertical;min-height:110px}
+.al-field input:focus,.al-field select:focus,.al-field textarea:focus{outline:none;border-color:var(--accent)}
+.al-form button{font-family:var(--font-sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#FFFFFF;border:1.5px solid var(--accent);padding:17px 26px;transition:.25s var(--ease)}
+.al-form button:hover{background:var(--accent-dark);border-color:var(--accent-dark);color:#FFFFFF}
+@media(max-width:820px){.al-contact{grid-template-columns:1fr}}
+
+/* --- FOOTER --- */
+.al-footer{background:linear-gradient(160deg,#1A1416,#0F0B0C);color:var(--g-400)}
+.al-footer__in{max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,90px) var(--gutter) 34px}
+.al-footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.al-footer__brand .al-brand{align-items:flex-start;text-align:left}
+.al-footer__brand .al-brand__mark{border-color:rgba(255,255,255,.6);color:var(--paper)}
+.al-footer__brand .al-brand__name{color:var(--paper)}
+.al-footer__brand p{margin-top:18px;max-width:34ch;font-size:14.5px;line-height:1.6}
+.al-footer h5{font-family:var(--font-sans);font-size:11.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--paper);margin:0 0 16px;font-weight:600}
+.al-footer li{margin-bottom:11px}
+.al-footer li a{font-size:14.5px}
+.al-footer li a:hover{color:var(--paper)}
+.al-footer__bot{padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--g-500)}
+.al-footer__sra{max-width:60ch;line-height:1.6}
+@media(max-width:760px){.al-footer__top{grid-template-columns:1fr 1fr}.al-footer__brand{grid-column:1/-1}}
+</style>
+</head>
+<body class="al-page">
+
+<!-- TOP LINE -->
+<div class="al-topline">
+  <div class="al-topline__in">
+    <span>Authorised &amp; regulated by the SRA · No. 512340</span>
+    <span>020 7946 0233 · <a href="#contact">enquiries@ashcroftlegal.co.uk</a></span>
+  </div>
+</div>
+
+<!-- NAV, centred logo, links either side -->
+<header class="al-nav" id="top">
+  <div class="al-nav__in">
+    <nav class="al-nav__side">
+      <a href="#practice">Practice areas</a>
+      <a href="#approach">Our approach</a>
+      <a href="#people">Our people</a>
+    </nav>
+    <a href="#top" class="al-brand">
+      <span class="al-brand__mark" data-field="brandMark">A</span>
+      <span class="al-brand__name" data-field="brandName">Ashcroft Legal</span>
+    </a>
+    <div class="al-nav__side al-nav__side--r">
+      <a href="#fees">Fees</a>
+      <a href="#contact" class="al-nav__cta" data-field="navCta">Request a consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="al-hero">
+  <div class="al-hero__bg">
+    <img data-img="hero" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80" alt="Neoclassical columns of a courthouse facade">
+  </div>
+  <div class="al-hero__in reveal">
+    <p class="al-hero__est" data-field="heroEyebrow">Established 1986 · London</p>
+    <h1 data-field="heroTitle">Considered counsel.<br><span class="al-italic">Decisive</span> results.</h1>
+    <p class="al-hero__lede" data-field="heroSub">Ashcroft Legal advises individuals and businesses with clarity and precision. From the boardroom to the family home, we protect what you have built, and we tell you, plainly, where you stand.</p>
+    <a href="#contact" class="al-hero__cta" data-field="heroCta1">Request a consultation</a>
+    <p class="al-hero__scroll" data-field="trustText">Full-service · Corporate · Property · Family · Disputes</p>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="al-sect" id="practice">
+  <div class="al-wrap">
+    <div class="al-head reveal">
+      <span class="al-kicker">Our expertise</span>
+      <span class="al-rule"></span>
+      <h2 data-field="servicesTitle">A full-service firm, close at hand</h2>
+      <p data-field="servicesSub">Whatever the matter, you are advised by specialists who take the time to understand it, and to resolve it well.</p>
+    </div>
+    <div class="al-areas reveal">
+      <div class="al-area">
+        <span class="al-area__no">01</span>
+        <div><h3 data-field="svc1Title">Corporate &amp; commercial</h3><p data-field="svc1Desc">Formations, shareholder agreements, mergers, acquisitions and everyday commercial contracts.</p></div>
+      </div>
+      <div class="al-area">
+        <span class="al-area__no">02</span>
+        <div><h3 data-field="svc2Title">Property &amp; conveyancing</h3><p data-field="svc2Desc">Residential and commercial transactions, leases, transfers and title queries, handled with care.</p></div>
+      </div>
+      <div class="al-area">
+        <span class="al-area__no">03</span>
+        <div><h3 data-field="svc3Title">Family law</h3><p data-field="svc3Desc">Divorce, financial settlements and arrangements for children, advised with discretion.</p></div>
+      </div>
+      <div class="al-area">
+        <span class="al-area__no">04</span>
+        <div><h3 data-field="svc4Title">Employment law</h3><p data-field="svc4Desc">Contracts, settlement agreements, tribunal claims and HR advice for employers and employees.</p></div>
+      </div>
+      <div class="al-area">
+        <span class="al-area__no">05</span>
+        <div><h3 data-field="svc5Title">Dispute resolution</h3><p data-field="svc5Desc">Litigation, mediation and arbitration, pragmatic strategies to resolve conflict efficiently.</p></div>
+      </div>
+      <div class="al-area">
+        <span class="al-area__no">06</span>
+        <div><h3 data-field="svc6Title">Wills, trusts &amp; probate</h3><p data-field="svc6Desc">Estate planning, wills, powers of attorney and probate, safeguarding your legacy.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="al-sect al-sect--soft" id="approach">
+  <div class="al-wrap">
+    <div class="al-approach">
+      <figure class="al-approach__media reveal">
+        <img data-img="about" src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Interior colonnade of a classical building">
+        <figcaption>1 Chancery Court, London</figcaption>
+      </figure>
+      <div class="reveal">
+        <span class="al-kicker">Our approach</span>
+        <h2 data-field="aboutTitle">Straight answers, senior hands</h2>
+        <p class="al-approach__lede" data-field="aboutText">You should never wonder where you stand. We give clear advice, agree the cost in advance, and keep the same experienced people on your matter from first meeting to conclusion.</p>
+        <div class="al-points">
+          <div class="al-point">
+            <span class="al-point__n">i</span>
+            <h4 data-field="check1">Clear advice</h4>
+            <p>Plain-English counsel, no jargon, no unwelcome surprises along the way.</p>
+          </div>
+          <div class="al-point">
+            <span class="al-point__n">ii</span>
+            <h4 data-field="check2">Fixed-fee options</h4>
+            <p>Costs agreed before we begin, so you can instruct us with full confidence.</p>
+          </div>
+          <div class="al-point">
+            <span class="al-point__n">iii</span>
+            <h4 data-field="check3">Senior-led teams</h4>
+            <p>A partner on every matter, supported by experienced solicitors throughout.</p>
+          </div>
+          <div class="al-point">
+            <span class="al-point__n">iv</span>
+            <h4 data-field="check4">Responsive communication</h4>
+            <p>Prompt updates and a typical response within one working day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="al-stats">
+  <div class="al-stats__in reveal">
+    <div class="al-stat"><b data-field="stat1Num">40</b><span data-field="stat1Label">Years in practice</span></div>
+    <div class="al-stat"><b data-field="stat2Num">5,000+</b><span data-field="stat2Label">Matters concluded</span></div>
+    <div class="al-stat"><b data-field="stat3Num">98%</b><span data-field="stat3Label">Favourable outcomes</span></div>
+    <div class="al-stat"><b>3</b><span>Regional offices</span></div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="al-sect" id="people">
+  <div class="al-wrap">
+    <div class="al-head reveal">
+      <span class="al-kicker">Our people</span>
+      <span class="al-rule"></span>
+      <h2>Solicitors who know your name</h2>
+      <p>Every member of the firm is fully qualified, regulated by the SRA, and committed to the highest standards of professional conduct.</p>
+    </div>
+    <div class="al-people reveal">
+      <div class="al-person">
+        <figure>
+          <div class="al-person__frame"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Portrait of Margaret Ashcroft"></div>
+          <h4>Margaret Ashcroft</h4><span>Senior Partner · Corporate</span>
+        </figure>
+      </div>
+      <div class="al-person">
+        <figure>
+          <div class="al-person__frame"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Portrait of David Whitmore"></div>
+          <h4>David Whitmore</h4><span>Partner · Property</span>
+        </figure>
+      </div>
+      <div class="al-person">
+        <figure>
+          <div class="al-person__frame"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Portrait of James Okonkwo"></div>
+          <h4>James Okonkwo</h4><span>Senior Solicitor · Disputes</span>
+        </figure>
+      </div>
+      <div class="al-person">
+        <figure>
+          <div class="al-person__frame"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Portrait of Sarah Ellison"></div>
+          <h4>Sarah Ellison</h4><span>Solicitor · Family Law</span>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="al-quote">
+  <div class="al-quote__in reveal">
+    <div class="al-quote__mark">&ldquo;</div>
+    <blockquote data-field="quoteText">Ashcroft Legal guided us through a difficult acquisition with calm authority. They anticipated every risk, explained each step in plain terms, and delivered exactly what they promised, on time and on budget.</blockquote>
+    <cite data-field="quoteAuthor">R. Hartley · Managing Director, commercial client</cite>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="al-sect al-sect--soft" id="fees">
+  <div class="al-wrap al-wrap--tight">
+    <div class="al-head reveal">
+      <span class="al-kicker">Fees</span>
+      <span class="al-rule"></span>
+      <h2>Transparent from the first meeting</h2>
+      <p>We agree fees before any work begins, so you can instruct us with confidence and no unwelcome surprises.</p>
+    </div>
+    <div class="al-fees reveal">
+      <div class="al-fee">
+        <span class="al-fee__name">Initial consultation</span>
+        <span class="al-fee__desc">Up to one hour with a solicitor, with clear next steps in writing.</span>
+        <span class="al-fee__price">£150</span>
+      </div>
+      <div class="al-fee al-fee--feature">
+        <span class="al-fee__name">Fixed-fee conveyancing<span class="al-fee__tag">Most requested</span></span>
+        <span class="al-fee__desc">Purchase or sale, agreed fee, dedicated conveyancer throughout.</span>
+        <span class="al-fee__price">from £950</span>
+      </div>
+      <div class="al-fee">
+        <span class="al-fee__name">Business retainer</span>
+        <span class="al-fee__desc">Ongoing counsel, priority access and discounted rates on further work.</span>
+        <span class="al-fee__price">from £500<small> /mo</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="al-sect" id="contact">
+  <div class="al-wrap">
+    <div class="al-contact">
+      <div class="reveal">
+        <span class="al-kicker">Get in touch</span>
+        <h2 data-field="contactTitle">Speak with a solicitor</h2>
+        <p data-field="contactSub">Tell us briefly about your matter and we will respond within one working day, in complete confidence, to arrange your consultation.</p>
+        <dl class="al-info">
+          <li><dt>Telephone</dt><dd data-field="phone">020 7946 0233</dd></li>
+          <li><dt>Email</dt><dd data-field="email">enquiries@ashcroftlegal.co.uk</dd></li>
+          <li><dt>Office</dt><dd data-field="address">1 Chancery Court, London WC2A</dd></li>
+          <li><dt>Hours</dt><dd data-field="hours">Mon–Fri, 9:00 – 18:00</dd></li>
+        </dl>
+      </div>
+      <form class="al-form reveal">
+        <div class="al-field"><label>Your name</label><input type="text" placeholder="Full name" required></div>
+        <div class="al-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="al-field"><label>Practice area</label>
+          <select>
+            <option>Corporate &amp; commercial</option>
+            <option>Property &amp; conveyancing</option>
+            <option>Family law</option>
+            <option>Employment law</option>
+            <option>Dispute resolution</option>
+            <option>Wills, trusts &amp; probate</option>
+          </select>
+        </div>
+        <div class="al-field"><label>Your matter</label><textarea placeholder="A brief outline of how we can help…"></textarea></div>
+        <button type="submit">Request a consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="al-footer">
+  <div class="al-footer__in">
+    <div class="al-footer__top">
+      <div class="al-footer__brand">
+        <div class="al-brand">
+          <span class="al-brand__mark" data-field="brandMark">A</span>
+          <span class="al-brand__name" data-field="brandName">Ashcroft Legal</span>
+        </div>
+        <p data-field="footerText">Considered legal counsel for individuals and businesses, precise advice you can rely on.</p>
+      </div>
+      <div>
+        <h5>Expertise</h5>
+        <ul>
+          <li><a href="#practice">Corporate &amp; commercial</a></li>
+          <li><a href="#practice">Property &amp; conveyancing</a></li>
+          <li><a href="#practice">Family law</a></li>
+          <li><a href="#practice">Dispute resolution</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Firm</h5>
+        <ul>
+          <li><a href="#approach">Our approach</a></li>
+          <li><a href="#people">Our people</a></li>
+          <li><a href="#fees">Fees</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="al-footer__bot">
+      <span data-field="footerLegal">© 2026 Ashcroft Legal LLP. All rights reserved.</span>
+      <span class="al-footer__sra">Ashcroft Legal LLP is authorised and regulated by the Solicitors Regulation Authority (SRA No. 512340). A list of members is available at the registered office.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

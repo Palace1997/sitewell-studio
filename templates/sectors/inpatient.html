@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cedarcrest Behavioral Hospital, Inpatient psychiatric care</title>
+<meta name="description" content="Cedarcrest Behavioral Hospital: Inpatient psychiatric care. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2323406B'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>C</text></svg>">
+<style>
+.cc{
+  --acc:#23406B; --acc2:#1B3255; --on:#ffffff;
+  --dark:#131F32; --dark2:#0C1522;
+  --paper:#FBFAF7; --line:#E3DFD6; --ink:#17202E; --muted:#6C7280;
+  background:var(--paper); color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.cc *{box-sizing:border-box;}
+.cc h1,.cc h2,.cc h3,.cc h4{margin:0;font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.02em;line-height:1.06;}
+.cc p{margin:0;}
+.cc a{text-decoration:none;}
+.cc-wrap{max-width:1220px;margin:0 auto;padding:0 clamp(20px,5vw,60px);}
+.cc-em{font-style:italic;font-weight:400;}
+
+/* buttons */
+.cc-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;font-size:15px;font-weight:600;border:2px solid transparent;cursor:pointer;transition:all .22s ease;font-family:inherit;}
+.cc-btn svg{width:16px;height:16px;}
+.cc-btn--gold{background:var(--acc);color:#fff;border-color:var(--acc);}
+.cc-btn--gold:hover{background:var(--acc2);border-color:var(--acc2);}
+.cc-btn--wire{background:transparent;color:#fff;border-color:rgba(255,255,255,.55);}
+.cc-btn--wire:hover{background:#fff;color:var(--dark);border-color:#fff;}
+.cc-btn--dark{background:var(--dark);color:#fff;border-color:var(--dark);}
+.cc-btn--dark:hover{background:var(--acc);border-color:var(--acc);}
+
+/* top utility strip */
+.cc-strip{background:var(--dark2);color:rgba(255,255,255,.85);font-size:13.5px;}
+.cc-strip__in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:9px 0;}
+.cc-strip__in .cc-pulse{display:inline-flex;align-items:center;gap:9px;font-weight:600;color:#fff;}
+.cc-dot{width:9px;height:9px;border-radius:50%;background:#5FD08A;box-shadow:0 0 0 0 rgba(95,208,138,.7);animation:cc-ping 2s infinite;}
+@keyframes cc-ping{0%{box-shadow:0 0 0 0 rgba(95,208,138,.6);}70%{box-shadow:0 0 0 8px rgba(95,208,138,0);}100%{box-shadow:0 0 0 0 rgba(95,208,138,0);}}
+.cc-strip a{color:#fff;font-weight:600;}
+@media(max-width:620px){.cc-strip__in span.cc-strip__accred{display:none;}}
+
+/* nav */
+.cc-nav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);}
+.cc-nav__in{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.cc-logo{display:inline-flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--ink);}
+.cc-mark{width:38px;height:38px;background:var(--acc);color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;font-size:19px;}
+.cc-links{display:flex;gap:32px;}
+.cc-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .2s;}
+.cc-links a:hover{color:var(--acc);}
+@media(max-width:900px){.cc-links{display:none;}}
+@media(max-width:520px){.cc-nav .cc-btn{display:none;}}
+
+/* HERO full bleed */
+.cc-hero{position:relative;color:#fff;overflow:hidden;}
+.cc-hero__img{position:absolute;inset:0;}
+.cc-hero__img img{width:100%;height:100%;object-fit:cover;}
+.cc-hero__img::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,var(--dark2) 0%,rgba(19,31,50,.86) 42%,rgba(19,31,50,.35) 100%);}
+.cc-hero__in{position:relative;z-index:2;max-width:760px;padding:clamp(90px,13vw,160px) 0;}
+.cc-kick{display:inline-flex;align-items:center;gap:11px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9D4E4;margin-bottom:22px;}
+.cc-kick::before{content:"";width:30px;height:2px;background:var(--acc);}
+.cc-hero h1{font-size:clamp(42px,6.6vw,80px);}
+.cc-hero__lede{font-size:clamp(17px,1.8vw,21px);color:rgba(255,255,255,.9);max-width:52ch;margin-top:24px;line-height:1.55;}
+.cc-hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;}
+
+/* generic band */
+.cc-band{padding:clamp(64px,9vw,120px) 0;}
+.cc-band--navy{background:linear-gradient(160deg,var(--dark),var(--dark2));color:#fff;}
+.cc-band--paper{background:var(--paper);}
+.cc-band--rule{border-top:1px solid var(--line);}
+
+/* band header */
+.cc-bh{max-width:720px;}
+.cc-bh--center{margin:0 auto;text-align:center;}
+.cc-bh .cc-kick{color:var(--acc);}
+.cc-band--navy .cc-kick{color:#9FB2CC;}
+.cc-bh h2{font-size:clamp(32px,4.6vw,54px);margin-bottom:16px;}
+.cc-bh p{color:var(--muted);font-size:clamp(16px,1.7vw,19px);}
+.cc-band--navy .cc-bh p{color:rgba(255,255,255,.8);}
+
+/* trust logos row */
+.cc-trust{background:var(--dark2);border-top:1px solid rgba(255,255,255,.08);}
+.cc-trust__in{display:flex;flex-wrap:wrap;gap:14px 46px;align-items:center;justify-content:center;padding:24px 0;}
+.cc-trust span{font-family:'Fraunces',serif;font-size:17px;color:rgba(255,255,255,.72);display:inline-flex;align-items:center;gap:11px;}
+.cc-trust span::before{content:"";width:6px;height:6px;background:var(--acc);border-radius:50%;flex:none;}
+
+/* SERVICES, ledger rows */
+.cc-ledger{margin-top:clamp(38px,5vw,56px);border-top:2px solid var(--dark);}
+.cc-row{display:grid;grid-template-columns:64px 1fr 1.3fr;gap:clamp(18px,3vw,44px);align-items:center;padding:26px 4px;border-bottom:1px solid var(--line);transition:background .25s ease,padding-left .25s ease;}
+.cc-row:hover{background:#fff;padding-left:16px;}
+.cc-row__no{font-family:'Fraunces',serif;font-size:22px;color:var(--acc);font-weight:600;}
+.cc-row__ic{display:flex;align-items:center;gap:16px;}
+.cc-row__ic svg{width:30px;height:30px;fill:none;stroke:var(--acc);stroke-width:1.5;flex:none;}
+.cc-row__ic h3{font-size:clamp(21px,2.4vw,27px);}
+.cc-row__d{color:var(--muted);font-size:16px;}
+@media(max-width:760px){.cc-row{grid-template-columns:44px 1fr;gap:14px 18px;}.cc-row__d{grid-column:1/-1;padding-left:62px;}.cc-row:hover{padding-left:4px;}}
+@media(max-width:440px){.cc-row__d{padding-left:0;}}
+
+/* IMAGE BAND split */
+.cc-imgband{position:relative;overflow:hidden;background:var(--dark);}
+.cc-imgband__grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:560px;}
+.cc-imgband__pic{position:relative;}
+.cc-imgband__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cc-imgband__body{color:#fff;padding:clamp(56px,7vw,92px) clamp(32px,5vw,72px);display:flex;flex-direction:column;justify-content:center;}
+.cc-imgband__body h2{font-size:clamp(30px,4vw,48px);margin-bottom:18px;}
+.cc-imgband__body p{color:rgba(255,255,255,.82);font-size:18px;}
+.cc-checks{margin:30px 0 0;list-style:none;padding:0;display:grid;gap:16px;}
+.cc-checks li{display:flex;gap:15px;align-items:flex-start;font-size:16.5px;}
+.cc-checks svg{flex:none;width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2.4;background:var(--acc);border-radius:50%;padding:5px;}
+@media(max-width:820px){.cc-imgband__grid{grid-template-columns:1fr;}.cc-imgband__pic{min-height:340px;}}
+
+/* STATS band */
+.cc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);}
+.cc-stats__c{background:var(--dark);padding:clamp(34px,4vw,52px) 22px;text-align:center;}
+.cc-stats__c b{display:block;font-family:'Fraunces',serif;font-size:clamp(38px,5vw,58px);line-height:1;color:#fff;}
+.cc-stats__c span{display:block;margin-top:12px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#9FB2CC;}
+@media(max-width:640px){.cc-stats{grid-template-columns:repeat(2,1fr);}}
+
+/* QUOTE band */
+.cc-quote{max-width:900px;margin:0 auto;text-align:center;}
+.cc-quote blockquote{margin:0;font-family:'Fraunces',serif;font-size:clamp(25px,3.4vw,40px);line-height:1.3;color:var(--ink);}
+.cc-quote__who{margin-top:26px;font-size:15px;color:var(--muted);}
+.cc-quote__who b{color:var(--ink);font-weight:600;}
+
+/* CONTACT band */
+.cc-contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,72px);align-items:start;}
+.cc-info{list-style:none;padding:0;margin:28px 0 0;}
+.cc-info li{display:flex;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16);}
+.cc-info svg{width:22px;height:22px;stroke:#9FB2CC;fill:none;stroke-width:1.6;flex:none;}
+.cc-info span{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9FB2CC;margin-bottom:3px;}
+.cc-info b{font-weight:500;font-size:17px;color:#fff;}
+.cc-form{background:#fff;color:var(--ink);padding:clamp(28px,3.5vw,40px);display:grid;gap:16px;border-top:4px solid var(--acc);}
+.cc-field{display:grid;gap:6px;}
+.cc-field label{font-size:13px;font-weight:600;}
+.cc-field input,.cc-field select,.cc-field textarea{font-family:inherit;font-size:15px;padding:13px 15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:0;}
+.cc-field textarea{min-height:108px;resize:vertical;}
+.cc-field input:focus,.cc-field select:focus,.cc-field textarea:focus{outline:none;border-color:var(--acc);}
+.cc-form .cc-btn{justify-content:center;}
+@media(max-width:820px){.cc-contact{grid-template-columns:1fr;}}
+
+/* FOOTER */
+.cc-foot{background:var(--dark2);color:rgba(255,255,255,.72);padding:66px 0 34px;}
+.cc-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:38px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12);}
+.cc-foot .cc-logo{color:#fff;}
+.cc-foot__brand p{margin-top:15px;max-width:34ch;font-size:14.5px;color:rgba(255,255,255,.6);}
+.cc-foot h4{font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:#fff;margin-bottom:16px;}
+.cc-foot ul{list-style:none;padding:0;margin:0;}
+.cc-foot li{margin-bottom:11px;}
+.cc-foot a{color:rgba(255,255,255,.62);font-size:14.5px;}
+.cc-foot a:hover{color:#fff;}
+.cc-foot__bot{padding-top:24px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+@media(max-width:720px){.cc-foot__top{grid-template-columns:1fr 1fr;}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.is-in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="cc">
+
+<div class="cc-strip"><div class="cc-wrap cc-strip__in">
+  <span class="cc-pulse"><span class="cc-dot"></span> 24/7 admissions open now</span>
+  <span class="cc-strip__accred">Joint Commission accredited · Call <a href="#contact">(555) 010-2400</a></span>
+</div></div>
+
+<header class="cc-nav"><div class="cc-wrap cc-nav__in">
+  <a href="#" class="cc-logo"><span class="cc-mark" data-field="brandMark">C</span> <span data-field="brandName">Cedarcrest Behavioral Hospital</span></a>
+  <nav class="cc-links"><a href="#services">Services</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav>
+  <a href="#contact" class="cc-btn cc-btn--dark" data-field="navCta">Speak to admissions</a>
+</div></header>
+
+<section class="cc-hero">
+  <div class="cc-hero__img"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1800&q=80" alt="Cedarcrest Behavioral Hospital" data-img="hero"></div>
+  <div class="cc-wrap"><div class="cc-hero__in reveal">
+    <span class="cc-kick" data-field="heroEyebrow">Inpatient · Hospitalization</span>
+    <h1 data-field="heroTitle">Safety, stability, and a way <span class="cc-em">forward</span>.</h1>
+    <p class="cc-hero__lede" data-field="heroSub">24/7 inpatient psychiatric care for adults and adolescents in crisis, in a calm and dignified setting.</p>
+    <div class="cc-hero__cta">
+      <a href="#contact" class="cc-btn cc-btn--gold" data-field="heroCta1">Speak to admissions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#services" class="cc-btn cc-btn--wire" data-field="heroCta2">Levels of care</a>
+    </div>
+  </div></div>
+</section>
+
+<section class="cc-trust"><div class="cc-wrap cc-trust__in">
+  <span>Joint Commission accredited</span><span>24/7 staffing</span><span>Adult &amp; adolescent</span><span>Most insurance</span><span>Detox capable</span>
+</div></section>
+
+<section class="cc-band cc-band--paper" id="services"><div class="cc-wrap">
+  <div class="cc-bh reveal"><span class="cc-kick" data-field="servicesEyebrow">What we offer</span><h2 data-field="servicesTitle">Round-the-clock specialist care.</h2><p data-field="servicesSub">A full multidisciplinary team, available every hour of every day.</p></div>
+  <div class="cc-ledger reveal">
+    <div class="cc-row"><div class="cc-row__no">01</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><h3 data-field="svc1Title">Acute stabilization</h3></div><p class="cc-row__d" data-field="svc1Desc">24/7 psychiatric care in crisis.</p></div>
+    <div class="cc-row"><div class="cc-row__no">02</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg><h3 data-field="svc2Title">Adult unit</h3></div><p class="cc-row__d" data-field="svc2Desc">Private, calm inpatient setting.</p></div>
+    <div class="cc-row"><div class="cc-row__no">03</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><h3 data-field="svc3Title">Adolescent unit</h3></div><p class="cc-row__d" data-field="svc3Desc">Age-appropriate, family-involved care.</p></div>
+    <div class="cc-row"><div class="cc-row__no">04</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><h3 data-field="svc4Title">Detox support</h3></div><p class="cc-row__d" data-field="svc4Desc">Medically supervised withdrawal.</p></div>
+    <div class="cc-row"><div class="cc-row__no">05</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg><h3 data-field="svc5Title">Discharge planning</h3></div><p class="cc-row__d" data-field="svc5Desc">A clear plan for what comes next.</p></div>
+    <div class="cc-row"><div class="cc-row__no">06</div><div class="cc-row__ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg><h3 data-field="svc6Title">Family involvement</h3></div><p class="cc-row__d" data-field="svc6Desc">Loved ones as part of recovery.</p></div>
+  </div>
+</div></section>
+
+<section class="cc-imgband" id="approach">
+  <div class="cc-imgband__grid">
+    <div class="cc-imgband__pic"><img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1000&q=80" alt="Cedarcrest Behavioral Hospital" loading="lazy" data-img="about"></div>
+    <div class="cc-imgband__body reveal">
+      <span class="cc-kick" style="color:#9FB2CC" data-field="aboutEyebrow">Our approach</span>
+      <h2 data-field="aboutTitle">Dignity in the <span class="cc-em">hardest</span> moments.</h2>
+      <p data-field="aboutText">Crisis care should feel calm and human. Ours does.</p>
+      <ul class="cc-checks">
+        <li data-field="check1"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> 24/7 psychiatric staffing</li>
+        <li data-field="check2"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Private, modern units</li>
+        <li data-field="check3"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Family involved throughout</li>
+        <li data-field="check4"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Warm handoff to outpatient care</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cc-band cc-band--navy"><div class="cc-wrap">
+  <div class="cc-stats reveal">
+    <div class="cc-stats__c"><b data-field="stat1Num">24/7</b><span data-field="stat1Label">Admissions</span></div>
+    <div class="cc-stats__c"><b data-field="stat2Num">120</b><span data-field="stat2Label">Licensed beds</span></div>
+    <div class="cc-stats__c"><b data-field="stat3Num">Multi</b><span data-field="stat3Label">Disciplinary teams</span></div>
+    <div class="cc-stats__c"><b>JCAHO</b><span>Accredited</span></div>
+  </div>
+</div></section>
+
+<section class="cc-band cc-band--paper cc-band--rule"><div class="cc-wrap">
+  <div class="cc-quote reveal">
+    <blockquote data-field="quoteText">&ldquo;Arriving here can feel overwhelming, so we slow things down. On the first day you'll meet your care team, we'll explain what to expect, and we'll start planning for the day you go home.&rdquo;</blockquote>
+    <div class="cc-quote__who"><b data-field="quoteAuthor">Dr. Marcus Hale, MD</b> · <span data-field="quoteRole">Medical Director</span></div>
+  </div>
+</div></section>
+
+<section class="cc-band cc-band--navy" id="contact"><div class="cc-wrap">
+  <div class="cc-contact">
+    <div class="reveal">
+      <span class="cc-kick" style="color:#9FB2CC" data-field="contactEyebrow">Get in touch</span>
+      <h2 style="font-size:clamp(30px,4vw,48px);margin-bottom:16px;" data-field="contactTitle">Take the <span class="cc-em">first</span> step.</h2>
+      <p style="color:rgba(255,255,255,.82);font-size:18px;" data-field="contactSub">Admissions staff are available 24/7. Call any time, day or night.</p>
+      <ul class="cc-info">
+        <li><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg><div><span>Phone</span><b data-field="phone">(555) 010-2400</b></div></li>
+        <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><span>Email</span><b data-field="email">hello@inpatient.example</b></div></li>
+        <li><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><span>Location</span><b data-field="address">Cedarcrest, 1400 Cedar Ridge Rd</b></div></li>
+      </ul>
+    </div>
+    <form class="cc-form reveal" onsubmit="return false">
+      <div class="cc-field"><label for="cc-name">Name</label><input id="cc-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+      <div class="cc-field"><label for="cc-email">Email</label><input id="cc-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+      <div class="cc-field"><label for="cc-phone">Phone (optional)</label><input id="cc-phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 000-0000"></div>
+      <div class="cc-field"><label for="cc-pref">Best way to reach you</label><select id="cc-pref" name="preferred_contact"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+      <div class="cc-field"><label for="cc-reason">What can we help with?</label><select id="cc-reason" name="reason"><option>Acute stabilization</option><option>Adult unit</option><option>Adolescent unit</option><option>Detox support</option><option>Something else</option></select></div>
+      <p style="font-size:13px;opacity:.8;margin:0">Please don't include health details here. We'll talk it through on the call.</p>
+      <button class="cc-btn cc-btn--gold" type="submit">Speak to admissions</button>
+    </form>
+  </div>
+</div></section>
+
+<footer class="cc-foot"><div class="cc-wrap">
+  <div class="cc-foot__top">
+    <div class="cc-foot__brand"><a href="#" class="cc-logo"><span class="cc-mark" data-field="brandMark">C</span> <span data-field="brandName">Cedarcrest Behavioral Hospital</span></a><p data-field="footerText">Inpatient psychiatric care.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 010-2400</a></li><li><a href="#contact">hello@inpatient.example</a></li></ul></div>
+  </div>
+  <div class="cc-foot__bot"><span data-field="footerLegal">© 2026 Cedarcrest Behavioral Hospital. All rights reserved.</span><span>A SiteWell Studio website template.</span></div>
+</div><p class="sw-crisis" style="margin:0;padding:16px 20px 6px;font-size:13px;line-height:1.5;text-align:center;opacity:.85">In crisis? Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency.</p>
+</footer>
+
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Local tooling config
+.claude/
+
+# Internal notes (kept locally, not in the public repo)
+CLAUDE.md
+ONBOARDING.md
+SESSION-HANDOFF.md
+
+# Server logs / scratch
+*.log

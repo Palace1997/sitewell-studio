@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stillwater Therapy, A calm place to feel like yourself again</title>
+<meta name="description" content="Stillwater Therapy, individual, couples and group therapy. A calm, confidential space to feel like yourself again.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234C7A67'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>S</text></svg>">
+<style>
+  /* ===== CALM SAGE, COLOR PALETTE OVERRIDES ===== */
+  .mh-body{
+    --paper:#FBFAF7;      /* page background */
+    --ink:#1E241F;        /* body/heading text on light */
+    --line:#E4E0D8;       /* border/hairline */
+    --accent:#4C7A67;     /* primary accent */
+    --accent-dark:#3C6455;/* hover/pressed */
+    /* retinted warm neutrals */
+    --g-200:#F1EFE9;      /* soft/secondary surface */
+    --g-300:#D9D5CC;
+    --g-400:#A6A79E;
+    --g-500:#7C7E76;      /* muted text */
+    --g-700:#4A4E46;
+  }
+
+  /* ===== STILLWATER, SOFT LIGHT EDITORIAL ===== */
+  .mh-body{ background:var(--paper); color:var(--ink); font-family:var(--font-sans); }
+  ::selection{ background:var(--accent); color:#fff; }
+
+  /* ---- shared wrap ---- */
+  .mh-wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter); }
+  .mh-eyebrow{ display:inline-block; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:22px; }
+  .mh-cover, .ds-cover{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ---- NAV ---- */
+  .mh-nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.82);
+    backdrop-filter:saturate(160%) blur(14px); -webkit-backdrop-filter:saturate(160%) blur(14px);
+    border-bottom:1px solid var(--line); }
+  .mh-nav__in{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+  .mh-brand{ display:flex; align-items:center; gap:11px; font-family:var(--font-display); font-size:22px; font-weight:500; color:var(--ink); text-decoration:none; letter-spacing:-.01em; }
+  .mh-brand__mark{ width:30px; height:30px; border-radius:9px; background:var(--accent); color:#fff; display:grid; place-items:center; font-family:var(--font-display); font-size:16px; }
+  .mh-nav__links{ display:flex; gap:34px; }
+  .mh-nav__links a{ font-size:14.5px; color:var(--g-700); text-decoration:none; letter-spacing:.01em; transition:color .25s var(--ease); }
+  .mh-nav__links a:hover{ color:var(--ink); }
+  .mh-btn{ display:inline-flex; align-items:center; gap:9px; font-family:var(--font-sans); font-size:14.5px; font-weight:500; text-decoration:none; cursor:pointer; border-radius:999px; padding:11px 22px; transition:all .28s var(--ease); border:1px solid transparent; }
+  .mh-btn--out{ border-color:var(--accent); color:var(--accent); background:transparent; }
+  .mh-btn--out:hover{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .mh-btn--solid{ background:var(--accent); color:#fff; }
+  .mh-btn--solid:hover{ background:var(--accent-dark); }
+  .mh-btn--lg{ padding:15px 30px; font-size:15px; }
+
+  /* ---- HERO ---- */
+  .mh-hero{ padding:72px 0 34px; }
+  .mh-hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center; }
+  .mh-h1{ font-family:var(--font-display); font-weight:400; font-size:clamp(44px,6vw,80px); line-height:1.02; letter-spacing:-.02em; margin:0 0 26px; }
+  .mh-h1 em{ font-style:italic; font-weight:500; }
+  .mh-lede{ font-size:19px; line-height:1.65; color:var(--g-700); max-width:44ch; margin:0 0 34px; }
+  .mh-hero__cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .mh-hero__media{ position:relative; height:min(76vh,620px); }
+  .mh-hero__media .frame{ position:absolute; inset:0; border-radius:var(--radius-lg); overflow:hidden;
+    box-shadow:0 40px 90px -50px rgba(20,32,25,.5); margin-right:-40px; }
+  .mh-hero__media .frame img{ width:100%; height:100%; object-fit:cover; }
+
+  /* stats inline row */
+  .mh-stats{ display:flex; align-items:center; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:72px; padding:26px 0; }
+  .mh-stat{ flex:1; padding:0 30px; }
+  .mh-stat + .mh-stat{ border-left:1px solid var(--line); }
+  .mh-stat b{ display:block; font-family:var(--font-display); font-weight:500; font-size:32px; letter-spacing:-.02em; }
+  .mh-stat span{ display:block; font-size:13.5px; color:var(--g-500); margin-top:4px; }
+
+  /* ---- SERVICES, alternating list ---- */
+  .mh-services{ padding:96px 0; }
+  .mh-sec-head{ max-width:640px; margin-bottom:12px; }
+  .mh-h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(32px,4vw,50px); line-height:1.06; letter-spacing:-.02em; margin:0 0 18px; }
+  .mh-h2 em{ font-style:italic; }
+  .mh-sec-head p{ font-size:18px; line-height:1.6; color:var(--g-700); max-width:52ch; }
+  .mh-list{ margin-top:40px; }
+  .mh-row{ display:grid; grid-template-columns:96px 1fr auto; gap:32px; align-items:center; padding:30px 0; border-top:1px solid var(--line); }
+  .mh-row:last-child{ border-bottom:1px solid var(--line); }
+  .mh-row__thumb{ width:96px; height:76px; border-radius:16px; overflow:hidden; }
+  .mh-row__thumb img{ width:100%; height:100%; object-fit:cover; }
+  .mh-row__body h3{ font-family:var(--font-display); font-weight:500; font-size:24px; letter-spacing:-.01em; margin:0 0 6px; }
+  .mh-row__body p{ font-size:15.5px; color:var(--g-500); line-height:1.55; max-width:56ch; margin:0; }
+  .mh-row__num{ font-family:var(--font-display); font-size:16px; color:var(--g-400); font-style:italic; }
+
+  /* ---- APPROACH ---- */
+  .mh-approach{ padding:20px 0 96px; }
+  .mh-approach__img{ height:clamp(320px,46vw,540px); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:56px; }
+  .mh-approach__img img{ width:100%; height:100%; object-fit:cover; }
+  .mh-approach__grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+  .mh-approach__grid > div:first-child p{ font-family:var(--font-display); font-weight:400; font-size:clamp(24px,3vw,34px); line-height:1.3; letter-spacing:-.01em; color:var(--ink); margin:0; }
+  .mh-checklist{ list-style:none; margin:0; padding:0; }
+  .mh-checklist li{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); font-size:16px; color:var(--g-700); line-height:1.5; }
+  .mh-checklist li:first-child{ padding-top:0; }
+  .mh-tick{ flex:none; width:26px; height:26px; border-radius:50%; border:1px solid var(--accent); display:grid; place-items:center; }
+  .mh-tick svg{ width:13px; height:13px; stroke:var(--accent); }
+
+  /* ---- TEAM ---- */
+  .mh-team{ padding:96px 0; border-top:1px solid var(--line); }
+  .mh-team__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:36px; margin-top:44px; }
+  .mh-member{ text-align:center; }
+  .mh-member__photo{ width:100%; aspect-ratio:1; border-radius:50%; overflow:hidden; margin-bottom:20px; }
+  .mh-member__photo img{ width:100%; height:100%; object-fit:cover; }
+  .mh-member h4{ font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 4px; }
+  .mh-member span{ font-size:13.5px; color:var(--g-500); }
+
+  /* ---- QUOTE ---- */
+  .mh-quote{ padding:110px 0; text-align:center; border-top:1px solid var(--line); }
+  .mh-quote__mark{ font-family:var(--font-display); font-size:80px; line-height:0; color:var(--g-300); display:block; margin-bottom:34px; }
+  .mh-quote blockquote{ font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3.4vw,40px); line-height:1.32; letter-spacing:-.01em; max-width:20ch; margin:0 auto 30px; }
+  .mh-quote blockquote em{ font-style:italic; }
+  .mh-quote cite{ font-style:normal; font-size:14px; letter-spacing:.04em; color:var(--g-500); }
+  .mh-quote cite b{ color:var(--ink); font-weight:600; }
+
+  /* ---- FEES ---- */
+  .mh-fees{ padding:96px 0; border-top:1px solid var(--line); }
+  .mh-fees__grid{ display:grid; grid-template-columns:repeat(3,1fr); margin-top:44px; }
+  .mh-fee{ padding:8px 34px; }
+  .mh-fee + .mh-fee{ border-left:1px solid var(--line); }
+  .mh-fee__name{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--g-500); font-weight:600; margin-bottom:18px; }
+  .mh-fee__price{ font-family:var(--font-display); font-weight:500; font-size:52px; letter-spacing:-.02em; line-height:1; }
+  .mh-fee__price small{ font-family:var(--font-sans); font-size:15px; font-weight:400; color:var(--g-500); letter-spacing:0; margin-left:6px; }
+  .mh-fee__sub{ font-size:15px; color:var(--g-500); margin:14px 0 0; line-height:1.5; }
+  .mh-fee a{ display:inline-block; margin-top:22px; font-size:14.5px; font-weight:500; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:3px; }
+
+  /* ---- CONTACT ---- */
+  .mh-contact{ padding:96px 0; border-top:1px solid var(--line); }
+  .mh-contact__grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:0; border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; }
+  .mh-contact__img{ position:relative; min-height:520px; }
+  .mh-contact__img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .mh-contact__form{ padding:52px; }
+  .mh-contact__form h2{ font-family:var(--font-display); font-weight:400; font-size:34px; letter-spacing:-.02em; margin:0 0 10px; }
+  .mh-contact__form > p{ font-size:16px; color:var(--g-700); line-height:1.6; margin:0 0 30px; max-width:44ch; }
+  .mh-field{ margin-bottom:18px; }
+  .mh-field label{ display:block; font-size:13px; font-weight:500; color:var(--g-700); margin-bottom:8px; letter-spacing:.02em; }
+  .mh-field input, .mh-field select, .mh-field textarea{ width:100%; font-family:var(--font-sans); font-size:15px; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:13px 15px; transition:border-color .25s var(--ease); }
+  .mh-field input:focus, .mh-field select:focus, .mh-field textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(76,122,103,.18); }
+  .mh-field textarea{ resize:vertical; min-height:110px; }
+  .mh-form-info{ display:flex; flex-wrap:wrap; gap:26px 44px; margin-top:34px; padding-top:28px; border-top:1px solid var(--line); }
+  .mh-form-info div span{ display:block; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--g-400); margin-bottom:5px; }
+  .mh-form-info div b{ font-weight:500; font-size:15.5px; color:var(--ink); }
+
+  /* ---- FOOTER ---- */
+  .mh-footer{ border-top:1px solid var(--line); padding:70px 0 40px; }
+  .mh-footer__top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:48px; }
+  .mh-footer__brand p{ font-size:15px; color:var(--g-500); line-height:1.6; max-width:34ch; margin:16px 0 0; }
+  .mh-footer__col h5{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--g-400); font-weight:600; margin:0 0 16px; }
+  .mh-footer__col ul{ list-style:none; margin:0; padding:0; }
+  .mh-footer__col li{ margin-bottom:11px; }
+  .mh-footer__col a{ font-size:14.5px; color:var(--g-700); text-decoration:none; }
+  .mh-footer__col a:hover{ color:var(--ink); }
+  .mh-footer__bot{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:28px; border-top:1px solid var(--line); font-size:13px; color:var(--g-400); }
+  .mh-crisis{ background:var(--g-200); border-radius:12px; padding:16px 20px; margin-top:34px; font-size:13.5px; color:var(--g-700); line-height:1.55; }
+  .mh-crisis b{ color:var(--ink); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width:1000px){
+    .mh-team__grid{ grid-template-columns:repeat(2,1fr); gap:36px 28px; }
+  }
+  @media (max-width:860px){
+    .mh-nav__links{ display:none; }
+    .mh-hero{ padding:44px 0 20px; }
+    .mh-hero__grid{ grid-template-columns:1fr; gap:40px; }
+    .mh-hero__media{ height:min(64vh,460px); order:-1; }
+    .mh-hero__media .frame{ margin-right:0; position:relative; height:100%; }
+    .mh-stats{ margin-top:48px; }
+    .mh-approach__grid{ grid-template-columns:1fr; gap:36px; }
+    .mh-contact__grid{ grid-template-columns:1fr; }
+    .mh-contact__img{ min-height:280px; }
+    .mh-footer__top{ grid-template-columns:1fr 1fr; }
+    .mh-footer__brand{ grid-column:1 / -1; }
+  }
+  @media (max-width:560px){
+    .mh-stats{ flex-direction:column; align-items:stretch; padding:0; }
+    .mh-stat{ padding:20px 0; }
+    .mh-stat + .mh-stat{ border-left:none; border-top:1px solid var(--line); }
+    .mh-row{ grid-template-columns:64px 1fr; gap:18px; padding:22px 0; }
+    .mh-row__num{ display:none; }
+    .mh-row__thumb{ width:64px; height:64px; }
+    .mh-fees__grid{ grid-template-columns:1fr; }
+    .mh-fee{ padding:26px 0; }
+    .mh-fee + .mh-fee{ border-left:none; border-top:1px solid var(--line); }
+    .mh-team__grid{ grid-template-columns:1fr 1fr; }
+    .mh-contact__form{ padding:32px 24px; }
+  }
+</style>
+</head>
+<body class="mh-body">
+
+<!-- NAV -->
+<header class="mh-nav">
+  <div class="mh-wrap mh-nav__in">
+    <a href="#" class="mh-brand"><span class="mh-brand__mark" data-field="brandMark">S</span> <span data-field="brandName">Stillwater</span></a>
+    <nav class="mh-nav__links">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#team">Therapists</a>
+      <a href="#fees">Fees</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="mh-btn mh-btn--out" data-field="navCta">Book a consultation</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="mh-hero">
+  <div class="mh-wrap">
+    <div class="mh-hero__grid">
+      <div class="reveal">
+        <span class="mh-eyebrow" data-field="heroEyebrow">Individual · Couples · Group therapy</span>
+        <h1 class="mh-h1" data-field="heroTitle">A calm place to feel like <em>yourself</em> again.</h1>
+        <p class="mh-lede" data-field="heroSub">Stillwater Therapy offers confidential, evidence-based care in a warm and unhurried setting, in person or online. Wherever you are, we'll meet you there.</p>
+        <div class="mh-hero__cta">
+          <a href="#contact" class="mh-btn mh-btn--solid mh-btn--lg" data-field="heroCta1">Book a free consultation</a>
+          <a href="#services" class="mh-btn mh-btn--out mh-btn--lg" data-field="heroCta2">Explore our services</a>
+        </div>
+      </div>
+      <div class="mh-hero__media reveal">
+        <div class="frame">
+          <img data-img="hero" src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1600&q=80" alt="A quiet, welcoming therapy room bathed in soft light">
+        </div>
+      </div>
+    </div>
+    <div class="mh-stats reveal">
+      <div class="mh-stat"><b data-field="stat1Num">12+</b><span data-field="stat1Label">Licensed therapists</span></div>
+      <div class="mh-stat"><b data-field="stat2Num">15 yrs</b><span data-field="stat2Label">Serving the community</span></div>
+      <div class="mh-stat"><b data-field="stat3Num">4.9★</b><span data-field="stat3Label">Average client rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="mh-services" id="services">
+  <div class="mh-wrap">
+    <div class="mh-sec-head reveal">
+      <span class="mh-eyebrow">How we help</span>
+      <h2 class="mh-h2" data-field="servicesTitle">Care shaped <em>around you.</em></h2>
+      <p data-field="servicesSub">Whatever you're carrying, there's a way through it, and a therapist here who's trained to help you find it.</p>
+    </div>
+    <div class="mh-list reveal">
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80" alt="Individual therapy session"></div>
+        <div class="mh-row__body"><h3 data-field="svc1Title">Individual therapy</h3><p data-field="svc1Desc">One-to-one sessions for anxiety, depression, stress, grief and life transitions, at your pace, in your corner.</p></div>
+        <div class="mh-row__num">01</div>
+      </div>
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=600&q=80" alt="Couples counselling"></div>
+        <div class="mh-row__body"><h3 data-field="svc2Title">Couples counselling</h3><p data-field="svc2Desc">A neutral, supportive space to reconnect, communicate and rebuild trust, together.</p></div>
+        <div class="mh-row__num">02</div>
+      </div>
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1591019479261-1a103585c559?auto=format&fit=crop&w=600&q=80" alt="Group and workshops"></div>
+        <div class="mh-row__body"><h3 data-field="svc3Title">Group &amp; workshops</h3><p data-field="svc3Desc">Facilitated groups and skills workshops, because sometimes healing happens alongside others.</p></div>
+        <div class="mh-row__num">03</div>
+      </div>
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Online video sessions"></div>
+        <div class="mh-row__body"><h3 data-field="svc4Title">Online sessions</h3><p data-field="svc4Desc">Secure video therapy from anywhere, the same quality of care, on your schedule.</p></div>
+        <div class="mh-row__num">04</div>
+      </div>
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Trauma and EMDR therapy"></div>
+        <div class="mh-row__body"><h3 data-field="svc5Title">Trauma &amp; EMDR</h3><p data-field="svc5Desc">Specialist, gentle approaches to process difficult experiences and reclaim a sense of safety.</p></div>
+        <div class="mh-row__num">05</div>
+      </div>
+      <div class="mh-row">
+        <div class="mh-row__thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Mindfulness and wellbeing"></div>
+        <div class="mh-row__body"><h3 data-field="svc6Title">Mindfulness &amp; wellbeing</h3><p data-field="svc6Desc">Practical tools for stress, sleep and burnout that you can carry into everyday life.</p></div>
+        <div class="mh-row__num">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="mh-approach" id="approach">
+  <div class="mh-wrap">
+    <div class="mh-approach__img reveal">
+      <img data-img="about" loading="lazy" src="https://images.unsplash.com/photo-1591019479261-1a103585c559?auto=format&fit=crop&w=1600&q=80" alt="A calm, sunlit space for reflection">
+    </div>
+    <div class="mh-approach__grid reveal">
+      <div>
+        <span class="mh-eyebrow">Our approach</span>
+        <p data-field="aboutText">No labels. No rush. Just you, heard. Therapy works best when you feel safe, so we start by listening, then build a plan that fits your life, not a template.</p>
+      </div>
+      <ul class="mh-checklist">
+        <li data-field="check1"><span class="mh-tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> A free 20-minute consultation before you commit</li>
+        <li data-field="check2"><span class="mh-tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Matched with a therapist suited to your needs</li>
+        <li data-field="check3"><span class="mh-tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Confidential, judgment-free and at your pace</li>
+        <li data-field="check4"><span class="mh-tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Evidence-based methods, tailored to you</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="mh-team" id="team">
+  <div class="mh-wrap">
+    <div class="mh-sec-head reveal">
+      <span class="mh-eyebrow">Meet the team</span>
+      <h2 class="mh-h2">Therapists you can trust.</h2>
+      <p>Every clinician at Stillwater is fully licensed, insured and supervised, and, above all, kind.</p>
+    </div>
+    <div class="mh-team__grid reveal">
+      <div class="mh-member">
+        <div class="mh-member__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Marsh"></div>
+        <h4>Dr. Elena Marsh</h4><span>Clinical Psychologist · Founder</span>
+      </div>
+      <div class="mh-member">
+        <div class="mh-member__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="James Okafor"></div>
+        <h4>James Okafor</h4><span>Psychotherapist · CBT &amp; EMDR</span>
+      </div>
+      <div class="mh-member">
+        <div class="mh-member__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Priya Nair"></div>
+        <h4>Priya Nair</h4><span>Couples &amp; Family Therapist</span>
+      </div>
+      <div class="mh-member">
+        <div class="mh-member__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="Tom Halvorsen"></div>
+        <h4>Tom Halvorsen</h4><span>Counsellor · Anxiety &amp; Stress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="mh-quote">
+  <div class="mh-wrap reveal">
+    <span class="mh-quote__mark">&ldquo;</span>
+    <blockquote data-field="quoteText">I arrived not knowing how to explain what was wrong. I left with tools, clarity, and my <em>first full night's sleep</em> in months.</blockquote>
+    <cite><b data-field="quoteAuthor">Anonymous client</b> · Individual therapy, 6 months</cite>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="mh-fees" id="fees">
+  <div class="mh-wrap">
+    <div class="mh-sec-head reveal">
+      <span class="mh-eyebrow">Fees &amp; plans</span>
+      <h2 class="mh-h2">Simple, transparent pricing.</h2>
+      <p>No hidden costs. Sliding-scale places are available, just ask.</p>
+    </div>
+    <div class="mh-fees__grid reveal">
+      <div class="mh-fee">
+        <div class="mh-fee__name">Consultation</div>
+        <div class="mh-fee__price">Free</div>
+        <p class="mh-fee__sub">A 20-minute intro call to understand your needs and meet a therapist match. No obligation.</p>
+        <a href="#contact">Book now</a>
+      </div>
+      <div class="mh-fee">
+        <div class="mh-fee__name">Individual session</div>
+        <div class="mh-fee__price">£75<small>/50 min</small></div>
+        <p class="mh-fee__sub">In person or online, weekly or fortnightly. Flexible evening slots and block-booking discounts.</p>
+        <a href="#contact">Get started</a>
+      </div>
+      <div class="mh-fee">
+        <div class="mh-fee__name">Couples session</div>
+        <div class="mh-fee__price">£95<small>/60 min</small></div>
+        <p class="mh-fee__sub">A neutral, structured space for two. Relationship-focused, with evening and weekend slots.</p>
+        <a href="#contact">Book now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="mh-contact" id="contact">
+  <div class="mh-wrap">
+    <div class="mh-sec-head reveal">
+      <span class="mh-eyebrow">Get in touch</span>
+      <h2 class="mh-h2" data-field="contactTitle">Take the first step.</h2>
+      <p data-field="contactSub">Reaching out is often the hardest part. Send a message and we'll reply within one working day, warmly and in confidence.</p>
+    </div>
+    <div class="mh-contact__grid reveal">
+      <div class="mh-contact__img">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1000&q=80" alt="A calm, welcoming corner of the studio">
+      </div>
+      <div class="mh-contact__form">
+        <form>
+          <div class="mh-field"><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+          <div class="mh-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+          <div class="mh-field"><label>What would you like help with?</label>
+            <select><option>Individual therapy</option><option>Couples counselling</option><option>Group &amp; workshops</option><option>Not sure yet</option></select>
+          </div>
+          <div class="mh-field"><label>Message</label><textarea placeholder="A little about what's bringing you here…"></textarea></div>
+          <button type="submit" class="mh-btn mh-btn--solid mh-btn--lg">Send message</button>
+        </form>
+        <div class="mh-form-info">
+          <div><span>Phone</span><b data-field="phone">020 7946 0142</b></div>
+          <div><span>Email</span><b data-field="email">hello@stillwatertherapy.co.uk</b></div>
+          <div><span>Studio</span><b data-field="address">18 Elm Row, London N1</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mh-footer">
+  <div class="mh-wrap">
+    <div class="mh-footer__top">
+      <div class="mh-footer__brand">
+        <a href="#" class="mh-brand"><span class="mh-brand__mark" data-field="brandMark">S</span> <span data-field="brandName">Stillwater</span></a>
+        <p data-field="footerText">Compassionate, confidential mental health care, in person and online.</p>
+      </div>
+      <div class="mh-footer__col"><h5>Services</h5><ul><li><a href="#services">Individual therapy</a></li><li><a href="#services">Couples counselling</a></li><li><a href="#services">Group &amp; workshops</a></li><li><a href="#services">Online sessions</a></li></ul></div>
+      <div class="mh-footer__col"><h5>Practice</h5><ul><li><a href="#team">Our therapists</a></li><li><a href="#fees">Fees</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy &amp; confidentiality</a></li></ul></div>
+    </div>
+    <div class="mh-crisis">
+      <b>In crisis right now?</b> If you or someone you know is in immediate danger, call 999. For urgent mental health support, call 111 or the Samaritans free on 116 123, any time, day or night.
+    </div>
+    <div class="mh-footer__bot">
+      <span data-field="footerLegal">© 2026 Stillwater Therapy. All rights reserved.</span>
+      <span>Registered with the BACP &amp; UKCP.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Throughline Recovery Coaching, peer recovery support</title>
+<meta name="description" content="Throughline Recovery Coaching: practical, forward-looking peer recovery support with a Certified Peer Recovery Specialist. All pathways to recovery welcome, by phone, video or in person. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23BE5224'/><text x='16' y='23' font-family='Arial,sans-serif' font-size='19' font-weight='bold' fill='white' text-anchor='middle'>T</text></svg>">
+<style>
+:root{--acc:#BE5224;--acc2:#99401A;}
+.tl{
+  --on:#ffffff;
+  --bg:#FBF6F1; --cream:#F4EAE0; --sand:#EFE2D3; --line:#E7D9C9;
+  --ink:#231A14; --muted:#6E6056; --white:#ffffff; --deep:#2A1A10; --deep2:#1C110A;
+  --tint:color-mix(in srgb,var(--acc) 12%,#ffffff);
+  --disp:'Archivo','Arial Narrow',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.tl *{box-sizing:border-box;}
+.tl img{max-width:100%;display:block;}
+.tl :where(h1,h2,h3){margin:0;font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:1.02;color:var(--ink);}
+.tl :where(p){margin:0;}
+.tl :where(ul){margin:0;padding:0;list-style:none;}
+.tl a{text-decoration:none;}
+.tl [data-empty="1"]{display:none !important;}
+.tl a:focus-visible,.tl button:focus-visible,.tl summary:focus-visible,.tl input:focus-visible,.tl select:focus-visible,.tl label:focus-within{outline:3px solid var(--acc);outline-offset:3px;border-radius:8px;}
+
+.tl-shell{max-width:1180px;margin:0 auto;padding:0 clamp(18px,5vw,56px);}
+.tl-sec{padding:clamp(66px,9vw,120px) 0;position:relative;}
+.tl-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);}
+.tl-eyebrow::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--acc);}
+.tl-h2{font-size:clamp(33px,5vw,58px);margin:16px 0 18px;}
+.tl-lede{font-size:clamp(16.5px,1.6vw,19px);color:var(--muted);max-width:56ch;}
+
+/* buttons */
+.tl-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:14px;font-family:var(--disp);font-size:16px;font-weight:700;line-height:1.1;letter-spacing:.01em;border:2px solid transparent;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);}
+.tl-btn svg{width:17px;height:17px;flex:none;}
+.tl-btn--pri{background:var(--acc);color:var(--on);border-color:var(--acc);box-shadow:0 14px 28px -16px var(--acc);}
+.tl-btn--pri:hover{background:var(--acc2);border-color:var(--acc2);color:var(--on);transform:translateY(-2px);box-shadow:0 20px 38px -18px var(--acc);}
+.tl-btn--ghost{background:transparent;color:var(--ink);border-color:color-mix(in srgb,var(--acc) 34%,var(--line));}
+.tl-btn--ghost:hover{border-color:var(--acc);color:var(--acc);}
+.tl-btn--light{background:var(--white);color:var(--acc2);border-color:var(--white);}
+.tl-btn--light:hover{background:var(--cream);border-color:var(--cream);color:var(--acc2);transform:translateY(-2px);}
+.tl-btn--outlight{background:transparent;color:#fff;border-color:rgba(255,255,255,.65);}
+.tl-btn--outlight:hover{background:rgba(255,255,255,.14);border-color:#fff;color:#fff;}
+
+/* logo / oversized wordmark */
+.tl-logo{display:inline-flex;align-items:center;gap:13px;color:inherit;line-height:1;}
+.tl-mark{flex:none;width:46px;height:46px;border-radius:13px;background:var(--acc);color:#fff;display:grid;place-items:center;font-family:var(--disp);font-weight:900;font-size:25px;transform:rotate(-4deg);box-shadow:0 10px 22px -12px var(--acc);}
+.tl-logo__name{font-family:var(--disp);font-weight:900;font-size:clamp(22px,2.4vw,29px);letter-spacing:-.025em;line-height:.98;}
+
+/* NAV, transparent over hero, solid on scroll, oversized wordmark + accent CTA */
+.tl-nav{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);border-bottom:1px solid transparent;}
+.tl-nav__in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px;}
+.tl-nav .tl-logo__name,.tl-nav .tl-links a{color:#fff;}
+.tl-nav .tl-mark{background:#fff;color:var(--acc2);box-shadow:0 10px 22px -12px rgba(0,0,0,.5);}
+.tl-nav.scrolled{background:var(--bg);box-shadow:0 10px 30px -22px rgba(40,20,8,.7);border-bottom-color:var(--line);}
+.tl-nav.scrolled .tl-logo__name{color:var(--ink);}
+.tl-nav.scrolled .tl-links a{color:var(--muted);}
+.tl-nav.scrolled .tl-mark{background:var(--acc);color:#fff;}
+.tl-links{display:flex;align-items:center;gap:30px;}
+.tl-links a{font-family:var(--disp);font-size:15px;font-weight:600;letter-spacing:.01em;transition:color .2s;}
+.tl-links a:hover{color:var(--acc)!important;}
+.tl-nav__cta{display:inline-flex;}
+/* mobile toggle */
+.tl-nav__cb{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+.tl-burger{display:none;flex:none;width:48px;height:48px;border-radius:12px;cursor:pointer;align-items:center;justify-content:center;color:#fff;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.18);}
+.tl-nav.scrolled .tl-burger{color:var(--ink);border-color:var(--line);background:var(--cream);}
+.tl-burger svg{width:24px;height:24px;}
+.tl-burger .tl-burger__x{display:none;}
+.tl-nav__panel{display:none;}
+.tl-nav__cb:focus-visible ~ .tl-nav__in .tl-burger{outline:3px solid var(--acc);outline-offset:3px;}
+@media(max-width:900px){
+  .tl-links,.tl-nav__cta{display:none;}
+  .tl-burger{display:inline-flex;}
+  .tl-nav.scrolled{background:var(--bg);}
+  .tl-nav__panel{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 24px 40px -24px rgba(40,20,8,.6);
+    padding:12px clamp(18px,5vw,56px) 22px;flex-direction:column;gap:4px;}
+  .tl-nav__panel a{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--ink);padding:14px 4px;border-bottom:1px solid var(--line);}
+  .tl-nav__panel a:last-child{border-bottom:none;}
+  .tl-nav__panel .tl-btn{margin-top:12px;width:100%;}
+  .tl-nav__cb:checked ~ .tl-nav__panel{display:flex;}
+  .tl-nav__cb:checked ~ .tl-nav__in .tl-burger__m{display:none;}
+  .tl-nav__cb:checked ~ .tl-nav__in .tl-burger__x{display:block;}
+  .tl-nav__cb:checked ~ .tl-nav__in .tl-burger{background:var(--acc);color:#fff;border-color:var(--acc);}
+}
+
+/* HERO, full-bleed photo + dark gradient + big statement */
+.tl-hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--deep);}
+.tl-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.tl-hero__scrim{position:absolute;inset:0;background:
+   linear-gradient(180deg,rgba(28,17,10,.5) 0%,rgba(28,17,10,.1) 32%,rgba(28,17,10,.72) 82%,rgba(28,17,10,.92) 100%);}
+.tl-hero__in{position:relative;z-index:2;width:100%;padding-top:140px;padding-bottom:clamp(54px,8vw,104px);}
+.tl-hero__eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;}
+.tl-hero__eyebrow::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--acc);}
+.tl-hero h1{color:#fff;font-size:clamp(44px,8.2vw,104px);font-weight:900;letter-spacing:-.03em;line-height:.96;margin:20px 0 22px;max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.35);}
+.tl-hero h1 em{font-style:normal;color:var(--acc);}
+.tl-hero__sub{color:rgba(255,255,255,.92);font-size:clamp(17px,2vw,21px);max-width:52ch;line-height:1.6;}
+.tl-hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+.tl-hero__trust{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.9);}
+.tl-hero__trust svg{width:18px;height:18px;flex:none;color:var(--acc);}
+@media(max-width:560px){.tl-hero h1{max-width:none;}.tl-hero__cta .tl-btn{flex:1 1 100%;}}
+
+/* WELCOME strip */
+.tl-welcome{background:var(--acc);color:#fff;}
+.tl-welcome__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 28px;padding:20px 0;text-align:center;}
+.tl-welcome b{font-family:var(--disp);font-weight:800;font-size:clamp(17px,2.2vw,22px);}
+.tl-welcome span{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.92);}
+.tl-welcome span::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8);flex:none;}
+
+/* SERVICES */
+.tl-serv__head{max-width:720px;margin-bottom:clamp(40px,6vw,60px);}
+.tl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);}
+.tl-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,3vw,32px);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);}
+.tl-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--acc) 40%,var(--line));box-shadow:0 30px 56px -40px rgba(40,20,8,.55);}
+.tl-card__ic{width:56px;height:56px;border-radius:15px;background:var(--tint);color:var(--acc);display:grid;place-items:center;margin-bottom:20px;}
+.tl-card__ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.tl-card h3{font-size:22px;font-weight:800;margin-bottom:9px;}
+.tl-card p{color:var(--muted);font-size:15.5px;}
+@media(max-width:860px){.tl-cards{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.tl-cards{grid-template-columns:1fr;}}
+
+/* HOW IT WORKS */
+.tl-how{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.tl-how__head{max-width:720px;margin-bottom:clamp(38px,5vw,54px);}
+.tl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);counter-reset:step;}
+.tl-step{position:relative;background:var(--white);border:1px solid var(--line);border-radius:22px;padding:clamp(26px,3vw,34px);}
+.tl-step__n{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--acc);color:#fff;font-family:var(--disp);font-weight:900;font-size:22px;margin-bottom:18px;}
+.tl-step h3{font-size:21px;font-weight:800;margin-bottom:8px;}
+.tl-step p{color:var(--muted);font-size:15.5px;}
+@media(max-width:800px){.tl-steps{grid-template-columns:1fr;}}
+
+/* ABOUT */
+.tl-about__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:center;}
+.tl-about__media{position:relative;}
+.tl-about__media img{width:100%;aspect-ratio:4/4.4;object-fit:cover;border-radius:28px;box-shadow:0 44px 80px -54px rgba(40,20,8,.6);}
+.tl-about__media::before{content:"";position:absolute;z-index:-1;left:-18px;bottom:-18px;width:62%;height:62%;background:var(--acc);border-radius:24px;opacity:.14;}
+.tl-badge{position:absolute;left:20px;bottom:20px;display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:11px 18px;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--ink);box-shadow:0 20px 40px -26px rgba(40,20,8,.5);}
+.tl-badge svg{width:18px;height:18px;color:var(--acc);flex:none;}
+.tl-checks{display:grid;gap:13px;margin:26px 0 28px;}
+.tl-checks li{display:flex;gap:14px;align-items:flex-start;font-size:16px;}
+.tl-checks li i{flex:none;width:26px;height:26px;margin-top:1px;border-radius:8px;background:var(--tint);color:var(--acc);display:grid;place-items:center;}
+.tl-checks li i svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+.tl-cred{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:var(--tint);color:var(--acc2);font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:6px;}
+@media(max-width:860px){.tl-about__grid{grid-template-columns:1fr;}.tl-about__media{max-width:460px;margin:0 auto;order:2;}}
+
+/* STATS */
+.tl-stats{background:linear-gradient(155deg,var(--deep),var(--deep2));color:#fff;}
+.tl-stats__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:26px;overflow:hidden;}
+.tl-stats__grid > div{background:color-mix(in srgb,var(--deep) 86%,#000);padding:clamp(30px,4vw,48px) clamp(22px,3vw,34px);text-align:center;}
+.tl-stats__grid b{display:block;font-family:var(--disp);font-weight:900;font-size:clamp(34px,4.6vw,52px);line-height:1;letter-spacing:-.02em;color:#fff;margin-bottom:12px;}
+.tl-stats__grid b span{color:var(--acc);}
+.tl-stats__grid small{font-size:15px;color:rgba(255,255,255,.78);line-height:1.5;display:block;}
+@media(max-width:700px){.tl-stats__grid{grid-template-columns:1fr;}}
+
+/* NOTE from the coach */
+.tl-note{background:var(--sand);}
+.tl-note__in{max-width:900px;margin:0 auto;text-align:center;}
+.tl-note__mark{font-family:var(--disp);font-weight:900;font-size:80px;line-height:.6;color:var(--acc);}
+.tl-note__text{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3.2vw,36px);line-height:1.3;letter-spacing:-.01em;color:var(--ink);margin:10px 0 26px;}
+.tl-note__who{display:inline-flex;align-items:center;gap:14px;justify-content:center;}
+.tl-note__who img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;}
+.tl-note__who b{display:block;font-family:var(--disp);font-weight:800;font-size:16px;color:var(--ink);}
+.tl-note__who span{font-size:14px;color:var(--muted);}
+
+/* CONTACT */
+.tl-contact__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(36px,5vw,70px);align-items:start;}
+.tl-info{margin-top:28px;border-top:1px solid var(--line);}
+.tl-info li{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);}
+.tl-info svg{flex:none;width:22px;height:22px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.tl-info small{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:var(--disp);font-weight:700;}
+.tl-info b{font-weight:600;font-size:16px;color:var(--ink);}
+.tl-form{display:grid;gap:16px;background:var(--white);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,40px);box-shadow:0 40px 80px -60px rgba(40,20,8,.5);}
+.tl-form h3{font-size:27px;font-weight:800;}
+.tl-form__row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tl-field{display:grid;gap:7px;}
+.tl-field label{font-family:var(--disp);font-size:13.5px;font-weight:700;color:var(--ink);}
+.tl-field label span{font-weight:500;color:var(--muted);}
+.tl-field input,.tl-field select{width:100%;font-family:inherit;font-size:15.5px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);}
+.tl-field input:focus,.tl-field select:focus{outline:2px solid color-mix(in srgb,var(--acc) 45%,transparent);outline-offset:1px;border-color:var(--acc);}
+.tl-form__note{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);background:var(--cream);border-radius:12px;padding:12px 14px;}
+.tl-form__note svg{flex:none;width:18px;height:18px;margin-top:1px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.8;}
+.tl-form .tl-btn{width:100%;}
+@media(max-width:860px){.tl-contact__grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.tl-form__row{grid-template-columns:1fr;}}
+
+/* FOOTER */
+.tl-foot{background:linear-gradient(160deg,var(--deep),var(--deep2));color:rgba(255,255,255,.72);padding:70px 0 120px;}
+.tl-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12);}
+.tl-foot .tl-logo__name{color:#fff;}
+.tl-foot .tl-mark{background:var(--acc);color:#fff;}
+.tl-foot__brand p{margin-top:16px;max-width:38ch;font-size:14.5px;color:rgba(255,255,255,.64);}
+.tl-foot h4{margin:0 0 14px;font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;}
+.tl-foot li{margin-bottom:10px;font-size:14.5px;}
+.tl-foot a{color:rgba(255,255,255,.68);}
+.tl-foot a:hover{color:#fff;}
+.tl-crisis{margin-top:30px;display:grid;gap:10px;}
+.tl-crisis p{padding:15px 20px;border:1px solid rgba(255,255,255,.18);border-radius:16px;font-size:14.5px;color:#fff;background:rgba(255,255,255,.04);}
+.tl-crisis b{font-weight:700;color:#fff;}
+.tl-foot__bot{padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:rgba(255,255,255,.52);}
+@media(max-width:760px){.tl-foot__top{grid-template-columns:1fr 1fr;}.tl-foot__brand{grid-column:1/-1;}}
+@media(max-width:420px){.tl-foot__top{grid-template-columns:1fr;}}
+
+/* STICKY MOBILE BOOK BAR */
+.tl-bookbar{display:none;}
+@media(max-width:900px){
+  .tl-bookbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:65;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);}
+  .tl-bookbar .tl-btn{width:100%;}
+  .tl-foot{padding-bottom:140px;}
+}
+</style>
+</head>
+<body class="tl">
+
+<header class="tl-nav t-nav">
+  <input type="checkbox" id="tl-nav-toggle" class="tl-nav__cb">
+  <div class="tl-shell tl-nav__in">
+    <a href="#" class="tl-logo" aria-label="Throughline Recovery Coaching, home"><span class="tl-mark" data-field="brandMark">T</span><span class="tl-logo__name" data-field="brandName">Throughline Recovery Coaching</span></a>
+    <nav class="tl-links" aria-label="Main"><a href="#services">Services</a><a href="#how">How It Works</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <a href="#contact" class="tl-btn tl-btn--pri tl-nav__cta" data-field="navCta">Book a free intro call</a>
+    <label for="tl-nav-toggle" class="tl-burger" aria-label="Open menu" role="button" tabindex="0">
+      <svg class="tl-burger__m" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="tl-burger__x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </label>
+  </div>
+  <nav class="tl-nav__panel" aria-label="Mobile">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="tl-btn tl-btn--pri">Book a free intro call</a>
+  </nav>
+</header>
+
+<main>
+<section class="tl-hero" aria-labelledby="tl-hero-title">
+  <img class="tl-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1557316655-8715fdecd2d1?auto=format&fit=crop&w=1600&q=80" alt="An open road winding toward the horizon under a warm morning sky">
+  <div class="tl-hero__scrim" aria-hidden="true"></div>
+  <div class="tl-shell tl-hero__in">
+    <span class="tl-hero__eyebrow" data-field="heroEyebrow">Peer Recovery Support</span>
+    <h1 id="tl-hero-title" data-field="heroTitle">Your Recovery Has a <em>Throughline</em></h1>
+    <p class="tl-hero__sub" data-field="heroSub">Practical, forward-looking coaching from someone who has walked it. All pathways to recovery are welcome here. We start where you are and build toward the life you want.</p>
+    <div class="tl-hero__cta">
+      <a href="#contact" class="tl-btn tl-btn--pri"><span data-field="heroCta1">Book a free intro call</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#how" class="tl-btn tl-btn--outlight" data-field="heroCta2">How coaching works</a>
+    </div>
+    <p class="tl-hero__trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-field="trustText">Certified Peer Recovery Specialist · By phone, video, or in person</span></p>
+  </div>
+</section>
+
+<section class="tl-welcome" aria-label="Who this is for"><div class="tl-shell tl-welcome__in">
+  <b>All pathways to recovery welcome</b>
+  <span>Not a therapist or sponsor</span>
+  <span>Lived experience</span>
+  <span>Judgment-free</span>
+</div></section>
+
+<section class="tl-sec" id="services"><div class="tl-shell">
+  <div class="tl-serv__head reveal">
+    <span class="tl-eyebrow">What a Coach Does</span>
+    <h2 class="tl-h2" data-field="servicesTitle">Steady, Practical Support for the Road Ahead</h2>
+    <p class="tl-lede" data-field="servicesSub">A recovery coach is not a therapist or a sponsor. This is hands-on, forward-looking help with the real parts of building a life in recovery.</p>
+  </div>
+  <div class="tl-cards reveal">
+    <div class="tl-card" data-card="1">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="6"/><path d="M5 28c0-6 5-9 11-9s11 3 11 9"/></svg></div>
+      <h3 data-field="svc1Title">One-to-One Recovery Coaching</h3>
+      <p data-field="svc1Desc">Regular sessions built around your goals. We set small, doable steps and keep moving forward together, at your pace.</p>
+    </div>
+    <div class="tl-card" data-card="2">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="12" r="5"/><circle cx="22" cy="14" r="4"/><path d="M3 27c0-5 4-8 8-8M18 27c0-3.5 2.5-6 6-6"/></svg></div>
+      <h3 data-field="svc2Title">Family &amp; Loved-Ones Coaching</h3>
+      <p data-field="svc2Desc">For the people who love someone in recovery. Learn how to set boundaries, support without burning out, and take care of yourself too.</p>
+    </div>
+    <div class="tl-card" data-card="3">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="13" height="22" rx="3"/><path d="M12 22h1"/><path d="M22 11c2 2 2 8 0 10M25 8c3.5 3.5 3.5 12 0 16"/></svg></div>
+      <h3 data-field="svc3Title">Telecoaching by Phone &amp; Video</h3>
+      <p data-field="svc3Desc">Meet from wherever you are. Secure video or a simple phone call, whichever feels easier on a given day.</p>
+    </div>
+    <div class="tl-card" data-card="4">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26 7L12 21l-6-6"/><circle cx="16" cy="16" r="13"/></svg></div>
+      <h3 data-field="svc4Title">Accountability Check-Ins</h3>
+      <p data-field="svc4Desc">Short, regular touchpoints between sessions. A quick call or message to help you stay on track when it counts most.</p>
+    </div>
+    <div class="tl-card" data-card="5">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28s-11-6-11-14a6 6 0 0111-3 6 6 0 0111 3c0 8-11 14-11 14z"/><path d="M16 3v6M13 6h6"/></svg></div>
+      <h3 data-field="svc5Title">Resource &amp; Treatment Navigation</h3>
+      <p data-field="svc5Desc">Confused by the options? I help you find treatment, meetings, housing and local supports, and make sense of the next step.</p>
+    </div>
+    <div class="tl-card" data-card="6">
+      <div class="tl-card__ic"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="9" cy="11" r="4"/><circle cx="23" cy="11" r="4"/><circle cx="16" cy="21" r="4"/><path d="M3 27c0-4 3-6 6-6M29 27c0-4-3-6-6-6"/></svg></div>
+      <h3 data-field="svc6Title">Small Group Coaching</h3>
+      <p data-field="svc6Desc">A small, welcoming circle working on recovery together. Shared goals, real talk, and support that does not feel alone.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="tl-sec tl-how" id="how"><div class="tl-shell">
+  <div class="tl-how__head reveal">
+    <span class="tl-eyebrow">How Coaching Works</span>
+    <h2 class="tl-h2">Simple to Start, Built Around You</h2>
+    <p class="tl-lede">No paperwork marathon and no pressure. Here is what the first few weeks usually look like.</p>
+  </div>
+  <div class="tl-steps reveal">
+    <div class="tl-step">
+      <div class="tl-step__n">1</div>
+      <h3>A Free Intro Call</h3>
+      <p>We talk for about twenty minutes, no cost and no commitment. You share what is going on, and we see if coaching feels like a fit.</p>
+    </div>
+    <div class="tl-step">
+      <div class="tl-step__n">2</div>
+      <h3>We Map Your Throughline</h3>
+      <p>Together we name what matters to you and set a few clear, reachable goals. Your plan, in your words, at your pace.</p>
+    </div>
+    <div class="tl-step">
+      <div class="tl-step__n">3</div>
+      <h3>We Keep Going Together</h3>
+      <p>Regular sessions and check-ins keep you moving. We adjust as life changes and celebrate every step forward.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="tl-sec" id="about"><div class="tl-shell"><div class="tl-about__grid">
+  <div class="tl-about__media reveal">
+    <img data-img="about" src="https://images.unsplash.com/photo-1618592795475-a3a169db6f87?auto=format&fit=crop&w=900&q=80" alt="Marcus, a recovery coach, smiling warmly in a sunlit room">
+    <span class="tl-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.4 5 5.6.6-4 3.8 1 5.6L12 19.8 6 17l1-5.6-4-3.8 5.6-.6z"/></svg>Certified Peer Recovery Specialist</span>
+  </div>
+  <div class="reveal">
+    <span class="tl-cred">CPRS</span>
+    <span class="tl-eyebrow" style="display:block;margin-top:8px;">About Your Coach</span>
+    <h2 class="tl-h2" data-field="aboutTitle">I Have Walked This Road, and I Walk It With You</h2>
+    <p class="tl-lede" data-field="aboutText">I am Marcus, a Certified Peer Recovery Specialist and the person behind Throughline. My own recovery taught me that nobody does this alone. Coaching is practical and hopeful, focused on where you are headed, not on where you have been.</p>
+    <ul class="tl-checks">
+      <li data-check="1"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check1">Certified Peer Recovery Specialist (CPRS) with lived experience</span></li>
+      <li data-check="2"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check2">Every pathway to recovery is respected and supported here</span></li>
+      <li data-check="3"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check3">A coach works alongside your treatment, not instead of it</span></li>
+      <li data-check="4"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check4">Warm, direct, and person-first, always judgment-free</span></li>
+    </ul>
+    <a href="#contact" class="tl-btn tl-btn--pri">Book a free intro call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</div></div></section>
+
+<section class="tl-sec tl-stats" aria-label="Practice facts"><div class="tl-shell">
+  <div class="tl-stats__grid reveal">
+    <div><b data-field="stat1Num">Free</b><small data-field="stat1Label">First intro call, no cost and no commitment</small></div>
+    <div><b data-field="stat2Num">Phone or <span>Video</span></b><small data-field="stat2Label">Coaching wherever you are, whatever works that day</small></div>
+    <div><b data-field="stat3Num">Lived</b><small data-field="stat3Label">Experience, with real understanding of recovery</small></div>
+  </div>
+</div></section>
+
+<section class="tl-sec tl-note" aria-label="A note from the coach"><div class="tl-shell"><div class="tl-note__in reveal">
+  <div class="tl-note__mark" aria-hidden="true">&ldquo;</div>
+  <blockquote>
+    <p class="tl-note__text" data-field="quoteText">Recovery is not a straight line, and you do not have to have it all figured out to start. Bring whatever you have today. We will find the throughline together, one honest step at a time.</p>
+    <footer class="tl-note__who">
+      <img src="https://images.unsplash.com/photo-1618592795475-a3a169db6f87?auto=format&fit=crop&w=200&q=80" alt="Marcus, recovery coach">
+      <span><b data-field="quoteAuthor">Marcus Reed, CPRS</b><span data-field="quoteRole">Certified Peer Recovery Specialist, Founder</span></span>
+    </footer>
+  </blockquote>
+</div></div></section>
+
+<section class="tl-sec tl-contact" id="contact"><div class="tl-shell"><div class="tl-contact__grid">
+  <div class="reveal">
+    <span class="tl-eyebrow">Let's Talk</span>
+    <h2 class="tl-h2" data-field="contactTitle">Book a Free Intro Call</h2>
+    <p class="tl-lede" data-field="contactSub">Reach out whenever you are ready. Tell me a little about what you are looking for, and I will get back to you to set up a free call.</p>
+    <ul class="tl-info">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg><div><small>Phone</small><b data-field="phone">(555) 017-6240</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><small>Email</small><b data-field="email">hello@throughlinecoaching.example</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small>Serving</small><b data-field="address">Phone &amp; video statewide, in person in Portland, OR</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><small>Hours</small><b data-field="hours">Mon to Fri 9am to 7pm, some weekend times</b></div></li>
+    </ul>
+  </div>
+  <form class="tl-form reveal" aria-label="Book a free intro call">
+    <h3>Request a Free Intro Call</h3>
+    <div class="tl-field"><label for="tl-name">Name</label><input id="tl-name" name="name" type="text" autocomplete="name" required></div>
+    <div class="tl-form__row">
+      <div class="tl-field"><label for="tl-email">Email</label><input id="tl-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="tl-field"><label for="tl-phone">Phone <span>(optional)</span></label><input id="tl-phone" name="phone" type="tel" autocomplete="tel"></div>
+    </div>
+    <div class="tl-form__row">
+      <div class="tl-field"><label for="tl-pref">Best way to reach you</label><select id="tl-pref" name="preferred_contact"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+      <div class="tl-field"><label for="tl-reason">I am reaching out about</label><select id="tl-reason" name="reason"><option>Recovery coaching for myself</option><option>Family or loved-ones coaching</option><option>Telecoaching by phone or video</option><option>Resource or treatment navigation</option><option>Small group coaching</option><option>Not sure yet</option></select></div>
+    </div>
+    <p class="tl-form__note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>Please don't include health details here. We will talk about what is going on when we speak.</p>
+    <button class="tl-btn tl-btn--pri" type="submit">Book a free intro call</button>
+  </form>
+</div></div></section>
+</main>
+
+<footer class="tl-foot"><div class="tl-shell">
+  <div class="tl-foot__top">
+    <div class="tl-foot__brand">
+      <a href="#" class="tl-logo"><span class="tl-mark" data-field="brandMark">T</span><span class="tl-logo__name" data-field="brandName">Throughline Recovery Coaching</span></a>
+      <p data-field="footerText">Practical, forward-looking peer recovery support with a Certified Peer Recovery Specialist. All pathways welcome, by phone, video, or in person.</p>
+    </div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#how">How It Works</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 017-6240</a></li><li><a href="#contact">hello@throughlinecoaching.example</a></li><li><a href="#contact">Book a free intro call</a></li></ul></div>
+  </div>
+  <div class="tl-crisis">
+    <p><b>In crisis?</b> Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency. This website and contact form are not monitored for emergencies.</p>
+    <p><b>SAMHSA National Helpline:</b> 1-800-662-4357 (free, confidential, 24/7). Coaching is peer support and is not therapy, medical care, or a substitute for treatment.</p>
+  </div>
+  <div class="tl-foot__bot"><span data-field="footerLegal">© 2026 Throughline Recovery Coaching. All rights reserved.</span><span>Sample website. The practice, people and details shown are fictional.</span></div>
+</div></footer>
+
+<div class="tl-bookbar"><a href="#contact" class="tl-btn tl-btn--pri">Book a free intro call</a></div>
+
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

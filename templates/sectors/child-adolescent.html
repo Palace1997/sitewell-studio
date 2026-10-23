@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bright Kids, Child &amp; adolescent mental health</title>
+<meta name="description" content="Bright Kids: Child &amp; adolescent mental health. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DD6E4E'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>B</text></svg>">
+<style>
+.bk{
+  --acc:#DD6E4E; --acc2:#C4603F; --on:#ffffff;
+  --dark:#3E2318; --dark2:#2C1810;
+  --cream:#FDF6EF; --coral-lo:#FBE6DC; --coral-md:#F6D0BF; --coral-hi:#F3C0A9;
+  --ink:#3E2318; --muted:#8A7264; --white:#fff;
+  background:var(--cream); color:var(--ink);
+  font-family:'Inter',var(--font-sans),sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.bk *{box-sizing:border-box;}
+.bk-wrap{max-width:1140px;margin:0 auto;padding:0 clamp(22px,5vw,52px);}
+.bk h1,.bk h2,.bk h3,.bk h4{margin:0;font-family:'Fraunces',var(--font-display),serif;font-weight:500;line-height:1.04;letter-spacing:-.015em;}
+.bk h1 em,.bk h2 em{font-style:italic;font-weight:400;color:var(--acc);}
+.bk p{margin:0;}
+.bk a{text-decoration:none;}
+
+/* buttons */
+.bk-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:100px;font-size:15px;font-weight:600;font-family:inherit;border:2px solid transparent;cursor:pointer;transition:transform .22s var(--ease,ease),box-shadow .22s var(--ease,ease),background .22s;}
+.bk-btn svg{width:16px;height:16px;}
+.bk-btn--primary{background:var(--acc);color:var(--on);box-shadow:0 10px 22px -10px rgba(221,110,78,.7);}
+.bk-btn--primary:hover{background:var(--acc2);transform:translateY(-3px) rotate(-1deg);}
+.bk-btn--cream{background:var(--white);color:var(--ink);border-color:var(--coral-md);}
+.bk-btn--cream:hover{transform:translateY(-3px);border-color:var(--acc);}
+.bk-btn--ghost{background:transparent;color:var(--ink);border-color:var(--acc);}
+.bk-btn--ghost:hover{background:var(--acc);color:var(--on);transform:translateY(-3px);}
+
+/* eyebrow pill */
+.bk-pill{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--acc);border:2px solid var(--coral-md);padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.bk-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc);}
+
+/* wavy divider helper */
+.bk-wave{display:block;width:100%;height:clamp(48px,7vw,96px);line-height:0;}
+.bk-wave svg{display:block;width:100%;height:100%;}
+
+/* colored bands */
+.bk-band{position:relative;}
+.bk-cream{background:var(--cream);}
+.bk-coral{background:var(--coral-lo);}
+.bk-coralmd{background:var(--coral-md);}
+.bk-dark{background:linear-gradient(155deg,var(--dark),var(--dark2));color:var(--white);}
+.bk-pad{padding:clamp(46px,7vw,84px) 0;}
+
+/* NAV */
+.bk-nav{position:sticky;top:0;z-index:60;background:rgba(253,246,239,.9);backdrop-filter:blur(12px);}
+.bk-nav__in{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.bk-logo{display:inline-flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:22px;font-weight:600;}
+.bk-mark{width:40px;height:40px;border-radius:14px 14px 20px 14px;background:var(--acc);color:var(--on);display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:800;font-size:17px;transform:rotate(-4deg);box-shadow:0 6px 14px -6px rgba(221,110,78,.8);}
+.bk-links{display:flex;gap:28px;}
+.bk-links a{font-size:15px;font-weight:600;color:var(--muted);transition:color .2s;}
+.bk-links a:hover{color:var(--acc);}
+@media(max-width:840px){.bk-links{display:none;}}
+
+/* HERO, playful centered: copy in the middle, tilted photos and stickers around the edges */
+.bk-hero{position:relative;overflow:hidden;background:var(--cream);padding:clamp(56px,7vw,96px) 0 clamp(72px,8vw,112px);}
+.bk-hero__blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;z-index:0;}
+.bk-hero__blob.b1{width:360px;height:360px;background:var(--coral-md);top:-120px;right:-90px;}
+.bk-hero__blob.b2{width:260px;height:260px;background:var(--coral-hi);bottom:-60px;left:-110px;opacity:.4;}
+.bk-hero__stage{position:relative;z-index:1;max-width:1380px;margin:0 auto;padding:0 clamp(16px,3vw,40px);}
+.bk-hero__center{position:relative;z-index:3;max-width:680px;margin:0 auto;text-align:center;padding:clamp(40px,5vw,76px) 0;}
+.bk-hero h1{font-size:clamp(38px,4.9vw,68px);line-height:1.08;margin-top:22px;text-wrap:balance;}
+.bk-hero h1 em{position:relative;}
+.bk-hero h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.1em;height:.2em;background:var(--acc);opacity:.85;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8c10-6 18-6 28 0s18 6 28 0 18-6 28 0 18 6 30-1' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8c10-6 18-6 28 0s18 6 28 0 18-6 28 0 18 6 30-1' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;}
+.bk .bk-hero__lede{font-size:clamp(17px,1.8vw,20px);line-height:1.55;color:var(--muted);max-width:44ch;margin:24px auto 0;}
+.bk-hero__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin-top:32px;}
+
+/* floating photos */
+.bk-ph{position:absolute;z-index:2;margin:0;transition:transform .5s var(--ease,ease);}
+.bk-ph__img{display:block;border:7px solid var(--white);border-radius:30px;overflow:hidden;background:var(--coral-lo);
+  box-shadow:0 26px 50px -30px rgba(62,35,24,.55);}
+.bk-ph__img img{width:100%;height:100%;object-fit:cover;}
+.bk-ph--a{top:-6px;right:3%;width:clamp(170px,17vw,250px);transform:rotate(6deg);}
+.bk-ph--a .bk-ph__img{aspect-ratio:4/5;}
+.bk-ph--b{top:2px;left:4%;width:clamp(150px,14.5vw,212px);transform:rotate(-7deg);}
+.bk-ph--b .bk-ph__img{aspect-ratio:1;border-radius:40% 60% 52% 48%/50% 44% 56% 50%;}
+.bk-ph--c{bottom:-34px;left:9%;width:clamp(150px,15vw,222px);transform:rotate(4deg);}
+.bk-ph--c .bk-ph__img{aspect-ratio:5/4;}
+.bk-ph--d{bottom:-42px;right:10%;width:clamp(130px,12.5vw,186px);transform:rotate(-5deg);}
+.bk-ph--d .bk-ph__img{aspect-ratio:1;border-radius:50%;}
+.bk-ph:hover{transform:rotate(0deg) scale(1.03);}
+
+/* hand-drawn stickers */
+.bk-stk{position:absolute;z-index:3;display:inline-block;white-space:nowrap;font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:17px;line-height:1;
+  padding:10px 16px 11px;border:2px solid var(--ink);border-radius:255px 18px 225px 18px/18px 225px 18px 255px;
+  background:var(--white);color:var(--ink);box-shadow:3px 4px 0 var(--ink);}
+.bk-stk--acc{background:var(--acc);color:var(--on);}
+.bk-stk--soft{background:var(--coral-hi);}
+.bk-ph--a .bk-stk{left:-34px;bottom:14%;transform:rotate(-12deg);}
+.bk-ph--b .bk-stk{right:-30px;bottom:-6px;transform:rotate(8deg);}
+.bk-ph--c .bk-stk{left:-22px;top:-18px;transform:rotate(-6deg);}
+
+/* doodles */
+.bk-doodle{position:absolute;z-index:1;color:var(--acc);pointer-events:none;}
+.bk-doodle svg{display:block;width:100%;height:auto;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.bk-doodle--loop{left:25%;bottom:-4%;width:74px;opacity:.7;transform:rotate(-14deg);}
+.bk-doodle--star1{right:23%;top:6%;width:26px;}
+.bk-doodle--star2{left:26%;top:2%;width:18px;opacity:.6;}
+.bk-doodle--star3{right:25%;bottom:4%;width:20px;opacity:.75;}
+
+@media(prefers-reduced-motion:no-preference){
+  .bk-ph{animation:bk-bob 7s ease-in-out infinite;}
+  .bk-ph--b{animation-delay:-2s;}.bk-ph--c{animation-delay:-4s;}.bk-ph--d{animation-delay:-5.5s;}
+  .bk-ph:hover{animation-play-state:paused;}
+}
+@keyframes bk-bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+@media(max-width:1100px){
+  .bk-hero__center{max-width:540px;}
+  .bk-doodle--loop{display:none;}
+}
+@media(max-width:900px){
+  .bk-hero{padding:clamp(36px,7vw,56px) 0 64px;}
+  .bk-hero__stage{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;}
+  .bk-hero__center{flex:0 0 100%;padding:0;}
+  .bk-ph{position:relative;inset:auto;flex:none;width:clamp(116px,34vw,220px);margin:clamp(36px,7vw,52px) -10px 0;}
+  .bk-ph--a{order:2;z-index:3;margin-top:clamp(24px,5vw,40px);}
+  .bk-ph--b{order:1;}
+  .bk-ph--c{order:3;}
+  .bk-ph--d{display:none;}
+  .bk-ph--a .bk-stk{left:50%;bottom:-18px;transform:translateX(-50%) rotate(-6deg);}
+  .bk-ph--b .bk-stk{right:auto;left:-4px;bottom:auto;top:-18px;transform:rotate(-8deg);}
+  .bk-ph--c .bk-stk{left:auto;right:8px;top:-18px;transform:rotate(7deg);}
+  .bk-hero__cta .bk-btn{padding:13px 19px;font-size:14.5px;}
+  .bk-stk{font-size:14.5px;padding:8px 12px 9px;}
+  .bk-doodle{display:none;}
+}
+
+/* TRUST row */
+.bk-trust{display:flex;flex-wrap:wrap;gap:12px 34px;align-items:center;justify-content:center;padding:22px 0;}
+.bk-trust span{font-family:'Fraunces',serif;font-size:18px;color:var(--acc2);display:inline-flex;align-items:center;gap:10px;}
+.bk-trust span::before{content:"✦";font-size:14px;color:var(--acc);}
+
+/* SECTION HEAD */
+.bk-head{max-width:640px;margin:0 auto clamp(38px,5vw,54px);text-align:center;}
+.bk-head h2{font-size:clamp(30px,4.6vw,52px);margin:16px 0 14px;}
+.bk-head p{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);}
+.bk-dark .bk-head p{color:rgba(255,255,255,.8);}
+
+/* SERVICES, offset bubble cards */
+.bk-svc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.bk-svc__c{background:var(--white);border-radius:30px;padding:34px 30px;box-shadow:0 20px 44px -34px rgba(62,35,24,.45);transition:transform .3s var(--ease,ease);}
+.bk-svc__c:nth-child(even){transform:translateY(20px);}
+.bk-svc__c:hover{transform:translateY(-8px);}
+.bk-svc__c:nth-child(even):hover{transform:translateY(12px);}
+.bk-svc__ic{width:60px;height:60px;border-radius:22px 22px 30px 22px;background:var(--coral-lo);color:var(--acc);display:grid;place-items:center;margin-bottom:20px;transform:rotate(-3deg);}
+.bk-svc__ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;}
+.bk-svc__c h3{font-size:22px;margin-bottom:9px;}
+.bk-svc__c p{color:var(--muted);font-size:15px;line-height:1.55;}
+@media(max-width:820px){.bk-svc{grid-template-columns:repeat(2,1fr);}.bk-svc__c:nth-child(even){transform:none;}.bk-svc__c:nth-child(even):hover{transform:translateY(-8px);}}
+@media(max-width:540px){.bk-svc{grid-template-columns:1fr;}}
+
+/* APPROACH split */
+.bk-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;}
+.bk-split__art{position:relative;}
+.bk-split__frame{border-radius:56% 44% 46% 54%/52% 56% 44% 48%;overflow:hidden;aspect-ratio:1/.92;border:8px solid var(--white);box-shadow:0 26px 54px -32px rgba(62,35,24,.5);}
+.bk-split__frame img{width:100%;height:100%;object-fit:cover;}
+.bk-split h2{font-size:clamp(28px,4.2vw,46px);margin-bottom:14px;}
+.bk-split__lede{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);}
+.bk-checks{margin:26px 0 0;list-style:none;padding:0;display:grid;gap:15px;}
+.bk-checks li{display:flex;gap:14px;align-items:center;font-size:16px;font-weight:500;}
+.bk-tick{flex:none;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--on);display:grid;place-items:center;}
+.bk-tick svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:3.2;}
+@media(max-width:820px){.bk-split{grid-template-columns:1fr;}.bk-split__art{max-width:440px;margin:0 auto;}}
+
+/* STATS band */
+.bk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.bk-stats__c{background:rgba(255,255,255,.08);border-radius:26px;padding:30px 22px;text-align:center;}
+.bk-stats__c b{display:block;font-family:'Fraunces',serif;font-size:clamp(30px,4vw,46px);line-height:1;margin-bottom:8px;color:var(--coral-hi);}
+.bk-stats__c span{font-size:13px;color:rgba(255,255,255,.78);}
+@media(max-width:620px){.bk-stats{grid-template-columns:repeat(2,1fr);}}
+
+/* QUOTE */
+.bk-quote{max-width:780px;margin:0 auto;text-align:center;}
+.bk-quote p{font-family:'Fraunces',serif;font-size:clamp(23px,3.2vw,34px);line-height:1.35;margin-bottom:24px;}
+.bk-quote__who{font-size:15px;color:var(--muted);}
+.bk-quote__who b{color:var(--ink);font-weight:600;}
+
+
+/* CONTACT */
+.bk-contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,58px);align-items:start;}
+.bk-contact h2{font-size:clamp(28px,4.2vw,46px);margin-bottom:14px;}
+.bk-contact__lede{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);margin-bottom:26px;}
+.bk-info{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+.bk-info li{display:flex;gap:14px;align-items:center;background:var(--white);border-radius:20px;padding:16px 18px;box-shadow:0 14px 34px -28px rgba(62,35,24,.5);}
+.bk-info .ic{width:44px;height:44px;flex:none;border-radius:16px;background:var(--coral-lo);color:var(--acc);display:grid;place-items:center;}
+.bk-info svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;}
+.bk-info span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;}
+.bk-info b{font-weight:600;font-size:16px;}
+.bk-form{display:grid;gap:15px;background:var(--white);border-radius:30px;padding:32px;box-shadow:0 24px 50px -34px rgba(62,35,24,.5);}
+.bk-field{display:grid;gap:6px;}
+.bk-field label{font-size:13px;font-weight:600;}
+.bk-field input,.bk-field select,.bk-field textarea{font-family:inherit;font-size:15px;padding:13px 16px;border:2px solid var(--coral-md);border-radius:14px;background:var(--cream);color:var(--ink);}
+.bk-field textarea{min-height:110px;resize:vertical;}
+.bk-field input:focus,.bk-field select:focus,.bk-field textarea:focus{outline:none;border-color:var(--acc);background:var(--white);}
+@media(max-width:820px){.bk-contact{grid-template-columns:1fr;}}
+
+/* FOOTER */
+.bk-foot{background:linear-gradient(155deg,var(--dark),var(--dark2));color:rgba(255,255,255,.72);padding:60px 0 32px;}
+.bk-foot__top{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:36px;padding-bottom:38px;border-bottom:1px solid rgba(255,255,255,.14);}
+.bk-foot .bk-logo{color:var(--white);}
+.bk-foot__brand p{margin-top:14px;max-width:34ch;font-size:14.5px;color:rgba(255,255,255,.6);}
+.bk-foot h4{font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--white);margin-bottom:14px;}
+.bk-foot ul{list-style:none;padding:0;margin:0;}
+.bk-foot li{margin-bottom:10px;}
+.bk-foot a{color:rgba(255,255,255,.6);font-size:14.5px;}
+.bk-foot a:hover{color:var(--coral-hi);}
+.bk-foot__bot{padding-top:22px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+@media(max-width:720px){.bk-foot__top{grid-template-columns:1fr 1fr;}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease,ease),transform .7s var(--ease,ease);}
+.reveal.is-in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="bk">
+<header class="bk-nav"><div class="bk-wrap bk-nav__in">
+  <a href="#" class="bk-logo"><span class="bk-mark" data-field="brandMark">B</span> <span data-field="brandName">Bright Kids</span></a>
+  <nav class="bk-links"><a href="#services">Services</a><a href="#approach">Approach</a><a href="#plans">Insurance</a><a href="#contact">Contact</a></nav>
+  <a href="#contact" class="bk-btn bk-btn--primary" data-field="navCta">Book a first visit</a>
+</div></header>
+
+<!-- HERO, playful centered -->
+<section class="bk-hero bk-band">
+  <div class="bk-hero__blob b1"></div><div class="bk-hero__blob b2"></div>
+  <div class="bk-hero__stage">
+    <span class="bk-doodle bk-doodle--loop" aria-hidden="true"><svg viewBox="0 0 80 40"><path d="M3 30c12 4 22-2 24-12 2-9-8-14-13-6-5 9 6 18 18 16s22-14 34-20c5-2 9-2 11 0"/></svg></span>
+    <span class="bk-doodle bk-doodle--star1" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></span>
+    <span class="bk-doodle bk-doodle--star2" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></span>
+    <span class="bk-doodle bk-doodle--star3" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg></span>
+
+    <div class="bk-hero__center">
+      <span class="bk-pill" data-field="heroEyebrow">Child · Adolescent · Family</span>
+      <h1 data-field="heroTitle">Growing up is <em>hard</em>, help should feel kind</h1>
+      <p class="bk-hero__lede" data-field="heroSub">Warm, playful mental health care for children, teens and the families who love them.</p>
+      <div class="bk-hero__cta">
+        <a href="#contact" class="bk-btn bk-btn--primary"><span data-field="heroCta1">Book a first visit</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#services" class="bk-btn bk-btn--ghost" data-field="heroCta2">How we help</a>
+      </div>
+    </div>
+
+    <figure class="bk-ph bk-ph--a">
+      <span class="bk-ph__img"><img data-img="hero" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=700&q=80" alt="A smiling young child with paint on her face and arms, playing outdoors"></span>
+      <span class="bk-stk bk-stk--acc">Kids 4 to 11</span>
+    </figure>
+    <figure class="bk-ph bk-ph--b">
+      <span class="bk-ph__img"><img src="https://images.unsplash.com/photo-1484820540004-14229fe36ca4?auto=format&fit=crop&w=600&q=80" alt="A young child stacking wooden blocks on the floor"></span>
+      <span class="bk-stk bk-stk--soft">Parents too</span>
+    </figure>
+    <figure class="bk-ph bk-ph--c">
+      <span class="bk-ph__img"><img src="https://images.unsplash.com/photo-1510832842230-87253f48d74f?auto=format&fit=crop&w=600&q=80" alt="Small hands painting with watercolors"></span>
+      <span class="bk-stk">Teens 12 to 17</span>
+    </figure>
+    <figure class="bk-ph bk-ph--d">
+      <span class="bk-ph__img"><img src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?auto=format&fit=crop&w=500&q=80" alt="Colorful wooden alphabet blocks"></span>
+    </figure>
+  </div>
+</section>
+<div class="bk-wave" style="background:var(--cream)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--coral-lo)" d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- TRUST -->
+<section class="bk-band bk-coral" style="padding:6px 0 12px">
+  <div class="bk-wrap bk-trust">
+    <span>Child specialists</span><span>Play-therapy trained</span><span>Family-centered</span><span>School coordination</span><span>Insurance accepted</span>
+  </div>
+</section>
+<div class="bk-wave" style="background:var(--coral-lo)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,50 C260,10 520,80 780,50 C1040,20 1240,60 1440,40 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- SERVICES -->
+<section class="bk-band bk-cream bk-pad" id="services"><div class="bk-wrap">
+  <div class="bk-head reveal"><span class="bk-pill" data-field="servicesEyebrow">What we offer</span><h2 data-field="servicesTitle">Care that speaks kids&#x27; language.</h2><p data-field="servicesSub">Play, art and evidence-based therapy, tuned to every age.</p></div>
+  <div class="bk-svc reveal">
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div><h3 data-field="svc1Title">Child therapy</h3><p data-field="svc1Desc">Play-based care for ages 4-11.</p></div>
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><h3 data-field="svc2Title">Teen therapy</h3><p data-field="svc2Desc">A trusted space for adolescents.</p></div>
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3 data-field="svc3Title">Family therapy</h3><p data-field="svc3Desc">Working through it together.</p></div>
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3 data-field="svc4Title">Anxiety &amp; school</h3><p data-field="svc4Desc">Support for worry and school refusal.</p></div>
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3 data-field="svc5Title">Behavioral support</h3><p data-field="svc5Desc">Practical tools for parents.</p></div>
+    <div class="bk-svc__c"><div class="bk-svc__ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg></div><h3 data-field="svc6Title">Parent coaching</h3><p data-field="svc6Desc">Guidance you can use at home.</p></div>
+  </div>
+</div></section>
+<div class="bk-wave" style="background:var(--cream)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--coral-lo)" d="M0,45 C220,85 460,5 720,45 C980,85 1220,10 1440,45 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- APPROACH -->
+<section class="bk-band bk-coral bk-pad" id="approach"><div class="bk-wrap"><div class="bk-split reveal">
+  <div class="bk-split__art"><div class="bk-split__frame"><img data-img="about" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=80" alt="Bright Kids" loading="lazy"></div></div>
+  <div>
+    <span class="bk-pill" data-field="aboutEyebrow">Our approach</span>
+    <h2 style="margin-top:18px" data-field="aboutTitle">Kids lead, we <em>follow</em>.</h2>
+    <p class="bk-split__lede" data-field="aboutText">Children heal through play and trust. We build both before anything else.</p>
+    <ul class="bk-checks">
+      <li data-field="check1"><span class="bk-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Child and teen specialists</li>
+      <li data-field="check2"><span class="bk-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Parents included as partners</li>
+      <li data-field="check3"><span class="bk-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Warm, playful spaces</li>
+      <li data-field="check4"><span class="bk-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> School coordination available</li>
+    </ul>
+  </div>
+</div></div></section>
+<div class="bk-wave" style="background:var(--coral-lo)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--dark)" d="M0,50 C240,10 500,80 760,45 C1020,15 1240,70 1440,40 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- STATS -->
+<section class="bk-band bk-dark bk-pad"><div class="bk-wrap">
+  <div class="bk-stats reveal">
+    <div class="bk-stats__c"><b data-field="stat1Num">4-17</b><span data-field="stat1Label">Ages we serve</span></div>
+    <div class="bk-stats__c"><b data-field="stat2Num">Play</b><span data-field="stat2Label">Evidence-based methods</span></div>
+    <div class="bk-stats__c"><b data-field="stat3Num">Evenings</b><span data-field="stat3Label">After-school appointments</span></div>
+    <div class="bk-stats__c"><b>Most plans</b><span>Insurance accepted</span></div>
+  </div>
+</div></section>
+<div class="bk-wave" style="background:var(--dark)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,45 C260,85 480,5 720,45 C960,85 1200,10 1440,45 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- QUOTE -->
+<section class="bk-band bk-cream bk-pad"><div class="bk-wrap"><div class="bk-quote reveal">
+  <span class="bk-pill" style="margin-bottom:22px">A Note From Dr. Okafor</span>
+  <p data-field="quoteText">&ldquo;A first visit is mostly about getting to know each other. Kids usually draw, build or play while we talk, and parents get time with me on their own to share what they've noticed. Nobody needs the right words on day one.&rdquo;</p>
+  <div class="bk-quote__who"><b data-field="quoteAuthor">Dr. Amara Okafor, PhD</b> · <span data-field="quoteRole">Clinical Director and child psychologist</span></div>
+</div></div></section>
+<div class="bk-wave" style="background:var(--cream)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--coral-lo)" d="M0,40 C240,80 500,0 760,40 C1020,80 1240,10 1440,45 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- PLANS -->
+<section class="bk-band bk-coral bk-pad" id="plans"><div class="bk-wrap">
+  <div class="bk-head reveal" style="margin-bottom:0"><span class="bk-pill">Insurance &amp; payment</span><h2>Coverage, Made Simple</h2><p>Many insurance plans accepted, plus self-pay options. We'll confirm your coverage before your first visit.</p></div>
+</div></section>
+<div class="bk-wave" style="background:var(--coral-lo)"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,50 C260,10 520,80 780,45 C1040,15 1240,65 1440,40 L1440,90 L0,90 Z"/></svg></div>
+
+<!-- CONTACT -->
+<section class="bk-band bk-cream bk-pad" id="contact"><div class="bk-wrap"><div class="bk-contact">
+  <div class="reveal">
+    <span class="bk-pill" data-field="contactEyebrow">Get in touch</span>
+    <h2 style="margin-top:18px" data-field="contactTitle">Take the <em>first</em> step.</h2>
+    <p class="bk-contact__lede" data-field="contactSub">Tell us a little about your child and we&#x27;ll help you find the right start.</p>
+    <ul class="bk-info">
+      <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg></span><div><span>Phone</span><b data-field="phone">(555) 010-2400</b></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><span>Email</span><b data-field="email">hello@childadolescent.example</b></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span>Location</span><b data-field="address">Bright Kids, Garden Level</b></div></li>
+    </ul>
+  </div>
+  <form class="bk-form reveal" onsubmit="return false">
+    <div class="bk-field"><label for="bk-name">Name</label><input id="bk-name" name="name" type="text" placeholder="Your name" autocomplete="name" required></div>
+    <div class="bk-field"><label for="bk-email">Email</label><input id="bk-email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required></div>
+    <div class="bk-field"><label for="bk-phone">Phone (optional)</label><input id="bk-phone" name="phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel"></div>
+    <div class="bk-field"><label for="bk-pref">Best way to reach you</label><select id="bk-pref" name="preferred_contact"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+    <div class="bk-field"><label for="bk-reason">What can we help with?</label><select id="bk-reason" name="reason"><option>Child therapy</option><option>Teen therapy</option><option>Family therapy</option><option>Anxiety &amp; school</option><option>Something else</option></select></div>
+    <p style="font-size:13px;opacity:.8;margin:0">Please don't include health details here. We'll talk it through on the call.</p>
+    <button class="bk-btn bk-btn--primary" type="submit">Book a first visit</button>
+  </form>
+</div></div></section>
+
+<!-- FOOTER -->
+<footer class="bk-foot"><div class="bk-wrap">
+  <div class="bk-foot__top">
+    <div class="bk-foot__brand"><a href="#" class="bk-logo"><span class="bk-mark" data-field="brandMark">B</span> <span data-field="brandName">Bright Kids</span></a><p data-field="footerText">Child &amp; adolescent mental health.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#plans">Insurance</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 010-2400</a></li><li><a href="#contact">hello@childadolescent.example</a></li></ul></div>
+  </div>
+  <div class="bk-foot__bot"><span data-field="footerLegal">© 2026 Bright Kids. All rights reserved.</span><span>A SiteWell Studio website template.</span></div>
+</div><p class="sw-crisis" style="margin:0;padding:16px 20px 6px;font-size:13px;line-height:1.5;text-align:center;opacity:.85">In crisis? Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency.</p>
+</footer>
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beacon Neuropsychology, neuropsychological assessment practice</title>
+<meta name="description" content="Beacon Neuropsychology: a solo neuropsychological assessment practice with Dr. Priya Shah, PhD, ABPP-CN, offering ADHD, autism, learning and cognitive evaluations for teens and adults, in person and online. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%233A4E8C'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>B</text></svg>">
+<style>
+:root{--acc:#3A4E8C;--acc2:#2C3C6E;}
+.bn{
+  --on:#ffffff;
+  --paper:#FBFAF7; --card:#ffffff; --panel:#F3F3EF; --rule:#E2E2DB; --rule2:#D4D6DE;
+  --ink:#1A1D29; --muted:#5B6072; --faint:#8A8F9E; --deep:#141726; --deep2:#0E111C;
+  --tint:color-mix(in srgb,var(--acc) 9%,#ffffff);
+  --tint2:color-mix(in srgb,var(--acc) 14%,#ffffff);
+  --disp:'Spectral',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.bn *{box-sizing:border-box;}
+.bn img{max-width:100%;display:block;}
+.bn :where(h1,h2,h3,h4){margin:0;font-family:var(--disp);font-weight:500;letter-spacing:-.01em;line-height:1.1;color:var(--ink);}
+.bn :where(p){margin:0;}
+.bn :where(ul){margin:0;padding:0;list-style:none;}
+.bn a{text-decoration:none;color:var(--acc);} .bn a.bn-btn--pri{color:var(--on);}
+.bn [data-empty="1"]{display:none !important;}
+.bn a:focus-visible,.bn button:focus-visible,.bn summary:focus-visible,.bn input:focus-visible,.bn select:focus-visible,.bn label:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px;}
+
+.bn-shell{max-width:1180px;margin:0 auto;padding:0 clamp(16px,5vw,56px);}
+.bn-sec{padding:clamp(64px,9vw,118px) 0;position:relative;}
+.bn-label{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);font-variant:small-caps;letter-spacing:.14em;}
+.bn-label::before{content:"";width:28px;height:1px;background:var(--acc);opacity:.7;}
+.bn-h2{font-size:clamp(32px,4.4vw,52px);margin:16px 0 16px;letter-spacing:-.015em;}
+.bn-lede{font-size:clamp(16.5px,1.5vw,19px);color:var(--muted);max-width:56ch;}
+
+/* buttons */
+.bn-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 24px;border-radius:7px;font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.2;border:1.5px solid transparent;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);}
+.bn-btn svg{width:16px;height:16px;flex:none;}
+.bn-btn--pri{background:var(--acc);color:var(--on);border-color:var(--acc);}
+.bn-btn--pri:hover{background:var(--acc2);border-color:var(--acc2);color:var(--on);transform:translateY(-2px);box-shadow:0 16px 30px -18px var(--acc);}
+.bn-btn--ghost{background:transparent;color:var(--acc);border-color:var(--rule2);}
+.bn-btn--ghost:hover{border-color:var(--acc);background:var(--tint);color:var(--acc2);}
+
+/* logo */
+.bn-logo{display:inline-flex;align-items:center;gap:12px;color:var(--ink);}
+.bn-mark{flex:none;width:40px;height:40px;border-radius:9px;background:var(--acc);color:var(--on);display:grid;place-items:center;font-family:var(--disp);font-weight:600;font-size:21px;line-height:1;position:relative;overflow:hidden;}
+.bn-mark::after{content:"";position:absolute;right:-6px;bottom:-6px;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);}
+.bn-logo__name{font-family:var(--disp);font-size:20px;font-weight:600;line-height:1.05;}
+.bn-logo__sub{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:2px;}
+
+/* TWO-TIER HEADER */
+.bn-head{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);}
+.bn-util{background:var(--deep);color:rgba(255,255,255,.72);font-size:13px;}
+.bn-util__in{display:flex;align-items:center;justify-content:flex-end;gap:16px;min-height:38px;}
+.bn-util__links{display:flex;align-items:center;gap:14px;}
+.bn-util__links a{color:rgba(255,255,255,.78);font-weight:500;transition:color .2s;}
+.bn-util__links a:hover{color:#fff;}
+.bn-util__sep{color:rgba(255,255,255,.3);}
+.bn-util__phone{color:#fff;font-weight:600;letter-spacing:.01em;}
+.bn-bar__in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px;}
+.bn-links{display:flex;gap:30px;}
+.bn-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .2s;}
+.bn-links a:hover{color:var(--acc);}
+.bn-bar__cta{display:flex;align-items:center;gap:12px;}
+.bn-toggle{position:absolute;opacity:0;pointer-events:none;width:0;height:0;}
+.bn-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;border:1px solid var(--rule2);border-radius:8px;cursor:pointer;background:var(--card);}
+.bn-burger span{display:block;width:20px;height:2px;background:var(--ink);margin:0 auto;border-radius:2px;transition:.25s var(--ease);}
+.bn-toggle:checked ~ .bn-bar .bn-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.bn-toggle:checked ~ .bn-bar .bn-burger span:nth-child(2){opacity:0;}
+.bn-toggle:checked ~ .bn-bar .bn-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.bn-mobile{display:none;border-top:1px solid var(--rule);background:var(--paper);}
+.bn-mobile__in{display:flex;flex-direction:column;gap:4px;padding:16px 0 22px;}
+.bn-mobile a{padding:11px 2px;font-size:16px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--rule);}
+.bn-mobile a.bn-mobile__util{font-size:14px;color:var(--muted);}
+.bn-mobile .bn-btn{margin-top:14px;width:100%;}
+@media(max-width:900px){
+  .bn-links{display:none;}
+  .bn-bar__cta .bn-btn{display:none;}
+  .bn-burger{display:flex;}
+  .bn-util{display:none;}
+  .bn-toggle:checked ~ .bn-mobile{display:block;}
+}
+@media(max-width:420px){
+  .bn-logo__name{font-size:17px;}
+  .bn-mark{width:36px;height:36px;font-size:19px;}
+}
+
+/* HERO */
+.bn-hero{position:relative;overflow:hidden;background:var(--paper);padding:clamp(48px,7vw,92px) 0 clamp(56px,8vw,104px);}
+.bn-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px);background-size:100% 46px;opacity:.5;mask-image:linear-gradient(180deg,transparent,#000 22%,#000 70%,transparent);}
+.bn-hero__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.bn-hero h1{font-size:clamp(40px,5.6vw,72px);font-weight:500;letter-spacing:-.025em;line-height:1.02;margin:18px 0 22px;max-width:14ch;}
+.bn-hero h1 em{font-style:italic;color:var(--acc);}
+.bn-hero__sub{max-width:50ch;}
+.bn-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
+.bn-hero__trust{display:flex;align-items:center;gap:10px;margin-top:28px;padding-top:24px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted);max-width:46ch;}
+.bn-hero__trust svg{flex:none;width:18px;height:18px;color:var(--acc);}
+
+/* hero report card */
+.bn-report{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:14px;box-shadow:0 44px 80px -54px rgba(26,29,41,.5);overflow:hidden;}
+.bn-report__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;border-bottom:1px solid var(--rule);background:var(--panel);}
+.bn-report__bar small{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+.bn-report__tag{font-size:11.5px;font-weight:600;color:var(--acc);background:var(--tint2);padding:4px 10px;border-radius:100px;}
+.bn-report__body{padding:22px 22px 24px;}
+.bn-report__title{font-family:var(--disp);font-size:21px;font-weight:600;line-height:1.2;}
+.bn-report__meta{font-size:13px;color:var(--muted);margin-top:4px;}
+.bn-steps{display:grid;gap:0;margin-top:20px;border:1px solid var(--rule);border-radius:10px;overflow:hidden;}
+.bn-step{display:flex;gap:14px;align-items:flex-start;padding:15px 16px;background:var(--card);}
+.bn-step + .bn-step{border-top:1px solid var(--rule);}
+.bn-step__n{flex:none;width:28px;height:28px;border-radius:7px;background:var(--tint2);color:var(--acc);display:grid;place-items:center;font-size:13px;font-weight:700;}
+.bn-step b{display:block;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);line-height:1.2;}
+.bn-step span{font-size:13px;color:var(--muted);}
+.bn-report__inset{position:absolute;right:-18px;bottom:-18px;width:104px;height:104px;border-radius:50%;border:5px solid var(--card);box-shadow:0 18px 36px -20px rgba(26,29,41,.55);overflow:hidden;background:var(--panel);}
+.bn-report__inset img{width:100%;height:100%;object-fit:cover;}
+@media(max-width:860px){
+  .bn-hero__grid{grid-template-columns:1fr;gap:clamp(34px,7vw,48px);}
+  .bn-hero h1{max-width:none;}
+  .bn-report{max-width:480px;}
+}
+
+/* CONCERNS STRIP */
+.bn-concerns{background:var(--deep);color:#fff;border-top:1px solid var(--rule);}
+.bn-concerns__in{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;padding:26px 0;}
+.bn-concerns h2{color:#fff;font-size:15px;font-weight:600;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);flex:none;}
+.bn-concerns ul{display:flex;flex-wrap:wrap;gap:10px;}
+.bn-concerns li{font-size:14.5px;font-weight:500;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:7px 14px;border-radius:7px;}
+
+/* SERVICES */
+.bn-serv__head{display:grid;grid-template-columns:1fr .9fr;gap:clamp(18px,4vw,56px);align-items:end;margin-bottom:clamp(36px,5vw,56px);}
+.bn-serv__head .bn-h2{margin-bottom:0;}
+.bn-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden;}
+.bn-card{background:var(--card);padding:clamp(24px,3vw,34px);transition:background .3s var(--ease);}
+.bn-card:hover{background:var(--tint);}
+.bn-card__n{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--faint);font-variant-numeric:tabular-nums;}
+.bn-card__ic{width:48px;height:48px;border-radius:10px;background:var(--tint2);color:var(--acc);display:grid;place-items:center;margin:14px 0 16px;}
+.bn-card__ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.bn-card h3{font-size:22px;font-weight:600;margin-bottom:7px;}
+.bn-card p{color:var(--muted);font-size:15px;}
+@media(max-width:860px){.bn-serv__head{grid-template-columns:1fr;}.bn-cards{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.bn-cards{grid-template-columns:1fr;}}
+
+/* ABOUT */
+.bn-about__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(36px,6vw,80px);align-items:center;}
+.bn-about__media{position:relative;}
+.bn-about__media img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;}
+.bn-about__badge{position:absolute;left:-18px;bottom:24px;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px 20px;box-shadow:0 30px 60px -40px rgba(26,29,41,.5);max-width:220px;}
+.bn-about__badge b{display:block;font-family:var(--disp);font-size:20px;font-weight:600;color:var(--ink);}
+.bn-about__badge span{font-size:12.5px;color:var(--muted);}
+.bn-creds{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px;}
+.bn-creds span{font-size:12.5px;font-weight:600;color:var(--acc2);background:var(--tint2);border-radius:100px;padding:5px 13px;}
+.bn-checks{display:grid;gap:12px;margin-top:22px;}
+.bn-checks li{display:flex;gap:13px;align-items:flex-start;font-size:15.5px;color:var(--ink);}
+.bn-checks li i{flex:none;width:24px;height:24px;margin-top:1px;border-radius:7px;background:var(--tint2);color:var(--acc);display:grid;place-items:center;}
+.bn-checks li i svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.bn-about__grid{grid-template-columns:1fr;}.bn-about__media{max-width:440px;}.bn-about__badge{left:16px;}}
+
+/* STATS */
+.bn-stats{background:linear-gradient(160deg,var(--deep),var(--deep2));color:#fff;}
+.bn-stats__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:14px;overflow:hidden;}
+.bn-stats__grid > div{background:color-mix(in srgb,var(--deep) 92%,#000);padding:clamp(28px,4vw,44px) clamp(22px,3vw,34px);}
+.bn-stats__grid b{display:block;font-family:var(--disp);font-weight:600;font-size:clamp(34px,4.4vw,48px);line-height:1;color:#fff;margin-bottom:10px;}
+.bn-stats__grid span{font-size:14.5px;color:rgba(255,255,255,.72);}
+.bn-stats__head{max-width:620px;margin-bottom:clamp(30px,4vw,44px);}
+.bn-stats .bn-label{color:#fff;}
+.bn-stats .bn-label::before{background:#fff;}
+.bn-stats .bn-h2{color:#fff;}
+.bn-stats .bn-lede{color:rgba(255,255,255,.72);}
+@media(max-width:620px){.bn-stats__grid{grid-template-columns:1fr;}}
+
+/* NOTE */
+.bn-note{background:var(--panel);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.bn-note__grid{display:grid;grid-template-columns:.62fr 1.38fr;gap:clamp(32px,6vw,72px);align-items:center;}
+.bn-note__media{position:relative;max-width:300px;}
+.bn-note__media img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;}
+.bn-note blockquote{margin:0;}
+.bn-note__text{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(23px,3vw,34px);line-height:1.34;color:var(--ink);margin:16px 0 22px;}
+.bn-note__who{font-size:15px;color:var(--muted);}
+.bn-note__who b{color:var(--ink);font-weight:600;}
+@media(max-width:760px){.bn-note__grid{grid-template-columns:1fr;}.bn-note__media{max-width:200px;}}
+
+/* REFERRALS */
+.bn-ref__card{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(28px,5vw,64px);align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:clamp(30px,5vw,56px);box-shadow:0 40px 80px -60px rgba(26,29,41,.45);}
+.bn-ref__list{display:grid;gap:12px;margin-top:20px;}
+.bn-ref__list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);}
+.bn-ref__list li svg{flex:none;width:18px;height:18px;margin-top:2px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.bn-ref__side{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:24px;}
+.bn-ref__side h3{font-size:19px;font-weight:600;margin-bottom:10px;}
+.bn-ref__side p{font-size:14.5px;color:var(--muted);margin-bottom:16px;}
+.bn-ref__side .bn-btn{width:100%;}
+@media(max-width:760px){.bn-ref__card{grid-template-columns:1fr;}}
+
+/* FAQ */
+.bn-faq__grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(28px,6vw,76px);align-items:start;}
+.bn-qa{border-top:1px solid var(--rule);}
+.bn-qa details{border-bottom:1px solid var(--rule);}
+.bn-qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 2px;font-family:var(--disp);font-size:clamp(19px,2.1vw,23px);font-weight:600;line-height:1.25;color:var(--ink);}
+.bn-qa summary::-webkit-details-marker{display:none;}
+.bn-qa summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:8px;border:1px solid var(--rule2);display:grid;place-items:center;font-family:var(--sans);font-size:19px;font-weight:400;color:var(--acc);transition:transform .3s var(--ease),background .3s;}
+.bn-qa details[open] summary::after{transform:rotate(45deg);background:var(--tint2);}
+.bn-qa details p{padding:0 44px 22px 2px;color:var(--muted);font-size:15.5px;}
+@media(max-width:760px){.bn-faq__grid{grid-template-columns:1fr;}}
+
+/* CONTACT */
+.bn-contact__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(34px,5vw,68px);align-items:start;}
+.bn-info{margin-top:26px;border-top:1px solid var(--rule);}
+.bn-info li{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule);}
+.bn-info svg{flex:none;width:22px;height:22px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.bn-info small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+.bn-info b{font-weight:500;font-size:16px;color:var(--ink);}
+.bn-form{display:grid;gap:16px;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:clamp(24px,4vw,40px);box-shadow:0 40px 80px -62px rgba(26,29,41,.5);}
+.bn-form h3{font-size:26px;font-weight:600;}
+.bn-form__row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.bn-field{display:grid;gap:7px;}
+.bn-field label{font-size:13.5px;font-weight:600;color:var(--ink);}
+.bn-field label span{font-weight:400;color:var(--muted);}
+.bn-field input,.bn-field select{width:100%;font-family:inherit;font-size:15.5px;padding:13px 15px;border:1px solid var(--rule2);border-radius:9px;background:var(--paper);color:var(--ink);}
+.bn-field input:focus,.bn-field select:focus{outline:2px solid color-mix(in srgb,var(--acc) 45%,transparent);outline-offset:1px;border-color:var(--acc);}
+.bn-form__note{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);background:var(--panel);border-radius:10px;padding:12px 14px;}
+.bn-form__note svg{flex:none;width:18px;height:18px;margin-top:1px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.8;}
+.bn-form .bn-btn{width:100%;}
+@media(max-width:860px){.bn-contact__grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.bn-form__row{grid-template-columns:1fr;}}
+
+/* FOOTER */
+.bn-foot{background:linear-gradient(160deg,var(--deep),var(--deep2));color:rgba(255,255,255,.7);padding:68px 0 92px;}
+.bn-foot__top{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12);}
+.bn-foot .bn-logo{color:#fff;}
+.bn-foot .bn-logo__name{color:#fff;}
+.bn-foot__brand p{margin-top:16px;max-width:38ch;font-size:14.5px;color:rgba(255,255,255,.62);}
+.bn-foot h4{margin:0 0 14px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;}
+.bn-foot li{margin-bottom:10px;font-size:14.5px;}
+.bn-foot a{color:rgba(255,255,255,.66);}
+.bn-foot a:hover{color:#fff;}
+.bn-crisis{margin-top:30px;padding:16px 20px;border:1px solid rgba(255,255,255,.18);border-radius:12px;font-size:14.5px;color:#fff;background:rgba(255,255,255,.04);}
+.bn-crisis b{font-weight:600;}
+.bn-foot__bot{padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:rgba(255,255,255,.5);}
+@media(max-width:760px){.bn-foot__top{grid-template-columns:1fr 1fr;}.bn-foot__brand{grid-column:1/-1;}}
+@media(max-width:420px){.bn-foot__top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="bn">
+
+<header class="bn-head">
+  <input type="checkbox" id="bn-toggle" class="bn-toggle" aria-hidden="true">
+  <div class="bn-util"><div class="bn-shell bn-util__in">
+    <nav class="bn-util__links" aria-label="Utility">
+      <a href="#referrals">For referring clinicians</a>
+      <span class="bn-util__sep" aria-hidden="true">·</span>
+      <a href="#faq">Fees &amp; insurance</a>
+      <span class="bn-util__sep" aria-hidden="true">·</span>
+      <a href="tel:5550147781" class="bn-util__phone">(555) 014-7781</a>
+    </nav>
+  </div></div>
+  <div class="bn-bar"><div class="bn-shell bn-bar__in">
+    <a href="#" class="bn-logo" aria-label="Beacon Neuropsychology, home">
+      <span class="bn-mark" data-field="brandMark">B</span>
+      <span><span class="bn-logo__name" data-field="brandName">Beacon Neuropsychology</span><span class="bn-logo__sub">Dr. Priya Shah, PhD, ABPP-CN</span></span>
+    </a>
+    <nav class="bn-links" aria-label="Main">
+      <a href="#services">Evaluations</a>
+      <a href="#process">The Process</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="bn-bar__cta">
+      <a href="#contact" class="bn-btn bn-btn--pri" data-field="navCta">Request an evaluation</a>
+      <label class="bn-burger" for="bn-toggle" aria-label="Open menu"><span></span><span></span><span></span></label>
+    </div>
+  </div></div>
+  <div class="bn-mobile"><div class="bn-shell bn-mobile__in">
+    <a href="#services">Evaluations</a>
+    <a href="#process">The Process</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#referrals" class="bn-mobile__util">For referring clinicians</a>
+    <a href="#faq" class="bn-mobile__util">Fees &amp; insurance</a>
+    <a href="tel:5550147781" class="bn-mobile__util">(555) 014-7781</a>
+    <a href="#contact" class="bn-btn bn-btn--pri">Request an evaluation</a>
+  </div></div>
+</header>
+
+<main>
+<section class="bn-hero" aria-labelledby="bn-hero-title"><div class="bn-shell">
+  <div class="bn-hero__grid">
+    <div>
+      <span class="bn-label" data-field="heroEyebrow">Clinical Neuropsychology</span>
+      <h1 id="bn-hero-title" data-field="heroTitle">Clear Answers From a Careful <em>Evaluation</em></h1>
+      <p class="bn-lede bn-hero__sub" data-field="heroSub">Comprehensive neuropsychological assessment for teens and adults, with a plain-language report you can actually use. Led by Dr. Priya Shah, a board-certified clinical neuropsychologist.</p>
+      <div class="bn-hero__cta">
+        <a href="#contact" class="bn-btn bn-btn--pri"><span data-field="heroCta1">Request an evaluation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#referrals" class="bn-btn bn-btn--ghost" data-field="heroCta2">For referring clinicians</a>
+      </div>
+      <p class="bn-hero__trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-field="trustText">Board-certified in clinical neuropsychology, ABPP-CN. In person and by secure video.</span></p>
+    </div>
+    <div class="bn-report reveal" aria-label="How an evaluation is structured">
+      <div class="bn-report__bar">
+        <small>Evaluation Overview</small>
+        <span class="bn-report__tag">Ages 12 and up</span>
+      </div>
+      <div class="bn-report__body">
+        <p class="bn-report__title">What a Full Assessment Looks Like</p>
+        <p class="bn-report__meta">Four clear steps, start to finish</p>
+        <div class="bn-steps">
+          <div class="bn-step"><span class="bn-step__n">1</span><div><b>Intake</b><span>We talk through your history, concerns and goals.</span></div></div>
+          <div class="bn-step"><span class="bn-step__n">2</span><div><b>Testing</b><span>Standardized measures, at a steady, unhurried pace.</span></div></div>
+          <div class="bn-step"><span class="bn-step__n">3</span><div><b>Scoring</b><span>Careful analysis, written up in plain language.</span></div></div>
+          <div class="bn-step"><span class="bn-step__n">4</span><div><b>Feedback</b><span>We review the findings together and plan next steps.</span></div></div>
+        </div>
+      </div>
+      <div class="bn-report__inset" aria-hidden="true"><img data-img="hero" src="https://images.unsplash.com/photo-1594743795047-2ecc81153a5c?auto=format&fit=crop&w=900&q=80" alt="Portrait of a clinician in a calm office"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="bn-concerns" aria-label="Common reasons people seek an evaluation"><div class="bn-shell bn-concerns__in reveal">
+  <h2>We assess for</h2>
+  <ul>
+    <li>Attention &amp; focus</li>
+    <li>Autism</li>
+    <li>Learning differences</li>
+    <li>Memory concerns</li>
+    <li>Thinking changes</li>
+    <li>Capacity questions</li>
+  </ul>
+</div></section>
+
+<section class="bn-sec" id="services"><div class="bn-shell">
+  <div class="bn-serv__head reveal">
+    <div>
+      <span class="bn-label">Our Evaluations</span>
+      <h2 class="bn-h2" data-field="servicesTitle">Assessment, Matched to Your Question</h2>
+    </div>
+    <p class="bn-lede" data-field="servicesSub">Every evaluation is designed around the questions you and your care team are trying to answer, and ends with a report written for real life.</p>
+  </div>
+  <div class="bn-cards reveal">
+    <div class="bn-card" data-card="1">
+      <span class="bn-card__n">01</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M4.2 7.2l2.1 2.1M3 15h3M18 15h3M19.8 7.2l-2.1 2.1"/><circle cx="12" cy="15" r="5"/></svg></div>
+      <h3 data-field="svc1Title">ADHD Evaluation</h3>
+      <p data-field="svc1Desc">A thorough look at attention, focus and executive function, with input from the people who know you well.</p>
+    </div>
+    <div class="bn-card" data-card="2">
+      <span class="bn-card__n">02</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div>
+      <h3 data-field="svc2Title">Autism Evaluation</h3>
+      <p data-field="svc2Desc">For teens and adults seeking clarity about social, sensory and communication differences, and what helps.</p>
+    </div>
+    <div class="bn-card" data-card="3">
+      <span class="bn-card__n">03</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg></div>
+      <h3 data-field="svc3Title">Learning Disability Testing</h3>
+      <p data-field="svc3Desc">Testing for reading, writing and math differences, with documentation for school or workplace accommodations.</p>
+    </div>
+    <div class="bn-card" data-card="4">
+      <span class="bn-card__n">04</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a4 4 0 014 4c1.8.6 3 2.3 3 4 0 1-.4 1.9-1 2.6.3.5.5 1.1.5 1.8a3.5 3.5 0 01-3.5 3.5c-.5 0-1-.1-1.4-.3A3 3 0 019 20a3 3 0 01-3-3"/><path d="M12 3v14"/></svg></div>
+      <h3 data-field="svc4Title">Memory &amp; Cognitive Testing</h3>
+      <p data-field="svc4Desc">For noticeable changes in memory, word finding or clear thinking, to understand what is going on and what helps.</p>
+    </div>
+    <div class="bn-card" data-card="5">
+      <span class="bn-card__n">05</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v4H9zM6 7h12l1 13H5z"/><path d="M12 11v5M9.5 13.5h5"/></svg></div>
+      <h3 data-field="svc5Title">Pre-Surgical &amp; Capacity Evaluations</h3>
+      <p data-field="svc5Desc">Baseline cognitive testing before procedures, and careful capacity evaluations when decisions need clear support.</p>
+    </div>
+    <div class="bn-card" data-card="6">
+      <span class="bn-card__n">06</span>
+      <div class="bn-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H4z"/><path d="M8 20h8M12 16v4"/><path d="M8.5 10.5l2 2 4-4"/></svg></div>
+      <h3 data-field="svc6Title">Feedback Sessions</h3>
+      <p data-field="svc6Desc">A dedicated meeting to walk through your results together, answer questions and leave with clear next steps.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="bn-sec bn-about" id="about"><div class="bn-shell"><div class="bn-about__grid">
+  <div class="bn-about__media reveal">
+    <img data-img="about" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80" alt="A calm, well-lit office with a desk and a comfortable chair" loading="lazy">
+    <div class="bn-about__badge"><b>ABPP-CN</b><span>Board certified in clinical neuropsychology</span></div>
+  </div>
+  <div class="reveal">
+    <span class="bn-label">About the Practice</span>
+    <h2 class="bn-h2" data-field="aboutTitle">A Solo Practice Built Around Careful Testing</h2>
+    <p class="bn-lede" data-field="aboutText">Beacon is the private practice of Dr. Priya Shah, a board-certified clinical neuropsychologist. You work with Dr. Shah from your first call through your feedback session, so nothing gets lost in a handoff. The goal is a clear picture of how you think, learn and remember, and a report that makes sense to you.</p>
+    <div class="bn-creds">
+      <span>PhD, Clinical Psychology</span>
+      <span>ABPP-CN, Board Certified</span>
+      <span>Licensed Psychologist</span>
+    </div>
+    <ul class="bn-checks">
+      <li data-check="1"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check1">You meet with Dr. Shah directly, start to finish</span></li>
+      <li data-check="2"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check2">Reports written in plain language, not just scores</span></li>
+      <li data-check="3"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check3">Referrals from clinicians and self-referrals welcome</span></li>
+      <li data-check="4"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span data-field="check4">In person or by secure video, whichever suits you</span></li>
+    </ul>
+  </div>
+</div></div></section>
+
+<section class="bn-sec bn-stats" id="process"><div class="bn-shell">
+  <div class="bn-stats__head reveal">
+    <span class="bn-label">What to Expect</span>
+    <h2 class="bn-h2">A Process Built to Be Clear</h2>
+    <p class="bn-lede">No jargon-only reports, no surprises. Here is what stays true for every evaluation at Beacon.</p>
+  </div>
+  <div class="bn-stats__grid reveal">
+    <div><b data-field="stat1Num">Written</b><span data-field="stat1Label">A plain-language report you can share with your team</span></div>
+    <div><b data-field="stat2Num">Feedback</b><span data-field="stat2Label">We review the findings together, in person or by video</span></div>
+    <div><b data-field="stat3Num">Ages 12+</b><span data-field="stat3Label">Older teens and adults, with parents welcome to take part</span></div>
+  </div>
+</div></section>
+
+<section class="bn-sec bn-note" aria-label="A note from Dr. Shah"><div class="bn-shell"><div class="bn-note__grid reveal">
+  <div class="bn-note__media">
+    <img src="https://images.unsplash.com/photo-1655839916318-ac734d838512?auto=format&fit=crop&w=900&q=80" alt="Portrait of Dr. Priya Shah" loading="lazy">
+  </div>
+  <div>
+    <span class="bn-label">A Note From Dr. Shah</span>
+    <blockquote>
+      <p class="bn-note__text" data-field="quoteText">An evaluation should leave you with more than a diagnosis. My aim is to understand how your mind actually works, then hand you a report that explains it clearly and points to what will genuinely help.</p>
+      <footer class="bn-note__who"><b data-field="quoteAuthor">Dr. Priya Shah, PhD, ABPP-CN</b> · <span data-field="quoteRole">Clinical Neuropsychologist</span></footer>
+    </blockquote>
+  </div>
+</div></div></section>
+
+<section class="bn-sec" id="referrals"><div class="bn-shell"><div class="bn-ref__card reveal">
+  <div>
+    <span class="bn-label">For Referring Clinicians</span>
+    <h2 class="bn-h2">Partnering on Your Patient's Care</h2>
+    <p class="bn-lede">Beacon welcomes referrals from physicians, therapists, schools and attorneys. Dr. Shah will coordinate with you and send a clear, actionable report with your patient's consent.</p>
+    <ul class="bn-ref__list">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Timely scheduling and clear communication throughout</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Reports with specific, practical recommendations</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Happy to discuss whether testing is the right step</li>
+    </ul>
+  </div>
+  <div class="bn-ref__side">
+    <h3>Send a Referral</h3>
+    <p>Call the office or use the contact form to start a referral. We will follow up to gather what we need.</p>
+    <a href="#contact" class="bn-btn bn-btn--pri">Start a referral</a>
+  </div>
+</div></div></section>
+
+<section class="bn-sec" id="faq"><div class="bn-shell"><div class="bn-faq__grid">
+  <div class="reveal">
+    <span class="bn-label">Good Questions</span>
+    <h2 class="bn-h2">Before You Reach Out</h2>
+    <p class="bn-lede">Still wondering about something? Ask on your first call. There is no pressure to book.</p>
+    <a href="#contact" class="bn-btn bn-btn--ghost" style="margin-top:22px;">Ask a question</a>
+  </div>
+  <div class="bn-qa reveal">
+    <details open>
+      <summary>How long does an evaluation take?</summary>
+      <p>It depends on the questions we are answering. Most evaluations involve an intake, one or more testing sessions and a feedback meeting. We will map out the plan on your first call.</p>
+    </details>
+    <details>
+      <summary>Do you take insurance?</summary>
+      <p>Beacon is out of network with most plans. We can provide a detailed invoice, often called a superbill, to submit to your insurer for possible reimbursement. Ask us about fees and insurance when we speak.</p>
+    </details>
+    <details>
+      <summary>Will I get a diagnosis?</summary>
+      <p>An evaluation can clarify whether a diagnosis fits, but it is not guaranteed. Dr. Shah focuses on understanding how you think and learn, and gives honest findings and recommendations either way.</p>
+    </details>
+    <details>
+      <summary>Can teens be seen here?</summary>
+      <p>Yes. Beacon sees older teens from age 12 and up, as well as adults. Parents are welcome to take part in the intake and feedback.</p>
+    </details>
+    <details>
+      <summary>Can any of this be done online?</summary>
+      <p>Intake and feedback can be done by secure video. Some testing is done in person for accuracy. We will tell you which parts need an office visit when we plan your evaluation.</p>
+    </details>
+  </div>
+</div></div></section>
+
+<section class="bn-sec bn-contact" id="contact"><div class="bn-shell"><div class="bn-contact__grid">
+  <div class="reveal">
+    <span class="bn-label">Get in Touch</span>
+    <h2 class="bn-h2" data-field="contactTitle">Request an Evaluation</h2>
+    <p class="bn-lede" data-field="contactSub">Tell us a little about who the evaluation is for and we will reach out to talk through next steps. Call or email if you prefer.</p>
+    <ul class="bn-info">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg><div><small>Phone</small><b data-field="phone">(555) 014-7781</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><small>Email</small><b data-field="email">office@beaconneuropsych.example</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small>Office</small><b data-field="address">215 Harbor Street, Suite 400, Portland, ME</b></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><small>Hours</small><b data-field="hours">Mon to Fri, 8am to 5pm, by appointment</b></div></li>
+    </ul>
+  </div>
+  <form class="bn-form reveal" aria-label="Request an evaluation">
+    <h3>Request an Evaluation</h3>
+    <div class="bn-field"><label for="bn-name">Name</label><input id="bn-name" name="name" type="text" autocomplete="name" required></div>
+    <div class="bn-form__row">
+      <div class="bn-field"><label for="bn-email">Email</label><input id="bn-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="bn-field"><label for="bn-phone">Phone <span>(optional)</span></label><input id="bn-phone" name="phone" type="tel" autocomplete="tel"></div>
+    </div>
+    <div class="bn-form__row">
+      <div class="bn-field"><label for="bn-pref">Best way to reach you</label><select id="bn-pref" name="preferred_contact"><option>Email</option><option>Phone call</option><option>Text message</option></select></div>
+      <div class="bn-field"><label for="bn-reason">I am reaching out about</label><select id="bn-reason" name="reason"><option>ADHD evaluation</option><option>Autism evaluation</option><option>Learning disability testing</option><option>Memory and cognitive testing</option><option>Pre-surgical or capacity evaluation</option><option>A clinician referral</option><option>Not sure yet</option></select></div>
+    </div>
+    <p class="bn-form__note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>Please don't include health details here. We will talk through everything when we speak.</p>
+    <button class="bn-btn bn-btn--pri" type="submit">Request an evaluation</button>
+  </form>
+</div></div></section>
+</main>
+
+<footer class="bn-foot"><div class="bn-shell">
+  <div class="bn-foot__top">
+    <div class="bn-foot__brand">
+      <a href="#" class="bn-logo"><span class="bn-mark" data-field="brandMark">B</span><span class="bn-logo__name" data-field="brandName">Beacon Neuropsychology</span></a>
+      <p data-field="footerText">Neuropsychological assessment for teens and adults with Dr. Priya Shah, PhD, ABPP-CN, in Portland and by secure video.</p>
+    </div>
+    <div><h4>Evaluations</h4><ul><li><a href="#services">ADHD</a></li><li><a href="#services">Autism</a></li><li><a href="#services">Learning &amp; memory</a></li><li><a href="#referrals">For clinicians</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:5550147781">(555) 014-7781</a></li><li><a href="#contact">office@beaconneuropsych.example</a></li><li><a href="#contact">Request an evaluation</a></li></ul></div>
+  </div>
+  <p class="bn-crisis"><b>In crisis?</b> Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency. This website and contact form are not monitored for emergencies.</p>
+  <div class="bn-foot__bot"><span data-field="footerLegal">© 2026 Beacon Neuropsychology. All rights reserved.</span><span>Sample website. The practice, people and details shown are fictional.</span></div>
+</div></footer>
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

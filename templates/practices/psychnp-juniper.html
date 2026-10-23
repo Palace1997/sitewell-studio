@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juniper Psychiatric Care, Psychiatric nurse practitioner</title>
+<meta name="description" content="Juniper Psychiatric Care: psychiatric evaluation and medication management for adults with Elena Ruiz, DNP, PMHNP-BC. In person and telehealth. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232F6E7A'/><text x='16' y='23' font-family='Georgia,serif' font-size='19' fill='white' text-anchor='middle'>J</text></svg>">
+<style>
+:root{--acc:#2F6E7A;--acc2:#245862}
+.jp{
+  --on:#ffffff;
+  --ink:#15262B; --ink2:#2B3D43; --muted:#55666C; --soft:#7C8B90;
+  --white:#ffffff; --mist:#F3F7F8; --mist2:#E9F0F2; --line:#DAE4E7; --line2:#C9D6DA;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  background:var(--white); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.65;
+  letter-spacing:0; -webkit-font-smoothing:antialiased;
+}
+.jp *,.jp *::before,.jp *::after{box-sizing:border-box;}
+.jp img{max-width:100%;display:block;}
+.jp h1,.jp h2,.jp h3,.jp h4{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-.012em;line-height:1.1;color:var(--ink);}
+.jp h1 em,.jp h2 em{font-style:italic;color:var(--acc);}
+.jp p{margin:0;}
+.jp ul,.jp ol{margin:0;padding:0;list-style:none;}
+.jp a{text-decoration:none;}
+.jp a:focus-visible,.jp button:focus-visible,.jp summary:focus-visible,.jp input:focus-visible,.jp select:focus-visible{outline:2px solid var(--acc);outline-offset:3px;}
+
+.jp-shell{max-width:1200px;margin:0 auto;padding:0 clamp(16px,5vw,64px);}
+.jp-label{display:inline-flex;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);}
+.jp-label b{font-weight:600;color:var(--acc);letter-spacing:.08em;}
+.jp-sc{font-family:var(--serif);font-variant-caps:all-small-caps;letter-spacing:.06em;font-size:18px;color:var(--muted);}
+.jp-h2{font-size:clamp(32px,4.4vw,50px);margin:18px 0 16px;}
+.jp-lede{font-size:clamp(16.5px,1.5vw,18.5px);line-height:1.65;color:var(--muted);max-width:56ch;}
+
+/* Buttons */
+.jp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:6px;font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.2;border:1px solid var(--acc);cursor:pointer;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease),box-shadow .25s var(--ease);}
+.jp-btn svg{width:16px;height:16px;flex:none;}
+.jp-btn--primary{background:var(--acc);color:var(--on);}
+.jp-btn--primary:hover{background:var(--acc2);border-color:var(--acc2);color:var(--on);box-shadow:0 10px 24px -14px var(--acc);}
+.jp-btn--line{background:var(--white);color:var(--ink);border-color:var(--line2);}
+.jp-btn--line:hover{border-color:var(--acc);color:var(--acc);}
+
+/* NAV, sticky so booking stays one tap away */
+.jp-nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line);}
+.jp-nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px;}
+.jp-logo{display:inline-flex;align-items:center;gap:12px;color:var(--ink);font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em;line-height:1.1;}
+.jp-mark{flex:none;width:36px;height:36px;border-radius:6px;background:var(--acc);color:var(--on);display:grid;place-items:center;font-family:var(--serif);font-size:20px;font-weight:500;}
+.jp-links{display:flex;gap:30px;}
+.jp-links a{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s;}
+.jp-links a:hover{color:var(--acc);}
+.jp-nav .jp-btn{padding:11px 18px;font-size:14px;}
+@media(max-width:1000px){.jp-links{display:none;}}
+@media(max-width:520px){
+  .jp-nav__in{height:64px;gap:10px;}
+  .jp-logo{font-size:15px;gap:9px;line-height:1.15;}
+  .jp-mark{width:30px;height:30px;font-size:17px;}
+  .jp-nav .jp-btn{padding:10px 12px;font-size:12.5px;white-space:nowrap;flex:none;}
+}
+
+/* HERO: headline first, then a full-bleed photo band with the credential card on its top edge */
+.jp-hero{position:relative;isolation:isolate;background:var(--white);padding-top:clamp(44px,6.4vw,88px);}
+.jp-hero h1{font-size:clamp(44px,7.4vw,108px);line-height:.98;letter-spacing:-.028em;margin:24px 0 0;max-width:17ch;}
+.jp-hero h1 em{font-weight:300;}
+.jp-hero__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 64px;align-items:end;margin-top:clamp(30px,3.6vw,48px);padding-top:clamp(22px,2.4vw,30px);border-top:1px solid var(--line);}
+.jp-hero__row .jp-lede{max-width:54ch;}
+.jp-hero__cta{display:flex;flex-wrap:wrap;gap:12px;}
+.jp-hero__band{position:relative;margin-top:clamp(120px,12vw,168px);}
+.jp-hero__photo{position:relative;background:var(--mist2);}
+.jp-hero__photo img{width:100%;height:clamp(320px,37vw,540px);object-fit:cover;object-position:center 0%;}
+.jp-hero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,38,43,.10),rgba(21,38,43,0) 30%);pointer-events:none;}
+.jp-hero__pin{position:absolute;left:0;right:0;top:0;z-index:2;pointer-events:none;}
+.jp-hero__pin .jp-shell{display:flex;justify-content:flex-end;}
+.jp-hero__card{pointer-events:auto;transform:translateY(-64%);display:grid;grid-template-columns:84px minmax(0,1fr);gap:18px;align-items:start;width:min(430px,100%);background:var(--white);border:1px solid var(--line);border-radius:4px;padding:18px 22px 18px 18px;box-shadow:0 30px 60px -36px rgba(21,38,43,.5);}
+.jp-hero__face{width:84px;height:104px;border-radius:3px;overflow:hidden;background:var(--mist2);}
+.jp-hero__face img{width:100%;height:100%;object-fit:cover;object-position:42% 18%;}
+.jp-hero__card .jp-label{font-size:10.5px;}
+.jp-nw{white-space:nowrap;}
+.jp-hero__card b{display:block;margin-top:6px;font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.2;color:var(--ink);}
+.jp-hero__card span.jp-hero__role{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:var(--muted);}
+.jp-hero__status{grid-column:1 / -1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;margin-top:2px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;}
+.jp-hero__status strong{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--acc);}
+.jp-hero__status strong svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.jp-hero__status small{font-size:13px;color:var(--muted);}
+@media(max-width:900px){
+  .jp-hero__row{grid-template-columns:1fr;align-items:start;}
+}
+@media(max-width:700px){
+  .jp-hero__band{margin-top:40px;}
+  .jp-hero__photo img{height:clamp(240px,62vw,340px);}
+  .jp-hero__pin{position:relative;display:block;}
+  .jp-hero__card{transform:none;width:100%;margin-top:-56px;}
+  .jp-hero{padding-bottom:36px;}
+}
+@media(max-width:560px){
+  .jp-hero__cta .jp-btn{width:100%;}
+  .jp-hero__card{grid-template-columns:64px minmax(0,1fr);gap:14px;padding:16px;}
+  .jp-hero__face{width:64px;height:80px;}
+  .jp-hero__card b{font-size:19px;}
+}
+
+/* TRUST strip */
+.jp-trust{background:var(--mist);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.jp-trust__in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px;padding-top:22px;padding-bottom:22px;}
+.jp-trust__status{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);}
+.jp-trust__status i{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 18%,transparent);}
+.jp-trust p{font-family:var(--serif);font-size:19px;color:var(--ink2);}
+
+/* SECTION generic */
+.jp-sec{padding:clamp(72px,10vw,128px) 0;}
+.jp-sec--mist{background:var(--mist);}
+.jp-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:clamp(40px,5vw,60px);}
+.jp-head .jp-lede{justify-self:end;}
+@media(max-width:860px){.jp-head{grid-template-columns:1fr;}.jp-head .jp-lede{justify-self:start;}}
+
+/* SERVICES, ruled grid */
+.jp-svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+.jp-svc__c{background:var(--white);padding:34px 30px 36px;display:flex;flex-direction:column;transition:background .3s var(--ease);}
+.jp-svc__c:hover{background:var(--mist);}
+.jp-svc__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;}
+.jp-svc__n{font-family:var(--serif);font-size:15px;color:var(--soft);font-variant-numeric:lining-nums;}
+.jp-svc__ic{width:40px;height:40px;border-radius:50%;border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);color:var(--acc);display:grid;place-items:center;}
+.jp-svc__ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.jp-svc__c h3{font-size:25px;margin-bottom:10px;}
+.jp-svc__c p{font-size:15px;color:var(--muted);}
+@media(max-width:900px){.jp-svc{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.jp-svc{grid-template-columns:1fr;}.jp-svc__c{padding:28px 22px;}.jp-svc__top{margin-bottom:22px;}}
+
+/* FIRST VISIT timeline */
+.jp-visit{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,100px);align-items:start;}
+.jp-visit__aside{position:sticky;top:110px;}
+.jp-visit__img{margin-top:34px;border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+.jp-visit__img img{width:100%;aspect-ratio:5/4;object-fit:cover;}
+.jp-steps{position:relative;counter-reset:step;}
+.jp-steps::before{content:"";position:absolute;left:19px;top:20px;bottom:20px;width:1px;background:var(--line2);}
+.jp-step{position:relative;display:grid;grid-template-columns:40px 1fr;gap:26px;padding:0 0 44px;}
+.jp-step:last-child{padding-bottom:0;}
+.jp-step__dot{width:40px;height:40px;border-radius:50%;background:var(--white);border:1px solid var(--acc);color:var(--acc);display:grid;place-items:center;font-family:var(--serif);font-size:17px;position:relative;z-index:1;}
+.jp-step:first-child .jp-step__dot{background:var(--acc);color:var(--on);}
+.jp-step__body{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:24px 26px;}
+.jp-step__body .jp-label{font-size:10.5px;}
+.jp-step__body h3{font-size:25px;margin:8px 0 8px;}
+.jp-step__body p{font-size:15.5px;color:var(--muted);}
+@media(max-width:900px){.jp-visit{grid-template-columns:1fr;}.jp-visit__aside{position:static;}.jp-visit__img{display:none;}}
+@media(max-width:480px){.jp-step{gap:16px;grid-template-columns:34px 1fr;}.jp-step__dot{width:34px;height:34px;font-size:15px;}.jp-steps::before{left:16.5px;}.jp-step__body{padding:20px 18px;}}
+
+/* CONDITIONS */
+.jp-cond{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,88px);align-items:center;}
+.jp-cond__img{border-radius:4px;overflow:hidden;}
+.jp-cond__img img{width:100%;aspect-ratio:4/5;object-fit:cover;}
+.jp-cond__list{display:grid;grid-template-columns:1fr 1fr;column-gap:40px;margin-top:30px;border-top:1px solid var(--line);}
+.jp-cond__list li{display:flex;align-items:baseline;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:20px;color:var(--ink);}
+.jp-cond__list li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--acc);transform:translateY(-3px);}
+.jp-cond__note{margin-top:26px;font-size:15px;color:var(--muted);max-width:56ch;}
+@media(max-width:900px){.jp-cond{grid-template-columns:1fr;}.jp-cond__img{max-width:520px;}.jp-cond__img img{aspect-ratio:16/10;}}
+@media(max-width:560px){.jp-cond__list{grid-template-columns:1fr;}.jp-cond__list li{font-size:19px;}}
+
+/* ABOUT */
+.jp-about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px);align-items:start;}
+.jp-about__media{position:relative;}
+.jp-about__media img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;}
+.jp-about__cap{display:flex;justify-content:space-between;gap:16px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+.jp-about__cap b{font-weight:600;color:var(--ink);}
+.jp-about .jp-h2{margin-top:18px;}
+.jp-about__text{font-size:17px;color:var(--ink2);max-width:58ch;}
+.jp-creds{margin-top:30px;border-top:1px solid var(--ink);}
+.jp-creds div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;}
+.jp-creds dt{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);padding-top:3px;}
+.jp-creds dd{margin:0;color:var(--ink);}
+.jp-checks{margin-top:28px;display:grid;gap:12px;}
+.jp-checks li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--ink2);}
+.jp-checks svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:900px){.jp-about{grid-template-columns:1fr;}.jp-about__media{max-width:520px;}.jp-about__media img{aspect-ratio:5/4;}}
+@media(max-width:480px){.jp-creds div{grid-template-columns:1fr;gap:4px;}}
+
+/* NOTE from the clinician */
+.jp-note{display:grid;grid-template-columns:240px 1fr;gap:clamp(32px,6vw,80px);align-items:center;}
+.jp-note__img{border-radius:50%;overflow:hidden;aspect-ratio:1/1;border:1px solid var(--line);}
+.jp-note__img img{width:100%;height:100%;object-fit:cover;}
+.jp-note blockquote{margin:0;}
+.jp-note__text{font-family:var(--serif);font-weight:300;font-size:clamp(25px,3.2vw,38px);line-height:1.32;letter-spacing:-.01em;color:var(--ink);margin:18px 0 26px;}
+.jp-note__who{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding-top:18px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted);}
+.jp-note__who b{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink);}
+@media(max-width:760px){.jp-note{grid-template-columns:1fr;}.jp-note__img{width:140px;}}
+
+/* STATS */
+.jp-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(56px,8vw,96px);}
+.jp-stats div{padding:30px 28px;border-right:1px solid var(--line);}
+.jp-stats div:first-child{padding-left:0;}
+.jp-stats div:last-child{border-right:0;}
+.jp-stats b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,46px);line-height:1;color:var(--acc);margin-bottom:10px;}
+.jp-stats span{font-size:14px;color:var(--muted);}
+@media(max-width:700px){.jp-stats{grid-template-columns:1fr;}.jp-stats div{padding:22px 0;border-right:0;border-bottom:1px solid var(--line);}.jp-stats div:last-child{border-bottom:0;}}
+
+/* INSURANCE */
+.jp-pay{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid var(--line);border-radius:4px;background:var(--white);}
+.jp-pay > div{padding:clamp(26px,3.4vw,40px);border-right:1px solid var(--line);}
+.jp-pay > div:last-child{border-right:0;}
+.jp-pay h3{font-size:24px;margin:12px 0 10px;}
+.jp-pay p{font-size:15px;color:var(--muted);}
+.jp-pay__lead h2{font-size:clamp(28px,3.2vw,38px);margin:14px 0 14px;}
+.jp-pay__lead p{color:var(--ink2);font-size:16px;}
+.jp-pay__lead .jp-btn{margin-top:24px;}
+@media(max-width:900px){.jp-pay{grid-template-columns:1fr;}.jp-pay > div{border-right:0;border-bottom:1px solid var(--line);}.jp-pay > div:last-child{border-bottom:0;}}
+
+/* FAQ */
+.jp-faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,6vw,88px);align-items:start;}
+.jp-faq__list{border-top:1px solid var(--ink);}
+.jp-faq details{border-bottom:1px solid var(--line);}
+.jp-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-family:var(--serif);font-size:21px;line-height:1.3;color:var(--ink);}
+.jp-faq summary::-webkit-details-marker{display:none;}
+.jp-faq summary i{flex:none;position:relative;width:14px;height:14px;}
+.jp-faq summary i::before,.jp-faq summary i::after{content:"";position:absolute;left:0;top:6.5px;width:14px;height:1px;background:var(--acc);transition:transform .3s var(--ease);}
+.jp-faq summary i::after{transform:rotate(90deg);}
+.jp-faq details[open] summary i::after{transform:rotate(0deg);}
+.jp-faq details p{padding:0 40px 24px 0;font-size:15.5px;color:var(--muted);max-width:62ch;}
+.jp-faq details p a{color:var(--acc);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+@media(max-width:900px){.jp-faq{grid-template-columns:1fr;}}
+@media(max-width:480px){.jp-faq summary{font-size:19px;}.jp-faq details p{padding-right:0;}}
+
+/* CONTACT */
+.jp-contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,80px);align-items:start;}
+.jp-info{margin-top:32px;border-top:1px solid var(--line2);}
+.jp-info li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.jp-info span{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);padding-top:3px;}
+.jp-info b{font-weight:500;font-size:16px;color:var(--ink);}
+.jp-form{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:clamp(24px,4vw,42px);display:grid;gap:18px;}
+.jp-form__head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+.jp-form__head h3{font-size:25px;}
+.jp-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.jp-field{display:grid;gap:7px;}
+.jp-field label,.jp-field legend{font-size:13px;font-weight:600;color:var(--ink);padding:0;}
+.jp-field label small{font-weight:400;color:var(--soft);}
+.jp-field input,.jp-field select{width:100%;font-family:inherit;font-size:15.5px;padding:13px 14px;border:1px solid var(--line2);border-radius:4px;background:var(--white);color:var(--ink);}
+.jp-field input:focus,.jp-field select:focus{outline:2px solid color-mix(in srgb,var(--acc) 35%,transparent);outline-offset:0;border-color:var(--acc);}
+.jp-field fieldset{border:0;margin:0;padding:0;}
+.jp-radios{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px;}
+.jp-radios label{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--line2);border-radius:4px;font-weight:500;font-size:14.5px;cursor:pointer;}
+.jp-radios input{width:auto;margin:0;accent-color:var(--acc);}
+.jp-privacy{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:var(--mist);border-left:2px solid var(--acc);font-size:14px;color:var(--ink2);}
+.jp-privacy svg{flex:none;width:18px;height:18px;margin-top:2px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:1.8;}
+.jp-form .jp-btn{width:100%;padding:16px 24px;}
+.jp-form__fine{font-size:12.5px;color:var(--soft);text-align:center;}
+@media(max-width:900px){.jp-contact{grid-template-columns:1fr;}}
+@media(max-width:560px){.jp-row{grid-template-columns:1fr;}.jp-form__head .jp-sc{display:none;}.jp-info li{grid-template-columns:1fr;gap:2px;}}
+
+/* FOOTER */
+.jp-foot{background:var(--ink);color:rgba(255,255,255,.72);padding:72px 0 36px;}
+.jp-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.14);}
+.jp-foot .jp-logo{color:#ffffff;}
+.jp-foot__brand p{margin-top:16px;max-width:34ch;font-size:14.5px;color:rgba(255,255,255,.66);}
+.jp-foot h4{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#ffffff;margin-bottom:16px;}
+.jp-foot li{margin-bottom:10px;font-size:14.5px;}
+.jp-foot a{color:rgba(255,255,255,.72);font-size:14.5px;transition:color .2s;}
+.jp-foot a:hover{color:#ffffff;}
+.jp-crisis{border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:18px 20px;font-size:14px;line-height:1.55;color:rgba(255,255,255,.86);}
+.jp-crisis b{display:block;color:#ffffff;font-weight:600;margin-bottom:4px;}
+.jp-foot__bot{padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;font-size:13px;color:rgba(255,255,255,.55);}
+@media(max-width:900px){.jp-foot__top{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.jp-foot__top{grid-template-columns:1fr;}.jp-foot__bot{padding-bottom:56px;}}
+</style>
+</head>
+<body class="jp">
+
+<header class="jp-nav"><div class="jp-shell jp-nav__in">
+  <a href="#" class="jp-logo"><span class="jp-mark" data-field="brandMark">J</span> <span data-field="brandName">Juniper Psychiatric Care</span></a>
+  <nav class="jp-links" aria-label="Main"><a href="#services">Services</a><a href="#first-visit">First Visit</a><a href="#conditions">Conditions</a><a href="#about">About</a><a href="#faq">FAQ</a></nav>
+  <a href="#contact" class="jp-btn jp-btn--primary" data-field="navCta">Request an appointment</a>
+</div></header>
+
+<main>
+<section class="jp-hero">
+  <div class="jp-shell">
+    <span class="jp-label" data-field="heroEyebrow">Adult psychiatric care · Office &amp; telehealth</span>
+    <h1 data-field="heroTitle">Careful Psychiatric Care, With <em>Time to Listen</em></h1>
+    <div class="jp-hero__row">
+      <p class="jp-lede" data-field="heroSub">Evaluation and medication management for adults living with anxiety, depression, ADHD, sleep problems and mood conditions. In person or by secure video.</p>
+      <div class="jp-hero__cta">
+        <a href="#contact" class="jp-btn jp-btn--primary"><span data-field="heroCta1">Request an appointment</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#first-visit" class="jp-btn jp-btn--line" data-field="heroCta2">What to expect</a>
+      </div>
+    </div>
+  </div>
+  <div class="jp-hero__band">
+    <div class="jp-hero__photo">
+      <img data-img="hero" src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=2200&q=80" alt="Two women talking across a small white table in a bright room with tall windows">
+    </div>
+    <div class="jp-hero__pin"><div class="jp-shell">
+      <div class="jp-hero__card">
+        <div class="jp-hero__face"><img src="https://images.unsplash.com/photo-1606738132449-e3590ddb6793?auto=format&fit=crop&w=400&q=80" alt="Portrait of Elena Ruiz, smiling with her arms crossed"></div>
+        <div>
+          <span class="jp-label">Your clinician</span>
+          <b>Elena Ruiz, DNP, <span class="jp-nw">PMHNP-BC</span></b>
+          <span class="jp-hero__role">Board-certified psychiatric mental health nurse practitioner</span>
+        </div>
+        <div class="jp-hero__status"><strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Accepting new adult patients</strong><small>Office &amp; video visits</small></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section class="jp-trust" aria-label="Practice at a glance"><div class="jp-shell jp-trust__in">
+  <span class="jp-trust__status"><i></i> Adults 18 and over</span>
+  <p data-field="trustText">Board-certified PMHNP · In person and telehealth · Many insurance plans accepted</p>
+</div></section>
+
+<section class="jp-sec" id="services"><div class="jp-shell">
+  <div class="jp-head reveal">
+    <div>
+      <span class="jp-label"><b>01</b> Services</span>
+      <h2 class="jp-h2" data-field="servicesTitle">Psychiatric Care, Start to Follow-Up</h2>
+    </div>
+    <p class="jp-lede" data-field="servicesSub">A thorough evaluation, a plan you understand, and steady follow-up. I work alongside your therapist and primary care so your care stays connected.</p>
+  </div>
+  <div class="jp-svc reveal">
+    <div class="jp-svc__c" data-card="1">
+      <div class="jp-svc__top"><span class="jp-svc__n">01</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9z"/><path d="M15 5h3v16H6V5h3"/><path d="M9 12h6M9 16h4"/></svg></span></div>
+      <h3 data-field="svc1Title">Psychiatric Evaluation</h3>
+      <p data-field="svc1Desc">An unhurried 60-minute visit to understand your symptoms, history and goals, and to talk through what may help.</p>
+    </div>
+    <div class="jp-svc__c" data-card="2">
+      <div class="jp-svc__top"><span class="jp-svc__n">02</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg></span></div>
+      <h3 data-field="svc2Title">Medication Management</h3>
+      <p data-field="svc2Desc">Clear explanations of options, benefits and side effects. We start carefully and adjust together over time.</p>
+    </div>
+    <div class="jp-svc__c" data-card="3">
+      <div class="jp-svc__top"><span class="jp-svc__n">03</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></span></div>
+      <h3 data-field="svc3Title">Adult ADHD Evaluation</h3>
+      <p data-field="svc3Desc">A structured assessment for adults who have long wondered about focus, organization or restlessness.</p>
+    </div>
+    <div class="jp-svc__c" data-card="4">
+      <div class="jp-svc__top"><span class="jp-svc__n">04</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg></span></div>
+      <h3 data-field="svc4Title">Follow-Up Visits</h3>
+      <p data-field="svc4Desc">Shorter check-ins to see what is working, review side effects and fine-tune your plan.</p>
+    </div>
+    <div class="jp-svc__c" data-card="5">
+      <div class="jp-svc__top"><span class="jp-svc__n">05</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg></span></div>
+      <h3 data-field="svc5Title">Telehealth Visits</h3>
+      <p data-field="svc5Desc">Secure video appointments from home or a quiet room at work, for new and returning patients.</p>
+    </div>
+    <div class="jp-svc__c" data-card="6">
+      <div class="jp-svc__top"><span class="jp-svc__n">06</span><span class="jp-svc__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="3"/><circle cx="18" cy="7" r="3"/><circle cx="12" cy="18" r="3"/><path d="M8.2 9.3l2.4 6.2M15.8 9.3l-2.4 6.2M9 7h6"/></svg></span></div>
+      <h3 data-field="svc6Title">Care Coordination</h3>
+      <p data-field="svc6Desc">With your permission, I stay in touch with your therapist or primary care provider so everyone is on the same page.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="jp-sec jp-sec--mist" id="first-visit"><div class="jp-shell"><div class="jp-visit">
+  <div class="jp-visit__aside reveal">
+    <span class="jp-label"><b>02</b> What to Expect</span>
+    <h2 class="jp-h2">Your First Visit</h2>
+    <p class="jp-lede">Knowing what happens next can make the first appointment easier. Here is how it usually goes.</p>
+    <div class="jp-visit__img"><img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=900&q=80" alt="A simple wall clock beside a green plant on a pale wall" loading="lazy"></div>
+  </div>
+  <ol class="jp-steps reveal">
+    <li class="jp-step"><span class="jp-step__dot">1</span><div class="jp-step__body"><span class="jp-label">Step one</span><h3>Before Your Visit</h3><p>Send a request and we will call to find a time that suits you. You will get a short intake form, and we confirm your coverage before you come in.</p></div></li>
+    <li class="jp-step"><span class="jp-step__dot">2</span><div class="jp-step__body"><span class="jp-label">Step two · 60 minutes</span><h3>The Evaluation</h3><p>We talk through what is going on, your health history, sleep and daily life, and what you hope will change. Bring your questions and a list of current medications.</p></div></li>
+    <li class="jp-step"><span class="jp-step__dot">3</span><div class="jp-step__body"><span class="jp-label">Step three</span><h3>Your Plan</h3><p>We decide next steps together. That may include medication, lab work, a therapy referral, or simply more time to watch and wait. You will leave knowing the why behind each step.</p></div></li>
+    <li class="jp-step"><span class="jp-step__dot">4</span><div class="jp-step__body"><span class="jp-label">Step four</span><h3>Follow-Ups</h3><p>Shorter visits, in person or by video, to see how you are feeling and adjust. As things settle, visits usually become less frequent.</p></div></li>
+  </ol>
+</div></div></section>
+
+<section class="jp-sec" id="conditions"><div class="jp-shell"><div class="jp-cond">
+  <div class="jp-cond__img reveal"><img src="https://images.unsplash.com/photo-1541533260371-b8fc9b596d84?auto=format&fit=crop&w=900&q=80" alt="A bright office with plants and a chair by the window" loading="lazy"></div>
+  <div class="reveal">
+    <span class="jp-label"><b>03</b> Conditions</span>
+    <h2 class="jp-h2">Conditions I Treat</h2>
+    <p class="jp-lede">I see adults with a range of common mental health concerns, whether this is new for you or something you have lived with for years.</p>
+    <ul class="jp-cond__list">
+      <li>Anxiety and panic</li>
+      <li>Depression</li>
+      <li>ADHD in adults</li>
+      <li>Insomnia and sleep problems</li>
+      <li>Bipolar disorder</li>
+      <li>Trauma and PTSD</li>
+      <li>Obsessive-compulsive disorder</li>
+      <li>Postpartum mood changes</li>
+    </ul>
+    <p class="jp-cond__note">Not sure if your concern fits? Ask. If I am not the right fit, I will help you find someone who is.</p>
+  </div>
+</div></div></section>
+
+<section class="jp-sec jp-sec--mist" id="about"><div class="jp-shell"><div class="jp-about">
+  <div class="jp-about__media reveal">
+    <img data-img="about" src="https://images.unsplash.com/photo-1758273241078-8eec353836be?auto=format&fit=crop&w=900&q=80" alt="Elena Ruiz talking with a patient in a calm office" loading="lazy">
+    <div class="jp-about__cap"><b>Elena Ruiz, DNP, PMHNP-BC</b><span>Founder</span></div>
+  </div>
+  <div class="reveal">
+    <span class="jp-label"><b>04</b> About</span>
+    <h2 class="jp-h2" data-field="aboutTitle">Meet Elena Ruiz, DNP, PMHNP-BC</h2>
+    <p class="jp-about__text" data-field="aboutText">I am a board-certified psychiatric mental health nurse practitioner with a Doctor of Nursing Practice degree. I opened Juniper so adults could get thoughtful psychiatric care without feeling rushed. I explain my thinking, share your options plainly, and we make decisions together.</p>
+    <dl class="jp-creds">
+      <div><dt>Degree</dt><dd>Doctor of Nursing Practice (DNP)</dd></div>
+      <div><dt>Certification</dt><dd>Psychiatric Mental Health Nurse Practitioner, Board Certified (PMHNP-BC)</dd></div>
+      <div><dt>License</dt><dd>Advanced Practice Registered Nurse with prescriptive authority</dd></div>
+    </dl>
+    <ul class="jp-checks">
+      <li data-field="check1" data-check="1"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Unhurried 60-minute first evaluation</li>
+      <li data-field="check2" data-check="2"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Shared decisions about medication</li>
+      <li data-field="check3" data-check="3"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Works alongside your therapist and primary care</li>
+      <li data-field="check4" data-check="4"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> In-office and secure video visits</li>
+    </ul>
+  </div>
+</div></div></section>
+
+<section class="jp-sec" aria-label="A note from Elena"><div class="jp-shell">
+  <div class="jp-note reveal">
+    <div class="jp-note__img"><img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?auto=format&fit=crop&w=900&q=80" alt="Two people's hands resting together in a comforting gesture" loading="lazy"></div>
+    <blockquote>
+      <span class="jp-label"><b>05</b> A Note From Elena</span>
+      <p class="jp-note__text" data-field="quoteText">Medication can be one helpful tool, but it is rarely the whole story. My job is to listen closely, explain clearly, and help you feel more like yourself, at a pace that feels right to you.</p>
+      <footer class="jp-note__who"><b data-field="quoteAuthor">Elena Ruiz, DNP, PMHNP-BC</b><span data-field="quoteRole">Founder, Juniper Psychiatric Care</span></footer>
+    </blockquote>
+  </div>
+  <div class="jp-stats reveal">
+    <div><b data-field="stat1Num">60 min</b><span data-field="stat1Label">For your first evaluation</span></div>
+    <div><b data-field="stat2Num">Evenings</b><span data-field="stat2Label">Appointments until 7pm, Tue and Thu</span></div>
+    <div><b data-field="stat3Num">Telehealth</b><span data-field="stat3Label">Secure video visits from home</span></div>
+  </div>
+</div></section>
+
+<section class="jp-sec jp-sec--mist" id="insurance"><div class="jp-shell">
+  <div class="jp-pay reveal">
+    <div class="jp-pay__lead">
+      <span class="jp-label"><b>06</b> Insurance</span>
+      <h2>Insurance and Payment</h2>
+      <p>Many insurance plans accepted, and self-pay options. We'll confirm your coverage before your first visit.</p>
+      <a href="#contact" class="jp-btn jp-btn--primary">Request an appointment</a>
+    </div>
+    <div>
+      <span class="jp-sc">Insurance</span>
+      <h3>Checked in Advance</h3>
+      <p>Share your plan details when we call to schedule. We look into your benefits so there are fewer surprises.</p>
+    </div>
+    <div>
+      <span class="jp-sc">Self-pay</span>
+      <h3>Clear Options</h3>
+      <p>If you prefer not to use insurance, ask about self-pay. We can also provide paperwork you can submit to your plan.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="jp-sec" id="faq"><div class="jp-shell"><div class="jp-faq">
+  <div class="reveal">
+    <span class="jp-label"><b>07</b> Questions</span>
+    <h2 class="jp-h2">Common Questions</h2>
+    <p class="jp-lede">Something else on your mind? Call or send a request and we will be glad to help.</p>
+  </div>
+  <div class="jp-faq__list reveal">
+    <details open><summary>What is a psychiatric nurse practitioner? <i aria-hidden="true"></i></summary><p>A psychiatric mental health nurse practitioner (PMHNP) is an advanced practice nurse trained to evaluate, diagnose and treat mental health conditions, including prescribing medication. Elena holds a Doctor of Nursing Practice degree and is board certified.</p></details>
+    <details><summary>Do you offer therapy? <i aria-hidden="true"></i></summary><p>My focus is evaluation and medication management. Many patients also see a therapist, and with your permission I am happy to coordinate with them. If you do not have one, I can suggest some options.</p></details>
+    <details><summary>Do I need a referral? <i aria-hidden="true"></i></summary><p>Usually not, though some insurance plans ask for one. We will check this for you when we confirm your coverage.</p></details>
+    <details><summary>Can I do every visit by video? <i aria-hidden="true"></i></summary><p>Many patients do. Some situations, such as certain medications or a physical exam, may call for an in-person visit. We will talk about what makes sense for you.</p></details>
+    <details><summary>What if I need help right away? <i aria-hidden="true"></i></summary><p>This practice is not set up for emergencies. If you are in crisis, call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline), or call 911 in an emergency.</p></details>
+  </div>
+</div></div></section>
+
+<section class="jp-sec jp-sec--mist" id="contact"><div class="jp-shell"><div class="jp-contact">
+  <div class="reveal">
+    <span class="jp-label"><b>08</b> Contact</span>
+    <h2 class="jp-h2" data-field="contactTitle">Request an Appointment</h2>
+    <p class="jp-lede" data-field="contactSub">Send a short request and we will call or email to find a time. New adult patients welcome.</p>
+    <ul class="jp-info">
+      <li><span>Phone</span><b data-field="phone">(555) 014-3378</b></li>
+      <li><span>Email</span><b data-field="email">hello@juniperpsych.example</b></li>
+      <li><span>Office</span><b data-field="address">220 Alder Street, Suite 4B, Riverton</b></li>
+      <li><span>Hours</span><b data-field="hours">Mon to Fri, 8am to 5pm. Tue and Thu until 7pm</b></li>
+    </ul>
+  </div>
+  <form class="jp-form reveal">
+    <div class="jp-form__head"><h3>Appointment Request</h3><span class="jp-sc">Takes a minute</span></div>
+    <div class="jp-row">
+      <div class="jp-field"><label for="jp-name">Name</label><input id="jp-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="jp-field"><label for="jp-email">Email</label><input id="jp-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="jp-field"><label for="jp-phone">Phone <small>(optional)</small></label><input id="jp-phone" name="phone" type="tel" autocomplete="tel"></div>
+    <div class="jp-field"><fieldset><legend>Preferred way to reach you</legend>
+      <div class="jp-radios">
+        <label><input type="radio" name="preferred_contact" value="Phone call" checked> Phone call</label>
+        <label><input type="radio" name="preferred_contact" value="Text"> Text</label>
+        <label><input type="radio" name="preferred_contact" value="Email"> Email</label>
+      </div>
+    </fieldset></div>
+    <div class="jp-field"><label for="jp-reason">Reason for reaching out</label>
+      <select id="jp-reason" name="reason">
+        <option>New patient appointment</option>
+        <option>Adult ADHD evaluation</option>
+        <option>Transferring my care</option>
+        <option>Insurance or payment question</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div class="jp-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><span>Please don't include health details here. We will talk about those privately.</span></div>
+    <button class="jp-btn jp-btn--primary" type="submit">Request an appointment</button>
+    <p class="jp-form__fine">In crisis? Call or text 988, or call 911 in an emergency.</p>
+  </form>
+</div></div></section>
+</main>
+
+<footer class="jp-foot"><div class="jp-shell">
+  <div class="jp-foot__top">
+    <div class="jp-foot__brand"><a href="#" class="jp-logo"><span class="jp-mark" data-field="brandMark">J</span> <span data-field="brandName">Juniper Psychiatric Care</span></a><p data-field="footerText">Psychiatric evaluation and medication management for adults, with Elena Ruiz, DNP, PMHNP-BC.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#first-visit">First Visit</a></li><li><a href="#conditions">Conditions</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 014-3378</a></li><li><a href="#contact">hello@juniperpsych.example</a></li><li><a href="#contact">Request an appointment</a></li></ul></div>
+    <div class="jp-crisis"><b>Need help now?</b>In crisis? Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency.</div>
+  </div>
+  <div class="jp-foot__bot"><span data-field="footerLegal">© 2026 Juniper Psychiatric Care. All rights reserved.</span><span>Sample website. The practice, people and details shown are fictional.</span></div>
+</div></footer>
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

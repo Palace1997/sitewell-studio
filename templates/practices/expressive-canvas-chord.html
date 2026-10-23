@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canvas &amp; Chord Creative Therapies, Art and music therapy</title>
+<meta name="description" content="Canvas &amp; Chord Creative Therapies: art and music therapy for adults and teens with Maya Okafor, MA, ATR-BC, LCAT. No art or music experience needed. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23B5532C'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>C</text></svg>">
+<style>
+:root{--acc:#B5532C;--acc2:#8E3F20}
+.cc{
+  --on:#ffffff;
+  --mus:#DDA436; --mus-soft:#F3DFAE; --sage:#9DB39A; --sage-soft:#DCE6D6; --blush:#F0CDB7;
+  --paper:#FBF7F0; --paper2:#F5EDE0; --kraft:#EFE2CC; --card:#FFFDF9;
+  --ink:#2B221C; --muted:#6B5E53; --line:#E7DCCB;
+  --brown:#33251D; --brown2:#241912;
+  --disp:'Young Serif',Georgia,serif; --sans:'Figtree',system-ui,sans-serif; --hand:'Caveat','Comic Sans MS',cursive;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.62; letter-spacing:0;
+  -webkit-font-smoothing:antialiased;
+}
+.cc *{box-sizing:border-box;}
+.cc img{max-width:100%;display:block;}
+.cc h1,.cc h2,.cc h3,.cc h4{margin:0;font-family:var(--disp);font-weight:400;letter-spacing:-.01em;line-height:1.1;color:var(--ink);}
+.cc p{margin:0;}
+.cc ul{margin:0;padding:0;list-style:none;}
+.cc a{text-decoration:none;}
+.cc :focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px;}
+
+.cc-shell{max-width:1180px;margin:0 auto;padding:0 clamp(16px,5vw,56px);}
+.cc-sec{padding:clamp(64px,9vw,120px) 0;position:relative;}
+.cc-eyebrow{display:inline-block;font-family:var(--hand);font-size:24px;font-weight:600;line-height:1.1;color:var(--acc);transform:rotate(-1.5deg);}
+.cc-h2{font-size:clamp(32px,4.6vw,52px);margin:10px 0 16px;}
+.cc-lede{font-size:clamp(17px,1.6vw,19px);color:var(--muted);max-width:56ch;}
+.cc-center{text-align:center;}
+.cc-center .cc-lede{margin:0 auto;}
+
+/* buttons */
+.cc-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font-family:var(--sans);font-size:16px;font-weight:600;line-height:1.2;border:2px solid var(--acc);cursor:pointer;transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease),color .25s var(--ease);}
+.cc-btn svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.cc-btn--primary{background:var(--acc);color:#fff;}
+.cc-btn--primary:hover{background:var(--acc2);border-color:var(--acc2);color:#fff;transform:translateY(-2px);box-shadow:0 14px 28px -16px var(--acc);}
+.cc-btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.cc-btn--ghost:hover{background:var(--ink);color:var(--paper);}
+.cc-btn--sm{padding:10px 18px;font-size:14px;}
+
+/* tape strip */
+.cc-tape{position:absolute;width:86px;height:24px;background:rgba(221,164,54,.55);top:-11px;left:50%;transform:translateX(-50%) rotate(-4deg);z-index:3;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+.cc-tape--b{background:rgba(157,179,154,.6);transform:translateX(-50%) rotate(5deg);}
+.cc-tape--c{background:rgba(240,205,183,.8);}
+
+/* NAV */
+.cc-nav{position:sticky;top:0;z-index:60;background:rgba(251,247,240,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.cc-nav__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding-top:10px;padding-bottom:10px;}
+.cc-logo{display:inline-flex;align-items:center;gap:12px;color:var(--ink);}
+.cc-logo:hover{color:var(--ink);}
+.cc-mark{flex:none;width:42px;height:42px;display:grid;place-items:center;background:var(--acc);color:#fff;font-family:var(--disp);font-size:20px;line-height:1;border-radius:58% 42% 52% 48% / 46% 56% 44% 54%;transform:rotate(-6deg);}
+.cc-logo__name{font-family:var(--disp);font-size:20px;line-height:1.15;}
+.cc-links{display:flex;gap:30px;}
+.cc-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .2s;}
+.cc-links a:hover{color:var(--acc);}
+@media(max-width:940px){.cc-links{display:none;}}
+@media(max-width:520px){
+  .cc-logo{gap:9px;}
+  .cc-mark{width:36px;height:36px;font-size:17px;}
+  .cc-logo__name{font-size:16px;max-width:15ch;}
+  .cc-nav .cc-btn--sm{padding:9px 13px;font-size:13px;}
+}
+
+/* HERO: full-width headline over a hand-painted brushstroke panorama */
+.cc-hero{position:relative;overflow:hidden;padding:clamp(40px,6vw,84px) 0 clamp(64px,8vw,112px);}
+.cc-hero__head{position:relative;z-index:2;}
+.cc-hero h1{font-size:clamp(38px,7.6vw,112px);line-height:.98;letter-spacing:-.025em;margin:14px 0 0;text-wrap:balance;}
+.cc-hero__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px clamp(32px,5vw,72px);align-items:end;margin-top:clamp(24px,3vw,40px);}
+.cc-hero__sub{font-size:clamp(18px,1.7vw,21px);color:var(--muted);max-width:48ch;}
+.cc-hero .cc-creds{margin-top:14px;font-size:14px;color:var(--muted);}
+.cc-creds b{color:var(--ink);font-weight:600;}
+.cc-hero__act{display:flex;flex-direction:column;align-items:flex-end;}
+.cc-hero__cta{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px;}
+.cc-hero .cc-note{display:flex;align-items:flex-start;gap:8px;margin-top:18px;margin-right:clamp(0px,4vw,60px);color:var(--ink);}
+.cc-note span{font-family:var(--hand);font-size:clamp(24px,2.3vw,29px);font-weight:600;line-height:1.1;transform:rotate(-2deg);}
+.cc-note svg{width:46px;height:56px;flex:none;order:-1;margin-top:8px;color:var(--acc);fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* shared paper pieces (also used by later sections) */
+.cc-collage__blob{position:absolute;right:-6%;bottom:-4%;width:78%;color:var(--mus-soft);z-index:0;}
+.cc-collage__blob path{fill:currentColor;}
+.cc-frame{position:absolute;background:#fff;padding:10px;box-shadow:0 26px 50px -30px rgba(51,37,29,.55),0 2px 6px rgba(51,37,29,.08);}
+.cc-frame img{width:100%;height:100%;object-fit:cover;}
+.cc-sticker{position:absolute;right:2%;bottom:10%;z-index:4;width:clamp(96px,13vw,128px);aspect-ratio:1;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;text-align:center;padding:12px;font-family:var(--hand);font-size:clamp(18px,1.9vw,22px);font-weight:600;line-height:1.05;transform:rotate(9deg);box-shadow:0 16px 30px -18px rgba(51,37,29,.6);}
+
+/* panorama */
+.cc-pano{position:relative;max-width:1480px;margin:clamp(48px,6vw,92px) auto 0;padding:0 clamp(8px,2.4vw,36px);}
+.cc-pano__stage{position:relative;aspect-ratio:1000/380;}
+.cc-pano__under,.cc-pano__img{position:absolute;inset:0;-webkit-clip-path:url(#cc-brush);clip-path:url(#cc-brush);}
+.cc-pano__under{background:var(--mus);transform:translate(1.4%,6%) rotate(1.4deg);}
+.cc-pano__under--b{background:color-mix(in srgb,var(--acc) 70%,var(--paper));transform:translate(-1.2%,-5%) rotate(-1.1deg) scale(.97,.9);}
+.cc-pano__img{background:var(--kraft);}
+.cc-pano__img img{width:100%;height:100%;object-fit:cover;object-position:center 48%;}
+.cc-pol{position:absolute;z-index:3;margin:0;background:#fff;padding:9px 9px 0;box-shadow:0 22px 40px -24px rgba(51,37,29,.6),0 2px 6px rgba(51,37,29,.1);}
+.cc-pol img{width:100%;aspect-ratio:1;object-fit:cover;}
+.cc-pol figcaption{font-family:var(--hand);font-size:clamp(18px,1.8vw,23px);font-weight:600;color:var(--muted);text-align:center;line-height:1.1;padding:6px 0 9px;}
+.cc-pol--a{right:8%;top:-7%;width:clamp(130px,15vw,214px);transform:rotate(5deg);}
+.cc-pol--b{left:6%;bottom:-17%;width:clamp(110px,12vw,172px);transform:rotate(-7deg);padding-bottom:9px;}
+.cc-pano .cc-sticker{right:24%;bottom:-11%;top:auto;transform:rotate(-8deg);}
+@media(max-width:860px){
+  .cc-hero__row{grid-template-columns:1fr;}
+  .cc-hero__act{align-items:flex-start;}
+  .cc-hero__cta{justify-content:flex-start;}
+  .cc-hero .cc-note{margin-right:0;}
+  .cc-pano__stage{aspect-ratio:1000/520;}
+  .cc-pano .cc-sticker{right:6%;}
+}
+@media(max-width:560px){
+  .cc-hero__cta .cc-btn{width:100%;}
+  .cc-hero__cta{width:100%;}
+  .cc-pano{margin-top:44px;padding:0 4px;}
+  .cc-pano__stage{aspect-ratio:1000/700;}
+  .cc-pol--a{right:4%;top:-15%;width:112px;padding:6px 6px 0;}
+  .cc-pol--a figcaption{font-size:17px;padding:3px 0 5px;}
+  .cc-pol--b{display:none;}
+  .cc-pano .cc-sticker{right:auto;left:6%;bottom:-14%;width:88px;font-size:17px;padding:10px;}
+}
+
+/* MATERIALS strip */
+.cc-mat{background:var(--kraft);padding:clamp(48px,6vw,72px) 0;position:relative;}
+.cc-mat::before,.cc-mat::after{content:"";position:absolute;left:0;right:0;height:14px;background:radial-gradient(circle at 7px 0,var(--paper) 7px,transparent 7.5px) repeat-x;background-size:14px 14px;}
+.cc-mat::before{top:0;}
+.cc-mat::after{bottom:0;transform:scaleY(-1);}
+.cc-mat__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 30px;margin-bottom:28px;}
+.cc-mat__head h2{font-size:clamp(28px,3.4vw,38px);margin-top:6px;}
+.cc-mat__head p{color:var(--muted);max-width:40ch;font-size:16px;}
+.cc-mat__list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.cc-chip{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:18px;padding:14px 16px;border:1px solid rgba(51,37,29,.08);}
+.cc-chip__sw{flex:none;width:48px;height:48px;display:grid;place-items:center;color:var(--ink);border-radius:56% 44% 50% 50% / 50% 54% 46% 50%;}
+.cc-chip__sw svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cc-chip:nth-child(4n+1) .cc-chip__sw{background:color-mix(in srgb,var(--acc) 22%,#fff);}
+.cc-chip:nth-child(4n+2) .cc-chip__sw{background:var(--mus-soft);}
+.cc-chip:nth-child(4n+3) .cc-chip__sw{background:var(--sage-soft);}
+.cc-chip:nth-child(4n+4) .cc-chip__sw{background:var(--blush);}
+.cc-chip b{display:block;font-size:15.5px;font-weight:600;line-height:1.25;}
+.cc-chip small{display:block;font-size:13.5px;color:var(--muted);line-height:1.35;}
+@media(max-width:960px){.cc-mat__list{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:420px){.cc-chip{padding:12px;gap:10px;}.cc-chip__sw{width:40px;height:40px;}.cc-chip b{font-size:14.5px;}.cc-chip small{font-size:12.5px;}}
+
+/* SERVICES */
+.cc-serv__head{max-width:660px;margin:0 auto clamp(40px,6vw,64px);}
+.cc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,32px);}
+.cc-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:34px 28px 30px;box-shadow:0 18px 36px -30px rgba(51,37,29,.5);transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
+.cc-card:nth-child(odd){transform:rotate(-.7deg);}
+.cc-card:nth-child(even){transform:rotate(.8deg);}
+.cc-card:hover{transform:rotate(0) translateY(-6px);box-shadow:0 30px 50px -32px rgba(51,37,29,.6);}
+.cc-card .cc-tape{width:70px;height:20px;top:-10px;}
+.cc-card__ic{width:58px;height:58px;display:grid;place-items:center;margin-bottom:20px;border-radius:48% 52% 60% 40% / 55% 45% 55% 45%;color:var(--ink);}
+.cc-card__ic svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cc-card:nth-child(3n+1) .cc-card__ic{background:color-mix(in srgb,var(--acc) 20%,#fff);color:var(--acc2);}
+.cc-card:nth-child(3n+2) .cc-card__ic{background:var(--mus-soft);}
+.cc-card:nth-child(3n+3) .cc-card__ic{background:var(--sage-soft);}
+.cc-card h3{font-size:23px;margin-bottom:10px;}
+.cc-card p{color:var(--muted);font-size:16px;}
+@media(max-width:900px){.cc-cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.cc-cards{grid-template-columns:1fr;gap:26px;}}
+
+/* MUSIC band */
+.cc-music{background:linear-gradient(160deg,var(--brown),var(--brown2));color:rgba(255,253,249,.82);overflow:hidden;}
+.cc-music__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,6vw,80px);align-items:center;}
+.cc-music .cc-eyebrow{color:var(--mus);}
+.cc-music h2{color:#FFFDF9;}
+.cc-music p{color:rgba(255,253,249,.8);max-width:52ch;}
+.cc-music__list{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px;}
+.cc-music__list li{font-size:15px;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,253,249,.25);color:#FFFDF9;}
+.cc-music .cc-btn--ghost{color:#FFFDF9;border-color:rgba(255,253,249,.7);}
+.cc-music .cc-btn--ghost:hover{background:#FFFDF9;color:var(--brown);border-color:#FFFDF9;}
+.cc-music__media{position:relative;}
+.cc-music__media img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:46% 54% 44% 56% / 38% 42% 58% 62%;}
+.cc-music__notes{position:absolute;right:-4%;top:-8%;width:24%;color:var(--mus);}
+.cc-music__notes path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.cc-music__notes circle{fill:currentColor;}
+@media(max-width:900px){.cc-music__grid{grid-template-columns:1fr;}.cc-music__media{max-width:520px;}.cc-music__notes{right:0;}}
+
+/* SESSION steps */
+.cc-steps__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,84px);align-items:center;}
+.cc-steps__media{position:relative;max-width:480px;}
+.cc-steps__media .cc-frame{position:relative;transform:rotate(2deg);}
+.cc-steps__media .cc-frame img{aspect-ratio:4/5;height:auto;}
+.cc-steps__media .cc-hand-cap{display:block;margin-top:22px;text-align:center;line-height:1.15;font-family:var(--hand);font-size:23px;font-weight:600;color:var(--muted);transform:rotate(-3deg);}
+.cc-steps__list{position:relative;margin-top:30px;display:grid;gap:28px;}
+.cc-steps__list::before{content:"";position:absolute;left:29px;top:40px;bottom:40px;border-left:2.5px dashed color-mix(in srgb,var(--acc) 45%,transparent);}
+.cc-step{position:relative;display:grid;grid-template-columns:60px 1fr;gap:20px;align-items:start;}
+.cc-step__num{position:relative;width:60px;height:60px;display:grid;place-items:center;background:var(--paper);font-family:var(--disp);font-size:26px;color:var(--acc);}
+.cc-step__num svg{position:absolute;inset:0;width:100%;height:100%;color:var(--acc);}
+.cc-step__num svg path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;}
+.cc-step h3{font-size:24px;margin:12px 0 6px;}
+.cc-step p{color:var(--muted);font-size:16.5px;}
+@media(max-width:900px){.cc-steps__grid{grid-template-columns:1fr;}.cc-steps__media{margin:0 auto 30px;width:88%;}.cc-steps__media .cc-frame img{aspect-ratio:5/4;}}
+
+/* ABOUT */
+.cc-about{background:var(--paper2);}
+.cc-about__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,84px);align-items:center;}
+.cc-about__media{position:relative;order:2;max-width:470px;justify-self:center;width:100%;}
+.cc-about__media .cc-frame{position:relative;transform:rotate(-2.5deg);padding:12px 12px 52px;}
+.cc-about__media .cc-frame img{aspect-ratio:4/5;height:auto;}
+.cc-about__media figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--hand);font-size:25px;font-weight:600;color:var(--ink);}
+.cc-about__media .cc-collage__blob{right:-14%;bottom:-10%;width:70%;color:var(--blush);}
+.cc-badges{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px;}
+.cc-badge{display:inline-flex;flex-direction:column;padding:10px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);}
+.cc-badge b{font-family:var(--disp);font-weight:400;font-size:19px;line-height:1.1;color:var(--acc);}
+.cc-badge span{font-size:13px;color:var(--muted);line-height:1.3;}
+.cc-checks{display:grid;gap:14px;margin-top:26px;}
+.cc-checks li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;}
+.cc-tick{flex:none;width:28px;height:28px;margin-top:1px;display:grid;place-items:center;background:var(--acc);color:#fff;border-radius:52% 48% 56% 44% / 48% 56% 44% 52%;}
+.cc-tick svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:900px){.cc-about__grid{grid-template-columns:1fr;}.cc-about__media{order:0;width:86%;}}
+
+/* NOTE from clinician */
+.cc-letter{position:relative;max-width:820px;margin:0 auto;background:var(--card);border:1px solid var(--line);padding:clamp(40px,6vw,70px) clamp(24px,6vw,72px) clamp(34px,5vw,54px);box-shadow:0 30px 60px -44px rgba(51,37,29,.55);transform:rotate(-.6deg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 39px,rgba(157,179,154,.22) 39px,rgba(157,179,154,.22) 40px);}
+.cc-letter .cc-tape{width:110px;height:28px;top:-14px;}
+.cc-letter__q{font-family:var(--disp);font-size:clamp(23px,2.9vw,32px);line-height:1.42;color:var(--ink);margin:14px 0 26px;}
+.cc-sign{font-family:var(--hand);font-size:40px;font-weight:600;color:var(--acc);line-height:1;transform:rotate(-3deg);display:inline-block;}
+.cc-letter__who{margin-top:10px;font-size:15px;color:var(--muted);}
+.cc-letter__who b{color:var(--ink);font-weight:600;}
+
+/* STATS as paint swatches */
+.cc-stats{padding-top:0;}
+.cc-swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,28px);}
+.cc-sw{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;box-shadow:0 18px 36px -30px rgba(51,37,29,.5);}
+.cc-sw__top{border-radius:6px;padding:clamp(26px,3vw,38px) 22px;min-height:132px;display:flex;align-items:flex-end;}
+.cc-sw__top b{font-family:var(--disp);font-weight:400;font-size:clamp(34px,4vw,48px);line-height:1;}
+.cc-sw:nth-child(1) .cc-sw__top{background:var(--acc);color:#fff;}
+.cc-sw:nth-child(2) .cc-sw__top{background:var(--mus);color:var(--ink);}
+.cc-sw:nth-child(3) .cc-sw__top{background:var(--sage);color:var(--ink);}
+.cc-sw__label{padding:14px 12px 6px;font-size:15.5px;font-weight:500;color:var(--ink);}
+@media(max-width:760px){.cc-swatches{grid-template-columns:1fr;}.cc-sw__top{min-height:96px;}}
+
+/* FAQ */
+.cc-faq__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,80px);align-items:start;}
+.cc-faq__list{display:grid;gap:12px;}
+.cc-faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 22px;}
+.cc-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-family:var(--disp);font-size:20px;line-height:1.3;color:var(--ink);}
+.cc-faq summary::-webkit-details-marker{display:none;}
+.cc-faq summary i{flex:none;position:relative;width:30px;height:30px;border-radius:50%;background:var(--mus-soft);}
+.cc-faq summary i::before,.cc-faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s var(--ease);}
+.cc-faq summary i::after{transform:translate(-50%,-50%) rotate(90deg);}
+.cc-faq details[open] summary i::after{transform:translate(-50%,-50%) rotate(0);}
+.cc-faq details p{padding:0 0 22px;color:var(--muted);font-size:16.5px;}
+@media(max-width:900px){.cc-faq__grid{grid-template-columns:1fr;}}
+
+/* CONTACT */
+.cc-contact{background:var(--paper2);}
+.cc-contact__grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(36px,5vw,70px);align-items:start;}
+.cc-info{margin-top:28px;}
+.cc-info li{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px dashed var(--line);}
+.cc-info li:last-child{border-bottom:0;}
+.cc-info__ic{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--acc);}
+.cc-info__ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.cc-info small{display:block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.cc-info span{font-size:16.5px;color:var(--ink);overflow-wrap:anywhere;}
+.cc-form{position:relative;display:grid;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:clamp(28px,4vw,42px);box-shadow:0 30px 60px -44px rgba(51,37,29,.55);}
+.cc-form h3{font-size:26px;}
+.cc-field{display:grid;gap:7px;}
+.cc-field label{font-size:14px;font-weight:600;color:var(--ink);}
+.cc-field label em{font-style:normal;font-weight:400;color:var(--muted);}
+.cc-field input,.cc-field select{width:100%;font-family:inherit;font-size:16px;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);}
+.cc-field input:focus,.cc-field select:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent);}
+.cc-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.cc-privacy{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink);background:var(--mus-soft);border-radius:12px;padding:12px 14px;}
+.cc-privacy svg{width:18px;height:18px;flex:none;margin-top:2px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.cc-form .cc-btn{width:100%;}
+@media(max-width:900px){.cc-contact__grid{grid-template-columns:1fr;}}
+@media(max-width:520px){.cc-row{grid-template-columns:1fr;}}
+
+/* FOOTER */
+.cc-foot{background:linear-gradient(170deg,var(--brown),var(--brown2));color:rgba(255,253,249,.72);padding:70px 0 96px;}
+.cc-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,253,249,.14);}
+.cc-foot .cc-logo,.cc-foot .cc-logo:hover{color:#FFFDF9;}
+.cc-foot__brand p{margin-top:16px;max-width:36ch;font-size:15px;color:rgba(255,253,249,.68);}
+.cc-foot h4{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FFFDF9;margin-bottom:14px;}
+.cc-foot li{margin-bottom:10px;font-size:15px;}
+.cc-foot a{color:rgba(255,253,249,.72);font-size:15px;}
+.cc-foot a:hover{color:#FFFDF9;}
+.cc-crisis{margin-top:30px;padding:16px 20px;border-radius:14px;background:rgba(255,253,249,.08);border:1px solid rgba(255,253,249,.16);color:#FFFDF9;font-size:15px;}
+.cc-crisis b{color:var(--mus);}
+.cc-foot__bot{padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:13.5px;color:rgba(255,253,249,.55);}
+@media(max-width:760px){.cc-foot__top{grid-template-columns:1fr 1fr;}.cc-foot__brand{grid-column:1/-1;}}
+@media(max-width:420px){.cc-foot__top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="cc">
+
+<header class="cc-nav"><div class="cc-shell cc-nav__in">
+  <a href="#" class="cc-logo" aria-label="Canvas and Chord Creative Therapies, home"><span class="cc-mark" data-field="brandMark">C</span><span class="cc-logo__name" data-field="brandName">Canvas &amp; Chord Creative Therapies</span></a>
+  <nav class="cc-links" aria-label="Main"><a href="#services">Services</a><a href="#session">Sessions</a><a href="#about">About Maya</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+  <a href="#contact" class="cc-btn cc-btn--primary cc-btn--sm" data-field="navCta">Book a free call</a>
+</div></header>
+
+<main>
+<!-- HERO -->
+<section class="cc-hero">
+  <div class="cc-shell cc-hero__head">
+    <span class="cc-eyebrow" data-field="heroEyebrow">Art &amp; music therapy in Kingston, NY</span>
+    <h1 data-field="heroTitle">Make Something, Feel A Little Lighter</h1>
+    <div class="cc-hero__row">
+      <div>
+        <p class="cc-hero__sub" data-field="heroSub">Art and music therapy for adults and teens carrying stress, grief, worry or big changes. When words feel hard, paint, clay and sound can help you say what you need to.</p>
+        <p class="cc-creds">With <b>Maya Okafor, MA, ATR-BC, LCAT</b>. In person and online.</p>
+      </div>
+      <div class="cc-hero__act">
+        <div class="cc-hero__cta">
+          <a href="#contact" class="cc-btn cc-btn--primary"><span data-field="heroCta1">Book a free 15-minute call</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#session" class="cc-btn cc-btn--ghost"><span data-field="heroCta2">See how a session works</span></a>
+        </div>
+        <p class="cc-note"><svg viewBox="0 0 46 56" aria-hidden="true"><path d="M38 6 C 16 8, 6 22, 12 46"/><path d="M4 38 L 12 48 L 21 39"/></svg><span data-field="trustText">No art or music experience needed</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-pano">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <clipPath id="cc-brush" clipPathUnits="objectBoundingBox">
+        <path transform="scale(.001 .0026316)" d="M70 58 C 180 40, 300 52, 430 38 C 560 25, 690 42, 800 30 C 860 24, 905 26, 935 34 L 990 42 Q 1000 48 990 54 L 948 58 L 976 64 Q 986 72 974 78 L 952 82 L 998 90 Q 1000 102 994 108 L 944 114 L 984 122 Q 992 134 982 140 L 950 146 L 1000 156 Q 1000 172 992 176 L 940 184 L 970 194 Q 980 204 968 210 L 948 216 L 994 226 Q 1000 240 990 246 L 946 254 L 980 264 Q 988 276 976 282 L 950 288 L 996 298 Q 1000 312 986 316 L 942 322 L 964 330 Q 970 340 956 344 C 860 352, 760 340, 640 350 C 520 360, 400 344, 300 352 C 200 360, 120 350, 66 344 L 22 338 Q 10 332 20 326 L 56 320 L 34 312 Q 24 304 36 298 L 52 292 L 4 284 Q 0 272 8 266 L 58 258 L 28 248 Q 18 238 30 232 L 54 226 L 2 216 Q 0 202 10 198 L 60 190 L 30 180 Q 20 170 32 164 L 52 158 L 6 148 Q 0 136 10 130 L 56 122 L 24 112 Q 14 102 26 96 L 50 90 L 8 80 Q 2 68 14 64 Z M 520 26 C 600 16, 680 15, 770 12 L 772 18 C 680 22, 600 24, 522 31 Z M 150 40 C 210 30, 260 28, 330 30 L 330 35 C 260 34, 210 37, 152 45 Z M 240 360 C 320 358, 400 362, 480 359 L 478 365 C 400 368, 320 365, 242 366 Z M 690 355 C 760 351, 820 350, 880 346 L 880 351 C 820 356, 760 358, 692 361 Z"/>
+      </clipPath>
+    </svg>
+    <div class="cc-pano__stage">
+      <span class="cc-pano__under" aria-hidden="true"></span>
+      <span class="cc-pano__under cc-pano__under--b" aria-hidden="true"></span>
+      <div class="cc-pano__img"><img data-img="hero" src="https://images.unsplash.com/photo-1510832842230-87253f48d74f?auto=format&fit=crop&w=2000&q=80" alt="Hands painting with a watercolor palette on a table"></div>
+      <figure class="cc-pol cc-pol--a"><span class="cc-tape cc-tape--b" aria-hidden="true"></span>
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=600&q=80" alt="An acoustic guitar resting in a bright, sunny room">
+        <figcaption>music, too</figcaption>
+      </figure>
+      <figure class="cc-pol cc-pol--b"><span class="cc-tape" aria-hidden="true"></span>
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Paint brushes dipped in bright color">
+      </figure>
+      <span class="cc-sticker" aria-hidden="true">come as you are</span>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="cc-mat" aria-labelledby="mat-title"><div class="cc-shell">
+  <div class="cc-mat__head reveal">
+    <div><span class="cc-eyebrow">In the studio</span><h2 id="mat-title">What's On The Shelf</h2></div>
+    <p>Simple, friendly materials. You choose what feels right, and you can always change your mind.</p>
+  </div>
+  <ul class="cc-mat__list reveal">
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 100 18c1.2 0 2-.8 2-1.8 0-1.2-1-1.6-1-2.7 0-1 .8-1.5 1.8-1.5H17a4 4 0 004-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span><div><b>Watercolors</b><small>Loose, soft, forgiving</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 3l3 3-8 8-3-3z"/><path d="M10 11c-3 0-5 2-5 5 0 1.5-1 3-2 3 3 1 8 0 9-3 .5-1.6 0-3.2-2-5z"/></svg></span><div><b>Soft pastels</b><small>Smudgy, quick color</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16a8 8 0 01-16 0z"/><path d="M8 7c1-2 3-2 4 0s3 2 4 0"/></svg></span><div><b>Air-dry clay</b><small>Something for your hands</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="11" height="13" rx="1" transform="rotate(-6 8.5 13.5)"/><rect x="10" y="4" width="11" height="13" rx="1" transform="rotate(6 15.5 10.5)"/></svg></span><div><b>Collage papers</b><small>Cut, tear, rearrange</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="8" ry="3"/><path d="M4 7v9c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 10l4 8M20 10l-4 8M12 10v9"/></svg></span><div><b>Hand drums</b><small>Rhythm without rules</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 10l6-6M18 2l4 4"/><path d="M11 9a4 4 0 00-5.4.4C4 11 4.5 13 5 14c-1.5.2-2.6 1.4-2.6 3a4.6 4.6 0 004.6 4.6c1.6 0 2.8-1.1 3-2.6 1 .5 3 1 4.6-.6a4 4 0 00.4-5.4z"/><circle cx="9.5" cy="14.5" r="1.5"/></svg></span><div><b>Acoustic guitar</b><small>Listen, hum or strum</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18c0 4.4-4 8-9 8s-9-3.6-9-8z"/><path d="M8 21h8"/><path d="M14 3.5c2 1 2 3 0 4M17 2.5c3 2 3 5 0 7"/></svg></span><div><b>Singing bowls</b><small>A slow, steady sound</small></div></li>
+    <li class="cc-chip"><span class="cc-chip__sw"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18M12 8h4M12 12h4"/></svg></span><div><b>Sketchbooks</b><small>Yours to keep</small></div></li>
+  </ul>
+</div></section>
+
+<!-- SERVICES -->
+<section class="cc-sec" id="services"><div class="cc-shell">
+  <div class="cc-serv__head cc-center reveal">
+    <span class="cc-eyebrow">Ways to work together</span>
+    <h2 class="cc-h2" data-field="servicesTitle">Creative Therapy, Shaped Around You</h2>
+    <p class="cc-lede" data-field="servicesSub">One clinician, a calm studio and a few different ways in. We'll find the one that fits.</p>
+  </div>
+  <div class="cc-cards reveal">
+    <article class="cc-card" data-card="1"><span class="cc-tape" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 100 18c1.2 0 2-.8 2-1.8 0-1.2-1-1.6-1-2.7 0-1 .8-1.5 1.8-1.5H17a4 4 0 004-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></div><h3 data-field="svc1Title">Individual Art Therapy</h3><p data-field="svc1Desc">One-to-one sessions using paint, drawing, clay or collage to explore what's on your mind. Talking is welcome, never required.</p></article>
+    <article class="cc-card" data-card="2"><span class="cc-tape cc-tape--b" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div><h3 data-field="svc2Title">Music And Sound Sessions</h3><p data-field="svc2Desc">Simple rhythm, listening, breath and sound to help you settle and notice how you feel. You don't need to sing or play.</p></article>
+    <article class="cc-card" data-card="3"><span class="cc-tape cc-tape--c" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><h3 data-field="svc3Title">Art Therapy For Teens</h3><p data-field="svc3Desc">A low-pressure space for ages 13 to 18 to make things and work through school stress, friendships and big feelings.</p></article>
+    <article class="cc-card" data-card="4"><span class="cc-tape cc-tape--b" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 6-14 15-15-1 9-7 15-15 15z"/><path d="M5 19l8-8"/></svg></div><h3 data-field="svc4Title">Grief And Loss Through Art</h3><p data-field="svc4Desc">Gentle, unhurried sessions to remember someone, sit with loss, and find a way to carry it.</p></article>
+    <article class="cc-card" data-card="5"><span class="cc-tape cc-tape--c" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20a6 6 0 0112 0M10 20a6 6 0 0112 0"/></svg></div><h3 data-field="svc5Title">Small Creative Groups</h3><p data-field="svc5Desc">Groups of up to six people making art side by side. Quiet company, shared materials, no pressure to share.</p></article>
+    <article class="cc-card" data-card="6"><span class="cc-tape" aria-hidden="true"></span><div class="cc-card__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></div><h3 data-field="svc6Title">Online Sessions</h3><p data-field="svc6Desc">Secure video sessions from home for anyone in New York State. I'll suggest simple materials you may already have.</p></article>
+  </div>
+</div></section>
+
+<!-- MUSIC band -->
+<section class="cc-sec cc-music"><div class="cc-shell"><div class="cc-music__grid">
+  <div class="reveal">
+    <span class="cc-eyebrow">Not only paint</span>
+    <h2 class="cc-h2">Music Can Say It Too</h2>
+    <p>Some days a drum beat or a few quiet notes reach further than a picture. Music-based sessions are relaxed and simple. Nobody is grading you, and there is no performing.</p>
+    <ul class="cc-music__list">
+      <li>Hand drumming</li><li>Guided listening</li><li>Simple songwriting</li><li>Sound and breath</li>
+    </ul>
+    <a href="#contact" class="cc-btn cc-btn--ghost">Ask about music sessions</a>
+  </div>
+  <div class="cc-music__media reveal">
+    <img src="https://images.unsplash.com/photo-1758612897786-2d989c524385?auto=format&fit=crop&w=900&q=80" alt="An older man showing a boy how to play the guitar on a couch" loading="lazy">
+    <svg class="cc-music__notes" viewBox="0 0 80 70" aria-hidden="true"><path d="M20 50V14l40-8v36"/><circle cx="14" cy="50" r="7"/><circle cx="54" cy="42" r="7"/></svg>
+  </div>
+</div></div></section>
+
+<!-- SESSION steps -->
+<section class="cc-sec" id="session"><div class="cc-shell"><div class="cc-steps__grid">
+  <div class="cc-steps__media reveal">
+    <figure class="cc-frame" style="margin:0"><span class="cc-tape cc-tape--b" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1541753866388-0b3c701627d3?auto=format&fit=crop&w=900&q=80" alt="A woman painting a landscape at an easel" loading="lazy">
+    </figure>
+    <span class="cc-hand-cap" aria-hidden="true">the process matters more than the picture</span>
+  </div>
+  <div class="reveal">
+    <span class="cc-eyebrow">50 minutes, at your pace</span>
+    <h2 class="cc-h2">What A Session Looks Like</h2>
+    <p class="cc-lede">Every session is a little different, but most follow a gentle rhythm like this one.</p>
+    <ol class="cc-steps__list" style="list-style:none;padding:0;margin-bottom:0">
+      <li class="cc-step"><span class="cc-step__num"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M31 4 C 48 3, 57 16, 56 30 C 55 46, 42 57, 28 56 C 12 55, 3 43, 4 28 C 5 14, 15 5, 33 5.5"/></svg>1</span><div><h3>Arrive And Settle</h3><p>We start with a cup of tea and a short check-in. You can tell me as much or as little as you like about your week.</p></div></li>
+      <li class="cc-step"><span class="cc-step__num"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M28 5 C 44 4, 56 14, 55 31 C 54 47, 41 56, 27 55 C 13 54, 4 44, 5 29 C 6 15, 16 6, 30 6"/></svg>2</span><div><h3>Make Something</h3><p>Pick a material, or let me suggest a simple starting point. We work quietly or chat along the way. There is no right result.</p></div></li>
+      <li class="cc-step"><span class="cc-step__num"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 5 C 46 5, 56 17, 55 31 C 54 45, 43 56, 29 55 C 14 54, 4 45, 5 29 C 6 16, 17 5, 32 6"/></svg>3</span><div><h3>Talk If You Want To</h3><p>We look at what you made together. Sometimes it opens up a conversation, sometimes it simply helps. You decide.</p></div></li>
+    </ol>
+  </div>
+</div></div></section>
+
+<!-- ABOUT -->
+<section class="cc-sec cc-about" id="about"><div class="cc-shell"><div class="cc-about__grid">
+  <div class="cc-about__media reveal">
+    <svg class="cc-collage__blob" viewBox="0 0 200 200" aria-hidden="true"><path transform="translate(100 100)" d="M43.9,-58.6C56.1,-49.7,64.7,-35.6,69.2,-20.1C73.7,-4.6,74.1,12.3,67.6,26C61.1,39.7,47.7,50.2,33,57.9C18.3,65.6,2.3,70.5,-14.6,69.3C-31.5,68.1,-49.3,60.8,-60.2,47.6C-71.1,34.4,-75.1,15.3,-72.5,-2.4C-69.9,-20.1,-60.7,-36.4,-47.6,-45.4C-34.5,-54.4,-17.3,-56.1,-0.4,-55.6C16.5,-55.1,31.7,-67.5,43.9,-58.6Z"/></svg>
+    <figure class="cc-frame" style="margin:0"><span class="cc-tape" aria-hidden="true"></span>
+      <img data-img="about" src="https://images.unsplash.com/photo-1633887091273-a3bd71efddde?auto=format&fit=crop&w=900&q=80" alt="Maya Okafor, art therapist, holding a bunch of paint brushes" loading="lazy">
+      <figcaption>Maya, in the studio</figcaption>
+    </figure>
+  </div>
+  <div class="reveal">
+    <span class="cc-eyebrow">Your therapist</span>
+    <h2 class="cc-h2" data-field="aboutTitle">Hi, I'm Maya Okafor</h2>
+    <p class="cc-lede" data-field="aboutText">I'm a board-certified art therapist and licensed creative arts therapist. I started Canvas &amp; Chord for people who find talk therapy hard to begin. Here, your hands can lead and the words can follow when they're ready.</p>
+    <div class="cc-badges">
+      <span class="cc-badge"><b>MA</b><span>Art Therapy</span></span>
+      <span class="cc-badge"><b>ATR-BC</b><span>Board-certified art therapist</span></span>
+      <span class="cc-badge"><b>LCAT</b><span>Licensed creative arts therapist, NY</span></span>
+    </div>
+    <ul class="cc-checks">
+      <li data-check="1"><span class="cc-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span data-field="check1">Free 15-minute call before we begin</span></li>
+      <li data-check="2"><span class="cc-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span data-field="check2">All materials provided in the studio</span></li>
+      <li data-check="3"><span class="cc-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span data-field="check3">Adults and teens aged 13 and up</span></li>
+      <li data-check="4"><span class="cc-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span><span data-field="check4">A few sliding-scale spots each month</span></li>
+    </ul>
+  </div>
+</div></div></section>
+
+<!-- NOTE from Maya -->
+<section class="cc-sec"><div class="cc-shell">
+  <figure class="cc-letter cc-center reveal" style="margin-left:auto;margin-right:auto">
+    <span class="cc-tape cc-tape--c" aria-hidden="true"></span>
+    <span class="cc-eyebrow">A note from Maya</span>
+    <blockquote style="margin:0"><p class="cc-letter__q" data-field="quoteText">"You don't have to be good at art to make something that matters. Most people walk in sure they can't draw. Then they pick up a brush, and something loosens. That's all we're looking for."</p></blockquote>
+    <figcaption>
+      <span class="cc-sign" aria-hidden="true">Maya</span>
+      <p class="cc-letter__who"><b data-field="quoteAuthor">Maya Okafor, MA, ATR-BC, LCAT</b> · <span data-field="quoteRole">Founder and art therapist</span></p>
+    </figcaption>
+  </figure>
+</div></section>
+
+<!-- STATS -->
+<section class="cc-sec cc-stats" aria-label="Practice facts"><div class="cc-shell">
+  <div class="cc-swatches reveal">
+    <div class="cc-sw"><div class="cc-sw__top"><b data-field="stat1Num">15 min</b></div><p class="cc-sw__label" data-field="stat1Label">Free first call, no commitment</p></div>
+    <div class="cc-sw"><div class="cc-sw__top"><b data-field="stat2Num">Evenings</b></div><p class="cc-sw__label" data-field="stat2Label">Appointments Mon–Thu until 8pm</p></div>
+    <div class="cc-sw"><div class="cc-sw__top"><b data-field="stat3Num">Studio &amp; online</b></div><p class="cc-sw__label" data-field="stat3Label">In person in Kingston or by secure video</p></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="cc-sec cc-faq" id="faq" style="padding-top:0"><div class="cc-shell"><div class="cc-faq__grid">
+  <div class="reveal">
+    <span class="cc-eyebrow">Good questions</span>
+    <h2 class="cc-h2">Things People Often Ask</h2>
+    <p class="cc-lede">If your question isn't here, ask it on our free call. There's no such thing as a silly one.</p>
+  </div>
+  <div class="cc-faq__list reveal">
+    <details open><summary>Do I need to be good at art or music?<i aria-hidden="true"></i></summary><p>Not at all. Many people I see haven't drawn since school. We focus on the process, not on making something that looks a certain way.</p></details>
+    <details><summary>What if I don't feel like talking?<i aria-hidden="true"></i></summary><p>That's okay. Art and music give you another way to express things. Some sessions are mostly quiet, and that can still be useful.</p></details>
+    <details><summary>Do you take insurance?<i aria-hidden="true"></i></summary><p>I'm an out-of-network provider. I can give you a monthly statement (a superbill) to send to your insurer for possible reimbursement. A few sliding-scale spots are open each month.</p></details>
+    <details><summary>What happens to the things I make?<i aria-hidden="true"></i></summary><p>They're yours. You can take them home, or I can keep them safely in the studio until you're ready.</p></details>
+    <details><summary>Can teens come on their own?<i aria-hidden="true"></i></summary><p>Teens aged 13 to 18 are welcome. A parent or guardian joins the first call, and we agree together how they'll stay involved.</p></details>
+  </div>
+</div></div></section>
+
+<!-- CONTACT -->
+<section class="cc-sec cc-contact" id="contact"><div class="cc-shell"><div class="cc-contact__grid">
+  <div class="reveal">
+    <span class="cc-eyebrow">Say hello</span>
+    <h2 class="cc-h2" data-field="contactTitle">Let's Start With A Short Call</h2>
+    <p class="cc-lede" data-field="contactSub">Book a free 15-minute call. We'll talk about what you're looking for and whether creative therapy feels like a good fit.</p>
+    <ul class="cc-info">
+      <li><span class="cc-info__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg></span><div><small>Phone</small><span data-field="phone">(555) 014-2290</span></div></li>
+      <li><span class="cc-info__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span data-field="email">hello@canvasandchord.example</span></div></li>
+      <li><span class="cc-info__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><small>Studio</small><span data-field="address">Studio 3, 48 Linden Row, Kingston, NY</span></div></li>
+      <li><span class="cc-info__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Hours</small><span data-field="hours">Mon–Thu 10am–8pm, Fri 9am–2pm</span></div></li>
+    </ul>
+  </div>
+  <form class="cc-form reveal" aria-label="Request a free 15-minute call">
+    <span class="cc-tape" aria-hidden="true"></span>
+    <h3>Request Your Free Call</h3>
+    <div class="cc-field"><label for="cc-name">Name</label><input id="cc-name" name="name" type="text" autocomplete="name" placeholder="Your first name is fine" required></div>
+    <div class="cc-row">
+      <div class="cc-field"><label for="cc-email">Email</label><input id="cc-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+      <div class="cc-field"><label for="cc-phone">Phone <em>(optional)</em></label><input id="cc-phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 000-0000"></div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-field"><label for="cc-pref">Best way to reach you</label><select id="cc-pref" name="preferred_contact"><option>Email</option><option>Phone call</option><option>Text message</option></select></div>
+      <div class="cc-field"><label for="cc-reason">I'm interested in</label><select id="cc-reason" name="reason"><option>Individual art therapy</option><option>Music and sound sessions</option><option>Art therapy for a teen</option><option>Grief and loss through art</option><option>Small creative groups</option><option>Online sessions</option><option>Not sure yet</option></select></div>
+    </div>
+    <p class="cc-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Please don't include health details here. We'll talk about what brings you in on the call.</p>
+    <button class="cc-btn cc-btn--primary" type="submit">Book a free 15-minute call</button>
+  </form>
+</div></div></section>
+</main>
+
+<footer class="cc-foot"><div class="cc-shell">
+  <div class="cc-foot__top">
+    <div class="cc-foot__brand">
+      <a href="#" class="cc-logo"><span class="cc-mark" data-field="brandMark">C</span><span class="cc-logo__name" data-field="brandName">Canvas &amp; Chord Creative Therapies</span></a>
+      <p data-field="footerText">Art and music therapy for adults and teens, in a sunlit Kingston studio and online. No experience needed.</p>
+    </div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#session">Sessions</a></li><li><a href="#about">About Maya</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:5550142290">(555) 014-2290</a></li><li><a href="mailto:hello@canvasandchord.example">hello@canvasandchord.example</a></li><li><a href="#contact">Book a free call</a></li></ul></div>
+  </div>
+  <p class="cc-crisis"><b>In crisis?</b> Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency. This practice does not offer crisis services.</p>
+  <div class="cc-foot__bot">
+    <span data-field="footerLegal">© 2026 Canvas &amp; Chord Creative Therapies. All rights reserved.</span>
+    <span>Sample website. The practice, people and details shown are fictional.</span>
+  </div>
+</div></footer>
+
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

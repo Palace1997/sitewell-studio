@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironhaus, Strength &amp; conditioning gym</title>
+<meta name="description" content="Ironhaus, a coach-led strength &amp; conditioning gym. Expert coaching, serious equipment, and a community that shows up. Stronger every session.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0a0a'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>I</text></svg>">
+<style>
+/* ============ IRONHAUS, bespoke dark athletic system ============ */
+.ir{
+  --ink:#0a0a0a;
+  --ink-2:#111112;
+  --ink-3:#171717;
+  --accent:#AED62B;
+  --accent-dark:#98BE1F;
+  --accent-ink:#14170A;
+  --line:rgba(255,255,255,.12);
+  --line-2:rgba(255,255,255,.06);
+  --w:#fff;
+  --body:#F1F2EE;
+  --dim:#9A9C9B;
+  --dim-2:rgba(154,156,155,.7);
+  background:linear-gradient(180deg,#111112,#060607);
+  color:var(--body);
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.ir *{box-sizing:border-box}
+.ir img{display:block}
+.ir__wrap{width:min(1240px,92vw);margin-inline:auto}
+.ir__narrow{width:min(880px,92vw);margin-inline:auto}
+
+/* headline utility, massive uppercase Inter, tight tracking */
+.ir-mega{
+  font-family:'Inter',sans-serif;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.03em;
+  line-height:.9;
+  margin:0;
+  color:var(--w);
+}
+.ir-kicker{
+  display:inline-flex;align-items:center;gap:.6em;
+  font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--dim);
+}
+.ir-kicker::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block}
+
+/* ---------- NAV ---------- */
+.ir-nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(9,9,10,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.ir-nav__in{display:flex;align-items:center;gap:32px;height:76px}
+.ir-brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:21px;letter-spacing:-.02em;text-transform:uppercase;color:var(--w);text-decoration:none}
+.ir-brand__mark{
+  width:34px;height:34px;display:grid;place-items:center;
+  background:var(--accent);color:var(--accent-ink);border-radius:6px;
+  font-family:'Fraunces',serif;font-weight:600;font-size:20px;
+  transform:skewX(-8deg);
+}
+.ir-nav__links{display:flex;gap:30px;margin-left:auto}
+.ir-nav__links a{color:var(--dim);text-decoration:none;font-size:14px;font-weight:600;letter-spacing:.02em;transition:color .2s;position:relative}
+.ir-nav__links a:hover{color:var(--w)}
+.ir-nav__links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .25s}
+.ir-nav__links a:hover::after{width:100%}
+.ir-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 22px;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;border-radius:4px;transition:transform .18s,background .18s,color .18s,border-color .18s;
+  border:1px solid var(--accent);
+}
+.ir-cta--solid{background:var(--accent);color:var(--accent-ink)}
+.ir-cta--solid:hover{transform:translateY(-2px);background:var(--accent-dark);border-color:var(--accent-dark)}
+.ir-cta--ghost{background:transparent;color:var(--accent)}
+.ir-cta--ghost:hover{background:var(--accent);color:var(--accent-ink)}
+.ir-cta--lg{padding:17px 34px;font-size:14px}
+.ir-nav .ir-cta{margin-left:8px}
+
+/* ---------- HERO ---------- */
+.ir-hero{position:relative;min-height:calc(100vh - 76px);display:flex;align-items:flex-end;overflow:hidden}
+.ir-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.ir-hero__veil{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(6,6,7,.55) 0%,rgba(6,6,7,.35) 40%,rgba(6,6,7,.94) 100%),
+             linear-gradient(90deg,rgba(6,6,7,.7) 0%,rgba(6,6,7,0) 60%);}
+.ir-hero__in{position:relative;z-index:2;width:100%;padding:60px 0 0}
+.ir-hero__slash{position:absolute;right:-6%;top:8%;z-index:2;
+  font-family:'Inter',sans-serif;font-weight:900;font-size:min(30vw,360px);line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(174,214,43,.12);letter-spacing:-.05em;
+  transform:rotate(-6deg);pointer-events:none;user-select:none}
+.ir-hero h1{font-size:clamp(52px,10.5vw,164px);max-width:15ch}
+.ir-hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--accent)}
+.ir-hero__lede{max-width:52ch;margin:26px 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--dim);line-height:1.6}
+.ir-hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 0}
+.ir-hero__stats{display:flex;flex-wrap:wrap;gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.ir-stat{padding:26px 40px 40px 0;margin-right:40px;border-right:1px solid var(--line)}
+.ir-stat:last-child{border-right:0}
+.ir-stat b{display:block;font-weight:900;font-size:clamp(30px,4vw,46px);letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.ir-stat span{display:block;margin-top:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim-2)}
+
+/* ---------- MARQUEE STRIP ---------- */
+.ir-marquee{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;white-space:nowrap}
+.ir-marquee__track{display:inline-flex;gap:48px;padding:20px 0;animation:ir-scroll 32s linear infinite;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:14px}
+.ir-marquee__track span{color:var(--dim-2)}
+.ir-marquee__track b{color:var(--accent);font-weight:900}
+@keyframes ir-scroll{to{transform:translateX(-50%)}}
+
+/* ---------- SECTION SHELL ---------- */
+.ir-sec{padding:clamp(72px,9vw,132px) 0}
+.ir-sec--soft{background:var(--ink-2)}
+.ir-head{max-width:760px;margin-bottom:56px}
+.ir-head h2{font-size:clamp(38px,6vw,80px);margin:18px 0 0}
+.ir-head p{margin:20px 0 0;color:var(--dim);font-size:17px;line-height:1.65;max-width:56ch}
+
+/* ---------- PROGRAMS GRID ---------- */
+.ir-progs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-2);border:1px solid var(--line-2)}
+.ir-prog{position:relative;overflow:hidden;background:var(--ink);aspect-ratio:1/.92;display:flex;flex-direction:column;justify-content:flex-end}
+.ir-prog img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transition:opacity .4s,transform .5s}
+.ir-prog::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,6,7,.1),rgba(6,6,7,.92))}
+.ir-prog:hover img{opacity:.72;transform:scale(1.06)}
+.ir-prog__body{position:relative;z-index:2;padding:28px}
+.ir-prog__num{font-family:'Fraunces',serif;font-size:14px;color:var(--dim-2);letter-spacing:.1em}
+.ir-prog h3{font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:22px;margin:10px 0 8px}
+.ir-prog p{color:var(--dim);font-size:14px;line-height:1.55;margin:0}
+
+/* ---------- WHY SPLIT ---------- */
+.ir-split{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.ir-split__media{position:relative}
+.ir-split__media img{width:100%;height:100%;max-height:600px;object-fit:cover;border-radius:6px}
+.ir-split__tag{position:absolute;bottom:22px;left:22px;background:var(--accent);color:var(--accent-ink);padding:12px 18px;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.08em;transform:skewX(-8deg)}
+.ir-split__tag span{display:inline-block;transform:skewX(8deg)}
+.ir-points{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:2px;border-top:1px solid var(--line)}
+.ir-points li{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.ir-points b{font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:var(--dim-2);min-width:44px}
+.ir-points div h4{margin:0 0 5px;font-weight:800;text-transform:uppercase;font-size:16px;letter-spacing:.01em}
+.ir-points div p{margin:0;color:var(--dim);font-size:14.5px;line-height:1.55}
+
+/* ---------- STATS BAND ---------- */
+.ir-band{background:var(--accent);color:var(--accent-ink)}
+.ir-band__grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.ir-band__c{padding:clamp(48px,7vw,96px) 30px;text-align:center;border-right:1px solid rgba(20,23,10,.16)}
+.ir-band__c:last-child{border-right:0}
+.ir-band__c b{display:block;font-weight:900;font-size:clamp(48px,7vw,94px);letter-spacing:-.04em;line-height:.9}
+.ir-band__c span{display:block;margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(20,23,10,.62)}
+
+/* ---------- SCHEDULE ---------- */
+.ir-sched{border-top:1px solid var(--line)}
+.ir-sched__row{display:grid;grid-template-columns:130px 1fr auto;gap:24px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--line);transition:padding-left .25s,background .25s}
+.ir-sched__row:hover{padding-left:24px;background:var(--ink-2)}
+.ir-sched__time{font-family:'Fraunces',serif;font-size:20px;color:var(--accent)}
+.ir-sched__class{font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(20px,2.4vw,30px)}
+.ir-sched__coach{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim-2);white-space:nowrap}
+
+/* ---------- TRAINERS ---------- */
+.ir-team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ir-member__photo{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:3/4}
+.ir-member__photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ir-member:hover .ir-member__photo img{transform:scale(1.05)}
+.ir-member h4{margin:16px 0 4px;font-weight:800;text-transform:uppercase;font-size:16px;letter-spacing:.01em}
+.ir-member span{color:var(--dim-2);font-size:13px;letter-spacing:.04em}
+
+/* ---------- IMAGE BREAK + TESTIMONIAL ---------- */
+.ir-break{position:relative;min-height:70vh;display:flex;align-items:center;overflow:hidden}
+.ir-break__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.ir-break__veil{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,6,7,.94) 0%,rgba(6,6,7,.55) 55%,rgba(6,6,7,.2) 100%)}
+.ir-break__in{position:relative;z-index:2;max-width:720px}
+.ir-quote{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,3.4vw,44px);line-height:1.25;letter-spacing:-.01em}
+.ir-quote__who{margin-top:28px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.ir-quote__who b{color:var(--w)}
+
+/* ---------- MEMBERSHIP ---------- */
+.ir-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.ir-plan{border:1px solid var(--line);border-radius:8px;padding:36px 30px;background:var(--ink)}
+.ir-plan--feat{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);transform:translateY(-16px)}
+.ir-plan__tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border-radius:3px;background:var(--accent);color:var(--accent-ink);margin-bottom:20px}
+.ir-plan__name{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--dim);}
+.ir-plan--feat .ir-plan__name{color:rgba(20,23,10,.6)}
+.ir-plan__price{font-weight:900;font-size:58px;letter-spacing:-.04em;line-height:1;margin:14px 0 4px}
+.ir-plan__price small{font-size:16px;font-weight:700;letter-spacing:0;color:var(--dim-2)}
+.ir-plan--feat .ir-plan__price small{color:rgba(20,23,10,.55)}
+.ir-plan__sub{font-size:14px;color:var(--dim);margin-bottom:26px}
+.ir-plan--feat .ir-plan__sub{color:rgba(20,23,10,.65)}
+.ir-plan ul{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:14px}
+.ir-plan li{display:flex;gap:12px;font-size:14.5px;color:var(--dim);line-height:1.4}
+.ir-plan li svg{width:18px;height:18px;flex:none;margin-top:1px;color:var(--accent)}
+.ir-plan--feat li{color:rgba(20,23,10,.82)}
+.ir-plan--feat li svg{color:var(--accent-ink)}
+.ir-plan .ir-cta{width:100%}
+.ir-plan--feat .ir-cta--ghost{border-color:var(--accent-ink);color:var(--accent-ink)}
+.ir-plan--feat .ir-cta--ghost:hover{background:var(--accent-ink);color:var(--accent)}
+.ir-plan--feat .ir-plan__tag{background:var(--accent-ink);color:var(--accent)}
+
+/* ---------- CONTACT ---------- */
+.ir-contact{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.ir-info{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:2px;border-top:1px solid var(--line)}
+.ir-info li{display:flex;gap:16px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.ir-info svg{width:22px;height:22px;flex:none;stroke:var(--accent)}
+.ir-info span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim-2)}
+.ir-info b{display:block;font-size:15px;font-weight:600;margin-top:3px}
+.ir-form{background:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:34px}
+.ir-field{margin-bottom:18px}
+.ir-field label{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.ir-field input,.ir-field select,.ir-field textarea{
+  width:100%;background:var(--ink);border:1px solid var(--line);color:var(--w);
+  padding:14px 16px;border-radius:5px;font-family:inherit;font-size:15px;transition:border-color .2s}
+.ir-field input:focus,.ir-field select:focus,.ir-field textarea:focus{outline:none;border-color:var(--accent)}
+.ir-field textarea{min-height:120px;resize:vertical}
+.ir-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.ir-form button{width:100%;border:0;cursor:pointer}
+
+/* ---------- FOOTER ---------- */
+.ir-foot{background:var(--ink);border-top:1px solid var(--line);padding:70px 0 40px}
+.ir-foot__top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.ir-foot__brand p{margin:16px 0 0;color:var(--dim);font-size:14.5px;line-height:1.6;max-width:34ch}
+.ir-foot h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim-2);margin:0 0 16px}
+.ir-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ir-foot ul a{color:var(--dim);text-decoration:none;font-size:14.5px;transition:color .2s}
+.ir-foot ul a:hover{color:var(--w)}
+.ir-foot__bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;font-size:13px;color:var(--dim-2);letter-spacing:.04em}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1000px){
+  .ir-progs{grid-template-columns:repeat(2,1fr)}
+  .ir-team{grid-template-columns:repeat(2,1fr)}
+  .ir-band__grid{grid-template-columns:repeat(2,1fr)}
+  .ir-band__c:nth-child(2){border-right:0}
+  .ir-band__c:nth-child(1),.ir-band__c:nth-child(2){border-bottom:1px solid rgba(20,23,10,.16)}
+  .ir-split{grid-template-columns:1fr;gap:40px}
+  .ir-contact{grid-template-columns:1fr;gap:40px}
+  .ir-plan--feat{transform:none}
+}
+@media(max-width:720px){
+  .ir-nav__links{display:none}
+  .ir-progs{grid-template-columns:1fr}
+  .ir-band__grid{grid-template-columns:1fr}
+  .ir-band__c{border-right:0;border-bottom:1px solid rgba(20,23,10,.16)}
+  .ir-band__c:last-child{border-bottom:0}
+  .ir-plans{grid-template-columns:1fr}
+  .ir-sched__row{grid-template-columns:1fr;gap:6px}
+  .ir-sched__row:hover{padding-left:4px}
+  .ir-foot__top{grid-template-columns:1fr;gap:32px}
+  .ir-stat{padding:20px 24px 24px 0;margin-right:24px}
+}
+</style>
+</head>
+<body class="ir">
+
+<!-- NAV -->
+<header class="ir-nav">
+  <div class="ir__wrap ir-nav__in">
+    <a href="#" class="ir-brand"><span class="ir-brand__mark" data-field="brandMark">I</span> <span data-field="brandName">Ironhaus</span></a>
+    <nav class="ir-nav__links">
+      <a href="#programs">Programs</a>
+      <a href="#why">Why us</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#membership">Membership</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="ir-cta ir-cta--solid" data-field="navCta">Start free trial</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="ir-hero">
+  <img class="ir-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1800&q=80" alt="Athlete lifting at Ironhaus">
+  <div class="ir-hero__veil"></div>
+  <span class="ir-hero__slash" aria-hidden="true">IH</span>
+  <div class="ir-hero__in">
+    <div class="ir__wrap reveal">
+      <span class="ir-kicker" data-field="heroEyebrow">Strength · Conditioning · Coaching</span>
+      <h1 class="ir-mega" style="margin-top:22px" data-field="heroTitle">Stronger <em>every</em> session.</h1>
+      <p class="ir-hero__lede" data-field="heroSub">Ironhaus is a coach-led strength &amp; conditioning gym built for people who want real results, not another crowded room of machines. Every session has a purpose. Every member has a plan.</p>
+      <div class="ir-hero__cta">
+        <a href="#contact" class="ir-cta ir-cta--solid ir-cta--lg" data-field="heroCta1">Start your free trial</a>
+        <a href="#programs" class="ir-cta ir-cta--ghost ir-cta--lg" data-field="heroCta2">See our programs</a>
+      </div>
+      <div class="ir-hero__stats">
+        <div class="ir-stat"><b>2,000+</b><span>Members training</span></div>
+        <div class="ir-stat"><b>40</b><span>Classes each week</span></div>
+        <div class="ir-stat"><b>12</b><span>Certified coaches</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="ir-marquee" aria-hidden="true">
+  <div class="ir-marquee__track">
+    <b>Show up.</b><span>Strength Journal</span><b>Lift heavy.</b><span>Barbell Weekly</span><b>Recover well.</b><span>Peak Athlete</span><b>Repeat.</b><span>Iron &amp; Grit</span><b>Show up.</b><span>Strength Journal</span><b>Lift heavy.</b><span>Barbell Weekly</span><b>Recover well.</b><span>Peak Athlete</span><b>Repeat.</b><span>Iron &amp; Grit</span>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="ir-sec" id="programs">
+  <div class="ir__wrap">
+    <div class="ir-head reveal">
+      <span class="ir-kicker">What we offer</span>
+      <h2 class="ir-mega" data-field="servicesTitle">Programs for<br>every goal.</h2>
+      <p data-field="servicesSub">Whether you're chasing your first pull-up or a new personal best, there's a proven path here, and a coach to guide you down it.</p>
+    </div>
+    <div class="ir-progs reveal">
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=1000&q=80" alt="Strength training" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">01</span><h3 data-field="svc1Title">Strength training</h3><p data-field="svc1Desc">Barbell fundamentals and progressive overload. Squat, press, deadlift and pull your way to measurable strength.</p></div>
+      </article>
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80" alt="HIIT and conditioning" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">02</span><h3 data-field="svc2Title">HIIT &amp; conditioning</h3><p data-field="svc2Desc">High-intensity intervals that build engine and burn fat, fast, structured sessions that leave nothing on the floor.</p></div>
+      </article>
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1000&q=80" alt="Personal training" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">03</span><h3 data-field="svc3Title">Personal training</h3><p data-field="svc3Desc">One-to-one coaching tailored to your body, your schedule and your goals. Accountability that actually sticks.</p></div>
+      </article>
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1000&q=80" alt="Group classes" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">04</span><h3 data-field="svc4Title">Group classes</h3><p data-field="svc4Desc">Coach-led sessions with energy to match. Train harder alongside people pushing for the same thing you are.</p></div>
+      </article>
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1000&q=80" alt="Mobility and recovery" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">05</span><h3 data-field="svc5Title">Mobility &amp; recovery</h3><p data-field="svc5Desc">Guided stretching, soft-tissue work and recovery protocols that keep you moving well and training pain-free.</p></div>
+      </article>
+      <article class="ir-prog">
+        <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=1000&q=80" alt="Nutrition coaching" loading="lazy">
+        <div class="ir-prog__body"><span class="ir-prog__num">06</span><h3 data-field="svc6Title">Nutrition coaching</h3><p data-field="svc6Desc">Sustainable, no-nonsense nutrition guidance built around your training, fuel the work and recover better.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="ir-sec ir-sec--soft" id="why">
+  <div class="ir__wrap">
+    <div class="ir-split reveal">
+      <div class="ir-split__media">
+        <img data-img="about" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80" alt="Coaching on the gym floor" loading="lazy">
+        <div class="ir-split__tag"><span>No egos. Just work.</span></div>
+      </div>
+      <div>
+        <span class="ir-kicker">Why Ironhaus</span>
+        <h2 class="ir-mega" style="font-size:clamp(34px,4.6vw,58px);margin:18px 0 0" data-field="aboutTitle">More than a gym.<br>A standard.</h2>
+        <ul class="ir-points">
+          <li><b>01</b><div><h4 data-field="check1">Coaches on the floor</h4><p>Certified coaches every session, correcting form, adjusting loads, keeping you honest.</p></div></li>
+          <li><b>02</b><div><h4 data-field="check2">A community that shows up</h4><p>People who cheer you on, not size you up. The room lifts with you.</p></div></li>
+          <li><b>03</b><div><h4 data-field="check3">Serious kit, well kept</h4><p>Premium racks, calibrated plates and equipment that respects the work you put in.</p></div></li>
+          <li><b>04</b><div><h4 data-field="check4">Progress you can see</h4><p>Tracked and reviewed monthly, so the results on the bar are real, not guesswork.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="ir-band">
+  <div class="ir-band__grid reveal">
+    <div class="ir-band__c"><b data-field="stat1Num">2,000+</b><span data-field="stat1Label">Members training</span></div>
+    <div class="ir-band__c"><b data-field="stat2Num">96%</b><span data-field="stat2Label">Renew membership</span></div>
+    <div class="ir-band__c"><b data-field="stat3Num">40</b><span data-field="stat3Label">Classes per week</span></div>
+    <div class="ir-band__c"><b>4.9★</b><span>Average rating</span></div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="ir-sec">
+  <div class="ir__wrap">
+    <div class="ir-head reveal">
+      <span class="ir-kicker">Timetable</span>
+      <h2 class="ir-mega" style="font-size:clamp(34px,5vw,64px)">This week on the floor.</h2>
+      <p>Coached classes run seven days a week, morning to evening. Book your spot in the app up to 48 hours ahead.</p>
+    </div>
+    <div class="ir-sched reveal">
+      <div class="ir-sched__row"><span class="ir-sched__time">06:00</span><span class="ir-sched__class">Strength &amp; Power</span><span class="ir-sched__coach">Coach Dan</span></div>
+      <div class="ir-sched__row"><span class="ir-sched__time">07:30</span><span class="ir-sched__class">HIIT Engine</span><span class="ir-sched__coach">Coach Priya</span></div>
+      <div class="ir-sched__row"><span class="ir-sched__time">12:15</span><span class="ir-sched__class">Lunch Express Circuit</span><span class="ir-sched__coach">Coach Marcus</span></div>
+      <div class="ir-sched__row"><span class="ir-sched__time">17:30</span><span class="ir-sched__class">Olympic Lifting</span><span class="ir-sched__coach">Coach Dan</span></div>
+      <div class="ir-sched__row"><span class="ir-sched__time">18:45</span><span class="ir-sched__class">Conditioning &amp; Core</span><span class="ir-sched__coach">Coach Lena</span></div>
+      <div class="ir-sched__row"><span class="ir-sched__time">20:00</span><span class="ir-sched__class">Mobility &amp; Recovery</span><span class="ir-sched__coach">Coach Priya</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section class="ir-sec ir-sec--soft" id="trainers">
+  <div class="ir__wrap">
+    <div class="ir-head reveal">
+      <span class="ir-kicker">Meet the coaches</span>
+      <h2 class="ir-mega" style="font-size:clamp(34px,5vw,64px)">Coaches who<br>know their craft.</h2>
+      <p>Every coach at Ironhaus is certified, experienced and genuinely invested in your progress, from your first rep to your next milestone.</p>
+    </div>
+    <div class="ir-team reveal">
+      <div class="ir-member"><div class="ir-member__photo"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Dan Whitlock" loading="lazy"></div><h4>Dan Whitlock</h4><span>Head Coach · Strength &amp; Powerlifting</span></div>
+      <div class="ir-member"><div class="ir-member__photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Priya Anand" loading="lazy"></div><h4>Priya Anand</h4><span>Conditioning &amp; Mobility Coach</span></div>
+      <div class="ir-member"><div class="ir-member__photo"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=600&q=80" alt="Marcus Bell" loading="lazy"></div><h4>Marcus Bell</h4><span>Personal Trainer · Fat Loss</span></div>
+      <div class="ir-member"><div class="ir-member__photo"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="Lena Fischer" loading="lazy"></div><h4>Lena Fischer</h4><span>Olympic Lifting &amp; Nutrition</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK + TESTIMONIAL -->
+<section class="ir-break">
+  <img class="ir-break__img" src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1800&q=80" alt="Training hard at Ironhaus" loading="lazy">
+  <div class="ir-break__veil"></div>
+  <div class="ir-break__in ir__wrap reveal">
+    <span class="ir-kicker">Member story</span>
+    <p class="ir-quote" style="margin-top:22px" data-field="quoteText">"I joined Ironhaus barely able to squat the bar. Eighteen months on I've pulled twice my bodyweight and I've never felt stronger, in the gym or out of it. The coaching changed everything."</p>
+    <div class="ir-quote__who" data-field="quoteAuthor"><b>James R.</b> · Member for 18 months</div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="ir-sec ir-sec--soft" id="membership">
+  <div class="ir__wrap">
+    <div class="ir-head reveal" style="max-width:640px">
+      <span class="ir-kicker">Membership</span>
+      <h2 class="ir-mega" style="font-size:clamp(34px,5vw,64px)">Simple plans.<br>No contracts.</h2>
+      <p>Cancel anytime, freeze when you travel, and upgrade whenever you're ready to go further.</p>
+    </div>
+    <div class="ir-plans reveal">
+      <div class="ir-plan">
+        <span class="ir-plan__tag">Off-Peak</span>
+        <div class="ir-plan__name">Weekday sessions</div>
+        <div class="ir-plan__price">£29<small>/mo</small></div>
+        <div class="ir-plan__sub">Weekdays before 4pm</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Full floor &amp; equipment access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Off-peak group classes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> App-based booking</li>
+        </ul>
+        <a href="#contact" class="ir-cta ir-cta--ghost">Choose Off-Peak</a>
+      </div>
+      <div class="ir-plan ir-plan--feat">
+        <span class="ir-plan__tag">Most popular</span>
+        <div class="ir-plan__name">Unlimited</div>
+        <div class="ir-plan__price">£49<small>/mo</small></div>
+        <div class="ir-plan__sub">Train any time, any day</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> 24/7 access, any time of day</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Every coached class included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Free InBody progress scans</li>
+        </ul>
+        <a href="#contact" class="ir-cta ir-cta--solid" style="background:var(--accent-ink);color:var(--accent);border-color:var(--accent-ink)">Choose Unlimited</a>
+      </div>
+      <div class="ir-plan">
+        <span class="ir-plan__tag">Coached</span>
+        <div class="ir-plan__name">Unlimited + 1:1</div>
+        <div class="ir-plan__price">£89<small>/mo</small></div>
+        <div class="ir-plan__sub">Unlimited + personal coaching</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Everything in Unlimited</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Monthly 1:1 PT sessions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg> Personalised training &amp; nutrition plan</li>
+        </ul>
+        <a href="#contact" class="ir-cta ir-cta--ghost">Choose Coached</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="ir-sec" id="contact">
+  <div class="ir__wrap">
+    <div class="ir-contact">
+      <div class="reveal">
+        <span class="ir-kicker">Get started</span>
+        <h2 class="ir-mega" style="font-size:clamp(34px,5vw,64px);margin:18px 0 20px" data-field="contactTitle">Book your<br>free trial.</h2>
+        <p style="color:var(--dim);font-size:17px;line-height:1.65;max-width:46ch" data-field="contactSub">Come train with us, no strings. Tell us your goal and we'll set you up with a coach and a session that fits. We'll reply within one working day.</p>
+        <ul class="ir-info">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg><div><span>Phone</span><b data-field="phone">020 7946 0188</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><span>Email</span><b data-field="email">train@ironhaus.co.uk</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><span>Gym</span><b data-field="address">Unit 4, Forge Yard, Manchester M1</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><span>Opening hours</span><b data-field="hours">Mon–Fri 5:30–22:00 · Sat–Sun 7:00–19:00</b></div></li>
+        </ul>
+      </div>
+      <form class="ir-form reveal">
+        <div class="ir-field"><label>Your name</label><input type="text" placeholder="Alex Doe" required></div>
+        <div class="ir-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="ir-field"><label>What's your goal?</label>
+          <select><option>Build strength</option><option>Lose fat &amp; get fit</option><option>Personal training</option><option>Group classes</option><option>Not sure yet</option></select>
+        </div>
+        <div class="ir-field"><label>Message</label><textarea placeholder="Tell us a little about where you're at and what you want to achieve…"></textarea></div>
+        <button type="submit" class="ir-cta ir-cta--solid ir-cta--lg">Book my free trial</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ir-foot">
+  <div class="ir__wrap">
+    <div class="ir-foot__top">
+      <div class="ir-foot__brand">
+        <a href="#" class="ir-brand"><span class="ir-brand__mark" data-field="brandMark">I</span> <span data-field="brandName">Ironhaus</span></a>
+        <p data-field="footerText">A coach-led strength &amp; conditioning gym. Stronger every session.</p>
+      </div>
+      <div><h4>Programs</h4><ul><li><a href="#programs">Strength training</a></li><li><a href="#programs">HIIT &amp; conditioning</a></li><li><a href="#programs">Personal training</a></li><li><a href="#programs">Group classes</a></li></ul></div>
+      <div><h4>Gym</h4><ul><li><a href="#trainers">Our coaches</a></li><li><a href="#membership">Membership</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Terms &amp; conditions</a></li></ul></div>
+    </div>
+    <div class="ir-foot__bot">
+      <span data-field="footerLegal">© 2026 Ironhaus. All rights reserved.</span>
+      <span>Train hard, recover well, stay consistent.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

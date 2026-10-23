@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Property, Find the address you've been looking for</title>
+<meta name="description" content="Meridian Property, sales and lettings done properly. Browse featured homes, book a valuation and move with a team that knows your streets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232F7D63'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>M</text></svg>">
+<style>
+  /* ============ MERIDIAN, Emerald & Warm Stone palette ============ */
+  .mp-page{
+    --paper:#F8F7F3;
+    --ink:#1B211D;
+    --line:#E6E1D7;
+    --g-50:#EFECE4;
+    --g-300:#C9C6BD;
+    --g-400:#7E7F76;
+    --g-500:#7E7F76;
+    --g-600:#5A5F58;
+    --accent:#2F7D63;
+    --accent-dark:#24634E;
+    --gold:#B8873F;
+  }
+  /* ============ MERIDIAN, bespoke airy property-portal layout ============ */
+  .mp-page{ background:var(--paper); color:var(--ink); font-family:var(--font-sans); }
+  .mp-wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter); }
+  .mp-eyebrow{ font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+
+  /* ---- NAV ---- */
+  .mp-nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.82); backdrop-filter:saturate(140%) blur(14px); border-bottom:1px solid var(--line); }
+  .mp-nav__in{ display:flex; align-items:center; justify-content:space-between; height:74px; }
+  .mp-brand{ display:flex; align-items:center; gap:11px; font-family:var(--font-display); font-size:21px; font-weight:500; color:var(--ink); text-decoration:none; letter-spacing:-.01em; }
+  .mp-brand__mark{ width:34px; height:34px; border-radius:9px; background:var(--accent); color:#fff; display:grid; place-items:center; font-size:17px; font-family:var(--font-display); }
+  .mp-nav__links{ display:flex; gap:32px; }
+  .mp-nav__links a{ color:var(--g-600); text-decoration:none; font-size:14.5px; font-weight:500; transition:color .2s var(--ease); }
+  .mp-nav__links a:hover{ color:var(--ink); }
+  .mp-btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--font-sans); font-weight:600; font-size:14.5px; border-radius:999px; padding:12px 24px; text-decoration:none; cursor:pointer; border:1px solid var(--accent); transition:transform .2s var(--ease), background .2s var(--ease), color .2s var(--ease); }
+  .mp-btn--solid{ background:var(--accent); color:#fff; }
+  .mp-btn--solid:hover{ transform:translateY(-2px); background:var(--accent-dark); border-color:var(--accent-dark); }
+  .mp-btn--outline{ background:transparent; color:var(--accent); }
+  .mp-btn--outline:hover{ background:var(--accent); color:#fff; }
+  .mp-btn--ghost{ background:#fff; color:var(--accent); border-color:var(--line); }
+  .mp-btn--ghost:hover{ border-color:var(--accent); }
+
+  /* ---- HERO ---- */
+  .mp-hero{ position:relative; min-height:min(88vh,760px); display:flex; align-items:flex-end; overflow:hidden; }
+  .mp-hero__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .mp-hero__scrim{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,35,29,.34) 0%, rgba(20,35,29,.12) 40%, rgba(12,23,18,.62) 100%); }
+  .mp-hero__in{ position:relative; z-index:2; width:100%; padding:0 var(--gutter) 52px; max-width:var(--maxw); margin:0 auto; }
+  .mp-hero__eyebrow{ color:rgba(255,255,255,.82); font-size:12px; letter-spacing:.24em; text-transform:uppercase; font-weight:600; }
+  .mp-hero h1{ font-family:var(--font-display); color:#fff; font-weight:400; font-size:clamp(2.6rem,6vw,5rem); line-height:1.02; letter-spacing:-.02em; margin:14px 0 0; max-width:16ch; }
+  .mp-hero h1 em{ font-style:italic; }
+  .mp-hero__sub{ color:rgba(255,255,255,.9); font-size:clamp(1rem,1.4vw,1.2rem); margin-top:18px; max-width:44ch; }
+
+  /* ---- SEARCH BAR ---- */
+  .mp-search{ margin-top:30px; background:#fff; border-radius:var(--radius-lg); padding:14px; display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:12px; max-width:920px; box-shadow:0 30px 70px -30px rgba(0,0,0,.5); }
+  .mp-search__f{ display:flex; flex-direction:column; gap:5px; padding:6px 12px; border-right:1px solid var(--line); }
+  .mp-search__f:last-of-type{ border-right:0; }
+  .mp-search__f label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--g-400); font-weight:600; }
+  .mp-search__f input, .mp-search__f select{ border:0; outline:0; background:transparent; font-family:var(--font-sans); font-size:15px; color:var(--ink); font-weight:500; padding:0; }
+  .mp-search__btn{ align-self:stretch; }
+
+  /* ---- STAT ROW ---- */
+  .mp-statrow{ position:relative; z-index:2; border-top:1px solid rgba(255,255,255,.22); }
+  .mp-hero__stats{ display:flex; gap:40px; flex-wrap:wrap; margin-top:34px; padding-top:24px; border-top:1px solid rgba(255,255,255,.22); }
+  .mp-hero__stats div{ color:#fff; }
+  .mp-hero__stats b{ font-family:var(--font-display); font-size:22px; font-weight:500; display:block; }
+  .mp-hero__stats span{ font-size:13px; color:rgba(255,255,255,.7); }
+
+  /* ---- SECTION SHELL ---- */
+  .mp-sec{ padding:clamp(64px,9vw,120px) 0; }
+  .mp-sec--soft{ background:var(--g-50); }
+  .mp-head{ max-width:640px; margin-bottom:52px; }
+  .mp-head--center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .mp-head h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(2rem,4vw,3.1rem); line-height:1.06; letter-spacing:-.02em; margin:12px 0 0; }
+  .mp-head p{ color:var(--g-500); font-size:1.08rem; margin-top:16px; line-height:1.6; }
+
+  /* ---- FEATURED LISTINGS ---- */
+  .mp-listings{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .mp-listing{ display:flex; flex-direction:column; }
+  .mp-listing__media{ position:relative; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; }
+  .mp-listing__media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
+  .mp-listing:hover .mp-listing__media img{ transform:scale(1.05); }
+  .mp-tag{ position:absolute; top:14px; left:14px; background:var(--accent); color:#fff; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:6px 12px; border-radius:999px; }
+  .mp-listing__price{ font-family:var(--font-display); font-size:28px; font-weight:500; letter-spacing:-.01em; margin-top:20px; color:var(--gold); }
+  .mp-listing__addr{ font-size:15px; color:var(--g-600); font-weight:500; margin-top:4px; }
+  .mp-listing__meta{ display:flex; gap:16px; align-items:center; margin-top:12px; color:var(--g-500); font-size:13.5px; }
+  .mp-listing__meta span{ display:inline-flex; align-items:center; gap:6px; }
+  .mp-listing__meta svg{ width:16px; height:16px; stroke:var(--g-500); fill:none; stroke-width:1.5; }
+  .mp-listing__meta .mp-sep{ width:3px; height:3px; border-radius:50%; background:var(--g-300); }
+
+  /* ---- SERVICES ---- */
+  .mp-serv{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; }
+  .mp-serv__c{ background:#fff; padding:34px 28px; }
+  .mp-serv__c svg{ width:26px; height:26px; stroke:var(--accent); fill:none; stroke-width:1.4; }
+  .mp-serv__c h3{ font-family:var(--font-display); font-size:19px; font-weight:500; margin:18px 0 8px; }
+  .mp-serv__c p{ color:var(--g-500); font-size:14px; line-height:1.55; }
+
+  /* ---- WHY SPLIT ---- */
+  .mp-split{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .mp-split__media{ border-radius:var(--radius-lg); overflow:hidden; aspect-ratio:4/5; }
+  .mp-split__media img{ width:100%; height:100%; object-fit:cover; }
+  .mp-points{ list-style:none; padding:0; margin:28px 0 0; display:grid; gap:22px; }
+  .mp-points li{ display:flex; gap:16px; }
+  .mp-points__n{ flex:none; width:34px; height:34px; border-radius:50%; border:1px solid var(--accent); color:var(--accent); display:grid; place-items:center; font-family:var(--font-display); font-size:15px; }
+  .mp-points h4{ font-size:16px; font-weight:600; margin:2px 0 4px; }
+  .mp-points p{ color:var(--g-500); font-size:14.5px; line-height:1.55; }
+
+  /* ---- STATS BAND ---- */
+  .mp-band{ background:linear-gradient(160deg, #14231D 0%, #0C1712 100%); color:#fff; }
+  .mp-band__grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; text-align:center; }
+  .mp-band b{ font-family:var(--font-display); font-weight:400; font-size:clamp(2.2rem,4vw,3rem); display:block; letter-spacing:-.01em; }
+  .mp-band span{ color:rgba(255,255,255,.62); font-size:14px; margin-top:6px; display:block; }
+
+  /* ---- AGENTS ---- */
+  .mp-agents{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  .mp-agent__photo{ aspect-ratio:3/4; border-radius:var(--radius-lg); overflow:hidden; }
+  .mp-agent__photo img{ width:100%; height:100%; object-fit:cover; }
+  .mp-agent h4{ font-family:var(--font-display); font-size:18px; font-weight:500; margin:16px 0 2px; }
+  .mp-agent span{ color:var(--g-500); font-size:13.5px; }
+
+  /* ---- TESTIMONIAL + FORM ---- */
+  .mp-contact{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+  .mp-quote{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.5rem,2.6vw,2.1rem); line-height:1.3; letter-spacing:-.01em; }
+  .mp-quote__who{ margin-top:24px; font-family:var(--font-sans); font-size:14px; color:var(--g-500); }
+  .mp-quote__who b{ color:var(--ink); font-weight:600; }
+  .mp-quote__stars{ color:var(--gold); letter-spacing:2px; font-size:16px; margin-bottom:22px; }
+  .mp-form{ background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg); padding:34px; display:grid; gap:16px; }
+  .mp-field{ display:flex; flex-direction:column; gap:7px; }
+  .mp-field label{ font-size:12.5px; font-weight:600; letter-spacing:.02em; color:var(--g-600); }
+  .mp-field input, .mp-field select, .mp-field textarea{ font-family:var(--font-sans); font-size:15px; color:var(--ink); border:1px solid var(--line); border-radius:var(--radius); padding:13px 15px; outline:0; background:#fff; transition:border-color .2s var(--ease); }
+  .mp-field input:focus, .mp-field select:focus, .mp-field textarea:focus{ border-color:var(--accent); }
+  .mp-field textarea{ resize:vertical; min-height:110px; }
+
+  /* ---- FOOTER ---- */
+  .mp-footer{ background:var(--g-50); border-top:1px solid var(--line); padding:64px 0 40px; }
+  .mp-footer__top{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; }
+  .mp-footer__top p{ color:var(--g-500); font-size:14px; line-height:1.6; margin-top:14px; max-width:34ch; }
+  .mp-footer h5{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--g-400); font-weight:600; margin-bottom:16px; }
+  .mp-footer ul{ list-style:none; padding:0; margin:0; display:grid; gap:11px; }
+  .mp-footer a{ color:var(--g-600); text-decoration:none; font-size:14.5px; }
+  .mp-footer a:hover{ color:var(--ink); }
+  .mp-footer__bot{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line); color:var(--g-400); font-size:13px; }
+
+  @media (max-width:960px){
+    .mp-nav__links{ display:none; }
+    .mp-search{ grid-template-columns:1fr 1fr; }
+    .mp-search__f{ border-right:0; border-bottom:1px solid var(--line); }
+    .mp-search__btn{ grid-column:1 / -1; }
+    .mp-listings{ grid-template-columns:1fr 1fr; }
+    .mp-serv{ grid-template-columns:1fr 1fr; }
+    .mp-split{ grid-template-columns:1fr; gap:36px; }
+    .mp-band__grid{ grid-template-columns:1fr 1fr; gap:32px; }
+    .mp-agents{ grid-template-columns:1fr 1fr; }
+    .mp-contact{ grid-template-columns:1fr; gap:40px; }
+    .mp-footer__top{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .mp-search{ grid-template-columns:1fr; }
+    .mp-listings{ grid-template-columns:1fr; }
+    .mp-serv{ grid-template-columns:1fr; }
+    .mp-band__grid{ grid-template-columns:1fr; }
+    .mp-agents{ grid-template-columns:1fr 1fr; }
+    .mp-footer__top{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body class="mp-page">
+
+<!-- NAV -->
+<header class="mp-nav">
+  <div class="mp-wrap mp-nav__in">
+    <a href="#" class="mp-brand"><span class="mp-brand__mark" data-field="brandMark">M</span> <span data-field="brandName">Meridian Property</span></a>
+    <nav class="mp-nav__links">
+      <a href="#listings">Buy</a>
+      <a href="#services">Sell</a>
+      <a href="#services">Lettings</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="mp-btn mp-btn--solid" data-field="navCta">Book a valuation</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="mp-hero">
+  <img class="mp-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1800&q=80" alt="A beautiful modern home at dusk">
+  <div class="mp-hero__scrim"></div>
+  <div class="mp-hero__in">
+    <span class="mp-hero__eyebrow" data-field="heroEyebrow">Sales · Lettings · Valuations</span>
+    <h1 data-field="heroTitle">Find the address you've <em>been looking for.</em></h1>
+    <p class="mp-hero__sub" data-field="heroSub">A premium estate agency with expert local agents, honest advice and a track record you can trust, from first viewing to the day you get the keys.</p>
+
+    <!-- SEARCH BAR -->
+    <form class="mp-search reveal" onsubmit="return false">
+      <div class="mp-search__f">
+        <label>Location</label>
+        <input type="text" placeholder="Richmond, Islington…">
+      </div>
+      <div class="mp-search__f">
+        <label>Type</label>
+        <select><option>Any type</option><option>House</option><option>Apartment</option><option>Townhouse</option><option>New home</option></select>
+      </div>
+      <div class="mp-search__f">
+        <label>Min price</label>
+        <select><option>No min</option><option>£300,000</option><option>£500,000</option><option>£750,000</option><option>£1,000,000</option></select>
+      </div>
+      <button type="submit" class="mp-btn mp-btn--solid mp-search__btn">Search homes</button>
+    </form>
+
+    <div class="mp-hero__stats">
+      <div><b>£480M</b><span>Property sold</span></div>
+      <div><b>1,200+</b><span>Successful moves</span></div>
+      <div><b>4.9★</b><span>Average client rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section class="mp-sec" id="listings">
+  <div class="mp-wrap">
+    <div class="mp-head reveal">
+      <span class="mp-eyebrow">Featured listings</span>
+      <h2>Homes worth a second look.</h2>
+      <p>A selection of the properties currently on our books, with new instructions arriving every week.</p>
+    </div>
+    <div class="mp-listings reveal">
+
+      <article class="mp-listing">
+        <div class="mp-listing__media">
+          <span class="mp-tag">For sale</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Detached family home in Richmond">
+        </div>
+        <div class="mp-listing__price">£675,000</div>
+        <div class="mp-listing__addr">14 Ashcombe Gardens, Richmond</div>
+        <div class="mp-listing__meta">
+          <span><svg viewBox="0 0 24 24"><path d="M3 12V7a2 2 0 012-2h14a2 2 0 012 2v5"/><path d="M3 12h18v6"/><path d="M6 18v2M18 18v2"/></svg>4 bed</span>
+          <i class="mp-sep"></i>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12V5a2 2 0 012-2h1"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/></svg>2 bath</span>
+          <i class="mp-sep"></i>
+          <span>Detached</span>
+        </div>
+      </article>
+
+      <article class="mp-listing">
+        <div class="mp-listing__media">
+          <span class="mp-tag">New</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Period townhouse in Islington">
+        </div>
+        <div class="mp-listing__price">£1,240,000</div>
+        <div class="mp-listing__addr">7 Marlowe Terrace, Islington</div>
+        <div class="mp-listing__meta">
+          <span><svg viewBox="0 0 24 24"><path d="M3 12V7a2 2 0 012-2h14a2 2 0 012 2v5"/><path d="M3 12h18v6"/><path d="M6 18v2M18 18v2"/></svg>5 bed</span>
+          <i class="mp-sep"></i>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12V5a2 2 0 012-2h1"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/></svg>3 bath</span>
+          <i class="mp-sep"></i>
+          <span>Townhouse</span>
+        </div>
+      </article>
+
+      <article class="mp-listing">
+        <div class="mp-listing__media">
+          <span class="mp-tag">For sale</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Riverside apartment in Wapping">
+        </div>
+        <div class="mp-listing__price">£520,000</div>
+        <div class="mp-listing__addr">Apartment 12, The Quays, Wapping</div>
+        <div class="mp-listing__meta">
+          <span><svg viewBox="0 0 24 24"><path d="M3 12V7a2 2 0 012-2h14a2 2 0 012 2v5"/><path d="M3 12h18v6"/><path d="M6 18v2M18 18v2"/></svg>2 bed</span>
+          <i class="mp-sep"></i>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12V5a2 2 0 012-2h1"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/></svg>2 bath</span>
+          <i class="mp-sep"></i>
+          <span>Apartment</span>
+        </div>
+      </article>
+
+      <article class="mp-listing">
+        <div class="mp-listing__media">
+          <span class="mp-tag">New</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Contemporary detached home">
+        </div>
+        <div class="mp-listing__price">£895,000</div>
+        <div class="mp-listing__addr">3 Willow Bank, Kew</div>
+        <div class="mp-listing__meta">
+          <span><svg viewBox="0 0 24 24"><path d="M3 12V7a2 2 0 012-2h14a2 2 0 012 2v5"/><path d="M3 12h18v6"/><path d="M6 18v2M18 18v2"/></svg>4 bed</span>
+          <i class="mp-sep"></i>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12V5a2 2 0 012-2h1"/><path d="M3 12h18v3a4 4 0 01-4 4H7a4 4 0 01-4-4z"/></svg>3 bath</span>
+          <i class="mp-sep"></i>
+          <span>Detached</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="mp-sec mp-sec--soft" id="services">
+  <div class="mp-wrap">
+    <div class="mp-head reveal">
+      <span class="mp-eyebrow">What we do</span>
+      <h2 data-field="servicesTitle">Everything under one roof.</h2>
+      <p data-field="servicesSub">From your first valuation to the day you get the keys, one expert team handles every step.</p>
+    </div>
+    <div class="mp-serv reveal">
+      <div class="mp-serv__c">
+        <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        <h3 data-field="svc1Title">Residential sales</h3>
+        <p data-field="svc1Desc">Standout marketing, sharp pricing and skilled negotiation to sell your home for its full worth.</p>
+      </div>
+      <div class="mp-serv__c">
+        <svg viewBox="0 0 24 24"><path d="M7 11V7a5 5 0 0110 0v4"/><rect x="4" y="11" width="16" height="10" rx="2"/><circle cx="12" cy="16" r="1.5"/></svg>
+        <h3 data-field="svc2Title">Lettings &amp; management</h3>
+        <p data-field="svc2Desc">Referenced tenants, compliant contracts and hands-off management that protects your investment.</p>
+      </div>
+      <div class="mp-serv__c">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 8l7-5 7 5"/><path d="M5 8v3a7 7 0 0014 0V8"/></svg>
+        <h3 data-field="svc3Title">Valuations</h3>
+        <p data-field="svc3Desc">An honest, evidence-led figure based on real local sales, never an inflated number.</p>
+      </div>
+      <div class="mp-serv__c">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+        <h3 data-field="svc4Title">Mortgage advice</h3>
+        <p data-field="svc4Desc">Whole-of-market brokers on hand to find the right rate and get your finance agreed early.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MERIDIAN SPLIT -->
+<section class="mp-sec" id="about">
+  <div class="mp-wrap">
+    <div class="mp-split reveal">
+      <div class="mp-split__media">
+        <img loading="lazy" data-img="about" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Bright, well-styled living space">
+      </div>
+      <div>
+        <span class="mp-eyebrow">Why Meridian</span>
+        <h2 data-field="aboutTitle" style="font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.06;letter-spacing:-.02em;margin:12px 0 0">Local experts. No pressure.</h2>
+        <p data-field="aboutText" style="color:var(--g-500);font-size:1.08rem;margin-top:16px;line-height:1.6">Moving is a big decision, so we make it a considered one. Straight answers, realistic numbers and an agent who actually returns your calls.</p>
+        <ul class="mp-points">
+          <li><span class="mp-points__n">1</span><div><h4 data-field="check1">A free, no-obligation valuation</h4><p>Book online and get an honest figure for your home, backed by real local evidence.</p></div></li>
+          <li><span class="mp-points__n">2</span><div><h4 data-field="check2">One dedicated agent, start to finish</h4><p>The same expert takes you from valuation right through to completion, no handovers.</p></div></li>
+          <li><span class="mp-points__n">3</span><div><h4 data-field="check3">Transparent fees, nothing hidden</h4><p>Clear pricing agreed up front, with nothing buried in the small print.</p></div></li>
+          <li><span class="mp-points__n">4</span><div><h4 data-field="check4">Premium photography &amp; portals</h4><p>Professional images and prominent listings across Rightmove, Zoopla and OnTheMarket.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="mp-band">
+  <div class="mp-wrap mp-sec">
+    <div class="mp-band__grid reveal">
+      <div><b data-field="stat1Num">98%</b><span data-field="stat1Label">Of asking price achieved</span></div>
+      <div><b data-field="stat2Num">28 days</b><span data-field="stat2Label">Average time to offer</span></div>
+      <div><b data-field="stat3Num">18 yrs</b><span data-field="stat3Label">Serving the area</span></div>
+      <div><b>2,400+</b><span>Registered buyers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section class="mp-sec mp-sec--soft" id="team">
+  <div class="mp-wrap">
+    <div class="mp-head mp-head--center reveal">
+      <span class="mp-eyebrow">Meet the team</span>
+      <h2>The people who move you.</h2>
+      <p>A close-knit team of local specialists who live and work in the neighbourhoods they sell.</p>
+    </div>
+    <div class="mp-agents reveal">
+      <div class="mp-agent">
+        <div class="mp-agent__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Portrait of Charlotte Reeve"></div>
+        <h4>Charlotte Reeve</h4><span>Managing Director · Founder</span>
+      </div>
+      <div class="mp-agent">
+        <div class="mp-agent__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Portrait of Sophie Bennett"></div>
+        <h4>Sophie Bennett</h4><span>Lettings Manager</span>
+      </div>
+      <div class="mp-agent">
+        <div class="mp-agent__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="Portrait of Daniel Osei"></div>
+        <h4>Daniel Osei</h4><span>Head of Sales</span>
+      </div>
+      <div class="mp-agent">
+        <div class="mp-agent__photo"><img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80" alt="Portrait of Priya Malhotra"></div>
+        <h4>Priya Malhotra</h4><span>Valuations &amp; New Homes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL + CONTACT FORM -->
+<section class="mp-sec" id="contact">
+  <div class="mp-wrap">
+    <div class="mp-contact">
+      <div class="reveal">
+        <span class="mp-eyebrow">Get in touch</span>
+        <div class="mp-quote__stars" style="margin-top:14px">★★★★★</div>
+        <p class="mp-quote" data-field="quoteText">"They valued our home honestly, marketed it beautifully and had three viewings booked within 48 hours. Under offer in a week, for more than we'd hoped. Meridian made the whole thing painless."</p>
+        <div class="mp-quote__who" data-field="quoteAuthor"><b>James &amp; Amelia</b> · Sold in Richmond</div>
+        <p data-field="contactSub" style="color:var(--g-500);font-size:1.02rem;margin-top:36px;line-height:1.6;max-width:42ch">Whether you're buying, selling, letting or just curious what your home is worth, tell us a little and we'll be in touch within one working day.</p>
+      </div>
+      <form class="mp-form reveal" onsubmit="return false">
+        <div class="mp-field"><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+        <div class="mp-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="mp-field"><label>I want to…</label>
+          <select><option>Buy</option><option>Sell</option><option>Let</option><option>Rent</option></select>
+        </div>
+        <div class="mp-field"><label>Message</label><textarea placeholder="Tell us about the property or move you have in mind…"></textarea></div>
+        <button type="submit" class="mp-btn mp-btn--solid" style="width:100%">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mp-footer">
+  <div class="mp-wrap">
+    <div class="mp-footer__top">
+      <div>
+        <a href="#" class="mp-brand"><span class="mp-brand__mark" data-field="brandMark">M</span> <span data-field="brandName">Meridian Property</span></a>
+        <p data-field="footerText">Premium estate agents for buying, selling and letting, done properly. Find the address you've been looking for.</p>
+      </div>
+      <div><h5>Services</h5><ul><li><a href="#services">Residential sales</a></li><li><a href="#services">Lettings &amp; management</a></li><li><a href="#services">Valuations</a></li><li><a href="#services">Mortgage advice</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#about">About us</a></li><li><a href="#team">Our team</a></li><li><a href="#listings">Featured listings</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:02079460188" data-field="phone">020 7946 0188</a></li><li><a href="mailto:hello@meridianproperty.co.uk" data-field="email">hello@meridianproperty.co.uk</a></li><li><a href="#" data-field="address">42 Kew Road, Richmond TW9</a></li></ul></div>
+    </div>
+    <div class="mp-footer__bot">
+      <span data-field="footerLegal">© 2026 Meridian Property. All rights reserved.</span>
+      <span>Registered with The Property Ombudsman · Client Money Protected.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame &amp; Field, Light, held still. Black &amp; white photography studio</title>
+<meta name="description" content="Frame &amp; Field is a monochrome photography studio. Weddings, portraits, commercial and editorial work, light, held still.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0a0a'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>F</text></svg>">
+<style>
+  /* ============ FRAME & FIELD, bespoke gallery-first, muted brass ============ */
+  .ff-page{
+    /* Muted Brass palette (scoped) */
+    --brass:var(--acc,#B08A4F); --brass-dk:var(--acc2,#94733E);
+    --ink:#111011; --ink-2:#1a181a;
+    --paper:#F7F6F4; --soft:#EFEDEA; --line:#E5E2DC;
+    --text:#1A1918; --muted:#807C77;
+    background:linear-gradient(180deg,#111011,#070607); color:var(--paper); font-family:var(--font-sans);
+  }
+  .ff-page img{ display:block; }
+
+  /* --- NAV: minimal, overlaid --- */
+  .ff-nav{
+    position:absolute; top:0; left:0; right:0; z-index:30;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:clamp(18px,3vw,34px) clamp(20px,5vw,56px);
+    mix-blend-mode:difference; color:#fff;
+  }
+  .ff-nav__mark{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(15px,1.5vw,18px); letter-spacing:.02em; color:#fff;
+    text-decoration:none;
+  }
+  .ff-nav__links{ display:flex; gap:clamp(16px,2.4vw,34px); }
+  .ff-nav__links a{
+    color:#fff; text-decoration:none; font-size:11px;
+    letter-spacing:.22em; text-transform:uppercase; opacity:.85;
+    transition:opacity .3s var(--ease);
+  }
+  .ff-nav__links a:hover{ opacity:1; }
+  @media(max-width:640px){ .ff-nav__links a:nth-child(n+3){ display:none; } }
+
+  /* --- HERO: full screen photograph --- */
+  .ff-hero{ position:relative; height:100vh; min-height:560px; overflow:hidden; }
+  .ff-hero__img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; filter:brightness(.82);
+  }
+  .ff-hero::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(7,6,7,.4),rgba(7,6,7,.06) 30%,rgba(7,6,7,.62));
+  }
+  .ff-hero__cap{
+    position:absolute; z-index:10; left:0; right:0; bottom:clamp(60px,12vh,120px);
+    text-align:center; padding:0 24px;
+  }
+  .ff-hero__word{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(44px,10vw,120px); line-height:.94; letter-spacing:-.01em;
+    color:#fff; margin:0;
+  }
+  .ff-hero__word em{ font-style:italic; }
+  .ff-hero__tag{
+    margin-top:18px; font-size:clamp(12px,1.4vw,15px);
+    letter-spacing:.42em; text-transform:uppercase; color:rgba(255,255,255,.86);
+  }
+  .ff-scroll{
+    position:absolute; z-index:10; left:50%; bottom:26px; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:9px;
+    font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.7);
+  }
+  .ff-scroll i{ width:1px; height:40px; background:rgba(255,255,255,.55); animation:ffdrop 2.2s var(--ease) infinite; transform-origin:top; }
+  @keyframes ffdrop{ 0%,100%{ transform:scaleY(.3); opacity:.3 } 50%{ transform:scaleY(1); opacity:.9 } }
+
+  /* --- MASONRY GALLERY: edge to edge, the centrepiece --- */
+  .ff-gallery{
+    columns:4; column-gap:6px; padding:6px;
+    background:var(--ink);
+  }
+  @media(max-width:1100px){ .ff-gallery{ columns:3; } }
+  @media(max-width:720px){ .ff-gallery{ columns:2; } }
+  @media(max-width:440px){ .ff-gallery{ columns:1; } }
+  .ff-tile{
+    position:relative; break-inside:avoid; margin-bottom:6px;
+    overflow:hidden; background:var(--ink-2); cursor:pointer;
+  }
+  .ff-tile img{
+    width:100%; height:auto;
+    transition:transform .9s var(--ease), filter .6s var(--ease);
+  }
+  .ff-tile:hover img{ transform:scale(1.06); filter:contrast(1.04) brightness(1.04); }
+  .ff-tile figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:26px 16px 12px; color:#fff;
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    background:linear-gradient(transparent,rgba(7,6,7,.72));
+    opacity:0; transform:translateY(8px); transition:.5s var(--ease);
+  }
+  .ff-tile:hover figcaption{ opacity:1; transform:none; }
+
+  /* --- generic section chrome (very light) --- */
+  .ff-sec{ padding:clamp(70px,11vw,140px) clamp(20px,5vw,56px); }
+  .ff-eyebrow{
+    font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+    color:var(--brass); margin:0 0 20px;
+    display:inline-flex; align-items:center; gap:12px;
+  }
+  .ff-eyebrow::before{
+    content:""; width:24px; height:1px; background:var(--brass);
+  }
+
+  /* --- SERVICES: refined text list --- */
+  .ff-services{ border-top:1px solid rgba(255,255,255,.12); }
+  .ff-serv__head{ max-width:640px; margin:0 auto clamp(40px,6vw,70px); text-align:center; }
+  .ff-serv__head h2{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(30px,5vw,58px); line-height:1.02; margin:0; color:#fff;
+  }
+  .ff-list{ max-width:900px; margin:0 auto; list-style:none; padding:0; }
+  .ff-list li{
+    display:flex; align-items:baseline; justify-content:space-between; gap:24px;
+    padding:clamp(20px,3vw,34px) 0; border-bottom:1px solid rgba(255,255,255,.12);
+    transition:padding-left .5s var(--ease);
+  }
+  .ff-list li:hover{ padding-left:14px; }
+  .ff-list__name{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(24px,3.6vw,42px); color:#fff; line-height:1;
+  }
+  .ff-list li:hover .ff-list__name{ font-style:italic; }
+  .ff-list__note{
+    font-size:13px; letter-spacing:.04em; color:var(--g-400);
+    text-align:right; max-width:300px;
+  }
+  .ff-list__idx{
+    font-family:var(--font-sans); font-size:12px; color:var(--brass);
+    letter-spacing:.1em; margin-right:auto; padding-left:8px;
+  }
+  @media(max-width:560px){
+    .ff-list li{ flex-wrap:wrap; gap:6px; }
+    .ff-list__note{ text-align:left; }
+  }
+
+  /* --- ABOUT: image beside statement --- */
+  .ff-about{
+    display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,80px);
+    align-items:center; border-top:1px solid rgba(255,255,255,.12);
+  }
+  @media(max-width:820px){ .ff-about{ grid-template-columns:1fr; } }
+  .ff-about__media{ overflow:hidden; }
+  .ff-about__media img{ width:100%; height:100%; object-fit:cover; max-height:640px; }
+  .ff-about h2{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(30px,5vw,56px); line-height:1.04; margin:0 0 26px; color:#fff;
+  }
+  .ff-about p{ color:var(--g-300); font-size:clamp(15px,1.6vw,18px); line-height:1.75; margin:0 0 18px; max-width:44ch; }
+  .ff-about p em{ color:#fff; font-family:var(--font-display); font-style:italic; }
+  .ff-sig{ margin-top:32px; font-family:var(--font-display); font-style:italic; font-size:26px; color:#fff; }
+  .ff-sig span{ display:block; font-family:var(--font-sans); font-style:normal; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--g-500); margin-top:8px; }
+
+  /* --- PRICING: restrained one-liners --- */
+  .ff-pricing{ border-top:1px solid rgba(255,255,255,.12); text-align:center; }
+  .ff-pricing h2{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(28px,4.4vw,50px); margin:0 0 clamp(36px,5vw,56px); color:#fff;
+  }
+  .ff-price-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(30px,6vw,90px);
+    max-width:900px; margin:0 auto;
+  }
+  .ff-price{ min-width:180px; }
+  .ff-price b{ display:block; font-family:var(--font-display); font-size:clamp(30px,4vw,46px); font-weight:400; color:#fff; }
+  .ff-price small{ font-size:14px; color:var(--g-400); }
+  .ff-price span{ display:block; margin-top:10px; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--g-400); }
+
+  /* --- CONTACT: minimal form --- */
+  .ff-contact{
+    border-top:1px solid rgba(255,255,255,.12);
+    display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,80px);
+    align-items:start;
+  }
+  @media(max-width:820px){ .ff-contact{ grid-template-columns:1fr; } }
+  .ff-contact h2{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(30px,5vw,58px); line-height:1.02; margin:0 0 22px; color:#fff;
+  }
+  .ff-contact p{ color:var(--g-300); font-size:16px; line-height:1.7; margin:0 0 26px; max-width:40ch; }
+  .ff-contact a.ff-mail{ color:#fff; text-decoration:none; font-family:var(--font-display); font-size:clamp(18px,2.2vw,26px); border-bottom:1px solid var(--brass); padding-bottom:3px; transition:color .3s var(--ease),border-color .3s var(--ease); }
+  .ff-contact a.ff-mail:hover{ color:var(--brass); border-color:var(--brass); }
+  .ff-form{ display:flex; flex-direction:column; gap:22px; }
+  .ff-form label{ display:block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--g-400); margin-bottom:9px; }
+  .ff-form input, .ff-form textarea{
+    width:100%; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.28);
+    color:#fff; font-family:var(--font-sans); font-size:16px; padding:8px 0; outline:none;
+    transition:border-color .4s var(--ease);
+  }
+  .ff-form input::placeholder, .ff-form textarea::placeholder{ color:var(--g-500); }
+  .ff-form input:focus, .ff-form textarea:focus{ border-color:var(--brass); }
+  .ff-form textarea{ resize:vertical; min-height:80px; }
+  .ff-submit{
+    align-self:flex-start; margin-top:6px; background:var(--brass); color:#FFFFFF;
+    border:0; padding:15px 34px; font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+    font-weight:600; cursor:pointer; transition:background .3s var(--ease);
+  }
+  .ff-submit:hover{ background:var(--brass-dk); }
+
+  /* --- FOOTER --- */
+  .ff-footer{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding:clamp(40px,6vw,64px) clamp(20px,5vw,56px);
+    display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;
+  }
+  .ff-footer__mark{ font-family:var(--font-display); font-size:20px; color:#fff; }
+  .ff-footer small{ color:var(--g-500); font-size:12px; letter-spacing:.05em; }
+</style>
+</head>
+<body class="ff-page">
+
+<!-- NAV -->
+<nav class="ff-nav">
+  <a href="#" class="ff-nav__mark" data-field="brandName">Frame &amp; Field</a>
+  <div class="ff-nav__links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#about">Studio</a>
+    <a href="#contact">Enquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="ff-hero">
+  <img class="ff-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=2000&q=80" alt="Black and white portrait, natural light">
+  <div class="ff-hero__cap">
+    <h1 class="ff-hero__word" data-field="heroTitle">Frame &amp; <em>Field</em></h1>
+    <p class="ff-hero__tag" data-field="heroSub">Light, held still.</p>
+  </div>
+  <div class="ff-scroll">Scroll<i></i></div>
+</header>
+
+<!-- MASONRY GALLERY -->
+<section id="work" class="ff-gallery reveal">
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?auto=format&fit=crop&w=1000&q=80" alt="Wedding, ceremony light" loading="lazy"><figcaption>Wedding · Provence</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=1000&q=80" alt="Studio portrait" loading="lazy"><figcaption>Portrait · Studio</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?auto=format&fit=crop&w=1000&q=80" alt="Editorial figure study" loading="lazy"><figcaption>Editorial · Movement</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=1000&q=80" alt="Portrait, natural light" loading="lazy"><figcaption>Portrait · Location</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=80" alt="Editorial portrait" loading="lazy"><figcaption>Editorial · Golden hour</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80" alt="Corporate portrait" loading="lazy"><figcaption>Commercial · Brand</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1000&q=80" alt="Bridal portrait" loading="lazy"><figcaption>Wedding · City hall</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1000&q=80" alt="Product still life" loading="lazy"><figcaption>Product · Still life</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=80" alt="Fashion editorial" loading="lazy"><figcaption>Editorial · Fashion</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1000&q=80" alt="Landscape study" loading="lazy"><figcaption>Field · Study</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80" alt="Executive portrait" loading="lazy"><figcaption>Portrait · Commercial</figcaption></figure>
+  <figure class="ff-tile"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1000&q=80" alt="Contemplative portrait" loading="lazy"><figcaption>Portrait · Available light</figcaption></figure>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="ff-sec ff-services">
+  <div class="ff-serv__head reveal">
+    <p class="ff-eyebrow">What we shoot</p>
+    <h2 data-field="servicesTitle">One studio, many stories.</h2>
+  </div>
+  <ul class="ff-list reveal">
+    <li><span class="ff-list__name" data-field="svc1Title">Weddings</span><span class="ff-list__idx">01</span><span class="ff-list__note" data-field="svc1Desc">Full-day, documentary-led coverage</span></li>
+    <li><span class="ff-list__name" data-field="svc2Title">Portraits</span><span class="ff-list__idx">02</span><span class="ff-list__note" data-field="svc2Desc">Studio &amp; location sessions</span></li>
+    <li><span class="ff-list__name" data-field="svc3Title">Commercial &amp; brand</span><span class="ff-list__idx">03</span><span class="ff-list__note" data-field="svc3Desc">Campaigns, lookbooks &amp; websites</span></li>
+    <li><span class="ff-list__name" data-field="svc4Title">Events</span><span class="ff-list__idx">04</span><span class="ff-list__note" data-field="svc4Desc">Launches &amp; cultural moments</span></li>
+    <li><span class="ff-list__name" data-field="svc5Title">Product</span><span class="ff-list__idx">05</span><span class="ff-list__note" data-field="svc5Desc">Tactile in-studio still life</span></li>
+    <li><span class="ff-list__name" data-field="svc6Title">Editorial</span><span class="ff-list__idx">06</span><span class="ff-list__note" data-field="svc6Desc">Story-driven series for print</span></li>
+  </ul>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="ff-sec ff-about">
+  <div class="ff-about__media reveal">
+    <img data-img="about" src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1000&q=80" alt="In the studio, between frames" loading="lazy">
+  </div>
+  <div class="reveal">
+    <p class="ff-eyebrow">The studio</p>
+    <h2 data-field="aboutTitle">We wait for the light.</h2>
+    <p data-field="aboutText">Frame &amp; Field began with a single second-hand camera and a stubborn belief that the best photographs are <em>found, not staged</em>. A decade on, that hasn't changed.</p>
+    <p>We work almost entirely in black and white, stripping away colour to leave only what matters: form, gesture and the quality of the light itself. Every commission is hand-edited in-house, shot on film and digital.</p>
+    <div class="ff-sig">Frame &amp; Field<span>Est. 2014 · London E2</span></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="ff-sec ff-pricing reveal">
+  <p class="ff-eyebrow">Investment</p>
+  <h2>Clear, considered pricing.</h2>
+  <div class="ff-price-row">
+    <div class="ff-price"><b>£250</b><span>Portrait session</span></div>
+    <div class="ff-price"><b>£1,800</b><span>Wedding · full day</span></div>
+    <div class="ff-price"><b>£600<small>/day</small></b><span>Commercial · from</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="ff-sec ff-contact">
+  <div class="reveal">
+    <p class="ff-eyebrow">Enquiries</p>
+    <h2 data-field="contactTitle">Let's make something lasting.</h2>
+    <p data-field="contactSub">Tell us a little about your day or project and we'll reply within one working day with availability and next steps.</p>
+    <a class="ff-mail" href="mailto:studio@frameandfield.co.uk" data-field="email">studio@frameandfield.co.uk</a>
+  </div>
+  <form class="ff-form reveal">
+    <div><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+    <div><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+    <div><label>What are you shooting?</label><input type="text" placeholder="Wedding, portrait, brand…"></div>
+    <div><label>Message</label><textarea placeholder="Your date, location and what you have in mind…"></textarea></div>
+    <button type="submit" class="ff-submit">Send enquiry</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="ff-footer">
+  <span class="ff-footer__mark" data-field="brandName">Frame &amp; Field</span>
+  <small data-field="footerLegal">© 2026 Frame &amp; Field Studio · Light, held still. · London &amp; Europe</small>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

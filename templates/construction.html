@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kesler Build, Extensions, renovations &amp; new builds</title>
+<meta name="description" content="Kesler Build, dependable builders specialising in extensions, full renovations, loft conversions and new builds. Fixed pricing, guaranteed workmanship. Built right. Built to last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23E08A1E'/><text x='16' y='23' font-family='Inter,sans-serif' font-weight='900' font-size='18' fill='%2317181A' text-anchor='middle'>K</text></svg>">
+<style>
+  /* ============ KESLER BUILD, BESPOKE INDUSTRIAL THEME ============ */
+  .kb-shell{
+    --kb-ink:#16181B;
+    --kb-panel:#1c1f22;
+    --kb-panel-2:#24272b;
+    --kb-line:#2c2f33;
+    --kb-line-strong:#3a3e43;
+    --kb-fog:#9C9E9F;
+    --kb-mist:#b8babb;
+    --kb-paper:#F5F5F3;
+    --kb-paper-ink:#17181A;
+    --kb-accent:var(--acc,#E08A1E);
+    --kb-accent-dark:var(--acc2,#C1740F);
+    color:#F2F1EE;
+    background:var(--kb-ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .kb-shell img{display:block;width:100%;height:100%;object-fit:cover;}
+  .kb-wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  .kb-shell a{text-decoration:none;}
+  .kb-quote-btn,.kb-cta{color:#17181A;}
+  .kb-shell *{box-sizing:border-box;}
+
+  /* Section eyebrow */
+  .kb-tag{
+    display:inline-flex;align-items:center;gap:12px;
+    font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--kb-fog);margin:0 0 26px;
+  }
+  .kb-tag::before{content:"";width:34px;height:2px;background:var(--kb-accent);}
+
+  /* ---------- NAV ---------- */
+  .kb-nav{
+    position:sticky;top:0;z-index:60;
+    background:rgba(22,24,27,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--kb-line);
+  }
+  .kb-nav__in{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .kb-brand{display:flex;align-items:center;gap:13px;font-weight:800;font-size:15px;letter-spacing:.16em;text-transform:uppercase;}
+  .kb-brand__k{
+    width:40px;height:40px;display:grid;place-items:center;
+    background:var(--kb-accent);color:var(--kb-ink);
+    font-weight:900;font-size:20px;border-radius:3px;
+  }
+  .kb-nav__links{display:flex;gap:38px;}
+  .kb-nav__links a{
+    font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--kb-mist);
+    position:relative;padding:4px 0;transition:color .2s;
+  }
+  .kb-nav__links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--kb-accent);transition:width .25s;}
+  .kb-nav__links a:hover{color:#fff;}
+  .kb-nav__links a:hover::after{width:100%;}
+  .kb-quote-btn{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--kb-accent);color:var(--kb-ink);
+    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    padding:14px 22px;border-radius:2px;transition:background .2s,transform .2s;
+  }
+  .kb-quote-btn:hover{background:var(--kb-accent-dark);transform:translateY(-1px);}
+  .kb-nav__toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .kb-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;}
+  .kb-hero__bg{position:absolute;inset:0;z-index:0;}
+  .kb-hero__bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(13,15,17,.55) 0%,rgba(13,15,17,.35) 40%,rgba(13,15,17,.94) 100%);
+  }
+  .kb-hero__inner{position:relative;z-index:2;width:100%;padding-bottom:64px;padding-top:120px;}
+  .kb-hero__eyebrow{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+    color:#d4d4d4;border-left:3px solid var(--kb-accent);padding-left:14px;margin-bottom:26px;
+  }
+  .kb-hero h1{
+    font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;
+    font-size:clamp(52px,9.5vw,138px);margin:0 0 26px;color:#fff;
+    max-width:15ch;
+  }
+  .kb-hero__sub{max-width:52ch;font-size:clamp(16px,1.6vw,19px);line-height:1.65;color:#cfcfcf;margin:0 0 36px;}
+  .kb-hero__ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+  .kb-cta{
+    display:inline-flex;align-items:center;gap:11px;
+    background:var(--kb-accent);color:#17181A;
+    font-size:14px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    padding:19px 32px;border-radius:2px;transition:background .2s,transform .2s;
+  }
+  .kb-cta:hover{background:var(--kb-accent-dark);transform:translateY(-2px);}
+  .kb-cta--ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+  .kb-cta--ghost:hover{background:rgba(255,255,255,.08);border-color:#fff;}
+  .kb-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;}
+
+  /* HERO STAT STRIP */
+  .kb-hero__stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid rgba(255,255,255,.22);margin-top:52px;max-width:720px;
+  }
+  .kb-hero__stat{padding:24px 26px;border-right:1px solid rgba(255,255,255,.22);}
+  .kb-hero__stat:last-child{border-right:0;}
+  .kb-hero__stat b{display:block;font-size:clamp(28px,3.6vw,42px);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;}
+  .kb-hero__stat span{display:block;margin-top:9px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--kb-fog);}
+
+  /* ---------- ACCREDITATION MARQUEE ---------- */
+  .kb-accred{border-top:1px solid var(--kb-line);border-bottom:1px solid var(--kb-line);background:var(--kb-panel);}
+  .kb-accred__in{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 40px;
+    padding:26px 0;
+  }
+  .kb-accred__lbl{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--kb-fog);}
+  .kb-accred__list{display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;}
+  .kb-accred__list span{
+    font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#cfcfcf;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  .kb-sec{padding:120px 0;}
+  .kb-sec--tight{padding:96px 0;}
+  .kb-head{max-width:760px;margin-bottom:60px;}
+  .kb-head h2{
+    font-weight:900;text-transform:uppercase;letter-spacing:-.015em;line-height:.98;
+    font-size:clamp(34px,5vw,64px);margin:0;color:#fff;
+  }
+  .kb-head p{font-size:17px;line-height:1.7;color:var(--kb-mist);margin:22px 0 0;max-width:58ch;}
+
+  /* ---------- SERVICES LIST ---------- */
+  .kb-svc{border-top:2px solid var(--kb-line-strong);}
+  .kb-svc__row{
+    display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:32px;
+    padding:38px 8px;border-bottom:1px solid var(--kb-line);
+    transition:background .25s,padding-left .25s;position:relative;cursor:default;
+  }
+  .kb-svc__row:hover{background:var(--kb-panel);padding-left:24px;}
+  .kb-svc__num{font-size:clamp(30px,3.4vw,46px);font-weight:900;color:var(--kb-line-strong);line-height:1;letter-spacing:-.03em;transition:color .25s;}
+  .kb-svc__row:hover .kb-svc__num{color:var(--kb-accent);}
+  .kb-svc__body h3{font-size:clamp(24px,3vw,38px);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 8px;color:#fff;line-height:1;}
+  .kb-svc__body p{font-size:15px;line-height:1.6;color:var(--kb-mist);margin:0;max-width:64ch;}
+  .kb-svc__arrow{width:44px;height:44px;border:1.5px solid var(--kb-line-strong);border-radius:2px;display:grid;place-items:center;transition:background .25s,border-color .25s;}
+  .kb-svc__arrow svg{width:18px;height:18px;stroke:#cfcfcf;fill:none;stroke-width:2.5;transition:stroke .25s,transform .25s;}
+  .kb-svc__row:hover .kb-svc__arrow{background:var(--kb-accent);border-color:var(--kb-accent);}
+  .kb-svc__row:hover .kb-svc__arrow svg{stroke:#17181A;transform:translate(2px,-2px);}
+
+  /* ---------- PROJECTS GALLERY ---------- */
+  .kb-proj{background:var(--kb-panel);border-top:1px solid var(--kb-line);border-bottom:1px solid var(--kb-line);}
+  .kb-gallery{
+    display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:230px;gap:14px;
+  }
+  .kb-shot{position:relative;overflow:hidden;background:var(--kb-panel-2);}
+  .kb-shot img{transition:transform .6s ease;}
+  .kb-shot:hover img{transform:scale(1.05);}
+  .kb-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(13,15,17,.9));}
+  .kb-shot figcaption{
+    position:absolute;left:0;bottom:0;z-index:2;padding:22px;width:100%;
+  }
+  .kb-shot figcaption .k-cat{display:block;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--kb-fog);margin-bottom:6px;}
+  .kb-shot figcaption .k-name{display:block;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;color:#fff;line-height:1.1;}
+  .kb-shot--a{grid-column:span 3;grid-row:span 2;}
+  .kb-shot--b{grid-column:span 3;}
+  .kb-shot--c{grid-column:span 3;}
+  .kb-shot--d{grid-column:span 2;}
+  .kb-shot--e{grid-column:span 2;}
+  .kb-shot--f{grid-column:span 2;}
+
+  /* ---------- PROCESS ---------- */
+  .kb-proc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--kb-line-strong);}
+  .kb-proc__step{padding:44px 30px 40px;border-right:1px solid var(--kb-line);position:relative;}
+  .kb-proc__step:last-child{border-right:0;}
+  .kb-proc__num{font-size:clamp(48px,6vw,84px);font-weight:900;color:var(--kb-accent);line-height:.8;letter-spacing:-.04em;margin-bottom:24px;}
+  .kb-proc__step h3{font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;margin:0 0 12px;color:#fff;line-height:1.1;}
+  .kb-proc__step p{font-size:15px;line-height:1.65;color:var(--kb-mist);margin:0;}
+
+  /* ---------- STATS BAND ---------- */
+  .kb-band{background:var(--kb-paper);color:var(--kb-paper-ink);}
+  .kb-band__grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .kb-band__c{padding:70px 30px;border-right:1px solid #E2E1DD;text-align:center;}
+  .kb-band__c:last-child{border-right:0;}
+  .kb-band__c b{display:block;font-size:clamp(48px,7vw,96px);font-weight:900;line-height:.85;letter-spacing:-.04em;}
+  .kb-band__c span{display:block;margin-top:16px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#555;}
+
+  /* ---------- TESTIMONIAL + FORM ---------- */
+  .kb-close{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;}
+  .kb-quote{padding:96px 64px 96px 0;display:flex;flex-direction:column;justify-content:center;}
+  .kb-quote__mark{font-family:'Fraunces',serif;font-size:120px;line-height:.6;color:var(--kb-line-strong);height:56px;}
+  .kb-quote blockquote{margin:0;font-size:clamp(22px,2.6vw,32px);line-height:1.4;font-weight:600;color:#fff;letter-spacing:-.01em;}
+  .kb-quote__who{margin-top:32px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--kb-fog);}
+  .kb-quote__who b{color:#fff;}
+
+  .kb-form{background:var(--kb-panel);border:1px solid var(--kb-line);padding:52px 48px;}
+  .kb-form h3{font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 8px;color:#fff;}
+  .kb-form__note{font-size:14px;color:var(--kb-mist);margin:0 0 30px;line-height:1.6;}
+  .kb-field{margin-bottom:20px;}
+  .kb-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--kb-fog);margin-bottom:9px;}
+  .kb-field input,.kb-field select,.kb-field textarea{
+    width:100%;background:var(--kb-ink);border:1px solid var(--kb-line-strong);color:#fff;
+    font-family:inherit;font-size:15px;padding:15px 16px;border-radius:2px;transition:border-color .2s;
+  }
+  .kb-field input::placeholder,.kb-field textarea::placeholder{color:#666;}
+  .kb-field input:focus,.kb-field select:focus,.kb-field textarea:focus{outline:none;border-color:var(--kb-accent);}
+  .kb-field textarea{min-height:120px;resize:vertical;}
+  .kb-form__submit{
+    width:100%;background:var(--kb-accent);color:#17181A;border:0;cursor:pointer;
+    font-family:inherit;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    padding:19px;border-radius:2px;transition:background .2s;margin-top:6px;
+  }
+  .kb-form__submit:hover{background:var(--kb-accent-dark);}
+
+  /* ---------- CONTACT META ---------- */
+  .kb-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--kb-line);margin-top:8px;}
+  .kb-meta__c{flex:1 1 200px;padding:34px 30px 34px 0;border-right:1px solid var(--kb-line);}
+  .kb-meta__c:last-child{border-right:0;padding-right:0;}
+  .kb-meta__c span{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--kb-fog);margin-bottom:10px;}
+  .kb-meta__c b{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.01em;}
+
+  /* ---------- FOOTER ---------- */
+  .kb-foot{background:linear-gradient(180deg,#16181B 0%,#0D0F11 100%);border-top:2px solid var(--kb-line-strong);padding:72px 0 34px;}
+  .kb-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;padding-bottom:52px;border-bottom:1px solid var(--kb-line);}
+  .kb-foot__brand p{margin:22px 0 0;font-size:15px;line-height:1.7;color:var(--kb-mist);max-width:40ch;}
+  .kb-foot h4{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--kb-fog);margin:0 0 20px;}
+  .kb-foot ul{list-style:none;margin:0;padding:0;}
+  .kb-foot ul li{margin-bottom:13px;}
+  .kb-foot ul a{font-size:15px;color:var(--kb-mist);transition:color .2s;}
+  .kb-foot ul a:hover{color:#fff;}
+  .kb-foot__bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:28px;font-size:13px;color:var(--kb-fog);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:1000px){
+    .kb-band__grid{grid-template-columns:repeat(2,1fr);}
+    .kb-band__c:nth-child(2){border-right:0;}
+    .kb-band__c:nth-child(1),.kb-band__c:nth-child(2){border-bottom:1px solid #E2E1DD;}
+    .kb-proc{grid-template-columns:repeat(2,1fr);}
+    .kb-proc__step:nth-child(2){border-right:0;}
+    .kb-proc__step:nth-child(1),.kb-proc__step:nth-child(2){border-bottom:1px solid var(--kb-line);}
+    .kb-close{grid-template-columns:1fr;}
+    .kb-quote{padding:0 0 64px;}
+    .kb-gallery{grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;}
+    .kb-shot--a{grid-column:span 4;grid-row:span 1;}
+    .kb-shot--b,.kb-shot--c{grid-column:span 2;}
+    .kb-shot--d,.kb-shot--e,.kb-shot--f{grid-column:span 2;}
+  }
+  @media(max-width:820px){
+    .kb-nav__links,.kb-quote-btn{display:none;}
+    .kb-svc__row{grid-template-columns:70px 1fr;gap:20px;padding:30px 6px;}
+    .kb-svc__arrow{display:none;}
+    .kb-foot__top{grid-template-columns:1fr;gap:36px;}
+    .kb-hero__stats{grid-template-columns:1fr;}
+    .kb-hero__stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.22);}
+    .kb-hero__stat:last-child{border-bottom:0;}
+  }
+  @media(max-width:640px){
+    .kb-wrap{padding:0 20px;}
+    .kb-sec{padding:80px 0;}
+    .kb-form{padding:36px 26px;}
+    .kb-gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px;}
+    .kb-shot--a{grid-column:span 2;}
+    .kb-meta__c{flex:1 1 100%;border-right:0;border-bottom:1px solid var(--kb-line);padding:26px 0;}
+    .kb-meta__c:last-child{border-bottom:0;}
+    .kb-band__grid{grid-template-columns:1fr;}
+    .kb-band__c{border-right:0;border-bottom:1px solid #E2E1DD;}
+    .kb-band__c:last-child{border-bottom:0;}
+    .kb-proc{grid-template-columns:1fr;}
+    .kb-proc__step{border-right:0;border-bottom:1px solid var(--kb-line);}
+    .kb-proc__step:last-child{border-bottom:0;}
+  }
+</style>
+</head>
+<body>
+<div class="kb-shell">
+
+<!-- NAV -->
+<header class="kb-nav">
+  <div class="kb-wrap kb-nav__in">
+    <a href="#" class="kb-brand"><span class="kb-brand__k" data-field="brandMark">K</span> <span data-field="brandName">Kesler Build</span></a>
+    <nav class="kb-nav__links">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="kb-quote-btn"><span data-field="navCta">Get a quote</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="kb-hero">
+  <div class="kb-hero__bg">
+    <img data-img="hero" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=80" alt="Steel-frame construction site under a wide sky">
+  </div>
+  <div class="kb-hero__inner">
+    <div class="kb-wrap">
+      <div class="reveal">
+        <span class="kb-hero__eyebrow" data-field="heroEyebrow">Extensions · Renovations · New builds</span>
+        <h1 data-field="heroTitle">Built right.<br>Built to last.</h1>
+        <p class="kb-hero__sub" data-field="heroSub">Kesler Build is a family-run construction firm delivering extensions, full renovations and new homes across the region, on time, on budget, and to a standard that outlives the guarantee.</p>
+        <div class="kb-hero__ctas">
+          <a href="#contact" class="kb-cta"><span data-field="heroCta1">Get a free quote</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#projects" class="kb-cta kb-cta--ghost" data-field="heroCta2">See our projects</a>
+        </div>
+      </div>
+      <div class="kb-hero__stats reveal">
+        <div class="kb-hero__stat"><b>500+</b><span>Projects completed</span></div>
+        <div class="kb-hero__stat"><b>25 yrs</b><span>In the trade</span></div>
+        <div class="kb-hero__stat"><b>10-yr</b><span>Workmanship guarantee</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATION -->
+<section class="kb-accred">
+  <div class="kb-wrap kb-accred__in reveal">
+    <span class="kb-accred__lbl">Accredited &amp; certified by</span>
+    <div class="kb-accred__list">
+      <span>FMB</span><span>TrustMark</span><span>Which? Trusted Trader</span><span>NHBC</span><span>CHAS</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="kb-sec" id="services">
+  <div class="kb-wrap">
+    <div class="kb-head reveal">
+      <span class="kb-tag">What we build</span>
+      <h2 data-field="servicesTitle">One firm. Every trade. Start to finish.</h2>
+      <p data-field="servicesSub">From the first sketch to the final coat of paint, we handle every trade in-house, so nothing falls through the cracks and no one else's mess becomes your problem.</p>
+    </div>
+    <div class="kb-svc reveal">
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">01</div>
+        <div class="kb-svc__body"><h3 data-field="svc1Title">House extensions</h3><p data-field="svc1Desc">Single and double-storey extensions that add real space and value, planned, built and signed off in one seamless job.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">02</div>
+        <div class="kb-svc__body"><h3 data-field="svc2Title">Full renovations</h3><p data-field="svc2Desc">Whole-home refurbishments that bring tired properties back to life, rewired, re-plumbed and finished properly.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">03</div>
+        <div class="kb-svc__body"><h3 data-field="svc3Title">Loft conversions</h3><p data-field="svc3Desc">Turn unused roof space into a bedroom, office or bathroom, dormers, staircases and building control all handled.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">04</div>
+        <div class="kb-svc__body"><h3 data-field="svc4Title">Kitchens &amp; bathrooms</h3><p data-field="svc4Desc">Bespoke kitchen and bathroom fit-outs, tiling, plumbing, electrics and joinery, all under one roof.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">05</div>
+        <div class="kb-svc__body"><h3 data-field="svc5Title">New builds</h3><p data-field="svc5Desc">Ground-up construction of individual homes to full NHBC standards, from foundations to keys in hand.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+      <div class="kb-svc__row">
+        <div class="kb-svc__num">06</div>
+        <div class="kb-svc__body"><h3 data-field="svc6Title">Landscaping &amp; driveways</h3><p data-field="svc6Desc">Patios, retaining walls, block-paved and resin driveways, hard landscaping that's laid to last.</p></div>
+        <div class="kb-svc__arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="kb-sec kb-proj" id="projects">
+  <div class="kb-wrap">
+    <div class="kb-head reveal">
+      <span class="kb-tag">Recent work</span>
+      <h2>Proof, not promises.</h2>
+      <p>A selection of jobs completed across the last year, every one delivered by our own crews, to our own standard.</p>
+    </div>
+    <div class="kb-gallery reveal">
+      <figure class="kb-shot kb-shot--a">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=80" alt="Two-storey rear extension under construction">
+        <figcaption><span class="k-cat">Extension</span><span class="k-name">Two-storey rear extension · Harborne</span></figcaption>
+      </figure>
+      <figure class="kb-shot kb-shot--b">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80" alt="Structural steel and blockwork on a build">
+        <figcaption><span class="k-cat">New build</span><span class="k-name">Detached family home · Solihull</span></figcaption>
+      </figure>
+      <figure class="kb-shot kb-shot--c">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1000&q=80" alt="Timber roof structure and framing">
+        <figcaption><span class="k-cat">Loft</span><span class="k-name">Dormer loft conversion · Moseley</span></figcaption>
+      </figure>
+      <figure class="kb-shot kb-shot--d">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=80" alt="Site engineer reviewing plans on a build">
+        <figcaption><span class="k-cat">Renovation</span><span class="k-name">Full refurbishment · Edgbaston</span></figcaption>
+      </figure>
+      <figure class="kb-shot kb-shot--e">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80" alt="Steel frame against open sky">
+        <figcaption><span class="k-cat">Groundworks</span><span class="k-name">Foundations &amp; frame · Sutton</span></figcaption>
+      </figure>
+      <figure class="kb-shot kb-shot--f">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=80" alt="Bricklaying detail on an extension">
+        <figcaption><span class="k-cat">Driveways</span><span class="k-name">Block-paved frontage · Kings Heath</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="kb-sec kb-sec--tight" id="process">
+  <div class="kb-wrap">
+    <div class="kb-head reveal">
+      <span class="kb-tag">How we work</span>
+      <h2 data-field="aboutTitle">No surprises. No hidden costs.</h2>
+      <p data-field="aboutText">We keep it straight with you from day one, a clear price, a clear plan, and one person who answers the phone.</p>
+    </div>
+    <div class="kb-proc reveal">
+      <div class="kb-proc__step">
+        <div class="kb-proc__num">01</div>
+        <h3 data-field="check1">Consultation &amp; quote</h3>
+        <p>A free site visit and a detailed written quote, every line itemised, nothing buried in the small print.</p>
+      </div>
+      <div class="kb-proc__step">
+        <div class="kb-proc__num">02</div>
+        <h3 data-field="check2">Fixed pricing</h3>
+        <p>Transparent, fixed pricing agreed before we lift a single tool. The number we quote is the number you pay.</p>
+      </div>
+      <div class="kb-proc__step">
+        <div class="kb-proc__num">03</div>
+        <h3 data-field="check3">Project manager</h3>
+        <p>A dedicated project manager on every job, one point of contact, weekly updates, a tidy site every evening.</p>
+      </div>
+      <div class="kb-proc__step">
+        <div class="kb-proc__num">04</div>
+        <h3 data-field="check4">Guaranteed work</h3>
+        <p>Workmanship backed for ten full years and fully insured, because building it right means standing behind it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="kb-band" id="about">
+  <div class="kb-band__grid reveal">
+    <div class="kb-band__c"><b data-field="stat1Num">500+</b><span data-field="stat1Label">Projects completed</span></div>
+    <div class="kb-band__c"><b data-field="stat2Num">98%</b><span data-field="stat2Label">Finished on schedule</span></div>
+    <div class="kb-band__c"><b data-field="stat3Num">25</b><span data-field="stat3Label">Years family-run</span></div>
+    <div class="kb-band__c"><b>10-yr</b><span>Workmanship guarantee</span></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL + FORM -->
+<section class="kb-sec" id="contact">
+  <div class="kb-wrap">
+    <div class="kb-close">
+      <div class="kb-quote reveal">
+        <div class="kb-quote__mark">&ldquo;</div>
+        <blockquote data-field="quoteText">Kesler built our rear extension exactly as quoted, same price, finished a week early, and the site was spotless every evening. Honest, tidy and properly skilled.</blockquote>
+        <div class="kb-quote__who" data-field="quoteAuthor"><b>Mark &amp; Sophie</b>, Two-storey extension, Harborne</div>
+      </div>
+      <form class="kb-form reveal">
+        <h3 data-field="contactTitle">Request a quote</h3>
+        <p class="kb-form__note" data-field="contactSub">Tell us what you've got in mind and we'll arrange a free site visit. You'll get a clear, itemised quote, no obligation, no sales pressure.</p>
+        <div class="kb-field"><label>Your name</label><input type="text" placeholder="John Smith" required></div>
+        <div class="kb-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="kb-field"><label>Project type</label>
+          <select>
+            <option>House extension</option>
+            <option>Full renovation</option>
+            <option>Loft conversion</option>
+            <option>Kitchen or bathroom</option>
+            <option>New build</option>
+            <option>Landscaping &amp; driveways</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="kb-field"><label>Tell us about the job</label><textarea placeholder="A few details about the property, the work you're after and any timescales…"></textarea></div>
+        <button type="submit" class="kb-form__submit">Request a quote</button>
+      </form>
+    </div>
+    <div class="kb-meta reveal">
+      <div class="kb-meta__c"><span>Phone</span><b data-field="phone">0121 496 0184</b></div>
+      <div class="kb-meta__c"><span>Email</span><b data-field="email">quotes@keslerbuild.co.uk</b></div>
+      <div class="kb-meta__c"><span>Yard</span><b data-field="address">Unit 6, Forge Lane, Birmingham B11</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kb-foot">
+  <div class="kb-wrap">
+    <div class="kb-foot__top">
+      <div class="kb-foot__brand">
+        <a href="#" class="kb-brand"><span class="kb-brand__k" data-field="brandMark">K</span> <span data-field="brandName">Kesler Build</span></a>
+        <p data-field="footerText">Dependable extensions, renovations and new builds. Built right. Built to last.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">House extensions</a></li>
+          <li><a href="#services">Full renovations</a></li>
+          <li><a href="#services">Loft conversions</a></li>
+          <li><a href="#services">New builds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#process">Our process</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Insurance &amp; guarantees</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="kb-foot__bot">
+      <span data-field="footerLegal">© 2026 Kesler Build Ltd. All rights reserved.</span>
+      <span>Fully insured · FMB registered · 10-year workmanship guarantee.</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

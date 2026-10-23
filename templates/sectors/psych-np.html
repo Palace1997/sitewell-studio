@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clarity Psychiatric NPs, Psychiatric nurse practitioner care</title>
+<meta name="description" content="Clarity Psychiatric NPs: Psychiatric nurse practitioner care. A SiteWell Studio website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231F8A99'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>C</text></svg>">
+<style>
+.cl-page{
+  --acc:#1F8A99; --acc2:#166E7B; --on:#ffffff;
+  --dark:#0E3138; --dark2:#082227;
+  --bg:#F6F8F8; --panel:#ffffff; --line:#E4EAEA; --ink:#12211F; --muted:#5F7370;
+  --tint:#E9F3F4;
+  --font-d:'Fraunces',Georgia,serif; --font-s:'Inter',system-ui,sans-serif;
+  --shadow:0 24px 60px -34px rgba(14,49,56,.42);
+  --shadow-sm:0 10px 30px -20px rgba(14,49,56,.4);
+  --ease:cubic-bezier(.22,1,.36,1);
+  background:var(--bg); color:var(--ink); font-family:var(--font-s);
+  -webkit-font-smoothing:antialiased;
+}
+.cl-page *{box-sizing:border-box;}
+.cl-wrap{max-width:1220px;margin:0 auto;padding:0 clamp(18px,4vw,44px);}
+.cl-sec{padding:clamp(60px,8vw,116px) 0;}
+h1,h2,h3,h4{margin:0;font-family:var(--font-d);font-weight:500;letter-spacing:-.02em;line-height:1.04;}
+.cl-page em{font-style:italic;font-weight:400;}
+.cl-eye{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:var(--tint);padding:7px 14px;border-radius:100px;margin-bottom:20px;}
+.cl-eye i{width:7px;height:7px;border-radius:50%;background:var(--acc);}
+.cl-lede{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:var(--muted);}
+/* buttons */
+.cl-btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:100px;font-size:15px;font-weight:600;font-family:var(--font-s);border:1.6px solid transparent;transition:all .25s var(--ease);cursor:pointer;text-align:center;}
+.cl-btn svg{width:16px;height:16px;}
+.cl-btn--pri{background:var(--acc);color:var(--on);border-color:var(--acc);}
+.cl-btn--pri:hover{background:var(--acc2);border-color:var(--acc2);transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(31,138,153,.7);}
+.cl-btn--ghost{background:var(--panel);color:var(--ink);border-color:var(--line);}
+.cl-btn--ghost:hover{border-color:var(--acc);color:var(--acc);}
+.cl-btn--light{background:#fff;color:var(--dark);border-color:#fff;}
+.cl-btn--light:hover{transform:translateY(-2px);}
+/* NAV pill */
+.cl-nav{position:sticky;top:0;z-index:60;padding:16px 0;}
+.cl-nav__in{display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:100px;padding:9px 10px 9px 20px;box-shadow:var(--shadow-sm);}
+.cl-logo{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-d);font-size:19px;font-weight:600;color:var(--ink);}
+.cl-mark{width:34px;height:34px;border-radius:11px;background:var(--acc);color:var(--on);display:grid;place-items:center;font-family:var(--font-s);font-weight:700;font-size:15px;}
+.cl-links{display:flex;gap:6px;}
+.cl-links a{font-size:14.5px;font-weight:500;color:var(--muted);padding:9px 15px;border-radius:100px;transition:all .2s;}
+.cl-links a:hover{color:var(--ink);background:var(--tint);}
+@media(max-width:860px){.cl-links{display:none;}}
+/* HERO frosted panel: full-bleed photo that runs up behind the floating nav pill */
+.cl-h1{font-size:clamp(40px,6.2vw,76px);line-height:1.0;letter-spacing:-.03em;}
+.cl-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+.cl-hero{position:relative;isolation:isolate;overflow:hidden;margin-top:-240px;padding-top:240px;background:var(--dark);}
+.cl-hero__bg{position:absolute;inset:0;z-index:-2;}
+.cl-hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;transform:scale(1.03);}
+.cl-hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 52%,rgba(14,49,56,.08),rgba(14,49,56,.38) 100%),
+    linear-gradient(180deg,rgba(8,34,39,.34) 0%,rgba(8,34,39,.06) 34%,rgba(8,34,39,.10) 70%,rgba(8,34,39,.42) 100%);}
+.cl-hero__stage{min-height:clamp(560px,calc(94vh - 100px),800px);display:grid;place-items:center;padding-top:clamp(36px,5vh,64px);padding-bottom:clamp(52px,8vh,88px);}
+.cl-hero__panel{position:relative;width:100%;max-width:780px;text-align:center;padding:clamp(34px,5vw,62px) clamp(22px,5.4vw,70px) clamp(34px,4.6vw,56px);border-radius:32px;
+  background:rgba(250,252,252,.70);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 1px 0 rgba(255,255,255,.85) inset,0 48px 90px -40px rgba(8,34,39,.65);}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){.cl-hero__panel{background:rgba(250,252,252,.95);}}
+.cl-hero__panel .cl-eye{background:rgba(255,255,255,.75);box-shadow:0 0 0 1px rgba(31,138,153,.16) inset;}
+.cl-hero__panel .cl-h1{max-width:13ch;margin:0 auto;}
+.cl-hero__panel .cl-h1 em{color:var(--acc2);}
+.cl-hero__panel .cl-lede{margin:22px auto 0;max-width:44ch;color:#2E4442;}
+.cl-hero__panel .cl-cta{justify-content:center;}
+.cl-hero__panel .cl-btn--ghost{background:rgba(255,255,255,.62);border-color:rgba(14,49,56,.16);}
+.cl-hero__panel .cl-btn--ghost:hover{background:#fff;border-color:var(--acc);}
+.cl-hero__note{margin-top:30px;padding-top:20px;border-top:1px solid rgba(14,49,56,.12);font-size:13.5px;color:#3D5552;}
+@media(max-width:860px){
+  .cl-hero__stage{min-height:0;padding-top:64px;padding-bottom:40px;}
+  .cl-hero__bg img{object-position:30% 50%;}
+}
+@media(max-width:520px){
+  .cl-nav{padding:12px 0;}
+  .cl-nav__in{padding:7px 7px 7px 12px;gap:10px;}
+  .cl-logo{font-size:15.5px;gap:9px;line-height:1.15;}
+  .cl-mark{width:30px;height:30px;font-size:14px;flex:none;}
+  .cl-nav .cl-btn{padding:10px 15px;font-size:13.5px;white-space:nowrap;flex:none;}
+  .cl-hero__stage{padding-top:44px;padding-bottom:32px;}
+  .cl-hero__panel{border-radius:24px;padding-left:18px;padding-right:18px;}
+  .cl-hero__panel .cl-eye{font-size:10.5px;letter-spacing:.12em;padding:7px 12px;}
+  .cl-hero__panel .cl-cta{flex-direction:column;align-items:stretch;}
+  .cl-hero__panel .cl-btn{justify-content:center;}
+}
+/* trust marquee */
+.cl-trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:var(--panel);}
+.cl-trust__in{display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;justify-content:center;}
+.cl-trust span{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;color:var(--muted);}
+.cl-trust span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);}
+/* section head */
+.cl-head{max-width:640px;margin-bottom:clamp(38px,5vw,56px);}
+.cl-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.cl-head h2{font-size:clamp(30px,4.4vw,52px);margin-bottom:16px;}
+/* SERVICES bento */
+.cl-services{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:16px;}
+.cl-svc{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;display:flex;flex-direction:column;}
+.cl-svc:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent;}
+.cl-svc__ic{width:48px;height:48px;border-radius:14px;background:var(--tint);color:var(--acc);display:grid;place-items:center;margin-bottom:auto;}
+.cl-svc__ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;}
+.cl-svc h3{font-size:21px;margin:22px 0 8px;}
+.cl-svc p{color:var(--muted);font-size:15px;line-height:1.55;}
+.cl-svc--wide{grid-column:span 2;}
+.cl-svc--feat{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,var(--dark),var(--dark2));color:#fff;justify-content:flex-end;position:relative;overflow:hidden;}
+.cl-svc--feat .cl-svc__ic{background:rgba(255,255,255,.14);color:#fff;}
+.cl-svc--feat h3{font-size:clamp(26px,3vw,34px);}
+.cl-svc--feat p{color:rgba(255,255,255,.8);font-size:16px;max-width:34ch;}
+.cl-svc--feat::after{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(31,138,153,.5),transparent 70%);}
+@media(max-width:900px){.cl-services{grid-template-columns:repeat(2,1fr);}.cl-svc--feat{grid-column:span 2;grid-row:auto;}.cl-svc--wide{grid-column:span 2;}}
+@media(max-width:520px){.cl-services{grid-template-columns:1fr;}.cl-svc--wide,.cl-svc--feat{grid-column:auto;}}
+/* APPROACH split */
+.cl-split{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,5vw,64px);align-items:center;}
+.cl-split__media{border-radius:26px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/4.4;position:relative;}
+.cl-split__media img{width:100%;height:100%;object-fit:cover;display:block;}
+.cl-split__badge{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:16px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
+.cl-split__badge b{font-family:var(--font-d);font-size:30px;color:var(--acc);line-height:1;}
+.cl-split__badge span{font-size:13.5px;color:var(--muted);}
+.cl-checks{margin-top:28px;display:grid;gap:12px;}
+.cl-checks li{display:flex;gap:13px;align-items:center;font-size:16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;}
+.cl-tick{flex:none;width:28px;height:28px;border-radius:9px;background:var(--tint);color:var(--acc);display:grid;place-items:center;}
+.cl-tick svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:3;}
+@media(max-width:860px){.cl-split{grid-template-columns:1fr;}}
+/* STATS band */
+.cl-band-sec{background:linear-gradient(155deg,var(--dark),var(--dark2));}
+.cl-band{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.cl-band__c{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:34px 24px;text-align:center;}
+.cl-band__c b{display:block;font-family:var(--font-d);font-size:clamp(32px,4.2vw,48px);line-height:1;color:#fff;margin-bottom:10px;}
+.cl-band__c span{font-size:13px;color:rgba(255,255,255,.72);}
+@media(max-width:640px){.cl-band{grid-template-columns:repeat(2,1fr);}}
+/* QUOTE */
+.cl-quote{max-width:900px;margin:0 auto;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:clamp(38px,6vw,64px);box-shadow:var(--shadow-sm);}
+.cl-quote p{font-family:var(--font-d);font-size:clamp(23px,3.2vw,34px);line-height:1.32;margin-bottom:24px;letter-spacing:-.01em;}
+.cl-quote__who{font-size:15px;color:var(--muted);}
+.cl-quote__who b{color:var(--ink);}
+/* CONTACT */
+.cl-contact{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,5vw,56px);align-items:start;}
+.cl-info{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px;}
+.cl-info li{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;}
+.cl-info__ic{width:40px;height:40px;border-radius:12px;background:var(--tint);color:var(--acc);display:grid;place-items:center;flex:none;}
+.cl-info__ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;}
+.cl-info span{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:3px;}
+.cl-info b{font-weight:600;font-size:16px;}
+.cl-form{display:grid;gap:15px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,3vw,34px);box-shadow:var(--shadow-sm);}
+.cl-field{display:grid;gap:6px;}
+.cl-field label{font-size:13px;font-weight:600;}
+.cl-field input,.cl-field select,.cl-field textarea{font-family:inherit;font-size:15px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);}
+.cl-field textarea{min-height:110px;resize:vertical;}
+.cl-field input:focus,.cl-field select:focus,.cl-field textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--tint);}
+@media(max-width:860px){.cl-contact{grid-template-columns:1fr;}}
+/* FOOTER */
+.cl-foot{background:linear-gradient(155deg,var(--dark),var(--dark2));color:rgba(255,255,255,.72);padding:64px 0 34px;}
+.cl-foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.14);}
+.cl-foot .cl-logo{color:#fff;}
+.cl-foot__brand p{margin-top:14px;max-width:34ch;font-size:14.5px;color:rgba(255,255,255,.62);line-height:1.6;}
+.cl-foot h4{font-family:var(--font-s);font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#fff;margin-bottom:14px;}
+.cl-foot ul{list-style:none;padding:0;margin:0;}
+.cl-foot li{margin-bottom:10px;}
+.cl-foot a{color:rgba(255,255,255,.62);font-size:14.5px;}
+.cl-foot a:hover{color:#fff;}
+.cl-foot__bot{padding-top:24px;font-size:13px;color:rgba(255,255,255,.52);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+@media(max-width:720px){.cl-foot__top{grid-template-columns:1fr 1fr;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.is-in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="cl-page">
+<header class="cl-nav"><div class="cl-wrap"><div class="cl-nav__in">
+  <a href="#" class="cl-logo"><span class="cl-mark" data-field="brandMark">C</span> <span data-field="brandName">Clarity Psychiatric NPs</span></a>
+  <nav class="cl-links"><a href="#services">Services</a><a href="#approach">Approach</a><a href="#plans">Insurance</a><a href="#contact">Contact</a></nav>
+  <a href="#contact" class="cl-btn cl-btn--pri" data-field="navCta">Book a visit</a>
+</div></div></header>
+
+<section class="cl-hero">
+  <div class="cl-hero__bg"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=2000&q=80" alt="A bright, calm room with a grey sofa, a small table and plants by the window" data-img="hero"></div>
+  <div class="cl-wrap cl-hero__stage">
+    <div class="cl-hero__panel">
+      <span class="cl-eye"><i></i> <span data-field="heroEyebrow">Psychiatric Nurse Practitioners</span></span>
+      <h1 class="cl-h1" data-field="heroTitle">Accessible psychiatric care, <em>sooner</em></h1>
+      <p class="cl-lede" data-field="heroSub">Psychiatric nurse practitioners providing evaluation, medication and supportive care with shorter wait times.</p>
+      <div class="cl-cta">
+        <a href="#contact" class="cl-btn cl-btn--pri"><span data-field="heroCta1">Book a visit</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#services" class="cl-btn cl-btn--ghost" data-field="heroCta2">Meet the team</a>
+      </div>
+      <p class="cl-hero__note">Visits in our office or by secure video, whichever suits your week.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cl-trust"><div class="cl-wrap cl-trust__in">
+  <span>PMHNP-BC certified</span><span>In-network options</span><span>Same-week visits</span><span>Telehealth</span><span>HIPAA compliant</span>
+</div></section>
+
+<section class="cl-sec" id="services"><div class="cl-wrap">
+  <div class="cl-head reveal">
+    <span class="cl-eye" data-field="servicesEyebrow"><i></i> What we offer</span>
+    <h2 data-field="servicesTitle">Full psychiatric care from PMHNPs.</h2>
+    <p class="cl-lede" data-field="servicesSub">Licensed prescribers focused on the whole person, not just symptoms.</p>
+  </div>
+  <div class="cl-services reveal">
+    <div class="cl-svc cl-svc--feat">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+      <h3 data-field="svc1Title">Psychiatric evaluation</h3>
+      <p data-field="svc1Desc">Comprehensive diagnostic assessment.</p>
+    </div>
+    <div class="cl-svc cl-svc--wide">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div>
+      <h3 data-field="svc2Title">Medication management</h3>
+      <p data-field="svc2Desc">Prescribing, adjustment and monitoring.</p>
+    </div>
+    <div class="cl-svc">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+      <h3 data-field="svc3Title">Anxiety &amp; depression</h3>
+      <p data-field="svc3Desc">First-line care for common conditions.</p>
+    </div>
+    <div class="cl-svc">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+      <h3 data-field="svc4Title">ADHD care</h3>
+      <p data-field="svc4Desc">Evaluation and ongoing treatment.</p>
+    </div>
+    <div class="cl-svc">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+      <h3 data-field="svc5Title">Supportive therapy</h3>
+      <p data-field="svc5Desc">Brief counseling alongside medication.</p>
+    </div>
+    <div class="cl-svc cl-svc--wide">
+      <div class="cl-svc__ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg></div>
+      <h3 data-field="svc6Title">Telehealth</h3>
+      <p data-field="svc6Desc">Video visits across the state.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="cl-sec" id="approach"><div class="cl-wrap"><div class="cl-split reveal">
+  <div class="cl-split__media">
+    <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=1000&q=80" alt="Clarity Psychiatric NPs" loading="lazy" data-img="about">
+    <div class="cl-split__badge"><b>PMHNP-BC</b><span>Board-certified psychiatric<br>nurse practitioners</span></div>
+  </div>
+  <div>
+    <span class="cl-eye" data-field="aboutEyebrow"><i></i> Our approach</span>
+    <h2 style="font-size:clamp(30px,4.4vw,52px)" data-field="aboutTitle">Shorter waits, <em>warmer</em> care.</h2>
+    <p class="cl-lede" style="margin-top:16px;max-width:48ch" data-field="aboutText">Nurse practitioner-led care means you're seen sooner without sacrificing quality.</p>
+    <ul class="cl-checks" style="list-style:none;padding:0">
+      <li data-field="check1"><span class="cl-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Appointments within one week</li>
+      <li data-field="check2"><span class="cl-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Nurse practitioner-led model</li>
+      <li data-field="check3"><span class="cl-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> In-network with most plans</li>
+      <li data-field="check4"><span class="cl-tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span> Medication + brief therapy together</li>
+    </ul>
+  </div>
+</div></div></section>
+
+<section class="cl-sec cl-band-sec"><div class="cl-wrap"><div class="cl-band reveal">
+  <div class="cl-band__c"><b data-field="stat1Num">Online</b><span data-field="stat1Label">Or in person, your choice</span></div>
+  <div class="cl-band__c"><b data-field="stat2Num">12</b><span data-field="stat2Label">PMHNPs on staff</span></div>
+  <div class="cl-band__c"><b data-field="stat3Num">Most plans</b><span data-field="stat3Label">Insurance accepted</span></div>
+  <div class="cl-band__c"><b>Evenings</b><span>Appointments until 7pm</span></div>
+</div></div></section>
+
+<section class="cl-sec"><div class="cl-wrap"><div class="cl-quote reveal">
+  <span class="cl-eye"><i></i> A Note From Our Founder</span>
+  <p data-field="quoteText">&ldquo;Your first visit is a conversation, not a checklist. We talk about what's been going on, what you've already tried and what you want from care, then decide on next steps together.&rdquo;</p>
+  <div class="cl-quote__who"><b data-field="quoteAuthor">Maya Lindqvist, DNP, PMHNP-BC</b> · <span data-field="quoteRole">Founder and lead nurse practitioner</span></div>
+</div></div></section>
+
+<section class="cl-sec" id="plans"><div class="cl-wrap">
+  <div class="cl-head center reveal" style="margin-bottom:0">
+    <span class="cl-eye"><i></i> Insurance &amp; payment</span>
+    <h2>Coverage, Made Simple</h2>
+    <p class="cl-lede">Many insurance plans accepted, plus self-pay options. We'll confirm your coverage before your first visit.</p>
+  </div>
+</div></section>
+
+<section class="cl-sec" id="contact" style="background:var(--panel);border-top:1px solid var(--line)"><div class="cl-wrap"><div class="cl-contact">
+  <div class="reveal">
+    <span class="cl-eye" data-field="contactEyebrow"><i></i> Get in touch</span>
+    <h2 style="font-size:clamp(30px,4.4vw,52px)" data-field="contactTitle">Take the <em>first</em> step.</h2>
+    <p class="cl-lede" style="margin-top:16px" data-field="contactSub">Same-week appointments are usually available. Send us a message.</p>
+    <ul class="cl-info">
+      <li><span class="cl-info__ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg></span><div><span>Phone</span><b data-field="phone">(555) 010-2400</b></div></li>
+      <li><span class="cl-info__ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><span>Email</span><b data-field="email">hello@psychnp.example</b></div></li>
+      <li><span class="cl-info__ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span>Location</span><b data-field="address">Clarity Health, 3rd Floor</b></div></li>
+    </ul>
+  </div>
+  <form class="cl-form reveal" onsubmit="return false">
+    <div class="cl-field"><label for="cl-name">Name</label><input id="cl-name" name="name" type="text" placeholder="Your name" autocomplete="name" required></div>
+    <div class="cl-field"><label for="cl-email">Email</label><input id="cl-email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required></div>
+    <div class="cl-field"><label for="cl-phone">Phone (optional)</label><input id="cl-phone" name="phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel"></div>
+    <div class="cl-field"><label for="cl-pref">Best way to reach you</label><select id="cl-pref" name="preferred_contact"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+    <div class="cl-field"><label for="cl-reason">What can we help with?</label><select id="cl-reason" name="reason"><option>Psychiatric evaluation</option><option>Ongoing care and follow-ups</option><option>ADHD care</option><option>Supportive therapy</option><option>Telehealth visits</option><option>Something else</option></select></div>
+    <p style="font-size:13px;opacity:.8;margin:0">Please don't include health details here. We'll talk it through on the call.</p>
+    <button class="cl-btn cl-btn--pri" type="submit">Book a visit</button>
+  </form>
+</div></div></section>
+
+<footer class="cl-foot"><div class="cl-wrap">
+  <div class="cl-foot__top">
+    <div class="cl-foot__brand"><a href="#" class="cl-logo"><span class="cl-mark" data-field="brandMark">C</span> <span data-field="brandName">Clarity Psychiatric NPs</span></a><p data-field="footerText">Psychiatric nurse practitioner care.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#plans">Insurance</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 010-2400</a></li><li><a href="#contact">hello@psychnp.example</a></li></ul></div>
+  </div>
+  <div class="cl-foot__bot"><span data-field="footerLegal">© 2026 Clarity Psychiatric NPs. All rights reserved.</span><span>A SiteWell Studio website template.</span></div>
+</div><p class="sw-crisis" style="margin:0;padding:16px 20px 6px;font-size:13px;line-height:1.5;text-align:center;opacity:.85">In crisis? Call or text 988 (Suicide &amp; Crisis Lifeline), or call 911 in an emergency.</p>
+</footer>
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>

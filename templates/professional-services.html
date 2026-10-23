@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halstead &amp; Marsh, Chartered accountants &amp; business advisers</title>
+<meta name="description" content="Halstead & Marsh, chartered accountancy and business advisory. Precise, proactive, plain-English advice for sole traders, limited companies and growing firms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2313233A'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>H</text></svg>">
+<style>
+/* ============================================================
+   HALSTEAD & MARSH, bespoke "light corporate editorial" system
+   All custom components prefixed .hm-
+   Palette: "Deep Navy & Steel", authoritative corporate advisory
+   ============================================================ */
+.hm{
+  /* accent + brand */
+  --accent:#2E5A8C;
+  --accent-dark:#244A76;
+  /* structural tones (override template.css defaults) */
+  --ink:#13233A;        /* dark brand tone for dark bands / footer */
+  --ink-2:#0C1826;      /* deepest brand tone / hover on dark */
+  --paper:#F7F8FA;      /* page background */
+  --paper-2:#EEF1F5;    /* soft surface */
+  --paper-3:#E3E6EB;    /* border / image placeholder */
+  --line:#E3E6EB;       /* border */
+  --g-700:#16202E;      /* text on light */
+  --g-500:#79818C;      /* muted text */
+  --g-400:#98A0AB;      /* fainter muted */
+  --g-300:#B7BEC7;      /* faint / disabled */
+  font-family:var(--font-sans);color:var(--g-700);background:var(--paper);-webkit-font-smoothing:antialiased
+}
+.hm img{display:block}
+.hm-wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.hm-rule{height:1px;background:var(--line);border:0;margin:0}
+.hm-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--g-500);font-weight:600;display:flex;align-items:center;gap:10px}
+.hm-eyebrow::before{content:"";width:22px;height:1px;background:var(--ink);display:inline-block}
+
+/* ---- NAV ---- */
+.hm-nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hm-nav__in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.hm-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:600;letter-spacing:.01em}
+.hm-brand__mark{width:34px;height:34px;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--font-display);font-size:19px;font-weight:500}
+.hm-brand__name{font-size:15px}
+.hm-brand__name small{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--g-500);font-weight:600;margin-top:2px}
+.hm-navlinks{display:flex;gap:34px}
+.hm-navlinks a{text-decoration:none;color:var(--g-700);font-size:13.5px;font-weight:500;letter-spacing:.01em;transition:color .2s}
+.hm-navlinks a:hover{color:var(--ink)}
+.hm-cta{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--paper);background:var(--ink);padding:11px 20px;transition:background .2s}
+.hm-cta:hover{background:var(--ink-2)}
+.hm-cta--ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.hm-cta--ghost:hover{background:var(--ink);color:var(--paper)}
+.hm-nav .hm-cta{padding:10px 18px}
+
+/* ---- HERO ---- */
+.hm-hero{padding:clamp(48px,8vw,96px) 0 0}
+.hm-hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hm-h1{font-family:var(--font-display);font-weight:400;font-size:clamp(42px,6.4vw,84px);line-height:.98;letter-spacing:-.02em;margin:26px 0 0}
+.hm-h1 em{font-style:italic;font-weight:400}
+.hm-h1 .hm-sans{font-family:var(--font-sans);font-weight:600;letter-spacing:-.03em}
+.hm-lede{font-size:clamp(15px,1.7vw,18px);line-height:1.6;color:var(--g-700);max-width:46ch;margin:28px 0 0}
+.hm-hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hm-hero__img{aspect-ratio:4/4.6;overflow:hidden;background:var(--paper-3);position:relative}
+.hm-hero__img img{width:100%;height:100%;object-fit:cover}
+.hm-hero__img::after{content:"Cornhill Court · City of London";position:absolute;left:0;bottom:0;background:var(--ink);color:var(--paper);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;font-weight:600}
+/* stat baseline */
+.hm-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:clamp(48px,7vw,88px)}
+.hm-stat{padding:26px 4px 30px;border-left:1px solid var(--line)}
+.hm-stat:first-child{border-left:0}
+.hm-stat b{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,4.6vw,52px);line-height:1;letter-spacing:-.02em;display:block}
+.hm-stat span{display:block;margin-top:10px;font-size:12.5px;color:var(--g-500);letter-spacing:.02em}
+
+/* ---- ACCREDITED STRIP ---- */
+.hm-accred{padding:clamp(40px,6vw,64px) 0;border-top:1px solid var(--line)}
+.hm-accred__in{display:flex;align-items:center;gap:clamp(24px,4vw,60px);flex-wrap:wrap;justify-content:space-between}
+.hm-accred__lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--g-400);font-weight:600;white-space:nowrap}
+.hm-accred__marks{display:flex;gap:clamp(26px,4vw,54px);flex-wrap:wrap;align-items:center}
+.hm-accred__marks span{font-family:var(--font-display);font-size:22px;color:var(--g-500);letter-spacing:.04em}
+
+/* ---- SERVICES (index list) ---- */
+.hm-sec{padding:clamp(56px,9vw,120px) 0}
+.hm-sec--soft{background:var(--paper-2)}
+.hm-shead{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.hm-shead h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1.04;letter-spacing:-.02em;margin:16px 0 0;max-width:14ch}
+.hm-shead p{font-size:15px;line-height:1.65;color:var(--g-700);max-width:42ch}
+.hm-svc{border-top:1px solid var(--ink)}
+.hm-svc__row{display:grid;grid-template-columns:96px 1fr 1.4fr auto;gap:24px;align-items:center;padding:28px 6px;border-bottom:1px solid var(--line);transition:background .25s,padding-left .25s}
+.hm-svc__row:hover{background:var(--paper);padding-left:16px}
+.hm-sec--soft .hm-svc__row:hover{background:#fff}
+.hm-svc__no{font-family:var(--font-display);font-size:clamp(24px,3vw,38px);font-weight:400;color:var(--g-300);letter-spacing:0}
+.hm-svc__row:hover .hm-svc__no{color:var(--ink)}
+.hm-svc__title{font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.01em}
+.hm-svc__desc{font-size:14px;line-height:1.6;color:var(--g-500)}
+.hm-svc__arrow{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--g-400);transition:.25s;flex:none}
+.hm-svc__row:hover .hm-svc__arrow{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:rotate(-45deg)}
+.hm-svc__arrow svg{width:15px;height:15px}
+
+/* ---- RESULTS (dark band, huge numerals) ---- */
+.hm-results{background:linear-gradient(160deg,#13233A,#0C1826);color:var(--paper);padding:clamp(56px,8vw,104px) 0}
+.hm-results__lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--g-400);font-weight:600;margin-bottom:clamp(36px,5vw,56px)}
+.hm-results__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.hm-result{padding:0 clamp(14px,2vw,28px);border-left:1px solid #2c2c2c}
+.hm-result:first-child{border-left:0;padding-left:0}
+.hm-result b{font-family:var(--font-display);font-weight:400;font-size:clamp(48px,7vw,92px);line-height:.9;letter-spacing:-.03em;display:block}
+.hm-result span{display:block;margin-top:18px;font-size:13px;line-height:1.5;color:var(--g-300);max-width:22ch}
+
+/* ---- IMAGE BAND + STATEMENT ---- */
+.hm-band{display:grid;grid-template-columns:1.15fr 1fr;align-items:stretch}
+.hm-band__img{overflow:hidden;min-height:440px;background:var(--paper-3)}
+.hm-band__img img{width:100%;height:100%;object-fit:cover}
+.hm-band__txt{background:var(--paper-2);display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,80px)}
+.hm-quote{font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2.7vw,34px);line-height:1.28;letter-spacing:-.01em}
+.hm-quote::before{content:"";display:block;width:46px;height:2px;background:var(--ink);margin-bottom:28px}
+.hm-quote__who{margin-top:32px;font-family:var(--font-sans);font-size:13.5px;color:var(--g-500)}
+.hm-quote__who b{color:var(--ink);font-weight:600}
+
+/* ---- TEAM ---- */
+.hm-team{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,32px)}
+.hm-member__ph{aspect-ratio:3/3.6;overflow:hidden;background:var(--paper-3);margin-bottom:18px}
+.hm-member__ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.hm-member:hover .hm-member__ph img{transform:scale(1.04)}
+.hm-member h4{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.hm-member span{display:block;margin-top:5px;font-size:12.5px;color:var(--g-500);letter-spacing:.01em}
+.hm-member__no{font-family:var(--font-display);font-size:13px;color:var(--g-400);margin-bottom:12px;display:block}
+
+/* ---- FEES ---- */
+.hm-fees{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.hm-fee{padding:clamp(28px,3.4vw,44px) clamp(24px,2.6vw,36px);border-left:1px solid var(--line);position:relative}
+.hm-fee:first-child{border-left:0}
+.hm-fee--feature{background:linear-gradient(160deg,#13233A,#0C1826);color:var(--paper)}
+.hm-fee__tag{position:absolute;top:0;right:0;background:var(--paper);color:var(--ink);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px}
+.hm-fee__name{font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--g-500)}
+.hm-fee--feature .hm-fee__name{color:var(--g-300)}
+.hm-fee__price{font-family:var(--font-display);font-weight:400;font-size:clamp(44px,5.2vw,64px);line-height:1;letter-spacing:-.02em;margin:20px 0 6px}
+.hm-fee__price small{font-family:var(--font-sans);font-size:15px;font-weight:500;color:var(--g-500)}
+.hm-fee--feature .hm-fee__price small{color:var(--g-300)}
+.hm-fee__sub{font-size:13px;color:var(--g-500);margin-bottom:26px}
+.hm-fee--feature .hm-fee__sub{color:var(--g-300)}
+.hm-fee ul{list-style:none;margin:0 0 30px;padding:0;border-top:1px solid var(--line)}
+.hm-fee--feature ul{border-top-color:#2c2c2c}
+.hm-fee li{display:flex;gap:11px;align-items:flex-start;padding:12px 0;font-size:13.5px;line-height:1.4;color:var(--g-700);border-bottom:1px solid var(--line)}
+.hm-fee--feature li{color:var(--paper-3);border-bottom-color:#2c2c2c}
+.hm-fee li svg{width:15px;height:15px;flex:none;margin-top:2px}
+.hm-fee .hm-cta{width:100%;justify-content:center}
+.hm-fee--feature .hm-cta{background:var(--paper);color:var(--ink)}
+.hm-fee--feature .hm-cta:hover{background:var(--paper-3)}
+
+/* ---- CONTACT ---- */
+.hm-contact{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.hm-contact__img{overflow:hidden;min-height:520px;background:var(--paper-3)}
+.hm-contact__img img{width:100%;height:100%;object-fit:cover}
+.hm-contact__body{padding:clamp(36px,4vw,60px)}
+.hm-contact__body h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 14px}
+.hm-contact__body>p{font-size:14.5px;line-height:1.6;color:var(--g-700);margin:0 0 30px;max-width:44ch}
+.hm-field{margin-bottom:18px}
+.hm-field label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g-500);font-weight:600;margin-bottom:8px}
+.hm-field input,.hm-field select,.hm-field textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:0;border-bottom:1px solid var(--g-300);padding:10px 2px;transition:border-color .2s}
+.hm-field input:focus,.hm-field select:focus,.hm-field textarea:focus{outline:0;border-bottom-color:var(--ink)}
+.hm-field textarea{resize:vertical;min-height:82px}
+.hm-info{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:2px}
+.hm-info li{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.hm-info svg{width:18px;height:18px;color:var(--ink);flex:none}
+.hm-info span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g-400);font-weight:600}
+.hm-info b{display:block;font-size:14.5px;font-weight:500;margin-top:3px}
+.hm-contact__body .hm-cta{margin-top:6px}
+
+/* ---- FOOTER ---- */
+.hm-footer{background:linear-gradient(160deg,#13233A,#0C1826);color:var(--paper);padding:clamp(48px,6vw,80px) 0 36px}
+.hm-footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid #2c2c2c}
+.hm-footer .hm-brand{color:var(--paper)}
+.hm-footer .hm-brand__mark{border-color:var(--paper)}
+.hm-footer .hm-brand__name small{color:var(--g-400)}
+.hm-footer__brand p{font-size:13.5px;line-height:1.65;color:var(--g-400);max-width:40ch;margin:22px 0 0}
+.hm-footer h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--g-400);font-weight:600;margin:6px 0 18px}
+.hm-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.hm-footer a{color:var(--paper-3);text-decoration:none;font-size:13.5px;transition:color .2s}
+.hm-footer a:hover{color:var(--paper)}
+.hm-footer__bot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:12px;color:var(--g-500)}
+
+/* ============================================================
+   ACCENT LAYER, "Deep Navy & Steel" (#2E5A8C)
+   Interactive + decorative elements pick up the accent; dark
+   bands (results / footer / feature card) keep the navy brand.
+   ============================================================ */
+/* eyebrow lines + big statement rule */
+.hm-eyebrow::before{background:var(--accent)}
+.hm-quote::before{background:var(--accent)}
+/* solid accent buttons = accent bg + white text */
+.hm-cta{background:var(--accent);color:#FFFFFF}
+.hm-cta:hover{background:var(--accent-dark)}
+/* ghost button = accent outline/text, fills accent on hover */
+.hm-cta--ghost{background:transparent;color:var(--accent);border-color:var(--accent)}
+.hm-cta--ghost:hover{background:var(--accent);color:#FFFFFF;border-color:var(--accent)}
+/* nav links hover to accent */
+.hm-navlinks a:hover{color:var(--accent)}
+/* services: index numbers + arrow use accent on hover */
+.hm-svc__row:hover .hm-svc__no{color:var(--accent)}
+.hm-svc__row:hover .hm-svc__arrow{background:var(--accent);border-color:var(--accent);color:#FFFFFF}
+/* form focus underline -> accent */
+.hm-field input:focus,.hm-field select:focus,.hm-field textarea:focus{border-bottom-color:var(--accent)}
+/* contact info icons -> accent */
+.hm-info svg{color:var(--accent)}
+/* dark-section hairline borders retinted cool (were #2c2c2c) */
+.hm-result{border-left-color:#2C3E57}
+.hm-fee--feature ul{border-top-color:#2C3E57}
+.hm-fee--feature li{border-bottom-color:#2C3E57}
+.hm-footer__top{border-bottom-color:#2C3E57}
+/* feature (dark) fee card CTA stays light-on-dark */
+.hm-fee--feature .hm-cta{background:#FFFFFF;color:var(--ink)}
+.hm-fee--feature .hm-cta:hover{background:var(--paper-2)}
+
+@media(max-width:920px){
+  .hm-navlinks{display:none}
+  .hm-hero__grid{grid-template-columns:1fr}
+  .hm-hero__img{aspect-ratio:16/10;order:-1}
+  .hm-shead{grid-template-columns:1fr}
+  .hm-svc__row{grid-template-columns:56px 1fr auto;gap:16px}
+  .hm-svc__desc{display:none}
+  .hm-results__grid{grid-template-columns:1fr 1fr;gap:36px 0}
+  .hm-result:nth-child(3){border-left:0;padding-left:0}
+  .hm-band{grid-template-columns:1fr}
+  .hm-band__img{min-height:300px}
+  .hm-team{grid-template-columns:1fr 1fr}
+  .hm-fees{grid-template-columns:1fr}
+  .hm-fee{border-left:0;border-top:1px solid var(--line)}
+  .hm-fee--feature{border-top:0}
+  .hm-contact{grid-template-columns:1fr}
+  .hm-contact__img{min-height:280px;order:-1}
+  .hm-footer__top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .hm-stats{grid-template-columns:1fr;border-top:0}
+  .hm-stat{border-left:0;border-top:1px solid var(--line);padding:22px 0}
+  .hm-results__grid{grid-template-columns:1fr}
+  .hm-result{border-left:0;padding-left:0}
+  .hm-team{grid-template-columns:1fr}
+  .hm-footer__top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="hm">
+
+<!-- NAV -->
+<header class="hm-nav">
+  <div class="hm-wrap hm-nav__in">
+    <a href="#" class="hm-brand">
+      <span class="hm-brand__mark" data-field="brandMark">H</span>
+      <span class="hm-brand__name"><span data-field="brandName">Halstead &amp; Marsh</span><small>Chartered Accountants</small></span>
+    </a>
+    <nav class="hm-navlinks">
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#team">Team</a>
+      <a href="#fees">Fees</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="hm-cta" data-field="navCta">Book a consultation</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hm-hero">
+  <div class="hm-wrap">
+    <div class="hm-hero__grid">
+      <div class="reveal">
+        <span class="hm-eyebrow" data-field="heroEyebrow">Chartered accountants &amp; business advisers</span>
+        <h1 class="hm-h1" data-field="heroTitle"><span class="hm-sans">Numbers handled.</span><br>Decisions made <em>clearer</em>.</h1>
+        <p class="hm-lede" data-field="heroSub">Halstead &amp; Marsh is an advisory-led accountancy firm for owner-managed businesses. We keep your books precise, your tax efficient and your options in plain English, so you run the company, not the paperwork.</p>
+        <div class="hm-hero__actions">
+          <a href="#contact" class="hm-cta" data-field="heroCta1">Book a consultation</a>
+          <a href="#services" class="hm-cta hm-cta--ghost" data-field="heroCta2">View our services</a>
+        </div>
+      </div>
+      <div class="hm-hero__img reveal">
+        <img data-img="hero" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=80" alt="The Halstead & Marsh office">
+      </div>
+    </div>
+    <div class="hm-stats reveal">
+      <div class="hm-stat"><b data-field="stat1Num">£40M+</b><span data-field="stat1Label">Client turnover managed</span></div>
+      <div class="hm-stat"><b data-field="stat2Num">20 yrs</b><span data-field="stat2Label">In continuous practice</span></div>
+      <div class="hm-stat"><b data-field="stat3Num">300+</b><span data-field="stat3Label">Businesses advised</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITED STRIP -->
+<div class="hm-wrap">
+  <section class="hm-accred reveal">
+    <div class="hm-accred__in">
+      <span class="hm-accred__lbl">Regulated &amp; accredited by</span>
+      <div class="hm-accred__marks">
+        <span>ICAEW</span><span>ACCA</span><span>CIOT</span><span>AAT</span><span>ATT</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SERVICES -->
+<section class="hm-sec hm-sec--soft" id="services">
+  <div class="hm-wrap">
+    <div class="hm-shead reveal">
+      <div>
+        <span class="hm-eyebrow">What we do</span>
+        <h2 data-field="servicesTitle">Everything your business needs to stay compliant, and ahead.</h2>
+      </div>
+      <p data-field="servicesSub">From your first invoice to your next funding round, we cover the full picture. One firm, one named adviser, and no surprises at year end.</p>
+    </div>
+    <div class="hm-svc reveal">
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">01</div>
+        <div class="hm-svc__title" data-field="svc1Title">Accounts &amp; tax</div>
+        <div class="hm-svc__desc" data-field="svc1Desc">Statutory year-end accounts and corporation, income and self-assessment returns, filed accurately, on time, every time.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">02</div>
+        <div class="hm-svc__title" data-field="svc2Title">Bookkeeping</div>
+        <div class="hm-svc__desc" data-field="svc2Desc">Cloud bookkeeping kept current and reconciled, with real-time dashboards so you always know where the business stands.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">03</div>
+        <div class="hm-svc__title" data-field="svc3Title">Payroll</div>
+        <div class="hm-svc__desc" data-field="svc3Desc">Fully managed PAYE, pensions auto-enrolment and RTI submissions, your team paid correctly and HMRC kept happy.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">04</div>
+        <div class="hm-svc__title" data-field="svc4Title">Business advisory</div>
+        <div class="hm-svc__desc" data-field="svc4Desc">Forecasting, cash-flow planning and management reporting that turn your numbers into decisions you can actually make.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">05</div>
+        <div class="hm-svc__title" data-field="svc5Title">Audit &amp; assurance</div>
+        <div class="hm-svc__desc" data-field="svc5Desc">Independent statutory audit and assurance engagements delivered with rigour, discretion and minimal disruption.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="hm-svc__row">
+        <div class="hm-svc__no">06</div>
+        <div class="hm-svc__title" data-field="svc6Title">Startup &amp; incorporation</div>
+        <div class="hm-svc__desc" data-field="svc6Desc">Company formation, VAT and PAYE registration and a firm financial footing from day one, without the jargon.</div>
+        <div class="hm-svc__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS BAND -->
+<section class="hm-results" id="results">
+  <div class="hm-wrap reveal">
+    <div class="hm-results__lbl">Measured in outcomes, not hours</div>
+    <div class="hm-results__grid">
+      <div class="hm-result"><b>98%</b><span>Client retention, year on year</span></div>
+      <div class="hm-result"><b>£2.4M</b><span>Tax saved for clients last year</span></div>
+      <div class="hm-result"><b>100%</b><span>Filings submitted on time</span></div>
+      <div class="hm-result"><b>24h</b><span>Average response to a client query</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BAND + STATEMENT -->
+<section>
+  <div class="hm-band reveal">
+    <div class="hm-band__img">
+      <img data-img="about" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80" alt="Advisory meeting with a client" loading="lazy">
+    </div>
+    <div class="hm-band__txt">
+      <blockquote class="hm-quote" data-field="quoteText">
+        We moved to Halstead &amp; Marsh after years of chasing our old accountant for answers. Now the advice arrives before we ask, the fee never moves, and they saved us more in the first year than they cost.
+        <div class="hm-quote__who" data-field="quoteAuthor"><b>Rachel</b> · Director, Northgate Joinery Ltd</div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="hm-sec" id="team">
+  <div class="hm-wrap">
+    <div class="hm-shead reveal">
+      <div>
+        <span class="hm-eyebrow">The partners</span>
+        <h2>People who read the detail so you don't have to.</h2>
+      </div>
+      <p>Every engagement is led by a chartered accountant, qualified, insured and answerable to you directly.</p>
+    </div>
+    <div class="hm-team reveal">
+      <div class="hm-member">
+        <div class="hm-member__ph"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80" alt="Eleanor Halstead" loading="lazy"></div>
+        <span class="hm-member__no">P01</span>
+        <h4>Eleanor Halstead FCA</h4>
+        <span>Managing Partner · Tax</span>
+      </div>
+      <div class="hm-member">
+        <div class="hm-member__ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Daniel Marsh" loading="lazy"></div>
+        <span class="hm-member__no">P02</span>
+        <h4>Daniel Marsh FCCA</h4>
+        <span>Partner · Audit &amp; Assurance</span>
+      </div>
+      <div class="hm-member">
+        <div class="hm-member__ph"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="Priya Anand" loading="lazy"></div>
+        <span class="hm-member__no">P03</span>
+        <h4>Priya Anand ACA</h4>
+        <span>Partner · Business Advisory</span>
+      </div>
+      <div class="hm-member">
+        <div class="hm-member__ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Marcus Reid" loading="lazy"></div>
+        <span class="hm-member__no">P04</span>
+        <h4>Marcus Reid CTA</h4>
+        <span>Head of Tax · Corporate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="hm-sec hm-sec--soft" id="fees">
+  <div class="hm-wrap">
+    <div class="hm-shead reveal">
+      <div>
+        <span class="hm-eyebrow">Fees</span>
+        <h2>Fixed monthly fees, agreed before we start.</h2>
+      </div>
+      <p>Choose the plan that fits where the business is now. Move up or down as it changes, you'll never be tied in or caught out by a bill you didn't expect.</p>
+    </div>
+    <div class="hm-fees reveal">
+      <div class="hm-fee">
+        <div class="hm-fee__name">Sole Trader</div>
+        <div class="hm-fee__price">£45<small>/mo</small></div>
+        <div class="hm-fee__sub">For self-employed &amp; freelancers</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Self-assessment tax return</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Annual accounts preparation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Cloud bookkeeping software</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Email &amp; phone support</li>
+        </ul>
+        <a href="#contact" class="hm-cta hm-cta--ghost">Get started</a>
+      </div>
+      <div class="hm-fee hm-fee--feature">
+        <div class="hm-fee__tag">Most popular</div>
+        <div class="hm-fee__name">Limited Company</div>
+        <div class="hm-fee__price">£120<small>/mo</small></div>
+        <div class="hm-fee__sub">For established companies</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Statutory accounts &amp; CT600</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Director's self-assessment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>VAT returns &amp; bookkeeping</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Payroll for up to 5 staff</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Quarterly review meeting</li>
+        </ul>
+        <a href="#contact" class="hm-cta">Get started</a>
+      </div>
+      <div class="hm-fee">
+        <div class="hm-fee__name">Advisory Retainer</div>
+        <div class="hm-fee__price">£300<small>/mo</small></div>
+        <div class="hm-fee__sub">For scaling &amp; complex firms</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Everything in Limited Company</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Monthly management accounts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Cash-flow forecasting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Strategic tax planning</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>Dedicated partner adviser</li>
+        </ul>
+        <a href="#contact" class="hm-cta hm-cta--ghost">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="hm-sec" id="contact">
+  <div class="hm-wrap">
+    <div class="hm-shead reveal">
+      <div>
+        <span class="hm-eyebrow">Get in touch</span>
+        <h2 data-field="contactTitle">Let's talk about your business.</h2>
+      </div>
+      <p data-field="contactSub">Book a no-obligation consultation. We'll review where you stand, outline what we'd do differently, and give you a fixed fee before you decide anything.</p>
+    </div>
+    <div class="hm-contact reveal">
+      <div class="hm-contact__img">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80" alt="Halstead & Marsh advisory team" loading="lazy">
+      </div>
+      <div class="hm-contact__body">
+        <ul class="hm-info">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg><div><span>Phone</span><b data-field="phone">020 7946 0388</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><span>Email</span><b data-field="email">hello@halsteadmarsh.co.uk</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><span>Office</span><b data-field="address">4 Cornhill Court, London EC3V</b></div></li>
+        </ul>
+        <form>
+          <div class="hm-field"><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+          <div class="hm-field"><label>Email</label><input type="email" placeholder="you@company.co.uk" required></div>
+          <div class="hm-field"><label>Which service do you need?</label>
+            <select><option>Accounts &amp; tax</option><option>Bookkeeping</option><option>Payroll</option><option>Business advisory</option><option>Audit &amp; assurance</option><option>Startup &amp; incorporation</option><option>Not sure yet</option></select>
+          </div>
+          <div class="hm-field"><label>Message</label><textarea placeholder="Tell us a little about your business and what you're looking for…"></textarea></div>
+          <button type="submit" class="hm-cta">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="hm-footer">
+  <div class="hm-wrap">
+    <div class="hm-footer__top">
+      <div class="hm-footer__brand">
+        <a href="#" class="hm-brand">
+          <span class="hm-brand__mark" data-field="brandMark">H</span>
+          <span class="hm-brand__name"><span data-field="brandName">Halstead &amp; Marsh</span><small>Chartered Accountants</small></span>
+        </a>
+        <p data-field="footerText">Chartered accountants and business advisers for owner-managed companies, precise, proactive and always in plain English.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Accounts &amp; tax</a></li><li><a href="#services">Bookkeeping</a></li><li><a href="#services">Payroll</a></li><li><a href="#services">Business advisory</a></li></ul></div>
+      <div><h4>Firm</h4><ul><li><a href="#team">Our partners</a></li><li><a href="#fees">Fees</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy &amp; terms</a></li></ul></div>
+    </div>
+    <div class="hm-footer__bot">
+      <span data-field="footerLegal">© 2026 Halstead &amp; Marsh LLP. Registered in England &amp; Wales.</span>
+      <span>Regulated for a range of investment business activities by the ICAEW.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

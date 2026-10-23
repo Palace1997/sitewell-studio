@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+/* The editor needs the local server (it reads inside the template preview,
+   which browsers block for file://). Bounce to the running server if opened
+   from disk. No-op when already served over http. */
+(function () {
+  if (location.protocol === 'file:') {
+    location.replace('http://localhost:4787/studio/customize.html' + location.hash);
+  }
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>SiteWell Studio | Customize a template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0B362A;--forest2:#072820;--green:#00A583;--green-dark:#00846a;
+  --canvas:#F8F9FB;--panel:#fff;--line:#E5E2DC;--ink:#1B1812;--muted:#8A8480;
+  --font-display:"Fraunces",Georgia,serif;--font-sans:"Inter",-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font-sans);color:var(--ink);background:var(--canvas);height:100vh;overflow:hidden;font-size:15px}
+.app{display:grid;grid-template-columns:400px 1fr;height:100vh}
+/* ---- panel (form) ---- */
+.panel{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;height:100vh}
+.panel__head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;flex:none}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:19px;font-weight:600}
+.logo__mark{width:30px;height:30px;border-radius:8px;background:var(--green);color:#fff;display:grid;place-items:center;font-family:var(--font-sans);font-weight:700;font-size:13px}
+.panel__head small{color:var(--muted);font-size:12px;display:block;margin-top:1px}
+.panel__body{overflow-y:auto;padding:8px 22px 24px;flex:1}
+.group{border-bottom:1px solid var(--line);padding:16px 0}
+.group>summary{font-family:var(--font-display);font-size:16px;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:4px 0}
+.group>summary::-webkit-details-marker{display:none}
+.group>summary::after{content:"+";color:var(--muted);font-size:18px;font-family:var(--font-sans)}
+.group[open]>summary::after{content:"–"}
+.field{margin-top:12px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;letter-spacing:.01em}
+.field input,.field textarea{width:100%;font-family:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--canvas);color:var(--ink)}
+.field textarea{resize:vertical;min-height:58px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field--color{display:flex;align-items:center;gap:12px}
+.field--color input[type=color]{width:46px;height:38px;padding:2px;border-radius:8px;cursor:pointer}
+.field--color input[type=text]{flex:1}
+.imgrow{display:flex;gap:8px;align-items:center}
+.imgrow input[type=text]{flex:1}
+.upload{font-size:12px;font-weight:600;color:var(--green);border:1px solid var(--line);border-radius:8px;padding:9px 10px;cursor:pointer;white-space:nowrap}
+.upload input{display:none}
+.panel__foot{flex:none;padding:16px 22px;border-top:1px solid var(--line);display:flex;gap:10px}
+.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;border-radius:100px;font-size:14px;font-weight:600;border:1.5px solid var(--green);cursor:pointer;font-family:inherit}
+.btn--primary{background:var(--green);color:#fff}.btn--primary:hover{background:var(--green-dark);border-color:var(--green-dark)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line);flex:none;padding:13px 16px}
+.btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+/* ---- saved projects bar ---- */
+.projbar{flex:none;padding:12px 22px;border-top:1px solid var(--line);background:var(--canvas);display:grid;gap:8px}
+.projbar__row{display:flex;gap:8px}
+.projbar select,.projbar input{font-family:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);min-width:0}
+.projbar select{flex:1}.projbar input{flex:1}
+.projbar select:focus,.projbar input:focus{outline:none;border-color:var(--green)}
+.pbtn{font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;white-space:nowrap}
+.pbtn:hover{border-color:var(--green);color:var(--green-dark)}
+.pbtn--save{background:var(--green);color:#fff;border-color:var(--green)}.pbtn--save:hover{background:var(--green-dark);color:#fff}
+.pbtn--file{display:inline-flex;align-items:center;cursor:pointer}.pbtn--file input{display:none}
+/* ---- preview ---- */
+.preview{position:relative;display:flex;flex-direction:column;background:#e9eaec}
+.preview__bar{flex:none;height:52px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:0 14px 0 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+.preview__bar>.tpl{justify-self:start}
+.preview__bar>.seg{justify-self:center}
+.preview__bar>.close-x{justify-self:end}
+.close-x{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;font-size:20px;line-height:1;cursor:pointer;flex:none;transition:.15s}
+.close-x:hover{background:#F5F3EF;border-color:var(--muted);color:var(--ink)}
+.tpl{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:100px;padding:8px 14px;cursor:pointer;max-width:260px}
+.tpl:focus{outline:none;border-color:var(--green)}
+.seg{display:inline-flex;background:var(--canvas);border:1px solid var(--line);border-radius:100px;padding:3px}
+.seg button{border:0;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);padding:6px 16px;border-radius:100px;cursor:pointer}
+.seg button.on{background:var(--forest);color:#fff}
+.preview__stage{flex:1;overflow:auto;display:flex;justify-content:center;padding:22px}
+.frameWrap{background:#fff;box-shadow:0 20px 60px -30px rgba(0,0,0,.4);border-radius:10px;overflow:hidden;transition:width .3s ease;width:100%;max-width:1180px;height:100%}
+.frameWrap.mobile{max-width:390px}
+iframe{width:100%;height:100%;border:0;display:block}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--forest);color:#fff;padding:12px 20px;border-radius:100px;font-size:14px;font-weight:500;opacity:0;transition:.3s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:900px){.app{grid-template-columns:1fr;grid-template-rows:1fr}.preview{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="panel">
+    <div class="panel__head">
+      <span class="logo"><span class="logo__mark">SW</span> Studio</span>
+      <div><small>Click any text or image in the preview to edit it, or use the fields below.</small></div>
+    </div>
+    <div class="panel__body" id="form"></div>
+    <div class="projbar">
+      <div class="projbar__row">
+        <select id="projList" title="Load a saved client project"><option value="">Saved projects…</option></select>
+        <button class="pbtn" id="projDelete" title="Delete the selected project">Delete</button>
+      </div>
+      <div class="projbar__row">
+        <input id="projName" type="text" placeholder="Client / project name" title="Name to save this project under">
+        <button class="pbtn pbtn--save" id="projSave" title="Save the current form as a project">Save</button>
+        <button class="pbtn" id="projExport" title="Export the selected (or current) project as a .json file">Export</button>
+        <label class="pbtn pbtn--file" id="projImport" title="Import a project from a .json file">Import<input type="file" accept="application/json,.json"></label>
+      </div>
+    </div>
+    <div class="panel__foot">
+      <button class="btn btn--ghost" id="reset" title="Reset to defaults"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg></button>
+      <button class="btn btn--primary" id="download"><svg viewBox="0 0 24 24"><path d="M12 3v13M7 12l5 5 5-5M5 21h14"/></svg> Download website</button>
+    </div>
+  </aside>
+  <main class="preview">
+    <div class="preview__bar">
+      <select id="tpl" class="tpl" title="Choose a template">
+        <option value="editable-practice.html">Starter, Practice (universal)</option>
+        <!-- Catalog designs are injected here from ../js/catalog.js so this list
+             always matches the current 30 designs shown on the public site. -->
+      </select>
+      <div class="seg"><button data-w="desktop" class="on">Desktop</button><button data-w="mobile">Mobile</button></div>
+      <a href="../index.html" id="closeStudio" class="close-x" title="Close Studio, back to homepage" aria-label="Close Studio">&times;</a>
+      <span style="width:150px"></span>
+    </div>
+    <div class="preview__stage"><div class="frameWrap" id="frameWrap"><iframe id="frame" src="editable-practice.html"></iframe></div></div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- Keep the template picker in sync with the public catalog (single source of truth) -->
+<script src="../js/catalog.js?v=20261023a"></script>
+<script>
+(function () {
+  var C = window.SW_CATALOG, sel = document.getElementById('tpl');
+  if (!C || !sel) return;
+  function typeName(id) { for (var i = 0; i < C.types.length; i++) if (C.types[i].id === id) return C.types[i].name; return ''; }
+  var built = C.designs.filter(function (d) { return !d.soon; });
+  C.areas.forEach(function (a) {
+    var ds = built.filter(function (d) { return d.area === a.id; });
+    if (!ds.length) return;
+    var og = document.createElement('optgroup');
+    og.label = a.name;
+    ds.forEach(function (d) {
+      var o = document.createElement('option');
+      o.value = '../' + d.file;
+      o.textContent = d.name + ', ' + typeName(d.type);
+      og.appendChild(o);
+    });
+    sel.appendChild(og);
+  });
+})();
+</script>
+
+<script>
+// ---- field configuration (maps form -> template data-field / data-img / colour) ----
+const GROUPS = [
+  {title:"Brand & colour", open:true, fields:[
+    {id:"brandName", label:"Business name", type:"text"},
+    {id:"navCta", label:"Button label (nav)", type:"text"},
+    {id:"accent", label:"Brand colour", type:"color"},
+    {id:"hero", label:"Hero image", type:"image"},
+    {id:"about", label:"About image", type:"image"},
+  ]},
+  {title:"Hero", fields:[
+    {id:"heroEyebrow", label:"Eyebrow", type:"text"},
+    {id:"heroTitle", label:"Headline", type:"textarea"},
+    {id:"heroSub", label:"Sub-headline", type:"textarea"},
+    {id:"heroCta1", label:"Primary button", type:"text", half:true},
+    {id:"heroCta2", label:"Secondary button", type:"text", half:true},
+    {id:"trustText", label:"Trust line", type:"text"},
+  ]},
+  {title:"Services", fields:[
+    {id:"servicesTitle", label:"Section heading", type:"text"},
+    {id:"servicesSub", label:"Section sub-line", type:"text"},
+    {id:"svc1Title", label:"Service 1, title", type:"text"},{id:"svc1Desc", label:"Service 1, description", type:"textarea"},
+    {id:"svc2Title", label:"Service 2, title", type:"text"},{id:"svc2Desc", label:"Service 2, description", type:"textarea"},
+    {id:"svc3Title", label:"Service 3, title", type:"text"},{id:"svc3Desc", label:"Service 3, description", type:"textarea"},
+    {id:"svc4Title", label:"Service 4, title", type:"text"},{id:"svc4Desc", label:"Service 4, description", type:"textarea"},
+    {id:"svc5Title", label:"Service 5, title", type:"text"},{id:"svc5Desc", label:"Service 5, description", type:"textarea"},
+    {id:"svc6Title", label:"Service 6, title", type:"text"},{id:"svc6Desc", label:"Service 6, description", type:"textarea"},
+  ]},
+  {title:"About", fields:[
+    {id:"aboutTitle", label:"Heading", type:"text"},
+    {id:"aboutText", label:"Paragraph", type:"textarea"},
+    {id:"check1", label:"Point 1", type:"text"},{id:"check2", label:"Point 2", type:"text"},
+    {id:"check3", label:"Point 3", type:"text"},{id:"check4", label:"Point 4", type:"text"},
+  ]},
+  {title:"Stats", fields:[
+    {id:"stat1Num", label:"Stat 1, number", type:"text", half:true},{id:"stat1Label", label:"Stat 1, label", type:"text", half:true},
+    {id:"stat2Num", label:"Stat 2, number", type:"text", half:true},{id:"stat2Label", label:"Stat 2, label", type:"text", half:true},
+    {id:"stat3Num", label:"Stat 3, number", type:"text", half:true},{id:"stat3Label", label:"Stat 3, label", type:"text", half:true},
+  ]},
+  {title:"Testimonial", fields:[
+    {id:"quoteText", label:"Quote", type:"textarea"},
+    {id:"quoteAuthor", label:"Author", type:"text", half:true},{id:"quoteRole", label:"Role / location", type:"text", half:true},
+  ]},
+  {title:"Contact", fields:[
+    {id:"contactTitle", label:"Heading", type:"text"},
+    {id:"contactSub", label:"Sub-line", type:"text"},
+    {id:"phone", label:"Phone", type:"text", half:true},{id:"email", label:"Email", type:"text", half:true},
+    {id:"address", label:"Address", type:"text"},{id:"hours", label:"Opening hours", type:"text"},
+  ]},
+  {title:"Footer", fields:[
+    {id:"footerText", label:"Closing line", type:"text"},
+    {id:"footerLegal", label:"Legal / copyright", type:"text"},
+  ]},
+];
+
+const frame = document.getElementById('frame');
+const form = document.getElementById('form');
+let doc = null; // iframe document
+
+// darken a hex colour ~20% for hover/dark accent
+function darken(hex){
+  const m = hex.replace('#',''); if(m.length!==6) return hex;
+  const n = p=>Math.max(0,Math.round(parseInt(m.substr(p,2),16)*0.8)).toString(16).padStart(2,'0');
+  return '#'+n(0)+n(2)+n(4);
+}
+function setField(id,val){ if(!doc)return; doc.querySelectorAll('[data-field="'+id+'"]').forEach(el=>el.textContent=val); }
+function setImg(id,src){ if(!doc)return; const el=doc.querySelector('[data-img="'+id+'"]'); if(el)el.src=src; }
+function setAccent(hex){ if(!doc)return; const d=darken(hex);
+  let st=doc.getElementById('d7-accent'); if(!st){st=doc.createElement('style');st.id='d7-accent';doc.head.appendChild(st);}
+  // '*' + !important overrides the template's own scoped --acc/--accent definitions wherever they sit
+  st.textContent='*{--acc:'+hex+'!important;--accent:'+hex+'!important;--acc2:'+d+'!important;--accent-dark:'+d+'!important}';
+}
+// Studio-only: reveal-on-scroll elements shown immediately while editing (removed on export)
+function ensurePreviewStyle(){ if(!doc)return; if(doc.getElementById('d7-studio-only'))return; const s=doc.createElement('style');s.id='d7-studio-only';s.textContent='.reveal{opacity:1!important;transform:none!important}';doc.head.appendChild(s); }
+function updateMark(name){ if(!doc)return; const ltr=(name.trim()[0]||'Y').toUpperCase(); doc.querySelectorAll('[data-field="brandMark"]').forEach(el=>el.textContent=ltr); }
+function toggleCard(n){ if(!doc)return; const t=(document.getElementById('f_svc'+n+'Title').value||'').trim(); const card=doc.querySelector('[data-card="'+n+'"]'); if(card)card.dataset.empty=t?'0':'1'; }
+function toggleCheck(n){ if(!doc)return; const v=(document.getElementById('f_check'+n).value||'').trim(); const li=doc.querySelector('[data-check="'+n+'"]'); if(li)li.dataset.empty=v?'0':'1'; }
+
+// build the form
+GROUPS.forEach((g,gi)=>{
+  const d=document.createElement('details'); d.className='group'; if(g.open)d.open=true;
+  d.innerHTML='<summary>'+g.title+'</summary>';
+  let holder=d;
+  for(let i=0;i<g.fields.length;i++){
+    const f=g.fields[i];
+    const wrap=document.createElement('div'); wrap.className='field'+(f.type==='color'?' field--color':'');
+    if(f.type==='image'){
+      wrap.innerHTML='<label>'+f.label+'</label><div class="imgrow"><input type="text" id="f_'+f.id+'" placeholder="Image URL"><label class="upload">Upload<input type="file" accept="image/*" data-img="'+f.id+'"></label></div>';
+    } else if(f.type==='color'){
+      wrap.innerHTML='<label style="width:100%">'+f.label+'</label><input type="color" id="c_'+f.id+'" value="#2E8B8B"><input type="text" id="f_'+f.id+'" value="#2E8B8B">';
+    } else if(f.type==='textarea'){
+      wrap.innerHTML='<label>'+f.label+'</label><textarea id="f_'+f.id+'"></textarea>';
+    } else {
+      wrap.innerHTML='<label>'+f.label+'</label><input type="text" id="f_'+f.id+'">';
+    }
+    // pack half-width pairs into a row
+    if(f.half && g.fields[i+1] && g.fields[i+1].half){
+      const row=document.createElement('div'); row.className='row2'; row.appendChild(wrap);
+      const f2=g.fields[++i]; const w2=document.createElement('div'); w2.className='field';
+      w2.innerHTML='<label>'+f2.label+'</label>'+(f2.type==='textarea'?'<textarea id="f_'+f2.id+'"></textarea>':'<input type="text" id="f_'+f2.id+'">');
+      row.appendChild(w2); holder.appendChild(row);
+    } else holder.appendChild(wrap);
+  }
+  form.appendChild(d);
+});
+
+// attach input listeners ONCE (they read the live `doc`, which is refreshed on each iframe load)
+function attach(){
+  GROUPS.forEach(g=>g.fields.forEach(f=>{
+    const inp=document.getElementById('f_'+f.id); if(!inp)return;
+    if(f.type==='image'){
+      inp.addEventListener('input',()=>setImg(f.id,inp.value));
+      const file=document.querySelector('input[type=file][data-img="'+f.id+'"]');
+      if(file)file.addEventListener('change',()=>{const fr=file.files[0];if(!fr)return;const rd=new FileReader();rd.onload=e=>{inp.value=e.target.result;setImg(f.id,e.target.result);};rd.readAsDataURL(fr);});
+    } else if(f.type==='color'){
+      inp.addEventListener('input',()=>{setAccent(inp.value);if(/^#[0-9a-fA-F]{6}$/.test(inp.value))document.getElementById('c_'+f.id).value=inp.value;});
+      document.getElementById('c_'+f.id).addEventListener('input',e=>{inp.value=e.target.value;setAccent(e.target.value);});
+    } else {
+      inp.addEventListener('input',()=>{
+        setField(f.id,inp.value);
+        if(f.id==='brandName')updateMark(inp.value);
+        const sm=f.id.match(/^svc(\d)Title$/); if(sm)toggleCard(sm[1]);
+        const cm=f.id.match(/^check(\d)$/); if(cm)toggleCheck(cm[1]);
+      });
+    }
+  }));
+}
+// on each (re)load: point `doc` at the new template and pull its defaults into the form
+function populate(){
+  doc = frame.contentDocument; if(!doc)return;
+  ensurePreviewStyle();
+  doc.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in')); // show all sections while editing
+  initInlineEditor(); // enable click-to-edit on the live preview
+  GROUPS.forEach(g=>g.fields.forEach(f=>{
+    const inp=document.getElementById('f_'+f.id); if(!inp)return;
+    if(f.type==='image'){
+      const el=doc.querySelector('[data-img="'+f.id+'"]');
+      inp.value=el?(el.getAttribute('src')||''):''; inp.disabled=!el;
+    } else if(f.type==='color'){
+      const rs=getComputedStyle(doc.documentElement);
+      let cur=(rs.getPropertyValue('--acc')||rs.getPropertyValue('--accent')||'#2E8B8B').trim(); if(!/^#/.test(cur))cur='#2E8B8B';
+      inp.value=cur; if(/^#[0-9a-fA-F]{6}$/.test(cur))document.getElementById('c_'+f.id).value=cur;
+    } else {
+      const el=doc.querySelector('[data-field="'+f.id+'"]');
+      if(el){inp.value=el.textContent.trim(); inp.disabled=false;} else {inp.value=''; inp.disabled=true;}
+    }
+  }));
+  for(let n=1;n<=6;n++)toggleCard(n); for(let n=1;n<=4;n++)toggleCheck(n);
+}
+attach();
+frame.addEventListener('load',populate);
+// template picker (cache-bust so freshly-instrumented templates always load)
+document.getElementById('tpl').addEventListener('change',e=>{frame.src=e.target.value+'?t='+Date.now();});
+
+// device toggle
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.seg button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  document.getElementById('frameWrap').classList.toggle('mobile',b.dataset.w==='mobile');
+  if(typeof d7Deselect==='function') d7Deselect(); // overlay coords go stale when the frame resizes
+}));
+
+// toast helper
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
+
+// download finished site
+async function inlineAsset(clone,selector,make){
+  const el=clone.querySelector(selector); if(!el)return;
+  try{ const txt=await (await fetch(el.href||el.src)).text(); el.replaceWith(make(txt)); }catch(e){/* leave external ref if fetch fails */}
+}
+document.getElementById('download').addEventListener('click',async ()=>{
+  if(!doc)return;
+  const clone=doc.documentElement.cloneNode(true);
+  clone.querySelectorAll('[data-empty="1"]').forEach(el=>el.remove());
+  const so=clone.querySelector('#d7-studio-only'); if(so)so.remove(); // keep scroll animations in the delivered file
+  clone.querySelectorAll('.reveal.is-in').forEach(e=>e.classList.remove('is-in')); // restore reveal-on-scroll for visitors
+  // strip inline-editor artefacts (KEEP the user's image size/position inline styles)
+  clone.querySelectorAll('#d7-editor-style,#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar').forEach(el=>el.remove());
+  clone.querySelectorAll('[data-d7del]').forEach(el=>el.remove()); // actually remove deleted elements from the delivered file
+  clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  clone.querySelectorAll('.d7-hi').forEach(el=>el.classList.remove('d7-hi'));
+  // persist "remove decoration": the editor CSS is stripped, so bake a rule for [data-d7nodeco] (and keep the attribute)
+  if(clone.querySelector('[data-d7nodeco]')){ const nd=doc.createElement('style'); nd.textContent='[data-d7nodeco]::before,[data-d7nodeco]::after{content:none!important;display:none!important}'; (clone.querySelector('head')||clone).appendChild(nd); }
+  ['data-d7z','data-d7b','data-d7zi','data-d7float','data-d7ow','data-d7oh','data-d7ov','data-d7fr'].forEach(a=>clone.querySelectorAll('['+a+']').forEach(el=>el.removeAttribute(a)));
+  // .d7-frame wrappers + .d7-ph placeholders are KEPT (they hold the crop/size/placement and keep the layout stable)
+  // make the file self-contained: inline the shared template.css + template.js (bespoke templates use them)
+  await inlineAsset(clone,'link[rel="stylesheet"][href*="template.css"]',css=>{const s=doc.createElement('style');s.textContent=css;return s;});
+  await inlineAsset(clone,'script[src*="template.js"]',js=>{const s=doc.createElement('script');s.textContent=js;return s;});
+  const html='<!DOCTYPE html>\n'+clone.outerHTML;
+  const name=((document.getElementById('f_brandName').value||'website').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))||'website';
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name+'.html';a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Downloaded '+name+'.html, self-contained & ready to deploy');
+});
+
+// reset
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Reset the preview to the starting template?')){ frame.src=document.getElementById('tpl').value+'?t='+Date.now(); }
+});
+
+// close studio → back to homepage (confirm so unsaved edits aren't lost by accident)
+document.getElementById('closeStudio').addEventListener('click',e=>{
+  if(!confirm('Close the Studio and go back to the homepage?\n\nUnsaved edits will be lost, use Save or Download first if you want to keep them.')) e.preventDefault();
+});
+
+// ============ Inline click-to-edit editor (text + free image drag/resize) ============
+// Adds direct-manipulation editing INTO the live preview: click any text to edit it,
+// click any image to move/resize/replace it. Instrumented fields also sync the form.
+// The export handler strips this editor's UI but keeps the user's edits.
+let d7Sel=null, d7drag=null, d7SelBox=null;
+function d7EditorCSS(){ return [
+  'img{cursor:pointer}',
+  '.d7-hi{outline:2px dashed rgba(0,165,131,.6)!important;outline-offset:2px}',
+  '[contenteditable="true"]{outline:2px solid #00A583!important;outline-offset:2px;cursor:text}',
+  '#d7-imgbox{position:absolute;border:2px solid #00A583;box-sizing:border-box;z-index:2147482000;pointer-events:none}',
+  '#d7-imgbox .d7-pan{position:absolute;inset:0;cursor:move;pointer-events:auto}',
+  '#d7-imgbox .d7-c{position:absolute;width:13px;height:13px;border:2px solid #00A583;background:#fff;border-radius:50%;box-sizing:border-box;pointer-events:auto}',
+  '#d7-imgbox .d7-c.tl{left:-7px;top:-7px;cursor:nwse-resize}#d7-imgbox .d7-c.tr{right:-7px;top:-7px;cursor:nesw-resize}#d7-imgbox .d7-c.bl{left:-7px;bottom:-7px;cursor:nesw-resize}#d7-imgbox .d7-c.br{right:-7px;bottom:-7px;cursor:nwse-resize}',
+  '#d7-ctx{position:fixed;z-index:2147483002;min-width:172px;background:#fff;color:#1B1812;border:1px solid #E5E2DC;border-radius:9px;padding:5px;font:500 13px/1.1 Inter,sans-serif;box-shadow:0 14px 34px rgba(0,0,0,.22)}',
+  '#d7-ctx button{display:block;width:100%;text-align:left;background:none;border:0;border-radius:6px;padding:9px 11px;cursor:pointer;color:inherit;font:inherit}',
+  '#d7-ctx button:hover{background:#F0F6F3;color:#00846a}',
+  '#d7-ctx hr{border:0;border-top:1px solid #E5E2DC;margin:4px 2px}',
+  '[data-d7nodeco]::before,[data-d7nodeco]::after{content:none!important;display:none!important}',
+  '#d7-imgbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:2147483000;background:#0B362A;color:#fff;border-radius:9px;padding:7px 10px;display:flex;gap:9px;align-items:center;font:600 12px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.32)}',
+  '#d7-imgbar .d7-zoom{display:flex;align-items:center;gap:7px}',
+  '#d7-imgbar .d7-lbl{opacity:.75}',
+  '#d7-imgbar input[type=range]{width:108px;accent-color:#00A583;cursor:pointer}',
+  '#d7-imgbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 10px;cursor:pointer;font:inherit}',
+  '#d7-imgbar button:hover{background:#00A583}',
+  '#d7-imgbar .d7-bright{accent-color:#f5c451}',
+  '#d7-txtbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:2147483000;background:#0B362A;color:#fff;border-radius:9px;padding:6px 9px;display:flex;gap:7px;align-items:center;font:600 12px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.32)}',
+  '#d7-txtbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 9px;cursor:pointer;font:inherit;min-width:30px}',
+  '#d7-txtbar button:hover,#d7-txtbar button.on{background:#00A583}',
+  '#d7-txtbar input[type=color]{width:30px;height:28px;padding:0;border:0;background:none;cursor:pointer;border-radius:6px}',
+  '#d7-txtbar .d7-sz{min-width:30px;text-align:center;font-variant-numeric:tabular-nums}',
+  '#d7-txtbar .d7-sep{width:1px;height:20px;background:rgba(255,255,255,.22)}'
+].join(''); }
+function d7HasText(el){ for(const n of el.childNodes){ if(n.nodeType===3 && n.textContent.trim()) return true; } return false; }
+function d7TextTarget(el){
+  if(!el||el.nodeType!==1) return null;
+  if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return null;
+  let n=el;
+  while(n && n!==doc.body){ if(d7HasText(n)) return n; n=n.parentElement; }
+  return null;
+}
+function d7ClearHi(){ doc.querySelectorAll('.d7-hi').forEach(e=>e.classList.remove('d7-hi')); }
+function initInlineEditor(){
+  if(!doc || doc.__d7ed) return; doc.__d7ed=true; d7Sel=null; d7EditEl=null; d7SelBox=null;
+  const st=doc.createElement('style'); st.id='d7-editor-style'; st.textContent=d7EditorCSS(); doc.head.appendChild(st);
+  const body=doc.body;
+  body.addEventListener('mouseover',e=>{ if(d7drag)return; d7ClearHi();
+    if(e.target.tagName==='IMG'){ e.target.classList.add('d7-hi'); return; }
+    const t=d7TextTarget(e.target); if(t) t.classList.add('d7-hi'); });
+  body.addEventListener('mouseout',()=>{ if(!d7drag) d7ClearHi(); });
+  body.addEventListener('click',e=>{
+    const tgt=e.target;
+    if(tgt.closest && tgt.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return;
+    if(e.altKey){ const im=d7ImgUnder(e.clientX,e.clientY); if(im){ e.preventDefault(); e.stopPropagation(); d7SelectImg(im); return; } } // grab an image behind other content
+    if(tgt.tagName==='IMG'){ e.preventDefault(); e.stopPropagation(); d7SelectImg(tgt); return; }
+    const t=d7TextTarget(tgt);
+    if(t){ const a=tgt.closest('a'); if(a) e.preventDefault(); d7Deselect(); d7MakeEditable(t); return; }
+    const under=d7ImgUnder(e.clientX,e.clientY); // no text/top-image here → grab any image beneath (e.g. one sent to back)
+    if(under){ e.preventDefault(); e.stopPropagation(); d7SelectImg(under); return; }
+    d7Deselect();
+  }, true);
+  body.addEventListener('contextmenu',e=>{
+    if(e.target.closest && e.target.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return;
+    e.preventDefault();
+    const img=(e.target.tagName==='IMG')?e.target:(e.altKey?d7ImgUnder(e.clientX,e.clientY):null);
+    if(img){ d7SelectImg(img); d7ShowMenu(e.clientX,e.clientY,img); }
+    else { d7ShowMenu(e.clientX,e.clientY,e.target); } // generic element menu (edit / remove decoration / delete)
+  });
+  doc.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&(e.key==='z'||e.key==='Z')){ const ae=doc.activeElement; if(ae&&ae.getAttribute&&ae.getAttribute('contenteditable')==='true') return; if(d7DelStack.length){ e.preventDefault(); d7UndoDelete(); } } });
+  body.addEventListener('mousedown',e=>{ const m=doc.getElementById('d7-ctx'); if(m && m.style.display!=='none' && !(e.target.closest&&e.target.closest('#d7-ctx'))) m.style.display='none'; }, true);
+  doc.defaultView.addEventListener('scroll',()=>{ if(d7Sel) d7PositionBox(); }, true);
+}
+// Text editing uses a commit-on-next-action model (no blur races): the element stays editable
+// with a floating text toolbar until you pick another element / click empty / press Done.
+let d7EditEl=null;
+function d7OnEditInput(){ const el=d7EditEl; if(!el)return; const id=el.getAttribute('data-field'); if(id){ const inp=document.getElementById('f_'+id); if(inp) inp.value=el.textContent.trim(); } }
+function d7OnEditPaste(ev){ ev.preventDefault(); const t=(ev.clipboardData||doc.defaultView.clipboardData).getData('text/plain'); doc.execCommand('insertText',false,t); }
+function d7CommitText(){ if(d7EditEl){ d7EditEl.removeAttribute('contenteditable'); d7EditEl.removeEventListener('input',d7OnEditInput); d7EditEl.removeEventListener('paste',d7OnEditPaste); d7EditEl=null; } const b=doc.getElementById('d7-txtbar'); if(b)b.style.display='none'; }
+function d7MakeEditable(el){
+  if(d7EditEl===el){ el.focus(); return; }
+  d7CommitText();
+  el.setAttribute('contenteditable','true'); el.focus(); d7EditEl=el;
+  el.addEventListener('input',d7OnEditInput); el.addEventListener('paste',d7OnEditPaste);
+  d7ShowTextBar(el);
+}
+function d7RgbToHex(rgb){ const m=rgb&&rgb.match(/\d+/g); if(!m)return null; return '#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join(''); }
+function d7EnsureTextBar(){
+  let b=doc.getElementById('d7-txtbar'); if(b) return b;
+  b=doc.createElement('div'); b.id='d7-txtbar'; b.style.display='none';
+  b.innerHTML='<button data-t="dec">A-</button><span class="d7-sz">16</span><button data-t="inc">A+</button>'
+    +'<span class="d7-sep"></span><input type="color" title="Text colour">'
+    +'<span class="d7-sep"></span><button data-t="bold" style="font-weight:800">B</button><button data-t="italic" style="font-style:italic">I</button>'
+    +'<span class="d7-sep"></span><button data-t="left" title="Align left">☷</button><button data-t="center" title="Align centre">≡</button><button data-t="right" title="Align right">☷</button>'
+    +'<span class="d7-sep"></span><button data-t="done">Done</button>';
+  doc.body.appendChild(b);
+  b.addEventListener('mousedown',e=>{ if(e.target.tagName!=='INPUT') e.preventDefault(); }); // keep the text focused while using the bar
+  b.addEventListener('click',e=>{ const t=e.target.getAttribute&&e.target.getAttribute('data-t'); if(t) d7TextAction(t); });
+  b.querySelector('input[type=color]').addEventListener('input',e=>{ if(d7EditEl) d7EditEl.style.color=e.target.value; });
+  return b;
+}
+function d7ShowTextBar(el){
+  ['d7-imgbox','d7-imgbar','d7-ctx'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; });
+  const b=d7EnsureTextBar(); b.style.display='flex';
+  const cs=doc.defaultView.getComputedStyle(el);
+  b.querySelector('.d7-sz').textContent=Math.round(parseFloat(cs.fontSize));
+  const col=d7RgbToHex(cs.color); if(col) b.querySelector('input[type=color]').value=col;
+  b.querySelector('[data-t="bold"]').classList.toggle('on', parseInt(cs.fontWeight)>=600);
+  b.querySelector('[data-t="italic"]').classList.toggle('on', cs.fontStyle==='italic');
+}
+function d7TextAction(t){ const el=d7EditEl; if(t==='done'){ d7CommitText(); return; } if(!el)return;
+  const bar=doc.getElementById('d7-txtbar'), cs=doc.defaultView.getComputedStyle(el);
+  let sz=parseFloat(el.style.fontSize||cs.fontSize);
+  if(t==='dec'){ sz=Math.max(8,sz-2); el.style.fontSize=sz+'px'; bar.querySelector('.d7-sz').textContent=Math.round(sz); }
+  else if(t==='inc'){ sz=sz+2; el.style.fontSize=sz+'px'; bar.querySelector('.d7-sz').textContent=Math.round(sz); }
+  else if(t==='bold'){ const on=parseInt(el.style.fontWeight||cs.fontWeight)>=600; el.style.fontWeight=on?'400':'700'; bar.querySelector('[data-t="bold"]').classList.toggle('on',!on); }
+  else if(t==='italic'){ const on=(el.style.fontStyle||cs.fontStyle)==='italic'; el.style.fontStyle=on?'normal':'italic'; bar.querySelector('[data-t="italic"]').classList.toggle('on',!on); }
+  else if(t==='left'||t==='center'||t==='right'){ el.style.textAlign=t; }
+  el.focus();
+}
+// --- Image editing: resize the FRAME (corner handles) · zoom the CONTENT inside (slider) ·
+//     drag to move freely · right-click for layer options. Each edited image is wrapped once
+//     in a fixed .d7-frame (overflow:hidden) so zoom crops the photo without growing the box. ---
+let d7zTop=200;
+function d7Frame(img){ const p=img&&img.parentElement; return (p&&p.classList&&p.classList.contains('d7-frame'))?p:null; }
+function d7EnsureFrame(img){
+  let fr=d7Frame(img); if(fr) return fr;
+  const win=doc.defaultView, r=img.getBoundingClientRect(), cs=win.getComputedStyle(img);
+  fr=doc.createElement('span'); fr.className='d7-frame';
+  fr.style.display=(cs.display.indexOf('inline')>-1)?'inline-block':'block';
+  fr.style.width=r.width+'px'; fr.style.height=r.height+'px';
+  fr.style.overflow='hidden'; fr.style.lineHeight='0'; fr.style.verticalAlign='top'; fr.style.maxWidth='none';
+  fr.style.borderRadius=cs.borderRadius; fr.style.boxShadow=cs.boxShadow;
+  if(cs.position!=='static'){ fr.style.position=cs.position; fr.style.top=cs.top; fr.style.left=cs.left; fr.style.right=cs.right; fr.style.bottom=cs.bottom; }
+  else fr.style.position='relative';
+  img.parentNode.insertBefore(fr,img); fr.appendChild(img);
+  img.style.width='100%'; img.style.height='100%'; img.style.display='block'; img.style.margin='0';
+  img.style.objectFit=(cs.objectFit&&cs.objectFit!=='fill')?cs.objectFit:'cover';
+  img.style.transformOrigin='center'; img.style.borderRadius='0'; img.style.boxShadow='none'; img.style.maxWidth='none'; img.style.position='static'; img.style.inset='';
+  fr.dataset.d7ow=r.width; fr.dataset.d7oh=r.height; // original frame size (for Reset)
+  return fr;
+}
+function d7ImgUnder(x,y){ const els=doc.elementsFromPoint(x,y); for(const el of els){ if(el.tagName==='IMG') return el; if(el.classList&&el.classList.contains('d7-frame')){ const im=el.querySelector('img'); if(im) return im; } } return null; }
+// The "positionable box" for the current selection: an image's .d7-frame, or any generic element in move mode.
+function d7CurBox(){ if(d7Sel) return d7Frame(d7Sel); if(d7SelBox) return d7SelBox; return null; }
+// Put ANY element into move/resize mode (same drag engine as images).
+function d7SelectBox(el){ if(!el||el===doc.body)return; d7CommitText(); d7Sel=null; d7SelBox=el; d7EnsureBox();
+  const bar=doc.getElementById('d7-imgbar'); if(bar) bar.style.display='none'; // image-only controls don't apply to a generic element
+  d7PositionBox();
+}
+function d7SelectImg(img){
+  d7CommitText(); d7SelBox=null; d7Sel=img; d7EnsureFrame(img); d7EnsureBox();
+  const bar=doc.getElementById('d7-imgbar');
+  const sl=bar.querySelector('.d7-zoomrange'); if(sl) sl.value=parseFloat(img.dataset.d7z||'1');
+  const bi=bar.querySelector('.d7-bright'); if(bi) bi.value=parseFloat(img.dataset.d7b||'1');
+  d7PositionBox();
+}
+function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
+function d7EnsureBox(){
+  let box=doc.getElementById('d7-imgbox');
+  if(!box){ box=doc.createElement('div'); box.id='d7-imgbox';
+    box.innerHTML='<div class="d7-pan"></div><div class="d7-c tl"></div><div class="d7-c tr"></div><div class="d7-c bl"></div><div class="d7-c br"></div>';
+    doc.body.appendChild(box);
+    box.querySelector('.d7-pan').addEventListener('mousedown',d7StartMove);
+    box.querySelectorAll('.d7-c').forEach(h=>h.addEventListener('mousedown',ev=>d7StartResize(ev,h)));
+  }
+  box.style.display='block';
+  let bar=doc.getElementById('d7-imgbar');
+  if(!bar){ bar=doc.createElement('div'); bar.id='d7-imgbar';
+    bar.innerHTML='<span class="d7-zoom"><span class="d7-lbl">Zoom</span><input class="d7-zoomrange" type="range" min="1" max="3" step="0.01" value="1"></span>'
+      +'<span class="d7-zoom"><span class="d7-lbl">Bright</span><input class="d7-bright" type="range" min="0.3" max="1.6" step="0.01" value="1"></span>'
+      +'<button data-a="replace">Replace</button><button data-a="reset">Reset</button><button data-a="done">Done</button>';
+    doc.body.appendChild(bar);
+    bar.addEventListener('click',e=>{ const a=e.target.getAttribute&&e.target.getAttribute('data-a'); if(a) d7ImgAction(a); });
+    bar.querySelector('.d7-zoomrange').addEventListener('input',e=>{ if(!d7Sel)return; d7Sel.dataset.d7z=e.target.value; d7ApplyZoom(d7Sel); });
+    bar.querySelector('.d7-bright').addEventListener('input',e=>{ if(!d7Sel)return; d7Sel.dataset.d7b=e.target.value; d7Sel.style.filter=(parseFloat(e.target.value)===1)?'':('brightness('+e.target.value+')'); });
+  }
+  bar.style.display='flex';
+  d7EnsureMenu();
+}
+let d7CtxEl=null, d7DelStack=[];
+function d7EnsureMenu(){
+  let m=doc.getElementById('d7-ctx'); if(m) return m;
+  m=doc.createElement('div'); m.id='d7-ctx'; m.style.display='none';
+  doc.body.appendChild(m);
+  m.addEventListener('click',e=>{ const a=e.target.getAttribute&&e.target.getAttribute('data-m'); if(a){ d7MenuAction(a); m.style.display='none'; } });
+  return m;
+}
+function d7HasDeco(el){ try{ const w=doc.defaultView, b=w.getComputedStyle(el,'::before').content, a=w.getComputedStyle(el,'::after').content;
+  return (b&&b!=='none'&&b!=='normal')||(a&&a!=='none'&&a!=='normal'); }catch(e){ return false; } }
+function d7DeleteEl(el){ if(!el||el===doc.body)return; el.setAttribute('data-d7del','1'); el.style.display='none'; d7DelStack.push(el); toast('Deleted, Ctrl+Z to undo'); }
+function d7UndoDelete(){ const el=d7DelStack.pop(); if(el){ el.style.display=''; el.removeAttribute('data-d7del'); toast('Restored'); } }
+function d7ShowMenu(x,y,el){
+  const m=d7EnsureMenu(), win=doc.defaultView; let html='';
+  if(el && el.tagName==='IMG'){ d7CtxEl=null;
+    html='<button data-m="front">Bring to front</button><button data-m="back">Send to back</button><hr>'
+        +'<button data-m="centerh">Center horizontally</button><button data-m="centerv">Center vertically</button><hr>'
+        +'<button data-m="replace">Replace image…</button><button data-m="reset">Reset</button><hr>'
+        +'<button data-m="remove">Delete image</button>';
+  } else { d7CtxEl=el;
+    html+='<button data-m="movebox">Move / resize</button>';
+    if(d7TextTarget(el)) html+='<button data-m="edittext">Edit text</button>';
+    if(d7HasDeco(el)) html+='<button data-m="nodeco">Remove line / decoration</button>';
+    html+='<hr><button data-m="centerh">Center horizontally</button><button data-m="centerv">Center vertically</button>';
+    html+='<hr><button data-m="front">Bring to front</button><button data-m="back">Send to back</button>';
+    html+='<hr><button data-m="delete">Delete this</button>';
+  }
+  m.innerHTML=html; m.style.display='block';
+  m.style.left=Math.min(x, win.innerWidth-190)+'px'; m.style.top=Math.min(y, win.innerHeight-210)+'px';
+}
+function d7PositionBox(){
+  const fr=d7CurBox(); if(!fr) return;
+  const r=fr.getBoundingClientRect(), win=doc.defaultView, x=r.left+win.scrollX, y=r.top+win.scrollY;
+  const box=doc.getElementById('d7-imgbox'); if(box){ box.style.left=x+'px'; box.style.top=y+'px'; box.style.width=r.width+'px'; box.style.height=r.height+'px'; }
+}
+function d7SetZ(fr,v){ fr.dataset.d7zi=v; fr.style.zIndex=v; }
+// Center a box/element horizontally or vertically. Floated boxes snap to the centre of their container;
+// in-flow elements use margin:auto / text-align / flex centring so their content sits centred.
+function d7Center(box, axis){
+  if(!box) return; const w=doc.defaultView, cs=w.getComputedStyle(box);
+  const floated = box.dataset.d7float || cs.position==='absolute' || cs.position==='fixed';
+  const op = box.offsetParent || doc.body, opw = op.clientWidth||op.getBoundingClientRect().width, oph = op.clientHeight||op.getBoundingClientRect().height;
+  if(axis==='h'){
+    if(floated){ box.style.left=Math.max(0,(opw-box.offsetWidth)/2)+'px'; }
+    else { box.style.marginLeft='auto'; box.style.marginRight='auto'; box.style.textAlign='center'; if(cs.display.indexOf('flex')>-1) box.style.justifyContent='center'; }
+  } else {
+    if(floated){ box.style.top=Math.max(0,(oph-box.offsetHeight)/2)+'px'; }
+    else if(cs.display.indexOf('flex')>-1){ box.style.alignItems='center'; }
+    else { box.style.marginTop='auto'; box.style.marginBottom='auto'; }
+  }
+  d7PositionBox();
+}
+function d7Unclip(fr){ const win=doc.defaultView;
+  if(win.getComputedStyle(fr).position==='static') fr.style.position='relative';
+  let n=fr.parentElement, guard=0;
+  while(n && n!==doc.body && guard++<10){
+    if(win.getComputedStyle(n).overflow!=='visible'){ if(!n.hasAttribute('data-d7ov')) n.setAttribute('data-d7ov', n.style.overflow||''); n.style.overflow='visible'; }
+    n=n.parentElement;
+  }
+}
+function d7Reclip(fr){ let n=fr.parentElement, guard=0;
+  while(n && n!==doc.body && guard++<10){ if(n.hasAttribute('data-d7ov')){ n.style.overflow=n.getAttribute('data-d7ov'); n.removeAttribute('data-d7ov'); } n=n.parentElement; }
+}
+// hide the leftover styled slot (the frame's parent) once the image is moved
+function d7Neutralize(fr){ const p=fr.parentElement; if(!p||p.hasAttribute('data-d7fr'))return;
+  p.setAttribute('data-d7fr', JSON.stringify([p.style.background||'',p.style.boxShadow||'',p.style.border||''])); p.style.background='transparent'; p.style.boxShadow='none'; p.style.border='none';
+}
+function d7RestoreSlot(fr){ const p=fr.parentElement; if(!p||!p.hasAttribute('data-d7fr'))return;
+  try{ const o=JSON.parse(p.getAttribute('data-d7fr')); p.style.background=o[0]; p.style.boxShadow=o[1]; p.style.border=o[2]; }catch(e){} p.removeAttribute('data-d7fr');
+}
+function d7ApplyZoom(img){ const z=parseFloat(img.dataset.d7z||'1'); img.style.transform=(z===1)?'':('scale('+z+')'); } // zoom the CONTENT inside the frame
+// Take the frame OUT OF FLOW (absolute) so resizing/moving it never pushes the surrounding text.
+// A hidden placeholder holds the original slot, so nothing else on the page shifts.
+function d7Float(fr){
+  if(fr.dataset.d7float) return;
+  const win=doc.defaultView, r=fr.getBoundingClientRect(), cs=win.getComputedStyle(fr);
+  const ph=doc.createElement('span'); ph.className='d7-ph';
+  ph.style.cssText='display:'+cs.display+';width:'+r.width+'px;height:'+r.height+'px;margin:'+cs.marginTop+' '+cs.marginRight+' '+cs.marginBottom+' '+cs.marginLeft+';vertical-align:'+cs.verticalAlign+';flex:'+(cs.flex||'0 0 auto')+';visibility:hidden;pointer-events:none';
+  fr.parentNode.insertBefore(ph, fr);
+  d7Unclip(fr); if(fr.classList&&fr.classList.contains('d7-frame')) d7Neutralize(fr); // only image frames leave a styled slot to hide
+  fr.style.position='absolute'; fr.style.margin='0'; fr.style.width=r.width+'px'; fr.style.height=r.height+'px';
+  const op=fr.offsetParent||doc.body, opr=op.getBoundingClientRect();
+  fr.style.left=(r.left-opr.left+(op.scrollLeft||0))+'px';
+  fr.style.top=(r.top-opr.top+(op.scrollTop||0))+'px';
+  fr.dataset.d7float='1';
+}
+function d7Unfloat(fr){
+  let sib=fr.previousElementSibling; while(sib && !(sib.classList&&sib.classList.contains('d7-ph'))) sib=sib.previousElementSibling;
+  if(sib) sib.remove();
+  d7Reclip(fr); d7RestoreSlot(fr);
+  fr.style.position=''; fr.style.left=''; fr.style.top=''; fr.style.margin=''; fr.style.zIndex='';
+  delete fr.dataset.d7float; delete fr.dataset.d7zi;
+}
+function d7StartMove(e){ e.preventDefault(); e.stopPropagation();
+  const fr=d7CurBox(); if(!fr)return; d7Float(fr); if(!fr.dataset.d7zi) d7SetZ(fr,100);
+  const L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, sx=e.clientX, sy=e.clientY; d7drag={};
+  const mv=ev=>{ fr.style.left=(L0+(ev.clientX-sx))+'px'; fr.style.top=(T0+(ev.clientY-sy))+'px'; d7PositionBox(); };
+  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
+  doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
+}
+function d7StartResize(e,h){ e.preventDefault(); e.stopPropagation();
+  const fr=d7CurBox(); if(!fr)return; d7Float(fr); // resize the floated box → never reflows the surrounding content
+  const c=h.className, L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, r=fr.getBoundingClientRect(), W0=r.width, H0=r.height, sx=e.clientX, sy=e.clientY; d7drag={};
+  const mv=ev=>{ let dw=ev.clientX-sx, dh=ev.clientY-sy, L=L0,T=T0,W=W0,H=H0;
+    if(c.indexOf('br')>-1){ W=W0+dw; H=H0+dh; }
+    else if(c.indexOf('bl')>-1){ W=W0-dw; H=H0+dh; L=L0+dw; }
+    else if(c.indexOf('tr')>-1){ W=W0+dw; H=H0-dh; T=T0+dh; }
+    else { W=W0-dw; H=H0-dh; L=L0+dw; T=T0+dh; }
+    if(W<40){ if(c.indexOf('l')>-1) L=L0+(W0-40); W=40; }
+    if(H<40){ if(c.indexOf('t')>-1) T=T0+(H0-40); H=40; }
+    fr.style.left=L+'px'; fr.style.top=T+'px'; fr.style.width=W+'px'; fr.style.height=H+'px'; d7PositionBox(); };
+  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
+  doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
+}
+function d7MenuAction(a){
+  // generic element actions (work on any element, not just images)
+  if(a==='edittext'){ const tt=d7TextTarget(d7CtxEl); if(tt){ d7Deselect(); d7MakeEditable(tt); } return; }
+  if(a==='nodeco'){ if(d7CtxEl) d7CtxEl.setAttribute('data-d7nodeco','1'); return; }
+  if(a==='movebox'){ if(d7CtxEl) d7SelectBox(d7CtxEl); return; }
+  if(a==='centerh'||a==='centerv'){ const box=d7CurBox()||d7CtxEl; if(box) d7Center(box, a==='centerh'?'h':'v'); return; }
+  if(a==='delete'){ d7DeleteEl(d7CtxEl||d7CurBox()); return; }
+  if(a==='front'||a==='back'){ const box=d7CurBox()||d7CtxEl; if(!box)return; d7Float(box); d7SetZ(box, a==='front'?(++d7zTop):-1); d7PositionBox(); return; }
+  // image-only actions
+  if(!d7Sel)return; const fr=d7Frame(d7Sel); if(!fr)return;
+  if(a==='replace'){ d7ImgAction('replace'); }
+  else if(a==='reset'){ d7ImgAction('reset'); }
+  else if(a==='remove'){ fr.setAttribute('data-d7del','1'); fr.style.display='none'; d7DelStack.push(fr); toast('Deleted, Ctrl+Z to undo'); d7Deselect(); return; }
+  d7PositionBox();
+}
+function d7ImgAction(a){ if(!d7Sel)return; const fr=d7Frame(d7Sel);
+  if(a==='done'){ d7Deselect(); return; }
+  if(a==='reset'){ if(fr){ d7Unfloat(fr); fr.style.display=''; fr.style.width=(fr.dataset.d7ow||'')+'px'; fr.style.height=(fr.dataset.d7oh||'')+'px'; }
+    d7Sel.style.transform=''; d7Sel.style.filter=''; delete d7Sel.dataset.d7z; delete d7Sel.dataset.d7b;
+    const bar=doc.getElementById('d7-imgbar'), zr=bar.querySelector('.d7-zoomrange'), br=bar.querySelector('.d7-bright'); if(zr)zr.value=1; if(br)br.value=1; d7PositionBox(); return; }
+  if(a==='replace'){ const inp=doc.createElement('input'); inp.type='file'; inp.accept='image/*';
+    inp.onchange=()=>{ const f=inp.files[0]; if(!f)return; const rd=new FileReader(); rd.onload=ev=>{ d7Sel.src=ev.target.result; const id=d7Sel.getAttribute('data-img'); if(id){ const fi=document.getElementById('f_'+id); if(fi) fi.value=ev.target.result; } d7PositionBox(); }; rd.readAsDataURL(f); };
+    inp.click(); }
+}
+
+// ============ Saved projects (localStorage + JSON export/import) ============
+// Stays fully static: projects live in the browser, portable via .json files.
+const STORE_KEY='d7_projects';
+let pendingValues=null; // applied to the form after the next template load
+function readStore(){ try{return JSON.parse(localStorage.getItem(STORE_KEY)||'{}');}catch(e){return {};} }
+function writeStore(o){ localStorage.setItem(STORE_KEY,JSON.stringify(o)); }
+function collectState(){
+  const values={};
+  GROUPS.forEach(g=>g.fields.forEach(f=>{ const inp=document.getElementById('f_'+f.id); if(inp) values[f.id]=inp.value; }));
+  return { template: document.getElementById('tpl').value, values };
+}
+function applyValues(values){
+  GROUPS.forEach(g=>g.fields.forEach(f=>{
+    if(!(f.id in values)) return;
+    const inp=document.getElementById('f_'+f.id); if(!inp) return;
+    inp.value=values[f.id];
+    inp.dispatchEvent(new Event('input')); // reuse the live-update wiring
+  }));
+}
+// runs AFTER populate() (registered earlier), so saved values overwrite template defaults
+frame.addEventListener('load',()=>{ if(pendingValues){ applyValues(pendingValues); pendingValues=null; } });
+function loadProject(state){
+  if(!state) return;
+  const tpl=document.getElementById('tpl');
+  if(state.template) tpl.value=state.template;
+  pendingValues=state.values||{};
+  frame.src=(state.template||tpl.value)+'?t='+Date.now();
+}
+function refreshProjectList(sel){
+  const list=document.getElementById('projList');
+  const store=readStore();
+  list.innerHTML='<option value="">Saved projects…</option>';
+  Object.keys(store).sort().forEach(name=>{
+    const o=document.createElement('option'); o.value=name; o.textContent=name;
+    if(name===sel) o.selected=true;
+    list.appendChild(o);
+  });
+}
+document.getElementById('projSave').addEventListener('click',()=>{
+  const nameInput=document.getElementById('projName');
+  const listed=document.getElementById('projList').value;
+  const name=(nameInput.value.trim()||listed||document.getElementById('f_brandName').value.trim());
+  if(!name){ toast('Enter a project name first'); nameInput.focus(); return; }
+  const store=readStore(); store[name]=collectState(); writeStore(store);
+  refreshProjectList(name); nameInput.value='';
+  toast('Saved “'+name+'”');
+});
+document.getElementById('projList').addEventListener('change',e=>{
+  const name=e.target.value; if(!name) return;
+  loadProject(readStore()[name]);
+  document.getElementById('projName').value=name;
+  toast('Loaded “'+name+'”');
+});
+document.getElementById('projDelete').addEventListener('click',()=>{
+  const name=document.getElementById('projList').value;
+  if(!name){ toast('Select a project to delete'); return; }
+  if(!confirm('Delete project “'+name+'”?')) return;
+  const store=readStore(); delete store[name]; writeStore(store);
+  refreshProjectList(); document.getElementById('projName').value='';
+  toast('Deleted “'+name+'”');
+});
+document.getElementById('projExport').addEventListener('click',()=>{
+  const listed=document.getElementById('projList').value;
+  const name=listed||document.getElementById('projName').value.trim()||document.getElementById('f_brandName').value.trim()||'project';
+  const state=listed?readStore()[listed]:collectState();
+  const payload={name,...state};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.d7project.json';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Exported “'+name+'”');
+});
+document.querySelector('#projImport input').addEventListener('change',ev=>{
+  const file=ev.target.files[0]; if(!file) return;
+  const rd=new FileReader();
+  rd.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      const name=data.name||file.name.replace(/\.d7project\.json$|\.json$/,'')||'Imported project';
+      const state={template:data.template,values:data.values||{}};
+      const store=readStore(); store[name]=state; writeStore(store);
+      refreshProjectList(name);
+      loadProject(state);
+      document.getElementById('projName').value=name;
+      toast('Imported “'+name+'”');
+    }catch(err){ toast('Could not read that file'); }
+    ev.target.value='';
+  };
+  rd.readAsText(file);
+});
+refreshProjectList();
+</script>
+</body>
+</html>

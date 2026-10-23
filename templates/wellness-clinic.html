@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anchor Point, Psychiatry &amp; wellness clinic</title>
+<meta name="description" content="Anchor Point, a multidisciplinary psychiatry and wellness clinic. Assessments, medication management and therapy from consultant-led clinicians.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310233A'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>A</text></svg>">
+<style>
+  /* =========================================================
+     ANCHOR POINT, bespoke "dark / clinical / structured" system
+     All custom components are prefixed .ap-
+     ========================================================= */
+
+  /* ---- "Clinical Slate Blue" palette (scoped overrides) ---- */
+  .ap-page {
+    --ink: #10233A;          /* brand dark */
+    --paper: #F7F9FC;        /* page background */
+    --line: #E2E7EE;         /* border */
+    --g-200: #EEF2F7;        /* soft surface */
+    --g-400: #77808C;        /* muted text */
+    --g-500: #77808C;        /* muted text */
+    --g-700: #2E5585;        /* accent-dark (hover) */
+    --accent: #3F6EA5;
+    --accent-dark: #2E5585;
+    --text-light: #17222F;
+  }
+
+  .ap-page {
+    font-family: var(--font-sans);
+    color: var(--text-light);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ap-wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .ap-page h1, .ap-page h2, .ap-page h3, .ap-page h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .ap-italic { font-style: italic; font-weight: 500; }
+  .ap-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ap-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ---------- Buttons ---------- */
+  .ap-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 14px 26px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .ap-btn--solid { background: var(--accent); color: #FFFFFF; }
+  .ap-btn--solid:hover { transform: translateY(-2px); background: var(--accent-dark); }
+  .ap-btn--dark { background: var(--accent); color: #FFFFFF; }
+  .ap-btn--dark:hover { transform: translateY(-2px); background: var(--accent-dark); }
+  .ap-btn--outline { background: transparent; color: var(--paper); border-color: rgba(255,255,255,.4); }
+  .ap-btn--outline:hover { border-color: var(--paper); background: rgba(255,255,255,.08); }
+  .ap-btn--outline-dark { background: transparent; color: var(--accent); border-color: var(--accent); }
+  .ap-btn--outline-dark:hover { border-color: var(--accent-dark); background: var(--accent); color: #FFFFFF; }
+  .ap-btn--lg { padding: 17px 34px; font-size: 15px; }
+
+  /* ---------- Nav ---------- */
+  .ap-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,.09);
+  }
+  .ap-nav__in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+  }
+  .ap-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--paper);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .ap-brand__mark {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 3px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .ap-nav__links {
+    display: flex;
+    gap: 34px;
+    margin-left: auto;
+    margin-right: 34px;
+  }
+  .ap-nav__links a {
+    color: rgba(255,255,255,.72);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .25s var(--ease);
+  }
+  .ap-nav__links a:hover { color: var(--paper); }
+
+  /* ---------- Hero ---------- */
+  .ap-hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: linear-gradient(180deg, #10233A 0%, #0A1727 100%);
+  }
+  .ap-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .ap-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(10,23,39,.6) 0%, rgba(10,23,39,.3) 40%, rgba(10,23,39,.92) 100%),
+      linear-gradient(90deg, rgba(10,23,39,.78) 0%, rgba(10,23,39,.18) 70%);
+  }
+  .ap-hero .ap-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-top: 96px;
+    padding-bottom: 76px;
+  }
+  .ap-hero__inner { max-width: 760px; color: var(--paper); }
+  .ap-hero .ap-eyebrow { color: rgba(255,255,255,.7); }
+  .ap-hero h1 {
+    color: var(--paper);
+    font-size: clamp(2.9rem, 7vw, 5.4rem);
+    margin: 22px 0 24px;
+  }
+  .ap-hero__lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+    color: rgba(255,255,255,.82);
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+  .ap-hero__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* ---------- Accreditation strip ---------- */
+  .ap-accred {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .ap-accred__in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px 48px;
+    padding: 26px var(--gutter);
+  }
+  .ap-accred__label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--g-400);
+    margin-right: 6px;
+  }
+  .ap-accred__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 40px;
+  }
+  .ap-accred__list span {
+    font-family: var(--font-display);
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    color: var(--g-500);
+  }
+
+  /* ---------- Section header helper ---------- */
+  .ap-shead { max-width: 640px; margin-bottom: 56px; }
+  .ap-shead h2 {
+    font-size: clamp(2rem, 3.6vw, 3.1rem);
+    margin: 20px 0 0;
+  }
+
+  /* ---------- Services (dark, numbered grid) ---------- */
+  .ap-services {
+    background: linear-gradient(180deg, #10233A 0%, #0A1727 100%);
+    color: var(--paper);
+    padding: clamp(80px, 10vw, 130px) 0;
+  }
+  .ap-services .ap-eyebrow { color: var(--accent); }
+  .ap-services h2 { color: var(--paper); }
+  .ap-services__lede { color: rgba(255,255,255,.6); margin-top: 18px; font-size: 1.05rem; }
+  .ap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,.14);
+    border-left: 1px solid rgba(255,255,255,.14);
+  }
+  .ap-svc {
+    padding: 42px 38px 46px;
+    border-right: 1px solid rgba(255,255,255,.14);
+    border-bottom: 1px solid rgba(255,255,255,.14);
+    position: relative;
+    transition: background .35s var(--ease);
+  }
+  .ap-svc:hover { background: rgba(255,255,255,.04); }
+  .ap-svc__num {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    display: block;
+  }
+  .ap-svc__ic {
+    margin: 26px 0 22px;
+    color: var(--accent);
+  }
+  .ap-svc__ic svg { width: 34px; height: 34px; }
+  .ap-svc h3 {
+    font-size: 1.5rem;
+    color: var(--paper);
+    margin-bottom: 12px;
+  }
+  .ap-svc p { color: rgba(255,255,255,.6); font-size: 0.97rem; margin: 0; }
+
+  /* ---------- Approach (split) ---------- */
+  .ap-approach { padding: clamp(80px, 10vw, 130px) 0; background: var(--paper); }
+  .ap-approach__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: center;
+  }
+  .ap-approach__media {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .ap-approach__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ap-approach h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); margin: 20px 0 22px; }
+  .ap-approach__lede { color: var(--g-500); font-size: 1.08rem; margin-bottom: 34px; }
+  .ap-checks { list-style: none; margin: 0; padding: 0; }
+  .ap-checks li {
+    display: flex;
+    gap: 18px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .ap-checks li:last-child { border-bottom: 1px solid var(--line); }
+  .ap-checks__no {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--accent);
+    padding-top: 2px;
+    flex: none;
+  }
+  .ap-checks__t { font-weight: 600; font-size: 1.02rem; }
+  .ap-checks__t span { display: block; font-weight: 400; color: var(--g-500); font-size: 0.95rem; margin-top: 4px; }
+
+  /* ---------- Stats (light band) ---------- */
+  .ap-stats {
+    padding: clamp(64px, 8vw, 96px) 0;
+    background: var(--g-200);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .ap-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  .ap-stat { text-align: center; }
+  .ap-stat b {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .ap-stat span {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: var(--g-500);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Clinicians (dark cards) ---------- */
+  .ap-clin { padding: clamp(80px, 10vw, 130px) 0; background: var(--paper); }
+  .ap-clin h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); margin-top: 20px; }
+  .ap-clin__lede { color: var(--g-500); margin-top: 18px; font-size: 1.05rem; }
+  .ap-team {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  .ap-card {
+    background: var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .ap-card__photo { aspect-ratio: 3 / 4; overflow: hidden; }
+  .ap-card__photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s var(--ease);
+  }
+  .ap-card:hover .ap-card__photo img { transform: scale(1.04); }
+  .ap-card__body { padding: 22px 22px 26px; }
+  .ap-card__body h4 { color: var(--paper); font-size: 1.2rem; }
+  .ap-card__body span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    color: var(--g-400);
+    text-transform: uppercase;
+  }
+
+  /* ---------- Fees (dark) ---------- */
+  .ap-fees {
+    padding: clamp(80px, 10vw, 130px) 0;
+    background: linear-gradient(180deg, #10233A 0%, #0A1727 100%);
+    color: var(--paper);
+  }
+  .ap-fees .ap-eyebrow { color: var(--accent); }
+  .ap-fees h2 { color: var(--paper); font-size: clamp(2rem, 3.6vw, 3.1rem); margin-top: 20px; }
+  .ap-fees__lede { color: rgba(255,255,255,.6); margin-top: 18px; font-size: 1.05rem; }
+  .ap-plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+  .ap-plan {
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: var(--radius);
+    padding: 38px 32px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ap-plan--feature {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+    transform: translateY(-14px);
+  }
+  .ap-plan__tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--g-400);
+    margin-bottom: 20px;
+  }
+  .ap-plan--feature .ap-plan__tag { color: var(--g-500); }
+  .ap-plan__name { font-family: var(--font-display); font-size: 1.5rem; }
+  .ap-plan__price {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 1;
+    margin: 16px 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .ap-plan__price small { font-size: 1rem; font-family: var(--font-sans); color: var(--g-400); font-weight: 500; }
+  .ap-plan--feature .ap-plan__price small { color: var(--g-500); }
+  .ap-plan__sub { font-size: 0.92rem; color: rgba(255,255,255,.55); margin-bottom: 28px; }
+  .ap-plan--feature .ap-plan__sub { color: var(--g-500); }
+  .ap-plan ul { list-style: none; margin: 0 0 30px; padding: 0; flex: 1; }
+  .ap-plan li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 11px 0;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+  .ap-plan--feature li { border-top-color: var(--line); }
+  .ap-plan li svg { width: 17px; height: 17px; flex: none; margin-top: 3px; color: var(--accent); }
+  .ap-plan--feature li svg { color: var(--accent); }
+
+  /* ---------- Contact (dark) ---------- */
+  .ap-contact {
+    padding: clamp(80px, 10vw, 130px) 0;
+    background: linear-gradient(180deg, #0A1727 0%, #071120 100%);
+    color: var(--paper);
+    border-top: 1px solid rgba(255,255,255,.09);
+  }
+  .ap-contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(44px, 6vw, 90px);
+  }
+  .ap-contact .ap-eyebrow { color: var(--accent); }
+  .ap-contact h2 { color: var(--paper); font-size: clamp(2rem, 3.6vw, 3.1rem); margin: 20px 0 22px; }
+  .ap-contact__lede { color: rgba(255,255,255,.62); margin-bottom: 40px; }
+  .ap-info { list-style: none; margin: 0; padding: 0; }
+  .ap-info li {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+  .ap-info svg { width: 22px; height: 22px; flex: none; color: var(--accent); }
+  .ap-info span { display: block; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g-500); margin-bottom: 4px; }
+  .ap-info b { font-weight: 600; font-size: 1.02rem; }
+
+  .ap-form { display: grid; gap: 18px; }
+  .ap-field { display: grid; gap: 8px; }
+  .ap-field label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: rgba(255,255,255,.7); }
+  .ap-field input, .ap-field select, .ap-field textarea {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 3px;
+    padding: 14px 16px;
+    color: var(--paper);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .ap-field textarea { min-height: 120px; resize: vertical; }
+  .ap-field input::placeholder, .ap-field textarea::placeholder { color: rgba(255,255,255,.35); }
+  .ap-field input:focus, .ap-field select:focus, .ap-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(63,110,165,.12);
+  }
+  .ap-field select { appearance: none; }
+  .ap-field select option { color: var(--ink); }
+
+  /* ---------- Footer ---------- */
+  .ap-footer { background: linear-gradient(180deg, #10233A 0%, #0A1727 100%); color: var(--paper); padding: 72px 0 40px; }
+  .ap-footer__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .ap-footer__brand p { color: rgba(255,255,255,.55); max-width: 340px; margin: 18px 0 0; font-size: 0.95rem; }
+  .ap-footer h5 { font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g-400); margin: 0 0 18px; }
+  .ap-footer ul { list-style: none; margin: 0; padding: 0; }
+  .ap-footer ul li { margin-bottom: 12px; }
+  .ap-footer ul a { color: rgba(255,255,255,.72); text-decoration: none; font-size: 0.95rem; transition: color .25s var(--ease); }
+  .ap-footer ul a:hover { color: var(--paper); }
+  .ap-footer__bot {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 30px;
+    font-size: 0.85rem;
+    color: var(--g-400);
+  }
+  .ap-crisis { color: rgba(255,255,255,.6); }
+  .ap-crisis b { color: var(--paper); font-weight: 600; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .ap-grid { grid-template-columns: repeat(2, 1fr); }
+    .ap-team { grid-template-columns: repeat(2, 1fr); }
+    .ap-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+    .ap-plans { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .ap-plan--feature { transform: none; }
+    .ap-approach__grid, .ap-contact__grid { grid-template-columns: 1fr; }
+    .ap-approach__media { aspect-ratio: 16 / 10; max-height: 460px; }
+    .ap-footer__top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .ap-nav__links { display: none; }
+    .ap-nav__in { height: 64px; }
+    .ap-grid { grid-template-columns: 1fr; }
+    .ap-team { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+    .ap-stats__grid { grid-template-columns: 1fr; }
+    .ap-footer__top { grid-template-columns: 1fr; }
+    .ap-hero { min-height: 78vh; }
+  }
+</style>
+</head>
+<body class="ap-page">
+
+<!-- NAV -->
+<header class="ap-nav">
+  <div class="ap-wrap ap-nav__in">
+    <a href="#" class="ap-brand"><span class="ap-brand__mark" data-field="brandMark">A</span> <span data-field="brandName">Anchor Point</span></a>
+    <nav class="ap-nav__links">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#clinicians">Clinicians</a>
+      <a href="#fees">Fees</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="ap-btn ap-btn--solid" data-field="navCta">Book an assessment</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="ap-hero">
+  <img class="ap-hero__img" data-img="hero" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1600&q=80" alt="The calm, structured architecture of the Anchor Point clinic">
+  <div class="ap-hero__overlay"></div>
+  <div class="ap-wrap">
+    <div class="ap-hero__inner reveal">
+      <span class="ap-eyebrow" data-field="heroEyebrow">Psychiatry · Assessment · Therapy</span>
+      <h1 data-field="heroTitle">Expert mental health care, on <span class="ap-italic">solid</span> ground.</h1>
+      <p class="ap-hero__lede" data-field="heroSub">Anchor Point is a multidisciplinary clinic bringing consultant psychiatrists, psychologists and therapists together under one roof, so your assessment, diagnosis and treatment are joined up from day one.</p>
+      <div class="ap-hero__cta">
+        <a href="#contact" class="ap-btn ap-btn--solid ap-btn--lg" data-field="heroCta1">Book an assessment</a>
+        <a href="#services" class="ap-btn ap-btn--outline ap-btn--lg" data-field="heroCta2">Explore our services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATION STRIP -->
+<section class="ap-accred">
+  <div class="ap-accred__in">
+    <span class="ap-accred__label">Registered &amp; accredited</span>
+    <div class="ap-accred__list">
+      <span>RCPsych</span><span>CQC</span><span>BACP</span><span>UKCP</span><span>GMC</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="ap-services" id="services">
+  <div class="ap-wrap">
+    <div class="ap-shead reveal">
+      <span class="ap-eyebrow">What we offer</span>
+      <h2 data-field="servicesTitle">Comprehensive care, one clinic.</h2>
+      <p class="ap-services__lede" data-field="servicesSub">From first assessment through to ongoing treatment, every service is delivered by qualified specialists working as one coordinated team.</p>
+    </div>
+    <div class="ap-grid reveal">
+      <div class="ap-svc">
+        <span class="ap-svc__num">01</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <h3 data-field="svc1Title">Psychiatric assessment</h3>
+        <p data-field="svc1Desc">A thorough, consultant-led evaluation to reach a clear diagnosis and a treatment plan you understand.</p>
+      </div>
+      <div class="ap-svc">
+        <span class="ap-svc__num">02</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M9 12h6M12 9v6"/></svg></span>
+        <h3 data-field="svc2Title">Medication management</h3>
+        <p data-field="svc2Desc">Careful prescribing, monitoring and reviews from psychiatrists, with regular check-ins to keep treatment on track.</p>
+      </div>
+      <div class="ap-svc">
+        <span class="ap-svc__num">03</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+        <h3 data-field="svc3Title">Talking therapy</h3>
+        <p data-field="svc3Desc">Evidence-based CBT, psychotherapy and counselling matched to your needs, in person or online.</p>
+      </div>
+      <div class="ap-svc">
+        <span class="ap-svc__num">04</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3 data-field="svc4Title">ADHD &amp; autism assessment</h3>
+        <p data-field="svc4Desc">Structured, gold-standard diagnostic assessments for adults and young people, with clear next steps.</p>
+      </div>
+      <div class="ap-svc">
+        <span class="ap-svc__num">05</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20a6 6 0 0112 0M10 20a6 6 0 0112 0"/></svg></span>
+        <h3 data-field="svc5Title">Group programmes</h3>
+        <p data-field="svc5Desc">Facilitated groups and structured programmes for anxiety, mood and recovery, supported by our clinicians.</p>
+      </div>
+      <div class="ap-svc">
+        <span class="ap-svc__num">06</span>
+        <span class="ap-svc__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+        <h3 data-field="svc6Title">Online consultations</h3>
+        <p data-field="svc6Desc">Secure video appointments with the same consultants you'd see in clinic, care that fits your life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="ap-approach" id="approach">
+  <div class="ap-wrap">
+    <div class="ap-approach__grid reveal">
+      <div class="ap-approach__media">
+        <img data-img="about" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80" alt="Our multidisciplinary team reviewing care together" loading="lazy">
+      </div>
+      <div>
+        <span class="ap-eyebrow">Our approach</span>
+        <h2 data-field="aboutTitle">Joined-up care, grounded in evidence.</h2>
+        <p class="ap-approach__lede" data-field="aboutText">Because our psychiatrists, psychologists and therapists work side by side, nothing gets lost between appointments. Your care is coordinated, considered and built entirely around you.</p>
+        <ul class="ap-checks">
+          <li>
+            <span class="ap-checks__no">01</span>
+            <span class="ap-checks__t" data-field="check1">A multidisciplinary team<span>Psychiatrists, psychologists and therapists reviewing your care together.</span></span>
+          </li>
+          <li>
+            <span class="ap-checks__no">02</span>
+            <span class="ap-checks__t" data-field="check2">Evidence-based treatment<span>Every plan is backed by current clinical guidelines and outcomes.</span></span>
+          </li>
+          <li>
+            <span class="ap-checks__no">03</span>
+            <span class="ap-checks__t" data-field="check3">Personalised care plans<span>Tailored to you and reviewed openly as you progress.</span></span>
+          </li>
+          <li>
+            <span class="ap-checks__no">04</span>
+            <span class="ap-checks__t" data-field="check4">Seamless GP liaison<span>We coordinate directly with your GP, with your consent.</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="ap-stats">
+  <div class="ap-wrap">
+    <div class="ap-stats__grid reveal">
+      <div class="ap-stat"><b data-field="stat1Num">12,000+</b><span data-field="stat1Label">Assessments completed</span></div>
+      <div class="ap-stat"><b data-field="stat2Num">96%</b><span data-field="stat2Label">Would recommend our clinic</span></div>
+      <div class="ap-stat"><b data-field="stat3Num">1 wk</b><span data-field="stat3Label">Average wait for assessment</span></div>
+      <div class="ap-stat"><b>100%</b><span>Confidential &amp; regulated care</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLINICIANS -->
+<section class="ap-clin" id="clinicians">
+  <div class="ap-wrap">
+    <div class="ap-shead reveal">
+      <span class="ap-eyebrow">Meet the clinicians</span>
+      <h2>Specialists you can rely on.</h2>
+      <p class="ap-clin__lede">Every clinician at Anchor Point is fully registered, insured and works to the highest professional standards.</p>
+    </div>
+    <div class="ap-team reveal">
+      <div class="ap-card">
+        <div class="ap-card__photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Dr. Amara Bello" loading="lazy"></div>
+        <div class="ap-card__body"><h4>Dr. Amara Bello</h4><span>Consultant Psychiatrist · Medical Director</span></div>
+      </div>
+      <div class="ap-card">
+        <div class="ap-card__photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Dr. Richard Hale" loading="lazy"></div>
+        <div class="ap-card__body"><h4>Dr. Richard Hale</h4><span>Consultant Psychiatrist · ADHD Lead</span></div>
+      </div>
+      <div class="ap-card">
+        <div class="ap-card__photo"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=600&q=80" alt="Dr. Saanvi Rao" loading="lazy"></div>
+        <div class="ap-card__body"><h4>Dr. Saanvi Rao</h4><span>Clinical Psychologist</span></div>
+      </div>
+      <div class="ap-card">
+        <div class="ap-card__photo"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80" alt="Marcus Feld" loading="lazy"></div>
+        <div class="ap-card__body"><h4>Marcus Feld</h4><span>Psychotherapist · CBT Lead</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="ap-fees" id="fees">
+  <div class="ap-wrap">
+    <div class="ap-shead reveal">
+      <span class="ap-eyebrow">Fees</span>
+      <h2>Clear, upfront pricing.</h2>
+      <p class="ap-fees__lede">No hidden costs. We're recognised by all major private health insurers, just ask our team.</p>
+    </div>
+    <div class="ap-plans reveal">
+      <div class="ap-plan">
+        <div class="ap-plan__tag">Assessment</div>
+        <div class="ap-plan__name">Initial assessment</div>
+        <div class="ap-plan__price">£250</div>
+        <div class="ap-plan__sub">60–90 minutes with a consultant</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Full diagnostic assessment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Written report &amp; plan</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> GP letter on request</li>
+        </ul>
+        <a href="#contact" class="ap-btn ap-btn--outline">Book now</a>
+      </div>
+      <div class="ap-plan ap-plan--feature">
+        <div class="ap-plan__tag">Most booked</div>
+        <div class="ap-plan__name">Follow-up</div>
+        <div class="ap-plan__price">£120<small> / 30 min</small></div>
+        <div class="ap-plan__sub">Ongoing reviews &amp; medication</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Treatment &amp; medication reviews</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> In person or online</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Repeat prescriptions</li>
+        </ul>
+        <a href="#contact" class="ap-btn ap-btn--dark">Get started</a>
+      </div>
+      <div class="ap-plan">
+        <div class="ap-plan__tag">Therapy</div>
+        <div class="ap-plan__name">Therapy session</div>
+        <div class="ap-plan__price">£90<small> / 50 min</small></div>
+        <div class="ap-plan__sub">With a qualified therapist</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> CBT &amp; psychotherapy</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Weekly or fortnightly</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5L20 7"/></svg> Block bookings discounted</li>
+        </ul>
+        <a href="#contact" class="ap-btn ap-btn--outline">Book now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="ap-contact" id="contact">
+  <div class="ap-wrap">
+    <div class="ap-contact__grid">
+      <div class="reveal">
+        <span class="ap-eyebrow">Get in touch</span>
+        <h2 data-field="contactTitle">Book your assessment.</h2>
+        <p class="ap-contact__lede" data-field="contactSub">Send us a message and our care team will reply within one working day to arrange your first appointment, in confidence.</p>
+        <ul class="ap-info">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg>
+            <div><span>Phone</span><b data-field="phone">020 7946 0188</b></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><span>Email</span><b data-field="email">care@anchorpointclinic.co.uk</b></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><span>Clinic</span><b data-field="address">34 Harley Street, London W1</b></div>
+          </li>
+        </ul>
+      </div>
+      <form class="ap-form reveal">
+        <div class="ap-field"><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+        <div class="ap-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="ap-field"><label>Which service are you interested in?</label>
+          <select><option>Psychiatric assessment</option><option>Medication management</option><option>Talking therapy</option><option>ADHD &amp; autism assessment</option><option>Not sure yet</option></select>
+        </div>
+        <div class="ap-field"><label>Message</label><textarea placeholder="A little about what you're looking for…"></textarea></div>
+        <button type="submit" class="ap-btn ap-btn--solid ap-btn--lg">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ap-footer">
+  <div class="ap-wrap">
+    <div class="ap-footer__top">
+      <div class="ap-footer__brand">
+        <a href="#" class="ap-brand"><span class="ap-brand__mark" data-field="brandMark">A</span> <span data-field="brandName">Anchor Point</span></a>
+        <p data-field="footerText">A multidisciplinary psychiatry and wellness clinic, assessments, medication and therapy, joined up.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul><li><a href="#services">Psychiatric assessment</a></li><li><a href="#services">Medication management</a></li><li><a href="#services">Talking therapy</a></li><li><a href="#services">ADHD &amp; autism assessment</a></li></ul>
+      </div>
+      <div>
+        <h5>Clinic</h5>
+        <ul><li><a href="#clinicians">Our clinicians</a></li><li><a href="#fees">Fees</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy &amp; confidentiality</a></li></ul>
+      </div>
+    </div>
+    <div class="ap-footer__bot">
+      <span data-field="footerLegal">© 2026 Anchor Point Clinic. All rights reserved.</span>
+      <span class="ap-crisis">If you're in crisis, call <b>111</b> or the Samaritans on <b>116 123</b>.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>

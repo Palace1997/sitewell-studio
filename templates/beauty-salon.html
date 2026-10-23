@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Noir, High-end hair &amp; beauty studio</title>
+<meta name="description" content="Maison Noir, a chic hair, colour and beauty studio. Master stylists, couture colour and skin rituals in an elegant, welcoming space.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231A1518'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>M</text></svg>">
+<style>
+  /* ============================================================
+     MAISON NOIR, bespoke DARK LUXE / FASHION EDITORIAL layout
+     All custom components prefixed .mn- ; strictly monochrome.
+     ============================================================ */
+
+  .mn-page{
+    background:linear-gradient(180deg,#1A1518,#100C0E);
+    color:#F4EEF0;
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .mn-page img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .mn-shell{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  .mn-label{
+    font-size:11px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--acc,#A85E6E);
+    font-weight:500;
+  }
+  .mn-serif{ font-family:'Fraunces',Georgia,serif; font-weight:300; }
+  .mn-it{ font-style:italic; font-weight:300; }
+  .mn-rule{ height:1px; background:rgba(168,94,110,.35); border:0; margin:0; }
+
+  /* ---------- NAV ---------- */
+  .mn-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(26,21,24,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(231,222,224,.1);
+  }
+  .mn-nav__in{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .mn-brand{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color:#fff;
+  }
+  .mn-brand__mark{
+    width:38px; height:38px; border:1px solid var(--acc,#A85E6E); color:var(--acc,#A85E6E);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:20px; font-weight:400;
+  }
+  .mn-brand__name{
+    font-family:'Fraunces',serif; font-size:19px; font-weight:400;
+    letter-spacing:.16em; text-transform:uppercase;
+  }
+  .mn-nav__links{ display:flex; gap:38px; }
+  .mn-nav__links a{
+    color:#A99CA1; text-decoration:none; font-size:12px;
+    letter-spacing:.2em; text-transform:uppercase; transition:color .25s;
+  }
+  .mn-nav__links a:hover{ color:var(--acc,#A85E6E); }
+  .mn-book{
+    display:inline-flex; align-items:center;
+    background:var(--acc,#A85E6E); border:1px solid var(--acc,#A85E6E);
+    color:#fff; text-decoration:none;
+    padding:11px 24px; font-size:11px; letter-spacing:.24em;
+    text-transform:uppercase; font-weight:500;
+    transition:background .3s,color .3s,border-color .3s;
+  }
+  .mn-book:hover{ background:var(--acc2,#8C4B59); border-color:var(--acc2,#8C4B59); color:#fff; }
+
+  /* ---------- HERO ---------- */
+  .mn-hero{ position:relative; padding:70px 0 110px; }
+  .mn-hero__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:0;
+  }
+  .mn-hero__media{
+    grid-column:2; grid-row:1;
+    position:relative;
+    height:640px;
+    overflow:hidden;
+  }
+  .mn-hero__copy{
+    grid-column:1; grid-row:1;
+    position:relative; z-index:3;
+    padding-right:40px;
+    margin-right:-90px; /* overlap the image */
+  }
+  .mn-hero__eye{ display:block; margin-bottom:34px; }
+  .mn-hero h1{
+    font-family:'Fraunces',serif; font-weight:300;
+    font-size:clamp(48px,6.6vw,90px);
+    line-height:.98; letter-spacing:-.01em;
+    margin:0 0 30px;
+  }
+  .mn-hero h1 .mn-it{ display:block; }
+  .mn-hero__lede{
+    color:#A99CA1; font-size:16px; line-height:1.85;
+    max-width:400px; margin:0 0 40px;
+  }
+  .mn-hero__cta{ display:flex; align-items:center; gap:30px; }
+  .mn-cta-line{
+    color:#F4EEF0; text-decoration:none; font-size:12px;
+    letter-spacing:.24em; text-transform:uppercase; font-weight:500;
+    border-bottom:1px solid var(--acc,#A85E6E); padding-bottom:7px;
+    transition:border-color .3s,color .3s;
+  }
+  .mn-cta-line:hover{ border-color:var(--acc,#A85E6E); color:var(--acc,#A85E6E); }
+  .mn-hero__num{
+    position:absolute; left:-4px; bottom:-46px;
+    font-family:'Fraunces',serif; font-style:italic; font-weight:300;
+    font-size:15px; color:#A99CA1; letter-spacing:.04em;
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  .mn-sec{ padding:120px 0; }
+  .mn-sechead{ max-width:640px; margin-bottom:70px; }
+  .mn-sechead h2{
+    font-family:'Fraunces',serif; font-weight:300;
+    font-size:clamp(34px,4.6vw,58px); line-height:1.04;
+    letter-spacing:-.01em; margin:22px 0 0;
+  }
+
+  /* ---------- SERVICES + PRICE LIST (editorial split) ---------- */
+  .mn-svc{
+    display:grid; grid-template-columns:1fr 1px 1fr;
+    gap:0; column-gap:70px;
+  }
+  .mn-svc__div{ background:rgba(231,222,224,.12); }
+  .mn-svc__list{ list-style:none; margin:0; padding:0; }
+  .mn-svc__list li{
+    padding:26px 0; border-bottom:1px solid rgba(231,222,224,.1);
+    display:flex; align-items:baseline; gap:22px;
+  }
+  .mn-svc__list li:first-child{ padding-top:0; }
+  .mn-svc__no{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:300;
+    font-size:14px; color:var(--acc,#A85E6E); min-width:34px;
+  }
+  .mn-svc__nm{
+    font-family:'Fraunces',serif; font-weight:300; font-size:26px;
+    flex:1;
+  }
+  .mn-svc__tag{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#A99CA1; }
+
+  .mn-price__head{ margin-bottom:36px; }
+  .mn-price__head .mn-serif{ font-size:30px; margin:14px 0 12px; display:block; }
+  .mn-price__head p{ color:#A99CA1; font-size:14px; line-height:1.8; margin:0; max-width:380px; }
+  .mn-price__list{ list-style:none; margin:0; padding:0; }
+  .mn-price__row{
+    display:flex; align-items:baseline; gap:16px;
+    padding:20px 0; border-bottom:1px solid rgba(231,222,224,.1);
+  }
+  .mn-price__nm{ font-family:'Fraunces',serif; font-weight:300; font-size:19px; white-space:nowrap; }
+  .mn-price__dots{ flex:1; border-bottom:1px dotted rgba(231,222,224,.25); transform:translateY(-4px); }
+  .mn-price__amt{ font-family:'Fraunces',serif; font-style:italic; font-size:20px; color:var(--acc,#A85E6E); }
+  .mn-price__note{ font-size:12px; color:#A99CA1; letter-spacing:.04em; margin:26px 0 0; }
+
+  /* ---------- FULL-BLEED STATEMENT ---------- */
+  .mn-break{ position:relative; height:78vh; min-height:520px; overflow:hidden; }
+  .mn-break__img{ position:absolute; inset:0; }
+  .mn-break__img::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(26,21,24,.5),rgba(16,12,14,.72));
+  }
+  .mn-break__in{
+    position:relative; z-index:2; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:0 24px;
+  }
+  .mn-break__in .mn-label{ color:var(--acc,#A85E6E); margin-bottom:30px; }
+  .mn-break h2{
+    font-family:'Fraunces',serif; font-weight:300;
+    font-size:clamp(30px,4.4vw,56px); line-height:1.14;
+    max-width:900px; margin:0;
+  }
+
+  /* ---------- GALLERY (asymmetric editorial grid) ---------- */
+  .mn-gal{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:150px;
+    gap:18px;
+  }
+  .mn-gal figure{ margin:0; overflow:hidden; position:relative; }
+  .mn-gal figcaption{
+    position:absolute; left:16px; bottom:14px; z-index:2;
+    font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+    color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.7);
+  }
+  .mn-gal figure img{ transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+  .mn-gal figure:hover img{ transform:scale(1.05); }
+  .mn-g1{ grid-column:span 5; grid-row:span 3; }
+  .mn-g2{ grid-column:span 4; grid-row:span 2; }
+  .mn-g3{ grid-column:span 3; grid-row:span 2; }
+  .mn-g4{ grid-column:span 4; grid-row:span 2; }
+  .mn-g5{ grid-column:span 4; grid-row:span 2; }
+  .mn-g6{ grid-column:span 5; grid-row:span 2; }
+
+  /* ---------- STYLISTS (refined portrait row) ---------- */
+  .mn-team{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+  .mn-team figure{ margin:0; }
+  .mn-team__ph{ height:360px; overflow:hidden; margin-bottom:20px; }
+  .mn-team__ph img{ transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+  .mn-team figure:hover .mn-team__ph img{ transform:scale(1.04); }
+  .mn-team h4{ font-family:'Fraunces',serif; font-weight:400; font-size:20px; margin:0 0 6px; }
+  .mn-team span{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--acc,#A85E6E); }
+
+  /* ---------- MEMBERSHIP ---------- */
+  .mn-plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid rgba(231,222,224,.12); }
+  .mn-plan{ padding:48px 40px; border-right:1px solid rgba(231,222,224,.12); position:relative; }
+  .mn-plan:last-child{ border-right:0; }
+  .mn-plan--feat{ background:rgba(168,94,110,.1); }
+  .mn-plan--feat::before{
+    content:"Most chosen"; position:absolute; top:22px; right:24px;
+    font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--acc,#A85E6E);
+  }
+  .mn-plan__nm{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--acc,#A85E6E); }
+  .mn-plan__price{ font-family:'Fraunces',serif; font-weight:300; font-size:52px; margin:18px 0 4px; }
+  .mn-plan__price small{ font-size:14px; color:#A99CA1; font-family:'Inter',sans-serif; }
+  .mn-plan__sub{ font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:#A99CA1; margin-bottom:30px; }
+  .mn-plan ul{ list-style:none; margin:0 0 34px; padding:0; }
+  .mn-plan li{ font-size:14px; color:#F4EEF0; padding:13px 0; border-top:1px solid rgba(231,222,224,.1); line-height:1.5; }
+  .mn-plan__cta{
+    display:block; text-align:center; text-decoration:none;
+    font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500;
+    padding:14px; border:1px solid var(--acc,#A85E6E); color:var(--acc,#A85E6E); transition:background .3s,color .3s,border-color .3s;
+  }
+  .mn-plan__cta:hover{ background:var(--acc,#A85E6E); color:#fff; }
+  .mn-plan--feat .mn-plan__cta{ background:var(--acc,#A85E6E); color:#fff; border-color:var(--acc,#A85E6E); }
+  .mn-plan--feat .mn-plan__cta:hover{ background:var(--acc2,#8C4B59); border-color:var(--acc2,#8C4B59); color:#fff; }
+
+  /* ---------- BOOKING / CONTACT ---------- */
+  .mn-book-sec{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .mn-info{ list-style:none; margin:34px 0 0; padding:0; }
+  .mn-info li{ padding:20px 0; border-top:1px solid rgba(231,222,224,.1); }
+  .mn-info span{ display:block; font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--acc,#A85E6E); margin-bottom:7px; }
+  .mn-info b{ font-family:'Fraunces',serif; font-weight:300; font-size:19px; color:#fff; }
+  .mn-form{ display:flex; flex-direction:column; gap:24px; }
+  .mn-field label{ display:block; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--acc,#A85E6E); margin-bottom:10px; }
+  .mn-field input,.mn-field select,.mn-field textarea{
+    width:100%; background:transparent; border:0; border-bottom:1px solid rgba(231,222,224,.25);
+    color:#fff; font-family:'Inter',sans-serif; font-size:15px; padding:10px 0; outline:none; transition:border-color .3s;
+  }
+  .mn-field select{ color:#fff; }
+  .mn-field select option{ background:#1A1518; }
+  .mn-field textarea{ resize:vertical; min-height:70px; }
+  .mn-field input:focus,.mn-field select:focus,.mn-field textarea:focus{ border-color:var(--acc,#A85E6E); }
+  .mn-field input::placeholder,.mn-field textarea::placeholder{ color:#A99CA1; }
+  .mn-submit{
+    align-self:flex-start; background:var(--acc,#A85E6E); color:#fff; border:1px solid var(--acc,#A85E6E);
+    padding:15px 40px; font-size:11px; letter-spacing:.24em; text-transform:uppercase; font-weight:600;
+    cursor:pointer; transition:background .3s,color .3s,border-color .3s;
+  }
+  .mn-submit:hover{ background:var(--acc2,#8C4B59); border-color:var(--acc2,#8C4B59); color:#fff; }
+
+  /* ---------- FOOTER ---------- */
+  .mn-footer{ padding:80px 0 40px; border-top:1px solid rgba(231,222,224,.1); }
+  .mn-footer__top{ display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:40px; margin-bottom:60px; }
+  .mn-footer__brand p{ color:#A99CA1; font-size:14px; line-height:1.8; max-width:320px; margin:22px 0 0; }
+  .mn-footer h5{ font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--acc,#A85E6E); margin:0 0 20px; }
+  .mn-footer ul{ list-style:none; margin:0; padding:0; }
+  .mn-footer ul li{ margin-bottom:13px; }
+  .mn-footer ul a{ color:#A99CA1; text-decoration:none; font-size:14px; transition:color .25s; }
+  .mn-footer ul a:hover{ color:var(--acc,#A85E6E); }
+  .mn-footer__bot{ display:flex; justify-content:space-between; padding-top:30px; border-top:1px solid rgba(231,222,224,.1); font-size:12px; color:#A99CA1; letter-spacing:.04em; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:960px){
+    .mn-nav__links{ display:none; }
+    .mn-hero{ padding:40px 0 70px; }
+    .mn-hero__grid{ grid-template-columns:1fr; }
+    .mn-hero__copy{ grid-column:1; grid-row:2; margin:-70px 0 0; padding-right:0; }
+    .mn-hero__media{ grid-column:1; grid-row:1; height:440px; }
+    .mn-hero__num{ position:static; display:block; margin-top:28px; }
+    .mn-svc{ grid-template-columns:1fr; gap:60px; }
+    .mn-svc__div{ display:none; }
+    .mn-gal{ grid-auto-rows:120px; }
+    .mn-g1,.mn-g2,.mn-g3,.mn-g4,.mn-g5,.mn-g6{ grid-column:span 6; grid-row:span 2; }
+    .mn-team{ grid-template-columns:repeat(2,1fr); gap:24px; }
+    .mn-plans{ grid-template-columns:1fr; }
+    .mn-plan{ border-right:0; border-bottom:1px solid rgba(231,222,224,.12); }
+    .mn-plan:last-child{ border-bottom:0; }
+    .mn-book-sec{ grid-template-columns:1fr; gap:50px; }
+    .mn-footer__top{ grid-template-columns:1fr 1fr; }
+    .mn-footer__bot{ flex-direction:column; gap:10px; }
+  }
+  @media(max-width:560px){
+    .mn-shell{ padding:0 22px; }
+    .mn-sec{ padding:80px 0; }
+    .mn-team{ grid-template-columns:1fr; }
+    .mn-footer__top{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body class="mn-page">
+
+<!-- NAV -->
+<header class="mn-nav">
+  <div class="mn-shell mn-nav__in">
+    <a href="#" class="mn-brand">
+      <span class="mn-brand__mark" data-field="brandMark">M</span>
+      <span class="mn-brand__name" data-field="brandName">Maison Noir</span>
+    </a>
+    <nav class="mn-nav__links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#team">Atelier</a>
+      <a href="#pricing">Membership</a>
+    </nav>
+    <a href="#book" class="mn-book" data-field="navCta">Book now</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="mn-hero">
+  <div class="mn-shell">
+    <div class="mn-hero__grid">
+      <div class="mn-hero__copy reveal">
+        <span class="mn-label mn-hero__eye" data-field="heroEyebrow">Hair · Colour · Beauty, London W1</span>
+        <h1 data-field="heroTitle">Beauty,<span class="mn-it mn-serif">quietly bold.</span></h1>
+        <p class="mn-hero__lede" data-field="heroSub">A couture hair and beauty studio for people who care about the details. Master stylists, considered colour and skin rituals, in a calm, elegant space that's yours for the hour.</p>
+        <div class="mn-hero__cta">
+          <a href="#book" class="mn-cta-line" data-field="heroCta1">Reserve your chair</a>
+          <a href="#services" class="mn-cta-line" data-field="heroCta2">The menu</a>
+        </div>
+        <span class="mn-hero__num" data-field="trustText">Est. 2016, No. 7 Marlowe Court</span>
+      </div>
+      <div class="mn-hero__media reveal">
+        <img data-img="hero" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="A stylist finishing a client's hair at Maison Noir">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES + PRICE LIST -->
+<section class="mn-sec" id="services">
+  <div class="mn-shell">
+    <div class="mn-sechead reveal">
+      <span class="mn-label">The menu</span>
+      <h2 class="mn-serif" data-field="servicesTitle">Everything, done <span class="mn-it">beautifully.</span></h2>
+    </div>
+    <div class="mn-svc reveal">
+      <div>
+        <ul class="mn-svc__list">
+          <li><span class="mn-svc__no">01</span><span class="mn-svc__nm mn-serif" data-field="svc1Title">Cut &amp; style</span><span class="mn-svc__tag" data-field="svc1Desc">Precision</span></li>
+          <li><span class="mn-svc__no">02</span><span class="mn-svc__nm mn-serif" data-field="svc2Title">Colour &amp; balayage</span><span class="mn-svc__tag" data-field="svc2Desc">Couture</span></li>
+          <li><span class="mn-svc__no">03</span><span class="mn-svc__nm mn-serif" data-field="svc3Title">Treatments</span><span class="mn-svc__tag" data-field="svc3Desc">Ritual</span></li>
+          <li><span class="mn-svc__no">04</span><span class="mn-svc__nm mn-serif" data-field="svc4Title">Bridal &amp; events</span><span class="mn-svc__tag" data-field="svc4Desc">Occasion</span></li>
+          <li><span class="mn-svc__no">05</span><span class="mn-svc__nm mn-serif" data-field="svc5Title">Nails</span><span class="mn-svc__tag" data-field="svc5Desc">Finish</span></li>
+          <li><span class="mn-svc__no">06</span><span class="mn-svc__nm mn-serif" data-field="svc6Title">Skincare &amp; facials</span><span class="mn-svc__tag" data-field="svc6Desc">Bespoke</span></li>
+        </ul>
+      </div>
+      <div class="mn-svc__div"></div>
+      <div>
+        <div class="mn-price__head">
+          <span class="mn-label">Price list</span>
+          <span class="mn-serif">Signature services</span>
+          <p>A selection of our most-loved appointments. Final pricing is confirmed at consultation, based on hair length and density.</p>
+        </div>
+        <ul class="mn-price__list">
+          <li class="mn-price__row"><span class="mn-price__nm">Cut &amp; finish</span><span class="mn-price__dots"></span><span class="mn-price__amt">£55</span></li>
+          <li class="mn-price__row"><span class="mn-price__nm">Full head colour</span><span class="mn-price__dots"></span><span class="mn-price__amt">£120</span></li>
+          <li class="mn-price__row"><span class="mn-price__nm">Balayage</span><span class="mn-price__dots"></span><span class="mn-price__amt">£150</span></li>
+          <li class="mn-price__row"><span class="mn-price__nm">Bond-building treatment</span><span class="mn-price__dots"></span><span class="mn-price__amt">£40</span></li>
+          <li class="mn-price__row"><span class="mn-price__nm">Gel manicure</span><span class="mn-price__dots"></span><span class="mn-price__amt">£45</span></li>
+          <li class="mn-price__row"><span class="mn-price__nm">Bespoke facial</span><span class="mn-price__dots"></span><span class="mn-price__amt">£85</span></li>
+        </ul>
+        <p class="mn-price__note">Consultations are always complimentary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-BLEED STATEMENT -->
+<section class="mn-break reveal">
+  <div class="mn-break__img">
+    <img data-img="about" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1600&q=80" alt="Editorial beauty portrait" loading="lazy">
+  </div>
+  <div class="mn-break__in">
+    <span class="mn-label">The Maison philosophy</span>
+    <h2 class="mn-serif" data-field="aboutTitle">We don't chase trends. We find the version of <span class="mn-it">you</span> that already turns heads, and let the room notice quietly.</h2>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="mn-sec" id="gallery">
+  <div class="mn-shell">
+    <div class="mn-sechead reveal">
+      <span class="mn-label">The work</span>
+      <h2 class="mn-serif">A little <span class="mn-it">inspiration.</span></h2>
+    </div>
+    <div class="mn-gal reveal">
+      <figure class="mn-g1"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1000&q=80" alt="Balayage transformation" loading="lazy"><figcaption>Balayage, hand painted</figcaption></figure>
+      <figure class="mn-g2"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1000&q=80" alt="Soft blunt bob" loading="lazy"><figcaption>The blunt bob</figcaption></figure>
+      <figure class="mn-g3"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1000&q=80" alt="Editorial waves" loading="lazy"><figcaption>Editorial waves</figcaption></figure>
+      <figure class="mn-g4"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="Glossed brunette" loading="lazy"><figcaption>Glossed brunette</figcaption></figure>
+      <figure class="mn-g5"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1000&q=80" alt="Bridal finish" loading="lazy"><figcaption>Bridal finish</figcaption></figure>
+      <figure class="mn-g6"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1000&q=80" alt="Precision fringe" loading="lazy"><figcaption>Precision fringe</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- STYLISTS -->
+<section class="mn-sec" id="team">
+  <div class="mn-shell">
+    <div class="mn-sechead reveal">
+      <span class="mn-label">The atelier</span>
+      <h2 class="mn-serif">The hands behind <span class="mn-it">the look.</span></h2>
+    </div>
+    <div class="mn-team reveal">
+      <figure>
+        <div class="mn-team__ph"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=600&q=80" alt="Camille Laurent" loading="lazy"></div>
+        <h4>Camille Laurent</h4><span>Creative Director · Founder</span>
+      </figure>
+      <figure>
+        <div class="mn-team__ph"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Marcus Dovan" loading="lazy"></div>
+        <h4>Marcus Dovan</h4><span>Master Colourist</span>
+      </figure>
+      <figure>
+        <div class="mn-team__ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Ines Vidal" loading="lazy"></div>
+        <h4>Ines Vidal</h4><span>Senior Stylist · Bridal</span>
+      </figure>
+      <figure>
+        <div class="mn-team__ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Naomi Frost" loading="lazy"></div>
+        <h4>Naomi Frost</h4><span>Skin &amp; Nails Specialist</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="mn-sec" id="pricing">
+  <div class="mn-shell">
+    <div class="mn-sechead reveal">
+      <span class="mn-label">Membership</span>
+      <h2 class="mn-serif">Looking after you, <span class="mn-it">always.</span></h2>
+    </div>
+    <div class="mn-plans reveal">
+      <div class="mn-plan">
+        <div class="mn-plan__nm">Express</div>
+        <div class="mn-plan__price">£45<small> /mo</small></div>
+        <div class="mn-plan__sub">For the low-maintenance edit</div>
+        <ul>
+          <li>One blow-dry each month</li>
+          <li>10% off all add-on services</li>
+          <li>Priority weekday booking</li>
+        </ul>
+        <a href="#book" class="mn-plan__cta">Choose Express</a>
+      </div>
+      <div class="mn-plan mn-plan--feat">
+        <div class="mn-plan__nm">Signature</div>
+        <div class="mn-plan__price">£95<small> /mo</small></div>
+        <div class="mn-plan__sub">Our most-loved package</div>
+        <ul>
+          <li>Cut &amp; finish every six weeks</li>
+          <li>Two blow-dries a month</li>
+          <li>15% off colour &amp; treatments</li>
+        </ul>
+        <a href="#book" class="mn-plan__cta">Choose Signature</a>
+      </div>
+      <div class="mn-plan">
+        <div class="mn-plan__nm">Luxe</div>
+        <div class="mn-plan__price">£185<small> /mo</small></div>
+        <div class="mn-plan__sub">The full studio experience</div>
+        <ul>
+          <li>Unlimited blow-dries</li>
+          <li>Colour, cut &amp; a monthly facial</li>
+          <li>Dedicated stylist &amp; VIP hours</li>
+        </ul>
+        <a href="#book" class="mn-plan__cta">Choose Luxe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING / CONTACT -->
+<section class="mn-sec" id="book">
+  <div class="mn-shell">
+    <div class="mn-book-sec">
+      <div class="reveal">
+        <span class="mn-label">Book with us</span>
+        <h2 class="mn-serif" data-field="contactTitle" style="font-size:clamp(32px,4.4vw,52px);line-height:1.05;margin:22px 0 20px;">Reserve <span class="mn-it">your chair.</span></h2>
+        <p data-field="contactSub" style="color:#A99CA1;font-size:15px;line-height:1.8;max-width:400px;margin:0;">Tell us what you're after and your preferred stylist, and we'll be in touch within a day to confirm your appointment.</p>
+        <ul class="mn-info">
+          <li><span>Phone</span><b data-field="phone">020 7946 0318</b></li>
+          <li><span>Email</span><b data-field="email">hello@maisonnoir.co.uk</b></li>
+          <li><span>Studio</span><b data-field="address">7 Marlowe Court, London W1</b></li>
+          <li><span>Hours</span><b data-field="hours">Tuesday–Saturday, 9am–7pm</b></li>
+        </ul>
+      </div>
+      <form class="mn-form reveal">
+        <div class="mn-field"><label>Your name</label><input type="text" placeholder="Jane Doe" required></div>
+        <div class="mn-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="mn-field"><label>Which service?</label>
+          <select><option>Cut &amp; style</option><option>Colour &amp; balayage</option><option>Treatments</option><option>Bridal &amp; events</option><option>Nails</option><option>Skincare &amp; facials</option><option>Not sure yet</option></select>
+        </div>
+        <div class="mn-field"><label>Anything we should know?</label><textarea placeholder="Preferred stylist, dates, or the look you have in mind…"></textarea></div>
+        <button type="submit" class="mn-submit">Request appointment</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mn-footer">
+  <div class="mn-shell">
+    <div class="mn-footer__top">
+      <div class="mn-footer__brand">
+        <a href="#" class="mn-brand">
+          <span class="mn-brand__mark" data-field="brandMark">M</span>
+          <span class="mn-brand__name" data-field="brandName">Maison Noir</span>
+        </a>
+        <p data-field="footerText">A couture hair, colour and beauty studio, where the details are everything.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul><li><a href="#services">Cut &amp; style</a></li><li><a href="#services">Colour &amp; balayage</a></li><li><a href="#services">Treatments</a></li><li><a href="#services">Skincare &amp; facials</a></li></ul>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul><li><a href="#team">The atelier</a></li><li><a href="#pricing">Membership</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#book">Book now</a></li></ul>
+      </div>
+    </div>
+    <div class="mn-footer__bot">
+      <span data-field="footerLegal">© 2026 Maison Noir. All rights reserved.</span>
+      <span>Cancellations require 24 hours' notice.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="../index.html" class="t-ribbon"><span class="t-logo__mark">SW</span> Built with SiteWell Studio</a>
+<script src="../js/template.js?v=20261021b"></script>
+</body>
+</html>
