@@ -390,6 +390,8 @@ function d7EditorCSS(){ return [
   '#d7-txtbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 9px;cursor:pointer;font:inherit;min-width:30px}',
   '#d7-txtbar button:hover,#d7-txtbar button.on{background:#00A583}',
   '#d7-txtbar input[type=color]{width:30px;height:28px;padding:0;border:0;background:none;cursor:pointer;border-radius:6px}',
+  '#d7-txtbar select.d7-font{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 8px;font:inherit;cursor:pointer;max-width:140px}',
+  '#d7-txtbar select.d7-font option{color:#1B1812}',
   '#d7-txtbar .d7-sz{min-width:30px;text-align:center;font-variant-numeric:tabular-nums}',
   '#d7-txtbar .d7-sep{width:1px;height:20px;background:rgba(255,255,255,.22)}'
 ].join(''); }
@@ -446,18 +448,41 @@ function d7MakeEditable(el){
   d7ShowTextBar(el);
 }
 function d7RgbToHex(rgb){ const m=rgb&&rgb.match(/\d+/g); if(!m)return null; return '#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join(''); }
+// Fonts offered in the text toolbar. g = Google Fonts family param (loaded on demand); null = web-safe.
+const D7_FONTS=[
+  {l:'Font', v:''},
+  {l:'Inter', v:'"Inter",sans-serif', g:'Inter:wght@400;500;600;700'},
+  {l:'Fraunces', v:'"Fraunces",Georgia,serif', g:'Fraunces:opsz,wght@9..144,400..600'},
+  {l:'Poppins', v:'"Poppins",sans-serif', g:'Poppins:wght@400;500;600;700'},
+  {l:'Montserrat', v:'"Montserrat",sans-serif', g:'Montserrat:wght@400;500;600;700'},
+  {l:'Playfair Display', v:'"Playfair Display",serif', g:'Playfair+Display:wght@400;500;600;700'},
+  {l:'Lora', v:'"Lora",serif', g:'Lora:wght@400;500;600;700'},
+  {l:'Merriweather', v:'"Merriweather",serif', g:'Merriweather:wght@400;700'},
+  {l:'Roboto', v:'"Roboto",sans-serif', g:'Roboto:wght@400;500;700'},
+  {l:'Open Sans', v:'"Open Sans",sans-serif', g:'Open+Sans:wght@400;500;600;700'},
+  {l:'Nunito', v:'"Nunito",sans-serif', g:'Nunito:wght@400;600;700'},
+  {l:'Work Sans', v:'"Work Sans",sans-serif', g:'Work+Sans:wght@400;500;600;700'},
+  {l:'DM Serif Display', v:'"DM Serif Display",serif', g:'DM+Serif+Display'},
+  {l:'Georgia', v:'Georgia,serif'},
+  {l:'Arial', v:'Arial,Helvetica,sans-serif'},
+  {l:'Times New Roman', v:'"Times New Roman",serif'}
+];
+function d7LoadFont(g){ if(!g||!doc)return; const id='d7f-'+g.replace(/[^a-z0-9]/gi,''); if(doc.getElementById(id))return;
+  const l=doc.createElement('link'); l.id=id; l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family='+g+'&display=swap'; doc.head.appendChild(l); }
 function d7EnsureTextBar(){
   let b=doc.getElementById('d7-txtbar'); if(b) return b;
   b=doc.createElement('div'); b.id='d7-txtbar'; b.style.display='none';
-  b.innerHTML='<button data-t="dec">A-</button><span class="d7-sz">16</span><button data-t="inc">A+</button>'
+  b.innerHTML='<select class="d7-font" title="Font">'+D7_FONTS.map((f,i)=>'<option value="'+i+'">'+f.l+'</option>').join('')+'</select>'
+    +'<span class="d7-sep"></span><button data-t="dec">A-</button><span class="d7-sz">16</span><button data-t="inc">A+</button>'
     +'<span class="d7-sep"></span><input type="color" title="Text colour">'
     +'<span class="d7-sep"></span><button data-t="bold" style="font-weight:800">B</button><button data-t="italic" style="font-style:italic">I</button>'
     +'<span class="d7-sep"></span><button data-t="left" title="Align left">☷</button><button data-t="center" title="Align centre">≡</button><button data-t="right" title="Align right">☷</button>'
     +'<span class="d7-sep"></span><button data-t="done">Done</button>';
   doc.body.appendChild(b);
-  b.addEventListener('mousedown',e=>{ if(e.target.tagName!=='INPUT') e.preventDefault(); }); // keep the text focused while using the bar
+  b.addEventListener('mousedown',e=>{ if(e.target.tagName!=='INPUT' && e.target.tagName!=='SELECT') e.preventDefault(); }); // keep text focused, but let the font select open
   b.addEventListener('click',e=>{ const t=e.target.getAttribute&&e.target.getAttribute('data-t'); if(t) d7TextAction(t); });
   b.querySelector('input[type=color]').addEventListener('input',e=>{ if(d7EditEl) d7EditEl.style.color=e.target.value; });
+  b.querySelector('select.d7-font').addEventListener('change',e=>{ if(!d7EditEl)return; const f=D7_FONTS[+e.target.value]||D7_FONTS[0]; d7LoadFont(f.g); d7EditEl.style.fontFamily=f.v; e.target.selectedIndex=0; d7EditEl.focus(); });
   return b;
 }
 function d7ShowTextBar(el){
@@ -493,7 +518,8 @@ function d7EnsureFrame(img){
   fr.style.overflow='hidden'; fr.style.lineHeight='0'; fr.style.verticalAlign='top'; fr.style.maxWidth='none';
   fr.style.borderRadius=cs.borderRadius; fr.style.boxShadow=cs.boxShadow;
   if(cs.position!=='static'){ fr.style.position=cs.position; fr.style.top=cs.top; fr.style.left=cs.left; fr.style.right=cs.right; fr.style.bottom=cs.bottom; }
-  else fr.style.position='relative';
+  // else: leave the frame static so merely selecting an image never raises it above overlaid text
+  // (it only becomes positioned when you actually move/resize it via d7Float, or change its layer).
   img.parentNode.insertBefore(fr,img); fr.appendChild(img);
   img.style.width='100%'; img.style.height='100%'; img.style.display='block'; img.style.margin='0';
   img.style.objectFit=(cs.objectFit&&cs.objectFit!=='fill')?cs.objectFit:'cover';
