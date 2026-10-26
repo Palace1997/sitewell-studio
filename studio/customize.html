@@ -75,7 +75,11 @@ body{margin:0;font-family:var(--font-sans);color:var(--ink);background:var(--can
 .preview__bar>.close-x{justify-self:end}
 .close-x{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;font-size:20px;line-height:1;cursor:pointer;flex:none;transition:.15s}
 .close-x:hover{background:#F5F3EF;border-color:var(--muted);color:var(--ink)}
-.tpl{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:100px;padding:8px 14px;cursor:pointer;max-width:260px}
+.tpl{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:100px;padding:8px 14px;cursor:pointer;max-width:230px}
+.preview__bar>.tpl-group{justify-self:start;display:inline-flex;align-items:center;gap:7px}
+.pv-ico{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:18px;line-height:1;cursor:pointer;flex:none;transition:.15s}
+.pv-ico:hover:not(:disabled){background:var(--canvas)}
+.pv-ico:disabled{opacity:.36;cursor:default}
 .tpl:focus{outline:none;border-color:var(--green)}
 .seg{display:inline-flex;background:var(--canvas);border:1px solid var(--line);border-radius:100px;padding:3px}
 .seg button{border:0;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);padding:6px 16px;border-radius:100px;cursor:pointer}
@@ -116,11 +120,15 @@ iframe{width:100%;height:100%;border:0;display:block}
   </aside>
   <main class="preview">
     <div class="preview__bar">
-      <select id="tpl" class="tpl" title="Choose a template">
-        <option value="editable-practice.html">Starter, Practice (universal)</option>
-        <!-- Catalog designs are injected here from ../js/catalog.js so this list
-             always matches the current 30 designs shown on the public site. -->
-      </select>
+      <div class="tpl-group">
+        <button id="undoBtn" class="pv-ico" type="button" title="Undo (Ctrl+Z)" disabled>&#8630;</button>
+        <button id="redoBtn" class="pv-ico" type="button" title="Redo (Ctrl+Shift+Z)" disabled>&#8631;</button>
+        <select id="tpl" class="tpl" title="Choose a template">
+          <option value="editable-practice.html">Starter, Practice (universal)</option>
+          <!-- Catalog designs are injected here from ../js/catalog.js so this list
+               always matches the current 30 designs shown on the public site. -->
+        </select>
+      </div>
       <div class="seg"><button data-w="desktop" class="on">Desktop</button><button data-w="mobile">Mobile</button></div>
       <a href="../index.html" id="closeStudio" class="close-x" title="Close Studio, back to homepage" aria-label="Close Studio">&times;</a>
       <span style="width:150px"></span>
@@ -288,6 +296,7 @@ function populate(){
   ensurePreviewStyle();
   doc.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in')); // show all sections while editing
   initInlineEditor(); // enable click-to-edit on the live preview
+  d7ResetHistory(); // fresh undo history per loaded template
   GROUPS.forEach(g=>g.fields.forEach(f=>{
     const inp=document.getElementById('f_'+f.id); if(!inp)return;
     if(f.type==='image'){
@@ -306,6 +315,11 @@ function populate(){
 }
 attach();
 frame.addEventListener('load',populate);
+// undo / redo arrows in the preview bar (cover canvas edits: text, moves, crops, layering, deletes)
+document.getElementById('undoBtn').addEventListener('click',()=>d7DoUndo());
+document.getElementById('redoBtn').addEventListener('click',()=>d7DoRedo());
+window.addEventListener('keydown',e=>{ if(!(e.ctrlKey||e.metaKey))return; const ae=document.activeElement; if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName))return; const k=e.key.toLowerCase();
+  if(k==='z'){ e.preventDefault(); e.shiftKey?d7DoRedo():d7DoUndo(); } else if(k==='y'){ e.preventDefault(); d7DoRedo(); } });
 // template picker (cache-bust so freshly-instrumented templates always load)
 document.getElementById('tpl').addEventListener('change',e=>{frame.src=e.target.value+'?t='+Date.now();});
 
@@ -439,7 +453,9 @@ function initInlineEditor(){
     if(img){ d7SelectImg(img); d7ShowMenu(e.clientX,e.clientY,img); }
     else { d7ShowMenu(e.clientX,e.clientY,e.target); } // generic element menu (edit / remove decoration / delete)
   });
-  doc.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&(e.key==='z'||e.key==='Z')){ const ae=doc.activeElement; if(ae&&ae.getAttribute&&ae.getAttribute('contenteditable')==='true') return; if(d7DelStack.length){ e.preventDefault(); d7UndoDelete(); } } });
+  doc.addEventListener('keydown',e=>{ if(!(e.ctrlKey||e.metaKey))return; const k=e.key.toLowerCase(), ae=doc.activeElement, editing=ae&&ae.getAttribute&&ae.getAttribute('contenteditable')==='true';
+    if(k==='z'){ if(editing)return; e.preventDefault(); if(e.shiftKey) d7DoRedo(); else d7DoUndo(); }
+    else if(k==='y'){ if(editing)return; e.preventDefault(); d7DoRedo(); } });
   body.addEventListener('mousedown',e=>{ const m=doc.getElementById('d7-ctx'); if(m && m.style.display!=='none' && !(e.target.closest&&e.target.closest('#d7-ctx'))) m.style.display='none'; }, true);
   doc.defaultView.addEventListener('scroll',()=>{ if(d7Sel) d7PositionBox(); }, true);
 }
@@ -451,6 +467,7 @@ function d7OnEditPaste(ev){ ev.preventDefault(); const t=(ev.clipboardData||doc.
 function d7CommitText(){ if(d7EditEl){ d7EditEl.removeAttribute('contenteditable'); d7EditEl.removeEventListener('input',d7OnEditInput); d7EditEl.removeEventListener('paste',d7OnEditPaste); d7EditEl=null; } const b=doc.getElementById('d7-txtbar'); if(b)b.style.display='none'; }
 function d7MakeEditable(el){
   if(d7EditEl===el){ el.focus(); return; }
+  d7HistPush(); // one undo step per text-edit session
   d7CommitText();
   el.setAttribute('contenteditable','true'); el.focus(); d7EditEl=el;
   el.addEventListener('input',d7OnEditInput); el.addEventListener('paste',d7OnEditPaste);
@@ -578,6 +595,7 @@ function d7EnsureBox(){
       +'<button data-a="replace">Replace</button><button data-a="reset">Reset</button><button data-a="done">Done</button>';
     doc.body.appendChild(bar);
     bar.addEventListener('click',e=>{ const a=e.target.getAttribute&&e.target.getAttribute('data-a'); if(a) d7ImgAction(a); });
+    bar.querySelectorAll('input[type=range]').forEach(r=>r.addEventListener('mousedown',d7HistPush)); // one undo step per slider drag
     bar.querySelector('.d7-zoomrange').addEventListener('input',e=>{ if(!d7Sel)return; d7Sel.dataset.d7z=e.target.value; d7ApplyZoom(d7Sel); });
     bar.querySelector('.d7-bright').addEventListener('input',e=>{ if(!d7Sel)return; d7Sel.dataset.d7b=e.target.value; d7Sel.style.filter=(parseFloat(e.target.value)===1)?'':('brightness('+e.target.value+')'); });
   }
@@ -604,8 +622,24 @@ function d7EnsureMenu(){
 }
 function d7HasDeco(el){ try{ const w=doc.defaultView, b=w.getComputedStyle(el,'::before').content, a=w.getComputedStyle(el,'::after').content;
   return (b&&b!=='none'&&b!=='normal')||(a&&a!=='none'&&a!=='normal'); }catch(e){ return false; } }
-function d7DeleteEl(el){ if(!el||el===doc.body)return; el.setAttribute('data-d7del','1'); el.style.display='none'; d7DelStack.push(el); toast('Deleted, Ctrl+Z to undo'); }
+function d7DeleteEl(el){ if(!el||el===doc.body)return; d7HistPush(); el.setAttribute('data-d7del','1'); el.style.display='none'; d7DelStack.push(el); toast('Deleted, Ctrl+Z to undo'); }
 function d7UndoDelete(){ const el=d7DelStack.pop(); if(el){ el.style.display=''; el.removeAttribute('data-d7del'); toast('Restored'); } }
+// ---- Undo / Redo: snapshot the live preview content before each edit, step back/forward ----
+let d7Hist=[], d7Future=[], d7SnapLock=false;
+function d7SnapHTML(){ if(!doc)return ''; const b=doc.body.cloneNode(true);
+  b.querySelectorAll('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar').forEach(e=>e.remove()); // never capture editor overlays
+  b.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
+  b.querySelectorAll('.d7-hi').forEach(e=>e.classList.remove('d7-hi'));
+  return b.innerHTML; }
+function d7HistPush(){ if(d7SnapLock||!doc)return; d7Hist.push(d7SnapHTML()); if(d7Hist.length>30)d7Hist.shift(); d7Future.length=0; d7UpdateHistBtns(); }
+function d7RestoreHTML(html){ if(!doc)return; d7CommitText(); d7Deselect();
+  const keep=[]; ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e){ keep.push(e); e.remove(); } });
+  d7SnapLock=true; doc.body.innerHTML=html; d7SnapLock=false; // body-level listeners survive (editor uses delegation)
+  keep.forEach(e=>doc.body.appendChild(e)); d7DelStack=[]; }
+function d7DoUndo(){ if(!d7Hist.length||!doc){ return; } d7Future.push(d7SnapHTML()); d7RestoreHTML(d7Hist.pop()); d7UpdateHistBtns(); toast('Undo'); }
+function d7DoRedo(){ if(!d7Future.length||!doc){ return; } d7Hist.push(d7SnapHTML()); d7RestoreHTML(d7Future.pop()); d7UpdateHistBtns(); toast('Redo'); }
+function d7ResetHistory(){ d7Hist=[]; d7Future=[]; d7UpdateHistBtns(); }
+function d7UpdateHistBtns(){ const u=document.getElementById('undoBtn'), r=document.getElementById('redoBtn'); if(u)u.disabled=!d7Hist.length; if(r)r.disabled=!d7Future.length; }
 function d7ShowMenu(x,y,el){
   const m=d7EnsureMenu(), win=doc.defaultView; let html='';
   if(el && el.tagName==='IMG'){ d7CtxEl=null;
@@ -707,7 +741,8 @@ function d7Unfloat(fr){
   fr.style.position=''; fr.style.left=''; fr.style.top=''; fr.style.margin=''; fr.style.zIndex='';
   delete fr.dataset.d7float; delete fr.dataset.d7zi;
 }
-function d7StartMove(e){ if(d7Reframe && d7Sel){ return d7StartPan(e); } // in reframe mode, dragging pans the crop instead of moving the frame
+function d7StartMove(e){ d7HistPush(); // snapshot before a move or (in reframe mode) a crop pan
+  if(d7Reframe && d7Sel){ return d7StartPan(e); } // in reframe mode, dragging pans the crop instead of moving the frame
   e.preventDefault(); e.stopPropagation();
   const fr=d7CurBox(); if(!fr)return; d7Float(fr); if(!fr.dataset.d7zi) d7SetZ(fr,100);
   const L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, sx=e.clientX, sy=e.clientY; d7drag={};
@@ -715,7 +750,7 @@ function d7StartMove(e){ if(d7Reframe && d7Sel){ return d7StartPan(e); } // in r
   const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
   doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
 }
-function d7StartResize(e,h){ e.preventDefault(); e.stopPropagation();
+function d7StartResize(e,h){ d7HistPush(); e.preventDefault(); e.stopPropagation();
   const fr=d7CurBox(); if(!fr)return; d7Float(fr); // resize the floated box → never reflows the surrounding content
   const c=h.className, L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, r=fr.getBoundingClientRect(), W0=r.width, H0=r.height, sx=e.clientX, sy=e.clientY; d7drag={};
   const mv=ev=>{ let dw=ev.clientX-sx, dh=ev.clientY-sy, L=L0,T=T0,W=W0,H=H0;
@@ -730,6 +765,8 @@ function d7StartResize(e,h){ e.preventDefault(); e.stopPropagation();
   doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
 }
 function d7MenuAction(a){
+  // snapshot for mutating actions (delete/edittext push their own snapshot; movebox only enters a mode)
+  if(a==='nodeco'||a==='centerh'||a==='centerv'||a==='front'||a==='back') d7HistPush();
   // generic element actions (work on any element, not just images)
   if(a==='edittext'){ const tt=d7TextTarget(d7CtxEl); if(tt){ d7Deselect(); d7MakeEditable(tt); } return; }
   if(a==='nodeco'){ if(d7CtxEl) d7CtxEl.setAttribute('data-d7nodeco','1'); return; }
@@ -741,16 +778,16 @@ function d7MenuAction(a){
   if(!d7Sel)return; const fr=d7Frame(d7Sel); if(!fr)return;
   if(a==='replace'){ d7ImgAction('replace'); }
   else if(a==='reset'){ d7ImgAction('reset'); }
-  else if(a==='remove'){ fr.setAttribute('data-d7del','1'); fr.style.display='none'; d7DelStack.push(fr); toast('Deleted, Ctrl+Z to undo'); d7Deselect(); return; }
+  else if(a==='remove'){ d7HistPush(); fr.setAttribute('data-d7del','1'); fr.style.display='none'; d7DelStack.push(fr); toast('Deleted, Ctrl+Z to undo'); d7Deselect(); return; }
   d7PositionBox();
 }
 function d7ImgAction(a){ if(!d7Sel)return; const fr=d7Frame(d7Sel);
   if(a==='done'){ d7Deselect(); return; }
   if(a==='reframe'){ d7SetReframe(!d7Reframe); if(d7Reframe) toast('Reframe on, drag the photo to show a different part'); return; }
-  if(a==='reset'){ if(fr){ d7Unfloat(fr); fr.style.display=''; fr.style.width=(fr.dataset.d7ow||'')+'px'; fr.style.height=(fr.dataset.d7oh||'')+'px'; }
+  if(a==='reset'){ d7HistPush(); if(fr){ d7Unfloat(fr); fr.style.display=''; fr.style.width=(fr.dataset.d7ow||'')+'px'; fr.style.height=(fr.dataset.d7oh||'')+'px'; }
     d7Sel.style.transform=''; d7Sel.style.filter=''; d7Sel.style.objectPosition=''; delete d7Sel.dataset.d7z; delete d7Sel.dataset.d7b; delete d7Sel.dataset.d7px; delete d7Sel.dataset.d7py; d7SetReframe(false);
     const bar=doc.getElementById('d7-imgbar'), zr=bar.querySelector('.d7-zoomrange'), br=bar.querySelector('.d7-bright'); if(zr)zr.value=1; if(br)br.value=1; d7PositionBox(); return; }
-  if(a==='replace'){ const inp=doc.createElement('input'); inp.type='file'; inp.accept='image/*';
+  if(a==='replace'){ d7HistPush(); const inp=doc.createElement('input'); inp.type='file'; inp.accept='image/*';
     inp.onchange=()=>{ const f=inp.files[0]; if(!f)return; const rd=new FileReader(); rd.onload=ev=>{ d7Sel.src=ev.target.result; const id=d7Sel.getAttribute('data-img'); if(id){ const fi=document.getElementById('f_'+id); if(fi) fi.value=ev.target.result; } d7PositionBox(); }; rd.readAsDataURL(f); };
     inp.click(); }
 }
