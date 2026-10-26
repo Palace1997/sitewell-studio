@@ -135,18 +135,19 @@ iframe{width:100%;height:100%;border:0;display:block}
 <script>
 (function () {
   var C = window.SW_CATALOG, sel = document.getElementById('tpl');
-  if (!C || !sel) return;
-  function typeName(id) { for (var i = 0; i < C.types.length; i++) if (C.types[i].id === id) return C.types[i].name; return ''; }
+  if (!C || !sel || !C.categories || !C.categoryOf) return;
+  function areaName(id) { for (var i = 0; i < C.areas.length; i++) if (C.areas[i].id === id) return C.areas[i].name; return ''; }
   var built = C.designs.filter(function (d) { return !d.soon; });
-  C.areas.forEach(function (a) {
-    var ds = built.filter(function (d) { return d.area === a.id; });
+  // Group by the same 4 browse categories used on the public site's design section.
+  C.categories.forEach(function (cat) {
+    var ds = built.filter(function (d) { return C.categoryOf(d) === cat.id; });
     if (!ds.length) return;
     var og = document.createElement('optgroup');
-    og.label = a.name;
+    og.label = cat.name;
     ds.forEach(function (d) {
       var o = document.createElement('option');
       o.value = '../' + d.file;
-      o.textContent = d.name + ', ' + typeName(d.type);
+      o.textContent = d.name + ', ' + areaName(d.area);
       og.appendChild(o);
     });
     sel.appendChild(og);
