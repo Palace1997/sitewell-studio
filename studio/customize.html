@@ -332,7 +332,7 @@ document.getElementById('download').addEventListener('click',async ()=>{
   const so=clone.querySelector('#d7-studio-only'); if(so)so.remove(); // keep scroll animations in the delivered file
   clone.querySelectorAll('.reveal.is-in').forEach(e=>e.classList.remove('is-in')); // restore reveal-on-scroll for visitors
   // strip inline-editor artefacts (KEEP the user's image size/position inline styles)
-  clone.querySelectorAll('#d7-editor-style,#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar').forEach(el=>el.remove());
+  clone.querySelectorAll('#d7-editor-style,#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar').forEach(el=>el.remove());
   clone.querySelectorAll('[data-d7del]').forEach(el=>el.remove()); // actually remove deleted elements from the delivered file
   clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
   clone.querySelectorAll('.d7-hi').forEach(el=>el.classList.remove('d7-hi'));
@@ -386,9 +386,14 @@ function d7EditorCSS(){ return [
   '#d7-imgbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 10px;cursor:pointer;font:inherit}',
   '#d7-imgbar button:hover{background:#00A583}',
   '#d7-imgbar .d7-bright{accent-color:#f5c451}',
+  '#d7-actbar{position:absolute;z-index:2147483001;display:flex;gap:5px;background:#0B362A;color:#fff;border-radius:8px;padding:5px 6px;font:600 11px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3)}',
+  '#d7-actbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:5px;padding:6px 9px;cursor:pointer;font:inherit}',
+  '#d7-actbar button:hover{background:#00A583}',
+  '#d7-actbar button.d7-del:hover{background:#d8513f}',
   '#d7-txtbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:2147483000;background:#0B362A;color:#fff;border-radius:9px;padding:6px 9px;display:flex;gap:7px;align-items:center;font:600 12px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.32)}',
   '#d7-txtbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 9px;cursor:pointer;font:inherit;min-width:30px}',
   '#d7-txtbar button:hover,#d7-txtbar button.on{background:#00A583}',
+  '#d7-txtbar button.d7-del:hover{background:#d8513f}',
   '#d7-txtbar input[type=color]{width:30px;height:28px;padding:0;border:0;background:none;cursor:pointer;border-radius:6px}',
   '#d7-txtbar select.d7-font{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 8px;font:inherit;cursor:pointer;max-width:140px}',
   '#d7-txtbar select.d7-font option{color:#1B1812}',
@@ -398,7 +403,7 @@ function d7EditorCSS(){ return [
 function d7HasText(el){ for(const n of el.childNodes){ if(n.nodeType===3 && n.textContent.trim()) return true; } return false; }
 function d7TextTarget(el){
   if(!el||el.nodeType!==1) return null;
-  if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return null;
+  if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return null;
   let n=el;
   while(n && n!==doc.body){ if(d7HasText(n)) return n; n=n.parentElement; }
   return null;
@@ -414,7 +419,7 @@ function initInlineEditor(){
   body.addEventListener('mouseout',()=>{ if(!d7drag) d7ClearHi(); });
   body.addEventListener('click',e=>{
     const tgt=e.target;
-    if(tgt.closest && tgt.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return;
+    if(tgt.closest && tgt.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return;
     if(e.altKey){ const im=d7ImgUnder(e.clientX,e.clientY); if(im){ e.preventDefault(); e.stopPropagation(); d7SelectImg(im); return; } } // grab an image behind other content
     if(tgt.tagName==='IMG'){ e.preventDefault(); e.stopPropagation(); d7SelectImg(tgt); return; }
     const t=d7TextTarget(tgt);
@@ -424,7 +429,7 @@ function initInlineEditor(){
     d7Deselect();
   }, true);
   body.addEventListener('contextmenu',e=>{
-    if(e.target.closest && e.target.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar')) return;
+    if(e.target.closest && e.target.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return;
     e.preventDefault();
     const img=(e.target.tagName==='IMG')?e.target:(e.altKey?d7ImgUnder(e.clientX,e.clientY):null);
     if(img){ d7SelectImg(img); d7ShowMenu(e.clientX,e.clientY,img); }
@@ -477,6 +482,7 @@ function d7EnsureTextBar(){
     +'<span class="d7-sep"></span><input type="color" title="Text colour">'
     +'<span class="d7-sep"></span><button data-t="bold" style="font-weight:800">B</button><button data-t="italic" style="font-style:italic">I</button>'
     +'<span class="d7-sep"></span><button data-t="left" title="Align left">☷</button><button data-t="center" title="Align centre">≡</button><button data-t="right" title="Align right">☷</button>'
+    +'<span class="d7-sep"></span><button data-t="nodeco" title="Remove the dot or line before this text">Remove dot</button><button data-t="del" class="d7-del" title="Delete this element">Delete</button>'
     +'<span class="d7-sep"></span><button data-t="done">Done</button>';
   doc.body.appendChild(b);
   b.addEventListener('mousedown',e=>{ if(e.target.tagName!=='INPUT' && e.target.tagName!=='SELECT') e.preventDefault(); }); // keep text focused, but let the font select open
@@ -486,13 +492,14 @@ function d7EnsureTextBar(){
   return b;
 }
 function d7ShowTextBar(el){
-  ['d7-imgbox','d7-imgbar','d7-ctx'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; });
+  ['d7-imgbox','d7-imgbar','d7-ctx','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; });
   const b=d7EnsureTextBar(); b.style.display='flex';
   const cs=doc.defaultView.getComputedStyle(el);
   b.querySelector('.d7-sz').textContent=Math.round(parseFloat(cs.fontSize));
   const col=d7RgbToHex(cs.color); if(col) b.querySelector('input[type=color]').value=col;
   b.querySelector('[data-t="bold"]').classList.toggle('on', parseInt(cs.fontWeight)>=600);
   b.querySelector('[data-t="italic"]').classList.toggle('on', cs.fontStyle==='italic');
+  b.querySelector('[data-t="nodeco"]').style.display = d7HasDeco(el)?'':'none'; // only offer "Remove dot" when there's a ::before/::after to hide
 }
 function d7TextAction(t){ const el=d7EditEl; if(t==='done'){ d7CommitText(); return; } if(!el)return;
   const bar=doc.getElementById('d7-txtbar'), cs=doc.defaultView.getComputedStyle(el);
@@ -502,6 +509,8 @@ function d7TextAction(t){ const el=d7EditEl; if(t==='done'){ d7CommitText(); ret
   else if(t==='bold'){ const on=parseInt(el.style.fontWeight||cs.fontWeight)>=600; el.style.fontWeight=on?'400':'700'; bar.querySelector('[data-t="bold"]').classList.toggle('on',!on); }
   else if(t==='italic'){ const on=(el.style.fontStyle||cs.fontStyle)==='italic'; el.style.fontStyle=on?'normal':'italic'; bar.querySelector('[data-t="italic"]').classList.toggle('on',!on); }
   else if(t==='left'||t==='center'||t==='right'){ el.style.textAlign=t; }
+  else if(t==='nodeco'){ el.setAttribute('data-d7nodeco','1'); bar.querySelector('[data-t="nodeco"]').style.display='none'; el.focus(); return; }
+  else if(t==='del'){ d7CommitText(); d7DeleteEl(el); return; }
   el.focus();
 }
 // --- Image editing: resize the FRAME (corner handles) · zoom the CONTENT inside (slider) ·
@@ -542,7 +551,7 @@ function d7SelectImg(img){
   const bi=bar.querySelector('.d7-bright'); if(bi) bi.value=parseFloat(img.dataset.d7b||'1');
   d7PositionBox();
 }
-function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
+function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
 function d7EnsureBox(){
   let box=doc.getElementById('d7-imgbox');
   if(!box){ box=doc.createElement('div'); box.id='d7-imgbox';
@@ -563,6 +572,16 @@ function d7EnsureBox(){
     bar.querySelector('.d7-bright').addEventListener('input',e=>{ if(!d7Sel)return; d7Sel.dataset.d7b=e.target.value; d7Sel.style.filter=(parseFloat(e.target.value)===1)?'':('brightness('+e.target.value+')'); });
   }
   bar.style.display='flex';
+  // Floating action bar anchored to the selection box, so the layer / centre / delete
+  // actions are visible without needing to know about the right-click menu.
+  let ab=doc.getElementById('d7-actbar');
+  if(!ab){ ab=doc.createElement('div'); ab.id='d7-actbar';
+    ab.innerHTML='<button data-aa="front">Bring forward</button><button data-aa="back">Send back</button><button data-aa="centerh">Center</button><button class="d7-del" data-aa="delete">Delete</button>';
+    doc.body.appendChild(ab);
+    ab.addEventListener('mousedown',e=>e.stopPropagation());
+    ab.addEventListener('click',e=>{ const a=e.target.getAttribute&&e.target.getAttribute('data-aa'); if(a){ d7CtxEl=null; d7MenuAction(a); if(a==='delete') d7Deselect(); else d7PositionBox(); } });
+  }
+  ab.style.display='flex';
   d7EnsureMenu();
 }
 let d7CtxEl=null, d7DelStack=[];
@@ -599,6 +618,8 @@ function d7PositionBox(){
   const fr=d7CurBox(); if(!fr) return;
   const r=fr.getBoundingClientRect(), win=doc.defaultView, x=r.left+win.scrollX, y=r.top+win.scrollY;
   const box=doc.getElementById('d7-imgbox'); if(box){ box.style.left=x+'px'; box.style.top=y+'px'; box.style.width=r.width+'px'; box.style.height=r.height+'px'; }
+  const ab=doc.getElementById('d7-actbar');
+  if(ab && ab.style.display!=='none'){ const abh=ab.offsetHeight||34; let ay=y-abh-8; if(ay<win.scrollY+4) ay=y+r.height+8; ab.style.left=x+'px'; ab.style.top=ay+'px'; }
 }
 function d7SetZ(fr,v){ fr.dataset.d7zi=v; fr.style.zIndex=v; }
 // Center a box/element horizontally or vertically. Floated boxes snap to the centre of their container;
