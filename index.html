@@ -225,7 +225,6 @@
     </div>
     <form class="contactform reveal" id="requestForm" novalidate>
       <p class="contactform__pick" id="reqPick" hidden></p>
-      <input type="hidden" name="design_interest" value="">
       <div class="contactform__row">
         <div>
           <label for="rqName">Your name</label>
@@ -238,13 +237,12 @@
       </div>
       <div class="contactform__row">
         <div>
-          <label for="rqType">Kind of practice</label>
-          <select id="rqType" name="practice_type">
-            <option value="">Choose one</option>
-            <option value="solo">Solo Practice</option>
-            <option value="group">Group Practice</option>
-            <option value="psychotherapy">Psychotherapy &amp; Counseling</option>
-            <option value="program">Program &amp; Organization</option>
+          <label for="rqType">Which design do you like?</label>
+          <select id="rqType" name="design">
+            <option value="">Choose a design</option>
+            <option value="Not sure yet">Not sure yet, help me choose</option>
+            <!-- Designs, grouped by category, are injected from js/catalog.js so this
+                 list always matches the live catalog. -->
           </select>
         </div>
         <div>
@@ -311,8 +309,8 @@
 
 <a href="#start" class="helpdock" aria-label="Questions? Talk to us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 01-4 4H7l-4 3V6a4 4 0 014-4h10a4 4 0 014 4z"/></svg><span>Questions? Talk to us</span></a>
 
-<script src="js/catalog.js?v=20261022a"></script>
-<script src="js/designs.js?v=20261022a"></script>
+<script src="js/catalog.js?v=20261027a"></script>
+<script src="js/designs.js?v=20261027a"></script>
 <script src="js/main.js?v=20261023c"></script>
 </body>
 </html>

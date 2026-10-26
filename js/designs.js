@@ -153,18 +153,36 @@
   }
   document.querySelectorAll('[data-designs-browser]').forEach(initBrowser);
 
-  /* ---- Contact form: a gentle prefill when arriving from a design's link ---- */
+  /* ---- Contact form: list the real designs grouped by category, and prefill from a design link ---- */
   var req = document.getElementById('requestForm');
   if (req) {
-    var pick = byId(C.designs, new URLSearchParams(location.search).get('design') || '');
-    if (pick && !pick.soon) {
-      var catSel = req.querySelector('[name=practice_type]');
-      if (catSel) catSel.value = C.categoryOf(pick);
-      var hid = req.querySelector('[name=design_interest]');
-      if (hid) hid.value = pick.name;
-      var note = document.getElementById('reqPick');
-      if (note) { note.hidden = false; note.textContent = 'You are asking about the ' + pick.name + ' design. Tell us a little about your practice and we will take it from there.'; }
+    var sel = req.querySelector('#rqType');
+    var note = document.getElementById('reqPick');
+    // one optgroup per category, options drawn from the live catalog so the list never goes stale
+    if (sel && C.categories) {
+      C.categories.forEach(function (cat) {
+        var items = C.designs.filter(function (d) { return !d.soon && C.categoryOf(d) === cat.id; });
+        if (!items.length) return;
+        var og = document.createElement('optgroup'); og.label = cat.name;
+        items.forEach(function (d) {
+          var o = document.createElement('option'); o.value = d.name; o.textContent = d.name; og.appendChild(o);
+        });
+        sel.appendChild(og);
+      });
     }
+    // a short note naming the chosen design
+    function reqNote() {
+      if (!note) return;
+      var v = sel && sel.value;
+      if (v && v !== 'Not sure yet') {
+        note.hidden = false;
+        note.textContent = 'You are asking about the ' + v + ' design. Tell us a little about your practice and we will take it from there.';
+      } else { note.hidden = true; }
+    }
+    if (sel) sel.addEventListener('change', reqNote);
+    // arriving from a design's link (?design=id) preselects that design
+    var pick = byId(C.designs, new URLSearchParams(location.search).get('design') || '');
+    if (pick && !pick.soon && sel) { sel.value = pick.name; reqNote(); }
   }
 
   window.SWD = { cardHTML: cardHTML, hydrate: hydrate, openPreview: openPreview, areaName: areaName, typeName: typeName, byId: byId, esc: esc };
