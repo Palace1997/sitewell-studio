@@ -346,7 +346,7 @@ document.getElementById('download').addEventListener('click',async ()=>{
   const so=clone.querySelector('#d7-studio-only'); if(so)so.remove(); // keep scroll animations in the delivered file
   clone.querySelectorAll('.reveal.is-in').forEach(e=>e.classList.remove('is-in')); // restore reveal-on-scroll for visitors
   // strip inline-editor artefacts (KEEP the user's image size/position inline styles)
-  clone.querySelectorAll('#d7-editor-style,#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar').forEach(el=>el.remove());
+  clone.querySelectorAll('#d7-editor-style,#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides').forEach(el=>el.remove());
   clone.querySelectorAll('[data-d7del]').forEach(el=>el.remove()); // actually remove deleted elements from the delivered file
   clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
   clone.querySelectorAll('.d7-hi').forEach(el=>el.classList.remove('d7-hi'));
@@ -408,6 +408,10 @@ function d7EditorCSS(){ return [
   '#d7-actbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:5px;padding:6px 9px;cursor:pointer;font:inherit}',
   '#d7-actbar button:hover{background:#00A583}',
   '#d7-actbar button.d7-del:hover{background:#d8513f}',
+  '#d7-guides{position:fixed;inset:0;pointer-events:none;z-index:2147483040}',
+  '#d7-guides .d7-gl{position:fixed;background:#FF2D55;box-shadow:0 0 0 .5px rgba(255,45,85,.35)}',
+  '#d7-guides .d7-gl.v{top:0;bottom:0;width:1.5px}',
+  '#d7-guides .d7-gl.h{left:0;right:0;height:1.5px}',
   '#d7-txtbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:2147483000;background:#0B362A;color:#fff;border-radius:9px;padding:6px 9px;display:flex;gap:7px;align-items:center;font:600 12px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.32)}',
   '#d7-txtbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 9px;cursor:pointer;font:inherit;min-width:30px}',
   '#d7-txtbar button:hover,#d7-txtbar button.on{background:#00A583}',
@@ -421,7 +425,7 @@ function d7EditorCSS(){ return [
 function d7HasText(el){ for(const n of el.childNodes){ if(n.nodeType===3 && n.textContent.trim()) return true; } return false; }
 function d7TextTarget(el){
   if(!el||el.nodeType!==1) return null;
-  if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return null;
+  if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides')) return null;
   let n=el;
   while(n && n!==doc.body){ if(d7HasText(n)) return n; n=n.parentElement; }
   return null;
@@ -437,7 +441,7 @@ function initInlineEditor(){
   body.addEventListener('mouseout',()=>{ if(!d7drag) d7ClearHi(); });
   body.addEventListener('click',e=>{
     const tgt=e.target;
-    if(tgt.closest && tgt.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return;
+    if(tgt.closest && tgt.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides')) return;
     if(e.altKey){ const im=d7ImgUnder(e.clientX,e.clientY); if(im){ e.preventDefault(); e.stopPropagation(); d7SelectImg(im); return; } } // grab an image behind other content
     if(tgt.tagName==='IMG'){ e.preventDefault(); e.stopPropagation(); d7SelectImg(tgt); return; }
     const t=d7TextTarget(tgt);
@@ -447,7 +451,7 @@ function initInlineEditor(){
     d7Deselect();
   }, true);
   body.addEventListener('contextmenu',e=>{
-    if(e.target.closest && e.target.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar')) return;
+    if(e.target.closest && e.target.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides')) return;
     e.preventDefault();
     const img=(e.target.tagName==='IMG')?e.target:(e.altKey?d7ImgUnder(e.clientX,e.clientY):null);
     if(img){ d7SelectImg(img); d7ShowMenu(e.clientX,e.clientY,img); }
@@ -577,7 +581,32 @@ function d7SetReframe(on){ d7Reframe=!!on;
   const b=doc.querySelector('#d7-imgbar .d7-reframe'); if(b) b.classList.toggle('on',d7Reframe);
   const box=doc.getElementById('d7-imgbox'); if(box) box.classList.toggle('d7-panmode',d7Reframe);
 }
-function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; d7SetReframe(false); ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
+function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; d7SetReframe(false); d7ClearGuides(); ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
+// ---- Smart alignment guides (Canva-style): snap a dragged/resized box to other elements'
+//      edges & centres and the page centre, popping a pink line when they line up. ----
+const D7_SNAP=6; // px threshold
+function d7ClearGuides(){ const g=doc&&doc.getElementById('d7-guides'); if(g) g.innerHTML=''; }
+function d7Guide(vertical,pos){ let g=doc.getElementById('d7-guides'); if(!g){ g=doc.createElement('div'); g.id='d7-guides'; doc.body.appendChild(g); }
+  const l=doc.createElement('div'); l.className='d7-gl '+(vertical?'v':'h'); if(vertical) l.style.left=pos+'px'; else l.style.top=pos+'px'; g.appendChild(l); }
+function d7CollectTargets(exclude){
+  const win=doc.defaultView, xs=[], ys=[];
+  const addX=x=>{ if(x>=0&&x<=win.innerWidth) xs.push(Math.round(x)); };
+  const addY=y=>{ if(y>=0&&y<=win.innerHeight) ys.push(Math.round(y)); };
+  const op=exclude.offsetParent||doc.body, r=op.getBoundingClientRect();
+  addX(r.left); addX(r.left+r.width/2); addX(r.right); addY(r.top); addY(r.top+r.height/2); addY(r.bottom);
+  addX(win.innerWidth/2); // page horizontal centre
+  doc.body.querySelectorAll('[data-field],[data-img],section,header,footer,h1,h2,h3,p,img,button,a,.btn').forEach(el=>{
+    if(el===exclude||exclude.contains(el)||el.contains(exclude))return;
+    if(el.closest('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides'))return;
+    const b=el.getBoundingClientRect(); if(b.width<8||b.height<8||b.bottom<0||b.top>win.innerHeight)return;
+    addX(b.left); addX(b.left+b.width/2); addX(b.right); addY(b.top); addY(b.top+b.height/2); addY(b.bottom); });
+  return {xs,ys};
+}
+// Given candidate edge positions (viewport px) and targets, return {snap, guide} for the nearest within threshold.
+function d7Nearest(edges,targets){ let best=null, bestd=D7_SNAP+0.5, snap=0;
+  targets.forEach(t=>edges.forEach(e=>{ const d=Math.abs(e-t); if(d<bestd){ bestd=d; best=t; snap=t-e; } }));
+  return best===null?null:{guide:best,snap:snap};
+}
 function d7EnsureBox(){
   let box=doc.getElementById('d7-imgbox');
   if(!box){ box=doc.createElement('div'); box.id='d7-imgbox';
@@ -627,7 +656,7 @@ function d7UndoDelete(){ const el=d7DelStack.pop(); if(el){ el.style.display='';
 // ---- Undo / Redo: snapshot the live preview content before each edit, step back/forward ----
 let d7Hist=[], d7Future=[], d7SnapLock=false;
 function d7SnapHTML(){ if(!doc)return ''; const b=doc.body.cloneNode(true);
-  b.querySelectorAll('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar').forEach(e=>e.remove()); // never capture editor overlays
+  b.querySelectorAll('#d7-imgbox,#d7-imgbar,#d7-ctx,#d7-txtbar,#d7-actbar,#d7-guides').forEach(e=>e.remove()); // never capture editor overlays
   b.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
   b.querySelectorAll('.d7-hi').forEach(e=>e.classList.remove('d7-hi'));
   return b.innerHTML; }
@@ -746,22 +775,36 @@ function d7StartMove(e){ d7HistPush(); // snapshot before a move or (in reframe 
   e.preventDefault(); e.stopPropagation();
   const fr=d7CurBox(); if(!fr)return; d7Float(fr); if(!fr.dataset.d7zi) d7SetZ(fr,100);
   const L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, sx=e.clientX, sy=e.clientY; d7drag={};
-  const mv=ev=>{ fr.style.left=(L0+(ev.clientX-sx))+'px'; fr.style.top=(T0+(ev.clientY-sy))+'px'; d7PositionBox(); };
-  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
+  const r0=fr.getBoundingClientRect(), W=r0.width, H=r0.height, T=d7CollectTargets(fr); // targets fixed at drag start
+  const mv=ev=>{ let L=L0+(ev.clientX-sx), Tp=T0+(ev.clientY-sy);
+    const vx=r0.left+(L-L0), vy=r0.top+(Tp-T0); // predicted viewport position
+    const sX=d7Nearest([vx,vx+W/2,vx+W], T.xs), sY=d7Nearest([vy,vy+H/2,vy+H], T.ys);
+    if(sX){ L+=sX.snap; } if(sY){ Tp+=sY.snap; }
+    fr.style.left=L+'px'; fr.style.top=Tp+'px'; d7PositionBox();
+    d7ClearGuides(); if(sX) d7Guide(true,sX.guide); if(sY) d7Guide(false,sY.guide); };
+  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7ClearGuides(); d7drag=null; };
   doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
 }
 function d7StartResize(e,h){ d7HistPush(); e.preventDefault(); e.stopPropagation();
   const fr=d7CurBox(); if(!fr)return; d7Float(fr); // resize the floated box → never reflows the surrounding content
   const c=h.className, L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, r=fr.getBoundingClientRect(), W0=r.width, H0=r.height, sx=e.clientX, sy=e.clientY; d7drag={};
+  const offX=r.left-L0, offY=r.top-T0, TG=d7CollectTargets(fr); // viewport<->style offset + snap targets
   const mv=ev=>{ let dw=ev.clientX-sx, dh=ev.clientY-sy, L=L0,T=T0,W=W0,H=H0;
     if(c.indexOf('br')>-1){ W=W0+dw; H=H0+dh; }
     else if(c.indexOf('bl')>-1){ W=W0-dw; H=H0+dh; L=L0+dw; }
     else if(c.indexOf('tr')>-1){ W=W0+dw; H=H0-dh; T=T0+dh; }
     else { W=W0-dw; H=H0-dh; L=L0+dw; T=T0+dh; }
-    if(W<40){ if(c.indexOf('l')>-1) L=L0+(W0-40); W=40; }
-    if(H<40){ if(c.indexOf('t')>-1) T=T0+(H0-40); H=40; }
-    fr.style.left=L+'px'; fr.style.top=T+'px'; fr.style.width=W+'px'; fr.style.height=H+'px'; d7PositionBox(); };
-  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
+    // snap the edges being dragged to nearby targets, keeping the opposite edge fixed
+    let gx=null, gy=null;
+    if(c.indexOf('l')>-1){ const s=d7Nearest([L+offX],TG.xs); if(s){ const right=L+W; L=s.guide-offX; W=right-L; gx=s.guide; } }
+    else if(c.indexOf('r')>-1){ const s=d7Nearest([L+W+offX],TG.xs); if(s){ W=(s.guide-offX)-L; gx=s.guide; } }
+    if(c.indexOf('t')>-1){ const s=d7Nearest([T+offY],TG.ys); if(s){ const bot=T+H; T=s.guide-offY; H=bot-T; gy=s.guide; } }
+    else if(c.indexOf('b')>-1){ const s=d7Nearest([T+H+offY],TG.ys); if(s){ H=(s.guide-offY)-T; gy=s.guide; } }
+    if(W<40){ if(c.indexOf('l')>-1) L=L0+(W0-40); W=40; gx=null; }
+    if(H<40){ if(c.indexOf('t')>-1) T=T0+(H0-40); H=40; gy=null; }
+    fr.style.left=L+'px'; fr.style.top=T+'px'; fr.style.width=W+'px'; fr.style.height=H+'px'; d7PositionBox();
+    d7ClearGuides(); if(gx!=null) d7Guide(true,gx); if(gy!=null) d7Guide(false,gy); };
+  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7ClearGuides(); d7drag=null; };
   doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
 }
 function d7MenuAction(a){
