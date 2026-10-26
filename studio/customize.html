@@ -338,7 +338,7 @@ document.getElementById('download').addEventListener('click',async ()=>{
   clone.querySelectorAll('.d7-hi').forEach(el=>el.classList.remove('d7-hi'));
   // persist "remove decoration": the editor CSS is stripped, so bake a rule for [data-d7nodeco] (and keep the attribute)
   if(clone.querySelector('[data-d7nodeco]')){ const nd=doc.createElement('style'); nd.textContent='[data-d7nodeco]::before,[data-d7nodeco]::after{content:none!important;display:none!important}'; (clone.querySelector('head')||clone).appendChild(nd); }
-  ['data-d7z','data-d7b','data-d7zi','data-d7float','data-d7ow','data-d7oh','data-d7ov','data-d7fr'].forEach(a=>clone.querySelectorAll('['+a+']').forEach(el=>el.removeAttribute(a)));
+  ['data-d7z','data-d7b','data-d7px','data-d7py','data-d7zi','data-d7float','data-d7ow','data-d7oh','data-d7ov','data-d7fr'].forEach(a=>clone.querySelectorAll('['+a+']').forEach(el=>el.removeAttribute(a)));
   // .d7-frame wrappers + .d7-ph placeholders are KEPT (they hold the crop/size/placement and keep the layout stable)
   // make the file self-contained: inline the shared template.css + template.js (bespoke templates use them)
   await inlineAsset(clone,'link[rel="stylesheet"][href*="template.css"]',css=>{const s=doc.createElement('style');s.textContent=css;return s;});
@@ -386,6 +386,10 @@ function d7EditorCSS(){ return [
   '#d7-imgbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:6px;padding:7px 10px;cursor:pointer;font:inherit}',
   '#d7-imgbar button:hover{background:#00A583}',
   '#d7-imgbar .d7-bright{accent-color:#f5c451}',
+  '#d7-imgbar button.on{background:#00A583}',
+  '#d7-imgbox.d7-panmode .d7-pan{cursor:grab}',
+  '#d7-imgbox.d7-panmode .d7-pan:active{cursor:grabbing}',
+  '#d7-imgbox.d7-panmode .d7-c{display:none}',
   '#d7-actbar{position:absolute;z-index:2147483001;display:flex;gap:5px;background:#0B362A;color:#fff;border-radius:8px;padding:5px 6px;font:600 11px/1 Inter,sans-serif;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3)}',
   '#d7-actbar button{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:5px;padding:6px 9px;cursor:pointer;font:inherit}',
   '#d7-actbar button:hover{background:#00A583}',
@@ -516,7 +520,7 @@ function d7TextAction(t){ const el=d7EditEl; if(t==='done'){ d7CommitText(); ret
 // --- Image editing: resize the FRAME (corner handles) · zoom the CONTENT inside (slider) ·
 //     drag to move freely · right-click for layer options. Each edited image is wrapped once
 //     in a fixed .d7-frame (overflow:hidden) so zoom crops the photo without growing the box. ---
-let d7zTop=200;
+let d7zTop=200, d7Reframe=false;
 function d7Frame(img){ const p=img&&img.parentElement; return (p&&p.classList&&p.classList.contains('d7-frame'))?p:null; }
 function d7EnsureFrame(img){
   let fr=d7Frame(img); if(fr) return fr;
@@ -549,9 +553,14 @@ function d7SelectImg(img){
   const bar=doc.getElementById('d7-imgbar');
   const sl=bar.querySelector('.d7-zoomrange'); if(sl) sl.value=parseFloat(img.dataset.d7z||'1');
   const bi=bar.querySelector('.d7-bright'); if(bi) bi.value=parseFloat(img.dataset.d7b||'1');
+  d7SetReframe(false); // each new selection starts in normal (move) mode
   d7PositionBox();
 }
-function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
+function d7SetReframe(on){ d7Reframe=!!on;
+  const b=doc.querySelector('#d7-imgbar .d7-reframe'); if(b) b.classList.toggle('on',d7Reframe);
+  const box=doc.getElementById('d7-imgbox'); if(box) box.classList.toggle('d7-panmode',d7Reframe);
+}
+function d7Deselect(){ d7CommitText(); d7Sel=null; d7SelBox=null; d7SetReframe(false); ['d7-imgbox','d7-imgbar','d7-ctx','d7-txtbar','d7-actbar'].forEach(id=>{ const e=doc.getElementById(id); if(e)e.style.display='none'; }); }
 function d7EnsureBox(){
   let box=doc.getElementById('d7-imgbox');
   if(!box){ box=doc.createElement('div'); box.id='d7-imgbox';
@@ -565,6 +574,7 @@ function d7EnsureBox(){
   if(!bar){ bar=doc.createElement('div'); bar.id='d7-imgbar';
     bar.innerHTML='<span class="d7-zoom"><span class="d7-lbl">Zoom</span><input class="d7-zoomrange" type="range" min="1" max="3" step="0.01" value="1"></span>'
       +'<span class="d7-zoom"><span class="d7-lbl">Bright</span><input class="d7-bright" type="range" min="0.3" max="1.6" step="0.01" value="1"></span>'
+      +'<button data-a="reframe" class="d7-reframe" title="Drag the photo to show a different part inside the frame">Reframe</button>'
       +'<button data-a="replace">Replace</button><button data-a="reset">Reset</button><button data-a="done">Done</button>';
     doc.body.appendChild(bar);
     bar.addEventListener('click',e=>{ const a=e.target.getAttribute&&e.target.getAttribute('data-a'); if(a) d7ImgAction(a); });
@@ -657,6 +667,24 @@ function d7RestoreSlot(fr){ const p=fr.parentElement; if(!p||!p.hasAttribute('da
   try{ const o=JSON.parse(p.getAttribute('data-d7fr')); p.style.background=o[0]; p.style.boxShadow=o[1]; p.style.border=o[2]; }catch(e){} p.removeAttribute('data-d7fr');
 }
 function d7ApplyZoom(img){ const z=parseFloat(img.dataset.d7z||'1'); img.style.transform=(z===1)?'':('scale('+z+')'); } // zoom the CONTENT inside the frame
+// Reframe: slide the photo INSIDE its fixed frame by changing object-position (which part of a cover-cropped
+// photo is visible). Different from moving the frame on the page — the box stays put, only the crop shifts.
+function d7ReadPos(img){
+  if(img.dataset.d7px!=null && img.dataset.d7py!=null) return [parseFloat(img.dataset.d7px),parseFloat(img.dataset.d7py)];
+  let x=50,y=50; try{ const op=(doc.defaultView.getComputedStyle(img).objectPosition||'').split(' ');
+    if(op[0]&&op[0].indexOf('%')>-1) x=parseFloat(op[0]); if(op[1]&&op[1].indexOf('%')>-1) y=parseFloat(op[1]); }catch(e){}
+  return [x,y];
+}
+function d7StartPan(e){ e.preventDefault(); e.stopPropagation();
+  const img=d7Sel; if(!img)return; const fr=d7Frame(img); if(!fr)return; const r=fr.getBoundingClientRect();
+  let [px,py]=d7ReadPos(img); const sx=e.clientX, sy=e.clientY; d7drag={};
+  const mv=ev=>{ // drag the photo one way → reveal the opposite side, so object-position moves against the drag
+    let nx=Math.max(0,Math.min(100, px-(ev.clientX-sx)/r.width*100));
+    let ny=Math.max(0,Math.min(100, py-(ev.clientY-sy)/r.height*100));
+    img.dataset.d7px=nx; img.dataset.d7py=ny; img.style.objectPosition=nx+'% '+ny+'%'; };
+  const up=()=>{ doc.removeEventListener('mousemove',mv); doc.removeEventListener('mouseup',up); d7drag=null; };
+  doc.addEventListener('mousemove',mv); doc.addEventListener('mouseup',up);
+}
 // Take the frame OUT OF FLOW (absolute) so resizing/moving it never pushes the surrounding text.
 // A hidden placeholder holds the original slot, so nothing else on the page shifts.
 function d7Float(fr){
@@ -679,7 +707,8 @@ function d7Unfloat(fr){
   fr.style.position=''; fr.style.left=''; fr.style.top=''; fr.style.margin=''; fr.style.zIndex='';
   delete fr.dataset.d7float; delete fr.dataset.d7zi;
 }
-function d7StartMove(e){ e.preventDefault(); e.stopPropagation();
+function d7StartMove(e){ if(d7Reframe && d7Sel){ return d7StartPan(e); } // in reframe mode, dragging pans the crop instead of moving the frame
+  e.preventDefault(); e.stopPropagation();
   const fr=d7CurBox(); if(!fr)return; d7Float(fr); if(!fr.dataset.d7zi) d7SetZ(fr,100);
   const L0=parseFloat(fr.style.left)||0, T0=parseFloat(fr.style.top)||0, sx=e.clientX, sy=e.clientY; d7drag={};
   const mv=ev=>{ fr.style.left=(L0+(ev.clientX-sx))+'px'; fr.style.top=(T0+(ev.clientY-sy))+'px'; d7PositionBox(); };
@@ -717,8 +746,9 @@ function d7MenuAction(a){
 }
 function d7ImgAction(a){ if(!d7Sel)return; const fr=d7Frame(d7Sel);
   if(a==='done'){ d7Deselect(); return; }
+  if(a==='reframe'){ d7SetReframe(!d7Reframe); if(d7Reframe) toast('Reframe on, drag the photo to show a different part'); return; }
   if(a==='reset'){ if(fr){ d7Unfloat(fr); fr.style.display=''; fr.style.width=(fr.dataset.d7ow||'')+'px'; fr.style.height=(fr.dataset.d7oh||'')+'px'; }
-    d7Sel.style.transform=''; d7Sel.style.filter=''; delete d7Sel.dataset.d7z; delete d7Sel.dataset.d7b;
+    d7Sel.style.transform=''; d7Sel.style.filter=''; d7Sel.style.objectPosition=''; delete d7Sel.dataset.d7z; delete d7Sel.dataset.d7b; delete d7Sel.dataset.d7px; delete d7Sel.dataset.d7py; d7SetReframe(false);
     const bar=doc.getElementById('d7-imgbar'), zr=bar.querySelector('.d7-zoomrange'), br=bar.querySelector('.d7-bright'); if(zr)zr.value=1; if(br)br.value=1; d7PositionBox(); return; }
   if(a==='replace'){ const inp=doc.createElement('input'); inp.type='file'; inp.accept='image/*';
     inp.onchange=()=>{ const f=inp.files[0]; if(!f)return; const rd=new FileReader(); rd.onload=ev=>{ d7Sel.src=ev.target.result; const id=d7Sel.getAttribute('data-img'); if(id){ const fi=document.getElementById('f_'+id); if(fi) fi.value=ev.target.result; } d7PositionBox(); }; rd.readAsDataURL(f); };
