@@ -446,7 +446,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero--band .gal-tab { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.24); color: #dfe9e3; }
 .hero--band .gal-tab.is-active, .hero--band .gal-tab:hover { background: var(--cream-accent); color: var(--forest); border-color: var(--cream-accent); }
 /* Pull the gallery hero up behind the floating nav (no cream band at the top) */
-.gal-hero { margin-top: -90px; padding-top: calc(clamp(56px,8vw,104px) + 90px); }
+.gal-hero { margin-top: -110px; padding-top: calc(clamp(56px,8vw,104px) + 110px); }
 
 /* Prominent Studio (internal team tool) button in the footer */
 .footer__studio { display: inline-flex; align-items: center; gap: 9px; background: var(--cream-accent); color: var(--forest); font-weight: 600; font-size: 14px; padding: 11px 20px; border-radius: 100px; transition: transform .2s var(--ease), background .2s; }
@@ -469,7 +469,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Full-bleed photo hero: the image fills the whole hero, text sits over it.
    Negative margin pulls the photo up behind the floating nav so there is no
    cream band at the top; the content padding adds it back so text stays clear. */
-.hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -90px; }
+.hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -110px; }
 .calm__media { position: absolute; inset: 0; z-index: 0; }
 .calm__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
 /* Readability scrim so light text stays legible while the photo stays visible */
