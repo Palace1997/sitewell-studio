@@ -23,8 +23,8 @@
   --paper-3:    #efe9e2;
   --forest-tint:#e7f2ee;   /* pale green wash */
   --cream-accent:#F0EBE1;  /* cream accent on forest panels */
-  --footer-logo-size: 84px;/* overall footer logo height (logo + baked-in tagline) */
-  --nav-logo-size: 64px;   /* nav logo height */
+  --footer-logo-size: 120px;/* overall footer logo height (logo + baked-in tagline) */
+  --nav-logo-size: 92px;   /* nav logo height */
 
   --line:       #E5E2DC;
 
@@ -161,7 +161,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav--v1 .nav__inner { background: #fff; border: 1px solid var(--line); box-shadow: 0 12px 34px -16px rgba(11,54,42,.3); }
 /* Nest the Get started pill close to the right edge so the white gap is even,
    and set the chosen bar height (higher specificity than the base float rule). */
-.nav.nav--v1 .nav__inner { padding-right: 6px; height: 90px; }
+.nav.nav--v1 .nav__inner { padding-right: 6px; height: 108px; }
 
 /* V2 — Forest dark bar */
 .nav--v2 .nav__inner { background: linear-gradient(120deg, var(--forest), var(--forest-2)); box-shadow: 0 16px 38px -16px rgba(7,40,32,.6); }
@@ -447,7 +447,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero--band .gal-tab { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.24); color: #dfe9e3; }
 .hero--band .gal-tab.is-active, .hero--band .gal-tab:hover { background: var(--cream-accent); color: var(--forest); border-color: var(--cream-accent); }
 /* Pull the gallery hero up behind the floating nav (no cream band at the top) */
-.gal-hero { margin-top: -110px; padding-top: calc(clamp(56px,8vw,104px) + 110px); }
+.gal-hero { margin-top: -128px; padding-top: calc(clamp(56px,8vw,104px) + 128px); }
 
 /* Prominent Studio (internal team tool) button in the footer */
 .footer__studio { display: inline-flex; align-items: center; gap: 9px; background: var(--cream-accent); color: var(--forest); font-weight: 600; font-size: 14px; padding: 11px 20px; border-radius: 100px; transition: transform .2s var(--ease), background .2s; }
@@ -470,7 +470,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Full-bleed photo hero: the image fills the whole hero, text sits over it.
    Negative margin pulls the photo up behind the floating nav so there is no
    cream band at the top; the content padding adds it back so text stays clear. */
-.hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -110px; }
+.hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -128px; }
 .calm__media { position: absolute; inset: 0; z-index: 0; }
 .calm__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
 /* Readability scrim so light text stays legible while the photo stays visible */
