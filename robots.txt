@@ -1,0 +1,32 @@
+# FrontDoor (a service of iTrust Insights) - crawl access
+
+# Search and AI retrieval crawlers: allowed (these fetch pages to answer and cite in real time)
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+Disallow: /studio/
+
+# AI training crawlers: blocked (default stance; does not remove the site from AI answers)
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: Amazonbot
+Disallow: /
+
+# Everyone else
+User-agent: *
+Allow: /
+Disallow: /studio/
+
+Sitemap: https://palace1997.github.io/sitewell-studio/sitemap.xml
