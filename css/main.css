@@ -589,6 +589,20 @@ body:not(.is-routed) #mission { display: none; }
 .hiw__chip { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--g-700); border: 1px solid var(--line); border-radius: 100px; padding: 4px 10px; }
 .hiw__step h3 { font-family: var(--font-display); font-size: 21px; font-weight: 500; margin: 0 0 8px; line-height: 1.2; }
 .hiw__step p { color: var(--g-500); font-size: 15px; line-height: 1.6; margin: 0; }
+/* "Watch your site take shape" screens */
+.hiw__screen { margin-bottom: 20px; }
+.bw { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 12px 28px -18px rgba(11,54,42,.45); }
+.bw__bar { height: 22px; background: #ece7dd; display: flex; align-items: center; gap: 5px; padding: 0 10px; }
+.bw__bar i { width: 6px; height: 6px; border-radius: 50%; background: #c7c0b2; }
+.bw__body { height: 120px; padding: 12px; position: relative; }
+.bw__thumb { border-radius: 6px; background: #efeae0; }
+.bw__thumb--sel { background: #e7efe9; border: 2px solid var(--green); }
+.bw__lbl { height: 8px; background: #efeae0; border-radius: 4px; }
+.bw__field { height: 15px; background: #f7f4ee; border: 1px solid #e3ddd2; border-radius: 5px; }
+.bw__btn { height: 16px; background: var(--green); border-radius: 5px; }
+.bw__block { flex: 1; height: 34px; background: #efeae0; border-radius: 6px; }
+.bw__live { position: absolute; top: 33px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: #2ec38f; box-shadow: 0 0 0 3px #fff; }
+.hiw__step .hiw__screen .bw__head { height: 26px; background: var(--forest); }
 @media (max-width: 980px) { .hiw { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .hiw { grid-template-columns: 1fr; } }
 
