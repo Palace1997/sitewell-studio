@@ -23,6 +23,7 @@
   --paper-3:    #efe9e2;
   --forest-tint:#e7f2ee;   /* pale green wash */
   --cream-accent:#F0EBE1;  /* cream accent on forest panels */
+  --footer-logo-size: 84px;/* overall footer logo height (logo + baked-in tagline) */
 
   --line:       #E5E2DC;
 
@@ -141,7 +142,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .logo__mark span { line-height: 1; }
 .logo__img { height: 48px; width: auto; display: block; }
-.footer .logo__img { height: 64px; }
+.footer .logo__img { height: var(--footer-logo-size, 64px); }
 .logo__img--ondark { display: none; }
 .section--dark .logo, .footer .logo { color: var(--paper); }
 .section--dark .logo__mark, .footer .logo__mark { background: var(--green); color: #fff; }
@@ -153,13 +154,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav[class*="nav--v"] { background: transparent; backdrop-filter: none; border-bottom: 0; top: 8px; padding: 10px 0; }
 .nav[class*="nav--v"].is-scrolled { box-shadow: none; }
 .nav[class*="nav--v"] .nav__inner { height: 64px; border-radius: 100px; padding: 0 12px 0 24px; transition: background .3s, box-shadow .3s, border-color .3s; }
-.nav[class*="nav--v"] .logo__img { height: 50px; }
+.nav[class*="nav--v"] .logo__img { height: 64px; }
 
 /* V1 — Clean white pill */
 .nav--v1 .nav__inner { background: #fff; border: 1px solid var(--line); box-shadow: 0 12px 34px -16px rgba(11,54,42,.3); }
 /* Nest the Get started pill close to the right edge so the white gap is even,
    and set the chosen bar height (higher specificity than the base float rule). */
-.nav.nav--v1 .nav__inner { padding-right: 6px; height: 70px; }
+.nav.nav--v1 .nav__inner { padding-right: 6px; height: 90px; }
 
 /* V2 — Forest dark bar */
 .nav--v2 .nav__inner { background: linear-gradient(120deg, var(--forest), var(--forest-2)); box-shadow: 0 16px 38px -16px rgba(7,40,32,.6); }
