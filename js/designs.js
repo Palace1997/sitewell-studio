@@ -1,4 +1,4 @@
-/* SiteWell Studio, shared design-catalog widgets
+/* FrontDoor, shared design-catalog widgets
    Needs js/catalog.js loaded first. Every widget only runs if its element exists,
    so this file is safe on any page. */
 (function () {

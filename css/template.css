@@ -1,5 +1,5 @@
 /* =====================================================================
-   SiteWell Studio, Shared Template Styles
+   FrontDoor, Shared Template Styles
    Self-contained monochrome design system for the industry demo sites.
    Every template uses these classes; content changes per industry.
    ===================================================================== */
@@ -232,7 +232,7 @@ ul{margin:0;padding:0;list-style:none}
 .t-footer__bot{padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px;color:var(--g-500)}
 @media(max-width:760px){.t-footer__top{grid-template-columns:1fr 1fr}}
 
-/* "Built with SiteWell Studio" ribbon */
+/* "Built with FrontDoor" ribbon */
 /* Self-contained + bulletproof: hardcoded colors + !important so per-template link/text rules can never make the ribbon invisible. */
 a.t-ribbon,.t-ribbon{position:fixed;right:16px;bottom:16px;z-index:60;display:inline-flex;align-items:center;gap:9px;background:#111413 !important;color:#ffffff !important;padding:10px 16px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;box-shadow:var(--shadow-md);transition:transform .25s var(--ease)}
 .t-ribbon:hover{transform:translateY(-2px)}

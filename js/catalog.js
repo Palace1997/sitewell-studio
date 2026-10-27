@@ -1,4 +1,4 @@
-/* SiteWell Studio, design catalog
+/* FrontDoor, design catalog
    Single source of truth for the gallery, the homepage finder and featured designs.
    Taxonomy: the behavioral health umbrella (Mental Health + Substance Use), 12 practice areas.
    Each design is tagged with ONE practice type. Entries with soon:true are planned designs

@@ -1,4 +1,4 @@
-/* SiteWell Studio template, shared interactions */
+/* FrontDoor template, shared interactions */
 (function () {
   /* ---- Form delivery config -------------------------------------------
      Set the Formspree endpoint here (or per-form via the form's action="…",

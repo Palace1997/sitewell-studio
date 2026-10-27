@@ -1,4 +1,4 @@
-/* SiteWell Studio, design gallery (portfolio catalog)
+/* FrontDoor, design gallery (portfolio catalog)
    Filters: practice area (dropdown), practice type (pills), keyword search.
    State lives in the URL (?area=&type=&q=) so the homepage finder and links deep-link in. */
 (function () {

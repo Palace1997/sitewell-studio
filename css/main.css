@@ -1,5 +1,5 @@
 /* =====================================================================
-   SiteWell Studio, Design System
+   FrontDoor, Design System
    Editorial Premium, warm canvas, Fraunces display, green accents.
    ===================================================================== */
 
@@ -140,8 +140,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid; place-items: center; font-family: var(--font-sans); font-weight: 700; font-size: 14px; letter-spacing: 0;
 }
 .logo__mark span { line-height: 1; }
-.logo__img { height: 46px; width: auto; display: block; }
-.footer .logo__img { height: 54px; }
+.logo__img { height: 48px; width: auto; display: block; }
+.footer .logo__img { height: 64px; }
 .logo__img--ondark { display: none; }
 .section--dark .logo, .footer .logo { color: var(--paper); }
 .section--dark .logo__mark, .footer .logo__mark { background: var(--green); color: #fff; }
@@ -153,7 +153,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav[class*="nav--v"] { background: transparent; backdrop-filter: none; border-bottom: 0; top: 8px; padding: 10px 0; }
 .nav[class*="nav--v"].is-scrolled { box-shadow: none; }
 .nav[class*="nav--v"] .nav__inner { height: 64px; border-radius: 100px; padding: 0 12px 0 24px; transition: background .3s, box-shadow .3s, border-color .3s; }
-.nav[class*="nav--v"] .logo__img { height: 42px; }
+.nav[class*="nav--v"] .logo__img { height: 50px; }
 
 /* V1 — Clean white pill */
 .nav--v1 .nav__inner { background: #fff; border: 1px solid var(--line); box-shadow: 0 12px 34px -16px rgba(11,54,42,.3); }
