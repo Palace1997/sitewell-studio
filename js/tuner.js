@@ -13,11 +13,11 @@
   }
   function set(key, v) { try { localStorage.setItem(key, v); } catch (e) {} }
 
-  var nav = get('fd_nav', 64);
-  var foot = get('fd_logo', 84);
-  var hLogo = get('fd_lhero_logo', 38);
-  var hCopy = get('fd_lhero_copy', 0);
-  var hNav = get('fd_lhero_nav', 0);
+  var nav = get('fd_nav', 92);
+  var foot = get('fd_logo', 120);
+  var hLogo = get('fd_lhero_logo', 88);
+  var hCopy = get('fd_lhero_copy', 153);
+  var hNav = get('fd_lhero_nav', 63);
 
   var hasHero = !!document.querySelector('.lhero');
 

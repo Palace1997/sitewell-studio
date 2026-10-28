@@ -602,8 +602,8 @@ body:has(.lhero) .topbar, body:has(.lhero) header.nav{display:none}
 /* nav */
 .lnav{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(16px,3.6vw,40px)}
 .lnav__logo{display:block}
-.lnav__logo img{height:var(--lhero-logo,38px);width:auto;display:block}
-.lpill{transform:translateX(var(--lhero-nav-x,0px));display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:5px 6px 5px 20px;box-shadow:0 2px 12px rgba(31,42,29,.1)}
+.lnav__logo img{height:var(--lhero-logo,88px);width:auto;display:block}
+.lpill{transform:translateX(var(--lhero-nav-x,63px));display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:5px 6px 5px 20px;box-shadow:0 2px 12px rgba(31,42,29,.1)}
 .lpill a{font-size:14px;font-weight:500;color:#4b5b47;text-decoration:none;padding:8px 13px;border-radius:999px;transition:color .2s}
 .lpill a.cur{font-weight:600;color:#1f2a1d}
 .lpill a:hover{color:#1f2a1d}
@@ -614,7 +614,7 @@ body:has(.lhero) .topbar, body:has(.lhero) header.nav{display:none}
 .lnav__right a:hover{opacity:.72}
 .lnav__right svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
 /* headline */
-.lcopy{text-align:center;padding:clamp(118px,15vh,165px) 20px 0;display:flex;flex-direction:column;align-items:center;transform:translateY(var(--lhero-copy-y,0px))}
+.lcopy{text-align:center;padding:clamp(118px,15vh,165px) 20px 0;display:flex;flex-direction:column;align-items:center;transform:translateY(var(--lhero-copy-y,153px))}
 .lhero h1{font-family:var(--font-sans);font-weight:500;font-size:clamp(34px,7vw,86px);line-height:.98;letter-spacing:-.035em;color:#336443;max-width:13ch;margin:0;text-wrap:balance}
 .lhero h1 .accent{color:#85AB8B}
 .lsub{margin:clamp(20px,3vh,32px) 0 0;color:#4b5b47;font-size:clamp(15px,1.35vw,19px);line-height:1.5;max-width:34ch}
