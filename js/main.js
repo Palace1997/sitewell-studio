@@ -78,7 +78,10 @@
     var id = (location.hash || '').replace(/^#/, '');
     var single = (ROUTES[id] && document.getElementById(id)) ? id : null;
     routeSections.forEach(function (s) {
-      s.style.display = (!single || s.id === single) ? '' : 'none';
+      // route-only sections never show in the full-page scroll; they appear
+      // only when navigated to directly (e.g. via a nav link).
+      var show = single ? (s.id === single) : !s.hasAttribute('data-route-only');
+      s.style.display = show ? '' : 'none';
     });
     document.body.classList.toggle('is-routed', !!single);
     if (single) {
