@@ -318,7 +318,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tcard__thumb { aspect-ratio: 4/3; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
 .tcard__thumb iframe { position: absolute; top:0; left:0; width: 250%; height: 250%; transform: scale(.4); transform-origin: 0 0; border: 0; pointer-events: none; background:#fff; }
 .tcard__meta { padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
-.tcard__meta h3 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; }
+.tcard__meta h3 { font-family: var(--font-display); font-size: 16px; font-weight: 600; }
 .tcard__cat { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--g-400); }
 .tcard__arrow { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: .25s; }
 .tcard:hover .tcard__arrow { background: var(--green); color: #fff; border-color: var(--green); }
@@ -333,7 +333,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .feature { background: var(--paper); padding: 34px 30px; }
 .feature__ic { margin-bottom: 20px; line-height: 0; }
 .feature__ic svg { width: 40px; height: 40px; }
-.feature h3 { font-family: var(--font-sans); font-size: 17px; font-weight: 600; margin-bottom: 9px; }
+.feature h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 9px; }
 .feature p { color: var(--g-500); font-size: 14.5px; }
 .section--dark .features { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.12); }
 .section--dark .feature { background: var(--forest); }
@@ -530,7 +530,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .bmr__row:hover{background:#F2EEE5}
 .bmr__n{font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--green-600,#00876c);min-width:26px}
 .bmr__rowtext{flex:1;min-width:0}
-.bmr__rowtext h3{font-family:var(--font-sans);font-size:15.5px;font-weight:600;color:var(--ink);margin:0 0 2px}
+.bmr__rowtext h3{font-family:var(--font-display);font-size:15.5px;font-weight:600;color:var(--ink);margin:0 0 2px}
 .bmr__rowtext p{font-size:13.5px;line-height:1.5;color:var(--g-500);margin:0}
 .bmr__arrow{width:18px;height:18px;flex:none;fill:none;stroke:var(--g-400);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s,transform .2s}
 .bmr__row:hover .bmr__arrow{stroke:var(--forest);transform:translateX(4px)}
@@ -827,7 +827,7 @@ body.is-routed .routeback{position:fixed;top:clamp(18px,2.4vw,30px);left:clamp(1
 .why__media .why__b { position: absolute; right: 0; bottom: 0; width: 52%; aspect-ratio: 1/1; object-fit: cover; border-radius: 18px; border: 8px solid var(--canvas); box-shadow: var(--shadow-float); }
 .why__media .why__script { position: absolute; left: 6%; bottom: 3%; font-family: var(--font-display); font-style: italic; font-size: clamp(20px,2.2vw,26px); color: var(--forest); max-width: 9em; line-height: 1.2; }
 .why__points { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 30px; margin-top: 34px; }
-.why__point h3 { font-family: var(--font-sans); font-size: 16.5px; font-weight: 600; margin-bottom: 7px; display: flex; gap: 10px; align-items: center; }
+.why__point h3 { font-family: var(--font-display); font-size: 16.5px; font-weight: 600; margin-bottom: 7px; display: flex; gap: 10px; align-items: center; }
 .why__point h3 i { flex: none; width: 28px; height: 28px; border-radius: 8px; background: var(--forest-tint); color: var(--forest); display: grid; place-items: center; font-style: normal; }
 .why__point h3 svg { width: 15px; height: 15px; }
 .why__point p { font-size: 14.5px; color: var(--g-500); line-height: 1.55; }
@@ -854,7 +854,7 @@ body.is-routed .routeback{position:fixed;top:clamp(18px,2.4vw,30px);left:clamp(1
 
 /* ---- Why FrontDoor: clean labelled points, no numbers ---- */
 .why__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 30px; margin-top: 30px; }
-.why__item h3 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+.why__item h3 { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
 .why__item p { font-size: 14.5px; line-height: 1.6; color: var(--g-500); }
 @media (max-width: 560px) { .why__grid { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .why__list { grid-template-columns: 1fr; } }
