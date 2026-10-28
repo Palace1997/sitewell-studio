@@ -18,7 +18,7 @@
   var hLogo = get('fd_lhero_logo', 88);
   var hCopy = get('fd_lhero_copy', 153);
   var hNav = get('fd_lhero_nav', 63);
-  var rHead = get('fd_rdeck_head', 0);
+  var rHead = get('fd_rdeck_head', 80);
 
   var hasHero = !!document.querySelector('.lhero');
   var hasShowcase = !!document.querySelector('.rdeck');
