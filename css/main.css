@@ -472,6 +472,30 @@ ul { margin: 0; padding: 0; list-style: none; }
    cream band at the top; the content padding adds it back so text stays clear. */
 .hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -128px; }
 
+/* ================= Designs showcase: curved carousel ================= */
+.rdeck{position:relative;background:var(--canvas,#F7F4EE);padding:clamp(26px,4vw,44px) 0 clamp(22px,3vw,36px);overflow:hidden;text-align:center}
+.rdeck__badge{display:inline-block;background:#DBE8CC;color:#0B362A;font-family:var(--font-sans);font-weight:600;font-size:14px;letter-spacing:.01em;padding:7px 16px;border-radius:999px;margin-bottom:16px}
+.rdeck h1{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,5.6vw,72px);line-height:1.03;letter-spacing:-.02em;color:var(--ink);margin:0 auto;max-width:17ch}
+.rdeck h1 .accent{color:var(--green)}
+.rdeck__sub{margin:clamp(14px,2vh,22px) auto 0;color:var(--g-500);font-size:clamp(15px,1.35vw,19px);line-height:1.55;max-width:54ch;padding:0 20px}
+.rdeck__stage{position:relative;height:clamp(300px,42vh,460px);margin:clamp(22px,3vw,36px) 0 0;perspective:1700px;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.rdeck__stage.is-grab{cursor:grabbing}
+.rcard{position:absolute;bottom:0;width:180px;height:300px;border-radius:16px;overflow:hidden;background:#dde6dd;box-shadow:0 34px 64px -34px rgba(11,54,42,.45);will-change:transform;transform-origin:center bottom;backface-visibility:hidden;opacity:0;transition:opacity .5s ease}
+.rcard.ready{opacity:1}
+.rcard__shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.rcard__shot iframe{position:absolute;top:0;left:0;width:300%;height:300%;transform:scale(.33333);transform-origin:0 0;border:0;pointer-events:none;background:#fff}
+.rcard__play{position:absolute;left:10px;bottom:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;pointer-events:none}
+.rcard__play svg{width:11px;height:11px;fill:#fff;margin-left:1px}
+.rdeck__btnwrap{display:inline-grid;place-items:center;margin:clamp(22px,3vw,34px) auto 0;padding:8px;border:1.6px dashed var(--green);border-radius:999px}
+.rdeck__btn{background:var(--green-600,#00876c);color:#fff;font-family:var(--font-sans);font-weight:600;font-size:16px;border:0;border-radius:999px;padding:15px 34px;cursor:pointer;text-decoration:none;transition:background .2s,transform .1s}
+.rdeck__btn:hover{background:var(--green)}
+.rdeck__btn:active{transform:scale(.98)}
+@media (max-width:640px){
+  .rdeck__stage{height:clamp(240px,40vh,320px);perspective:1100px}
+  .rcard{width:140px;height:232px}
+}
+@media (prefers-reduced-motion:reduce){.rcard{transition:none}}
+
 /* ================= Glass-card hero (full-bleed, frosted card) ================= */
 .ghero{position:relative;min-height:100svh;margin-top:-128px;overflow:hidden;background:#061511;color:#fff;display:flex;align-items:center;justify-content:center}
 .ghero *{box-sizing:border-box}

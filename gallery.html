@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css?v=20261028c">
+<link rel="stylesheet" href="css/main.css?v=20261028rd">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2300A583'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='12' font-weight='700' fill='white' text-anchor='middle'>FD</text></svg>">
 <link rel="canonical" href="https://palace1997.github.io/sitewell-studio/gallery.html">
 <meta property="og:type" content="website">
@@ -54,17 +54,17 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="gal-hero hero--band">
-  <div class="wrap">
-    <span class="eyebrow">Design gallery</span>
-    <h1 class="display-1" style="margin-top:18px">Designs For Every Corner Of <span class="italic-accent">Behavioral Health</span></h1>
-    <p class="lede">Browse by the kind of practice you run. Every design is a real, working website that we tailor to you, then build and look after.</p>
-  </div>
+<!-- HERO: designs showcase carousel -->
+<section class="rdeck" aria-label="Design gallery">
+  <span class="rdeck__badge">30 designs, every practice area</span>
+  <h1>Designs For Every Corner Of <span class="accent">Behavioral Health</span></h1>
+  <p class="rdeck__sub">Real, working websites for every kind of practice. Drag through them, preview any design, then we tailor it to you, build it and look after it.</p>
+  <div class="rdeck__stage" data-reels aria-label="Browse designs"></div>
+  <div class="rdeck__btnwrap"><a class="rdeck__btn" data-reels-cta href="#catalog">Browse all designs</a></div>
 </section>
 
 <!-- CATALOG -->
-<section class="section" style="padding-top:clamp(36px,5vw,56px)">
+<section class="section" id="catalog" style="padding-top:clamp(36px,5vw,56px)">
   <div class="wrap">
     <div class="port__head">
       <span class="eyebrow">Portfolio</span>
@@ -114,6 +114,7 @@
 
 <script src="js/catalog.js?v=20261022a"></script>
 <script src="js/designs.js?v=20261022a"></script>
+<script src="js/reels.js?v=2"></script>
 <script src="js/main.js?v=20261023c"></script>
 <script src="js/tuner.js?v=4"></script>
 </body>
