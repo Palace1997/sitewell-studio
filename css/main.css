@@ -472,6 +472,19 @@ ul { margin: 0; padding: 0; list-style: none; }
    cream band at the top; the content padding adds it back so text stays clear. */
 .hero--calm { position: relative; overflow: hidden; text-align: center; margin-top: -128px; }
 
+/* ================= Big-numbered list ================= */
+.numlist{list-style:none;max-width:1000px;margin:clamp(22px,3vw,38px) auto 0;padding:0;border-top:1px solid var(--line)}
+.numrow{display:grid;grid-template-columns:clamp(72px,11vw,150px) 1fr;gap:clamp(16px,3.2vw,48px);align-items:start;padding:clamp(22px,3.2vw,40px) 0;border-bottom:1px solid var(--line)}
+.numrow__n{font-family:var(--font-sans);font-weight:800;font-size:clamp(46px,8vw,120px);line-height:.82;letter-spacing:-.04em;color:var(--forest)}
+.numrow__h{font-family:var(--font-display);font-weight:500;font-size:clamp(19px,2.3vw,30px);line-height:1.12;margin:4px 0 10px;color:var(--ink)}
+.numrow__p{color:var(--g-500);font-size:clamp(14.5px,1.35vw,18px);line-height:1.6;margin:0;max-width:62ch}
+.section--dark .numlist{border-top-color:rgba(255,255,255,.16)}
+.section--dark .numrow{border-bottom-color:rgba(255,255,255,.16)}
+.section--dark .numrow__n{color:var(--green)}
+.section--dark .numrow__h{color:var(--paper)}
+.section--dark .numrow__p{color:var(--g-400)}
+@media (max-width:560px){ .numrow{grid-template-columns:1fr;gap:2px} .numrow__n{font-size:clamp(40px,13vw,56px);margin-bottom:4px} }
+
 /* ================= Designs showcase: curved carousel ================= */
 .rdeck{position:relative;background:var(--canvas,#F7F4EE);padding:clamp(26px,4vw,44px) 0 clamp(22px,3vw,36px);overflow:hidden;text-align:center}
 .rdeck__badge{display:inline-block;background:#DBE8CC;color:#0B362A;font-family:var(--font-sans);font-weight:600;font-size:14px;letter-spacing:.01em;padding:7px 16px;border-radius:999px;margin-bottom:16px}
