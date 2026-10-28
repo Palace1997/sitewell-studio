@@ -595,7 +595,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 body:has(.lhero) .topbar, body:has(.lhero) header.nav{display:none}
 .lhero{position:relative;min-height:100svh;margin-top:0;overflow:hidden;background:#ede7d9;color:#1f2a1d;font-family:var(--font-sans)}
 .lhero *{box-sizing:border-box}
-.lhero__bg{position:absolute;inset:0;background:url(https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2200&q=80) center/cover}
+.lhero__bg{position:absolute;inset:0;background:url(https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2200&q=80) center/cover;transform:scale(1.12);transform-origin:center center;will-change:transform}
 .lhero__top{position:absolute;left:0;right:0;top:0;height:60%;z-index:1;background:linear-gradient(180deg,rgba(241,235,221,.97) 0%,rgba(241,235,221,.72) 34%,rgba(241,235,221,0) 100%)}
 .lhero__bot{position:absolute;left:0;right:0;bottom:0;height:46%;z-index:1;background:linear-gradient(0deg,rgba(18,28,18,.55) 0%,rgba(18,28,18,.08) 55%,transparent 100%)}
 .lcopy{position:relative;z-index:3}
