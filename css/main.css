@@ -485,6 +485,33 @@ ul { margin: 0; padding: 0; list-style: none; }
 .section--dark .numrow__p{color:var(--g-400)}
 @media (max-width:560px){ .numrow{grid-template-columns:1fr;gap:2px} .numrow__n{font-size:clamp(40px,13vw,56px);margin-bottom:4px} }
 
+/* ================= Motion & interactivity ================= */
+/* Why image: gentle looping ping-pong (Ken Burns) */
+@keyframes fdKen{0%{transform:scale(1.06) translate3d(0,0,0)}100%{transform:scale(1.13) translate3d(-1.5%,-1.5%,0)}}
+.why__crop img{animation:fdKen 17s ease-in-out infinite alternate;will-change:transform}
+/* numbered rows: hover + staggered reveal */
+.numrow__n,.numrow__h{transition:color .25s var(--ease),transform .25s var(--ease)}
+.numrow:hover .numrow__n{color:var(--green)}
+.section--dark .numrow:hover .numrow__n{color:#5CC2A3}
+.numrow:hover .numrow__h{transform:translateX(5px)}
+.numrow.reveal:nth-child(1){transition-delay:.04s}
+.numrow.reveal:nth-child(2){transition-delay:.12s}
+.numrow.reveal:nth-child(3){transition-delay:.20s}
+.numrow.reveal:nth-child(4){transition-delay:.28s}
+/* feature tiles: hover lift + staggered reveal */
+.feature__ic{transition:transform .25s var(--ease)}
+.feature:hover .feature__ic{transform:translateY(-4px) scale(1.05)}
+.feature.reveal:nth-child(1){transition-delay:.03s}
+.feature.reveal:nth-child(2){transition-delay:.09s}
+.feature.reveal:nth-child(3){transition-delay:.15s}
+.feature.reveal:nth-child(4){transition-delay:.21s}
+.feature.reveal:nth-child(5){transition-delay:.27s}
+.feature.reveal:nth-child(6){transition-delay:.33s}
+.feature.reveal:nth-child(7){transition-delay:.39s}
+.feature.reveal:nth-child(8){transition-delay:.45s}
+.feature.reveal:nth-child(9){transition-delay:.51s}
+@media (prefers-reduced-motion:reduce){ .why__crop img{animation:none} }
+
 /* ================= Designs showcase: curved carousel ================= */
 .rdeck{position:relative;background:var(--canvas,#F7F4EE);padding:clamp(26px,4vw,44px) 0 clamp(22px,3vw,36px);overflow:hidden;text-align:center}
 .rdeck__badge{display:inline-block;background:#DBE8CC;color:#0B362A;font-family:var(--font-sans);font-weight:600;font-size:14px;letter-spacing:.01em;padding:7px 16px;border-radius:999px;margin-bottom:16px}
