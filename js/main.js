@@ -55,6 +55,25 @@
      shows everything (normal full page). */
   var ROUTES = { how: 1, why: 1, mission: 1, designs: 1, features: 1, faq: 1, start: 1 };
   var routeSections = Array.prototype.slice.call(document.querySelectorAll('body > section'));
+
+  // "Back to homepage" control, shown only while a single section is routed
+  // (these isolated views have no nav bar of their own).
+  var backBtn = null;
+  if (routeSections.length) {
+    backBtn = document.createElement('a');
+    backBtn.className = 'routeback';
+    backBtn.href = 'index.html';
+    backBtn.setAttribute('aria-label', 'Back to homepage');
+    backBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Back to homepage</span>';
+    backBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (history.pushState) { history.pushState('', '', location.pathname); }
+      else { location.hash = ''; }
+      applyRoute();
+    });
+    document.body.appendChild(backBtn);
+  }
+
   function applyRoute() {
     var id = (location.hash || '').replace(/^#/, '');
     var single = (ROUTES[id] && document.getElementById(id)) ? id : null;
@@ -63,8 +82,10 @@
     });
     document.body.classList.toggle('is-routed', !!single);
     if (single) {
+      var sec = document.getElementById(single);
+      if (backBtn) backBtn.classList.toggle('routeback--ondark', sec.classList.contains('section--dark'));
       // The isolated section is at the top now, so play its reveals immediately.
-      document.getElementById(single).querySelectorAll('.reveal').forEach(function (el) {
+      sec.querySelectorAll('.reveal').forEach(function (el) {
         el.classList.add('is-in');
       });
       // Land at the top. Defer past the browser's own jump-to-#hash so we win.
