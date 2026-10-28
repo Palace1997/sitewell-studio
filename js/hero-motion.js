@@ -11,8 +11,8 @@
 
   var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var INTRO = 1.26;   // zoomed-in at the very start
-  var BASE  = 1.12;   // settled scale at scroll top (matches the CSS default)
+  var INTRO = 1.45;   // zoomed-in at the very start
+  var BASE  = 1.28;   // settled scale at scroll top (matches the CSS default)
   var MIN   = 1.00;   // fully zoomed out by the end of the hero
 
   // Reduced motion: leave the calm, slightly-zoomed CSS default in place.
