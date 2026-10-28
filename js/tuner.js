@@ -84,7 +84,7 @@
 
     if (hasShowcase) {
       html += head('Designs showcase') +
-        row('Heading down', 'fd-rhead', 0, 320, rHead);
+        row('Section down', 'fd-rhead', 0, 400, rHead);
     }
 
     html += '<div style="font-size:11px;color:#9fc3b7;margin-top:8px">Only shows with #tune in the URL. Tell Claude the values to lock them in.</div>';
