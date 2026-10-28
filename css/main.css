@@ -570,8 +570,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ================= Designs showcase: curved carousel ================= */
 .rdeck{position:relative;background:var(--canvas,#F7F4EE);padding:clamp(26px,4vw,44px) 0 clamp(22px,3vw,36px);overflow:hidden;text-align:center}
 .rdeck__badge{display:inline-block;background:#DBE8CC;color:#0B362A;font-family:var(--font-sans);font-weight:600;font-size:14px;letter-spacing:.01em;padding:7px 16px;border-radius:999px;margin-bottom:16px}
-.rdeck h1{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,5.6vw,72px);line-height:1.03;letter-spacing:-.02em;color:var(--ink);margin:0 auto;max-width:17ch}
-.rdeck h1 .accent{color:var(--green)}
+.rdeck h1,.rdeck h2{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,5.6vw,72px);line-height:1.03;letter-spacing:-.02em;color:var(--ink);margin:0 auto;max-width:17ch}
+.rdeck h1 .accent,.rdeck h2 .accent{color:var(--green)}
 .rdeck__sub{margin:clamp(14px,2vh,22px) auto 0;color:var(--g-500);font-size:clamp(15px,1.35vw,19px);line-height:1.55;max-width:54ch;padding:0 20px}
 .rdeck__stage{position:relative;height:clamp(300px,42vh,460px);margin:clamp(22px,3vw,36px) 0 0;perspective:1700px;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .rdeck__stage.is-grab{cursor:grabbing}
