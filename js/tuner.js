@@ -1,22 +1,34 @@
-/* Dev-only logo tuner. Hidden unless the URL contains #tune (works on the live
-   site too: add #tune to the address). Sliders set the nav and footer logo
-   heights live and remember your last values in this browser. Once you settle,
-   tell Claude the numbers and they get baked into css/main.css
-   (--nav-logo-size, --footer-logo-size); this file can then be removed. */
+/* Dev-only tuner. Hidden unless the URL contains #tune (works on the live
+   site too: add #tune to the address). Sliders set sizes/positions live and
+   remember your last values in this browser. Once you settle, tell Claude the
+   numbers and they get baked into css/main.css; this file can then be removed.
+     - Nav / footer logo heights  -> --nav-logo-size, --footer-logo-size
+     - Hero (homepage .lhero only): logo size, center text down, nav sideways
+       -> --lhero-logo, --lhero-copy-y, --lhero-nav-x */
 (function () {
   var root = document.documentElement;
 
   function get(key, def) {
-    try { var v = localStorage.getItem(key); return v ? +v : def; } catch (e) { return def; }
+    try { var v = localStorage.getItem(key); return v !== null ? +v : def; } catch (e) { return def; }
   }
   function set(key, v) { try { localStorage.setItem(key, v); } catch (e) {} }
 
   var nav = get('fd_nav', 64);
   var foot = get('fd_logo', 84);
+  var hLogo = get('fd_lhero_logo', 38);
+  var hCopy = get('fd_lhero_copy', 0);
+  var hNav = get('fd_lhero_nav', 0);
+
+  var hasHero = !!document.querySelector('.lhero');
 
   function apply() {
     root.style.setProperty('--nav-logo-size', nav + 'px');
     root.style.setProperty('--footer-logo-size', foot + 'px');
+    if (hasHero) {
+      root.style.setProperty('--lhero-logo', hLogo + 'px');
+      root.style.setProperty('--lhero-copy-y', hCopy + 'px');
+      root.style.setProperty('--lhero-nav-x', hNav + 'px');
+    }
   }
 
   function row(label, id, min, max, val) {
@@ -27,8 +39,14 @@
       '</label>';
   }
 
+  function head(text) {
+    return '<div style="font-weight:600;margin:14px 0 10px;font-size:11px;letter-spacing:.08em;' +
+      'text-transform:uppercase;color:#5CC2A3">' + text + '</div>';
+  }
+
   function bind(id, onChange) {
     var el = document.getElementById(id), out = document.getElementById(id + '-o');
+    if (!el) return;
     el.addEventListener('input', function () {
       var v = Math.round(+el.value);
       out.textContent = v + 'px';
@@ -45,17 +63,29 @@
     var p = document.createElement('div');
     p.setAttribute('data-tuner', '');
     p.style.cssText = 'position:fixed;bottom:18px;right:18px;z-index:99999;background:#0B362A;color:#F0EBE1;' +
-      'border:1px solid #1d5143;border-radius:12px;padding:14px 16px;width:238px;' +
+      'border:1px solid #1d5143;border-radius:12px;padding:14px 16px;width:248px;max-height:86vh;overflow:auto;' +
       'font:14px/1.4 Inter,system-ui,sans-serif;box-shadow:0 12px 34px rgba(0,0,0,.4)';
-    p.innerHTML =
-      '<div style="font-weight:600;margin-bottom:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5CC2A3">Logo tuner (dev)</div>' +
+
+    var html = head('Logo tuner (dev)') +
       row('Nav logo size', 'fd-nav', 40, 92, nav) +
-      row('Footer logo size', 'fd-logo', 48, 160, foot) +
-      '<div style="font-size:11px;color:#9fc3b7;margin-top:6px">Only shows with #tune in the URL. Tell Claude the sizes to lock them in.</div>';
+      row('Footer logo size', 'fd-logo', 48, 160, foot);
+
+    if (hasHero) {
+      html += head('Hero (homepage)') +
+        row('Hero logo size', 'fd-hlogo', 24, 96, hLogo) +
+        row('Center text down', 'fd-hcopy', 0, 320, hCopy) +
+        row('Nav bar sideways', 'fd-hnav', -400, 400, hNav);
+    }
+
+    html += '<div style="font-size:11px;color:#9fc3b7;margin-top:8px">Only shows with #tune in the URL. Tell Claude the values to lock them in.</div>';
+    p.innerHTML = html;
     document.body.appendChild(p);
 
     bind('fd-nav', function (v) { nav = v; set('fd_nav', v); });
     bind('fd-logo', function (v) { foot = v; set('fd_logo', v); });
+    bind('fd-hlogo', function (v) { hLogo = v; set('fd_lhero_logo', v); });
+    bind('fd-hcopy', function (v) { hCopy = v; set('fd_lhero_copy', v); });
+    bind('fd-hnav', function (v) { hNav = v; set('fd_lhero_nav', v); });
   }
 
   if (document.readyState === 'loading') {
