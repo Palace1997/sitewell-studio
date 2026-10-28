@@ -18,8 +18,10 @@
   var hLogo = get('fd_lhero_logo', 88);
   var hCopy = get('fd_lhero_copy', 153);
   var hNav = get('fd_lhero_nav', 63);
+  var rHead = get('fd_rdeck_head', 0);
 
   var hasHero = !!document.querySelector('.lhero');
+  var hasShowcase = !!document.querySelector('.rdeck');
 
   function apply() {
     root.style.setProperty('--nav-logo-size', nav + 'px');
@@ -28,6 +30,9 @@
       root.style.setProperty('--lhero-logo', hLogo + 'px');
       root.style.setProperty('--lhero-copy-y', hCopy + 'px');
       root.style.setProperty('--lhero-nav-x', hNav + 'px');
+    }
+    if (hasShowcase) {
+      root.style.setProperty('--rdeck-head-y', rHead + 'px');
     }
   }
 
@@ -77,6 +82,11 @@
         row('Nav bar sideways', 'fd-hnav', -400, 400, hNav);
     }
 
+    if (hasShowcase) {
+      html += head('Designs showcase') +
+        row('Heading down', 'fd-rhead', 0, 320, rHead);
+    }
+
     html += '<div style="font-size:11px;color:#9fc3b7;margin-top:8px">Only shows with #tune in the URL. Tell Claude the values to lock them in.</div>';
     p.innerHTML = html;
     document.body.appendChild(p);
@@ -86,6 +96,7 @@
     bind('fd-hlogo', function (v) { hLogo = v; set('fd_lhero_logo', v); });
     bind('fd-hcopy', function (v) { hCopy = v; set('fd_lhero_copy', v); });
     bind('fd-hnav', function (v) { hNav = v; set('fd_lhero_nav', v); });
+    bind('fd-rhead', function (v) { rHead = v; set('fd_rdeck_head', v); });
   }
 
   if (document.readyState === 'loading') {
