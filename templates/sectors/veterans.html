@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valor Veteran Care, Mental health care for veterans</title>
+<meta name="description" content="Valor Veteran Care: Mental health care for veterans. A FrontDoor website template.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/template.css?v=20261021b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2335506B'/><text x='16' y='23' font-family='Georgia,serif' font-size='18' fill='white' text-anchor='middle'>V</text></svg>">
+<style>
+.vl{
+  --acc:#35506B; --acc2:#293F54; --on:#ffffff;
+  --dark:#16212E; --dark2:#0F1720;
+  --paper:#F4F2EC; --card:#FBFAF6; --line:#DCD7CB; --ink:#141B23; --muted:#5E6670;
+  --font-display:'Fraunces',Georgia,serif; --font-sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  background:var(--paper); color:var(--ink); font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+}
+.vl *{box-sizing:border-box;}
+.vl h1,.vl h2,.vl h3,.vl h4{margin:0;font-family:var(--font-display);font-weight:500;letter-spacing:-.015em;line-height:1.06;}
+.vl p{margin:0;}
+.vl a{text-decoration:none;}
+.vl ul{margin:0;padding:0;list-style:none;}
+.vl em{font-style:italic;font-weight:400;}
+.vl-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,52px);}
+
+/* emblem chevron motif */
+.vl-chev{display:inline-flex;gap:3px;align-items:center;}
+.vl-chev i{display:block;width:9px;height:9px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);}
+
+/* eyebrow */
+.vl-eye{display:inline-flex;align-items:center;gap:11px;font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;}
+.vl-eye .vl-chev i{width:7px;height:7px;border-width:1.6px;}
+
+/* buttons */
+.vl-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;font-size:14.5px;font-weight:600;letter-spacing:.01em;border:1.6px solid var(--acc);transition:all .25s var(--ease);cursor:pointer;position:relative;}
+.vl-btn svg{width:15px;height:15px;}
+.vl-btn--solid{background:var(--acc);color:var(--on);}
+.vl-btn--solid:hover{background:var(--acc2);border-color:var(--acc2);transform:translateY(-2px);}
+.vl-btn--line{background:transparent;color:var(--ink);border-color:var(--line);}
+.vl-btn--line:hover{border-color:var(--acc);color:var(--acc);}
+
+/* ==== NAV ==== */
+.vl-nav{position:sticky;top:0;z-index:60;background:rgba(244,242,236,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.vl-nav__in{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.vl-brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:20px;font-weight:600;letter-spacing:-.01em;}
+.vl-badge{width:40px;height:44px;background:var(--acc);color:var(--on);display:grid;place-items:center;font-family:var(--font-sans);font-weight:700;font-size:16px;clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);}
+.vl-links{display:flex;gap:32px;}
+.vl-links a{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s;}
+.vl-links a:hover{color:var(--ink);}
+@media(max-width:860px){.vl-links{display:none;}}
+
+/* ==== NAV over the hero photo (template.js adds .scrolled once the page moves) ==== */
+.vl .vl-nav{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(255,255,255,.16);transition:background .3s,border-color .3s,backdrop-filter .3s;}
+.vl .vl-nav .vl-brand{color:#fff;transition:color .3s;}
+.vl .vl-nav .vl-links a{color:rgba(255,255,255,.8);}
+.vl .vl-nav .vl-links a:hover{color:#fff;}
+.vl .vl-nav.scrolled{background:rgba(244,242,236,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:var(--line);}
+.vl .vl-nav.scrolled .vl-brand{color:var(--ink);}
+.vl .vl-nav.scrolled .vl-links a{color:var(--muted);}
+.vl .vl-nav.scrolled .vl-links a:hover{color:var(--ink);}
+
+/* ==== HERO, magazine cover: one tall photograph, type set across the lower third ==== */
+.vl-hero{position:relative;isolation:isolate;overflow:hidden;margin-top:-75px;min-height:max(720px,100vh);min-height:max(720px,100svh);display:flex;flex-direction:column;justify-content:flex-end;background:var(--dark2);color:#fff;}
+.vl-hero__img{position:absolute;z-index:-2;left:0;top:0;width:100%;height:86%;object-fit:cover;object-position:50% 88%;display:block;filter:saturate(.72) contrast(1.06);-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent);transform-origin:50% 40%;animation:vl-kb 16s cubic-bezier(.2,.6,.2,1) both;}
+.vl-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(180deg,rgba(15,23,32,.62) 0,rgba(15,23,32,0) 22%),
+  linear-gradient(0deg,rgba(15,23,32,.98) 0,rgba(15,23,32,.9) 30%,rgba(22,33,46,.5) 56%,rgba(22,33,46,.06) 78%),
+  linear-gradient(color-mix(in srgb,var(--acc) 22%,transparent),color-mix(in srgb,var(--acc) 22%,transparent));}
+.vl-hero__body{width:100%;padding-top:150px;}
+.vl-hero__tag{display:inline-flex;align-items:center;gap:11px;padding:8px 14px;border:1px solid rgba(255,255,255,.34);font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:clamp(18px,2.4vw,28px);}
+.vl-hero__tag .vl-chev i{width:7px;height:7px;border-width:1.6px;}
+.vl-hero h1{font-size:clamp(50px,8.4vw,124px);line-height:.94;letter-spacing:-.035em;max-width:13ch;text-wrap:balance;text-shadow:0 2px 30px rgba(15,23,32,.35);}
+.vl-hero h1 em{color:color-mix(in srgb,var(--acc) 35%,#fff);}
+.vl-hero__row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 48px;margin-top:clamp(22px,2.8vw,34px);}
+.vl-hero__lede{font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:rgba(255,255,255,.86);max-width:44ch;}
+.vl-hero__cta{display:flex;flex-wrap:wrap;gap:14px;flex:none;}
+.vl-hero .vl-btn--solid{border-color:color-mix(in srgb,var(--acc) 70%,#fff);}
+.vl-hero .vl-btn--line{color:#fff;border-color:rgba(255,255,255,.5);}
+.vl-hero .vl-btn--line:hover{border-color:#fff;background:rgba(255,255,255,.08);color:#fff;}
+.vl-hero .vl-hero__facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(36px,5vw,60px);border-top:1px solid rgba(255,255,255,.2);}
+.vl-hero__facts li{display:flex;align-items:baseline;gap:12px;padding:20px 0 24px;}
+.vl-hero__facts li+li{padding-left:clamp(16px,3vw,36px);border-left:1px solid rgba(255,255,255,.14);}
+.vl-hero__facts b{font-family:var(--font-display);font-size:clamp(19px,1.8vw,23px);font-weight:500;line-height:1;color:#fff;}
+.vl-hero__facts span{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62);}
+@media(max-width:430px){.vl .vl-nav .vl-btn{display:none;}}
+@keyframes vl-kb{from{transform:scale(1.08);}to{transform:scale(1);}}
+@media(prefers-reduced-motion:reduce){.vl-hero__img{animation:none;}}
+@media(max-width:860px){
+  .vl-hero__row{flex-direction:column;align-items:flex-start;}
+  .vl-hero__img{height:70%;object-position:50% 50%;}
+  .vl-hero__facts li{flex-direction:column;gap:7px;}
+}
+@media(max-width:560px){
+  .vl-hero{min-height:auto;}
+  .vl-hero .vl-hero__facts{grid-template-columns:1fr 1.25fr 1fr;}
+  .vl-hero__body{padding-top:min(86vw,360px);}
+  .vl-hero__img{height:62%;object-position:46% 45%;}
+  .vl-hero__tag{letter-spacing:.18em;font-size:10.5px;padding:7px 11px;}
+  .vl-hero__cta{width:100%;}
+  .vl-hero__cta .vl-btn{flex:1 1 auto;justify-content:center;}
+  .vl-hero__facts span{font-size:10px;letter-spacing:.12em;}
+  .vl-hero__facts b{font-size:17px;}
+  .vl .vl-nav .vl-brand{font-size:18px;}
+}
+
+/* ==== TRUST STRIP ==== */
+.vl-strip{background:var(--dark2);color:rgba(255,255,255,.7);border-top:1px solid rgba(255,255,255,.08);}
+.vl-strip__in{display:flex;flex-wrap:wrap;justify-content:center;gap:0;}
+.vl-strip__in span{font-family:var(--font-display);font-size:16px;padding:18px clamp(16px,3vw,34px);position:relative;}
+.vl-strip__in span+span::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:16px;background:rgba(255,255,255,.16);}
+
+/* ==== SECTION ==== */
+.vl-sec{padding:clamp(58px,8vw,112px) 0;}
+.vl-sec--card{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.vl-head{max-width:640px;margin-bottom:clamp(40px,5vw,60px);}
+.vl-head h2{font-size:clamp(30px,4.2vw,50px);margin-top:2px;}
+.vl-head p{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);margin-top:18px;max-width:52ch;}
+
+/* ==== SERVICES, structured grid w/ rules ==== */
+.vl-serv{border:1px solid var(--line);background:var(--card);}
+.vl-serv__row{display:grid;grid-template-columns:repeat(3,1fr);}
+.vl-cell{padding:clamp(28px,3vw,40px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;}
+.vl-serv__row .vl-cell:nth-child(3n){border-right:0;}
+.vl-serv__row:last-child .vl-cell{border-bottom:0;}
+.vl-cell__no{font-family:var(--font-display);font-size:13px;color:var(--acc);letter-spacing:.12em;margin-bottom:22px;display:flex;align-items:center;gap:8px;}
+.vl-cell__ic{width:46px;height:50px;background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--acc);display:grid;place-items:center;margin-bottom:20px;clip-path:polygon(0 0,100% 0,100% 76%,50% 100%,0 76%);}
+.vl-cell__ic svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;}
+.vl-cell h3{font-size:20px;margin-bottom:9px;}
+.vl-cell p{color:var(--muted);font-size:15px;line-height:1.55;}
+.vl-cell:hover{background:color-mix(in srgb,var(--acc) 5%,var(--card));}
+@media(max-width:820px){.vl-serv__row{grid-template-columns:repeat(2,1fr);}.vl-serv__row .vl-cell:nth-child(3n){border-right:1px solid var(--line);}.vl-cell:nth-child(2n){border-right:0;}}
+@media(max-width:520px){.vl-serv__row{grid-template-columns:1fr;}.vl-cell{border-right:0!important;}}
+
+/* ==== APPROACH, split ==== */
+.vl-split{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.vl-split__media{position:relative;}
+.vl-split__media img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.vl-split__frame{border:1px solid var(--line);padding:12px;background:var(--card);position:relative;}
+.vl-split__frame::before,.vl-split__frame::after{content:"";position:absolute;width:22px;height:22px;border:2px solid var(--acc);}
+.vl-split__frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0;}
+.vl-split__frame::after{bottom:-1px;right:-1px;border-left:0;border-top:0;}
+.vl-checks{margin-top:30px;display:grid;gap:0;border-top:1px solid var(--line);}
+.vl-checks li{display:flex;gap:16px;align-items:center;font-size:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.vl-tick{flex:none;width:30px;height:33px;background:var(--acc);color:var(--on);display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);}
+.vl-tick svg{width:13px;height:13px;}
+@media(max-width:820px){.vl-split{grid-template-columns:1fr;}.vl-split__media img{aspect-ratio:16/11;}}
+
+/* ==== BAND stats ==== */
+.vl-band{background:linear-gradient(160deg,var(--dark),var(--dark2));color:#fff;position:relative;overflow:hidden;}
+.vl-band::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 24px);pointer-events:none;}
+.vl-band__grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative;}
+.vl-band__c{padding:clamp(38px,5vw,58px) 24px;text-align:center;border-right:1px solid rgba(255,255,255,.12);}
+.vl-band__c:last-child{border-right:0;}
+.vl-band__c b{display:block;font-family:var(--font-display);font-size:clamp(30px,4vw,46px);line-height:1;margin-bottom:10px;}
+.vl-band__c span{font-size:12.5px;color:rgba(255,255,255,.66);letter-spacing:.04em;}
+@media(max-width:640px){.vl-band__grid{grid-template-columns:repeat(2,1fr);}.vl-band__c:nth-child(2){border-right:0;}.vl-band__c:nth-child(1),.vl-band__c:nth-child(2){border-bottom:1px solid rgba(255,255,255,.12);}}
+
+/* ==== QUOTE ==== */
+.vl-quote{max-width:840px;margin:0 auto;text-align:center;}
+.vl-quote__stars{display:flex;gap:4px;justify-content:center;margin-bottom:24px;color:var(--acc);}
+.vl-quote__stars svg{width:20px;height:20px;}
+.vl-quote p{font-family:var(--font-display);font-size:clamp(24px,3.3vw,36px);line-height:1.3;}
+.vl-quote__rule{width:44px;height:2px;background:var(--acc);margin:28px auto 22px;}
+.vl-quote__who{font-size:14.5px;color:var(--muted);letter-spacing:.02em;}
+.vl-quote__who b{color:var(--ink);font-weight:600;}
+
+/* ==== CONTACT ==== */
+.vl-contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,62px);align-items:start;}
+.vl-info{border-top:1px solid var(--line);margin-top:6px;}
+.vl-info li{display:flex;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);}
+.vl-info__ic{flex:none;width:34px;height:37px;background:color-mix(in srgb,var(--acc) 12%,transparent);color:var(--acc);display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 76%,50% 100%,0 76%);}
+.vl-info__ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;}
+.vl-info span{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:2px;}
+.vl-info b{font-weight:500;font-size:16px;}
+.vl-form{display:grid;gap:16px;background:var(--card);border:1px solid var(--line);padding:clamp(26px,3vw,36px);}
+.vl-field{display:grid;gap:7px;}
+.vl-field label{font-size:12.5px;font-weight:600;letter-spacing:.02em;}
+.vl-field input,.vl-field select,.vl-field textarea{font-family:inherit;font-size:15px;padding:13px 15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:0;}
+.vl-field textarea{min-height:112px;resize:vertical;}
+.vl-field input:focus,.vl-field select:focus,.vl-field textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 15%,transparent);}
+.vl-form .vl-btn{justify-content:center;}
+@media(max-width:820px){.vl-contact{grid-template-columns:1fr;}}
+
+/* ==== FOOTER ==== */
+.vl-foot{background:linear-gradient(160deg,var(--dark),var(--dark2));color:rgba(255,255,255,.72);padding:66px 0 34px;}
+.vl-foot__top{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:38px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.14);}
+.vl-foot .vl-brand{color:#fff;}
+.vl-foot__brand p{margin-top:16px;max-width:34ch;font-size:14.5px;color:rgba(255,255,255,.62);line-height:1.55;}
+.vl-foot h4{font-family:var(--font-sans);font-size:11.5px;text-transform:uppercase;letter-spacing:.16em;color:#fff;margin-bottom:16px;}
+.vl-foot li{margin-bottom:11px;}
+.vl-foot__top a{color:rgba(255,255,255,.62);font-size:14.5px;transition:color .2s;}
+.vl-foot__top a:hover{color:#fff;}
+.vl-foot__bot{padding-top:26px;font-size:13px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+@media(max-width:720px){.vl-foot__top{grid-template-columns:1fr 1fr;}}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.is-in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="vl">
+<header class="vl-nav t-nav"><div class="vl-wrap vl-nav__in">
+  <a href="#" class="vl-brand"><span class="vl-badge" data-field="brandMark">V</span> <span data-field="brandName">Valor Veteran Care</span></a>
+  <nav class="vl-links"><a href="#services">Services</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav>
+  <a href="#contact" class="vl-btn vl-btn--solid" data-field="navCta">Connect with care</a>
+</div></header>
+
+<section class="vl-hero">
+  <img class="vl-hero__img" src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=2200&q=80" alt="Two hands reaching toward each other between tall concrete pillars" data-img="hero">
+  <div class="vl-wrap vl-hero__body">
+    <span class="vl-hero__tag"><span class="vl-chev" aria-hidden="true"><i></i><i></i></span><span data-field="heroEyebrow">Veterans · Military Mental Health</span></span>
+    <h1 data-field="heroTitle">Care That <em>Understands</em> Service</h1>
+    <div class="vl-hero__row">
+      <p class="vl-hero__lede" data-field="heroSub">Mental health support for veterans and service members, from clinicians who get it.</p>
+      <div class="vl-hero__cta">
+        <a href="#contact" class="vl-btn vl-btn--solid"><span data-field="heroCta1">Connect with care</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#services" class="vl-btn vl-btn--line" data-field="heroCta2">Our services</a>
+      </div>
+    </div>
+    <ul class="vl-hero__facts">
+      <li><b>Free</b><span>First call</span></li>
+      <li><b>Telehealth</b><span>Or in person</span></li>
+      <li><b>Vet-led</b><span>Peer support</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="vl-strip"><div class="vl-wrap vl-strip__in">
+  <span>TRICARE &amp; VA Community Care</span><span>Veteran-informed care</span><span>Peer specialists</span><span>Confidential</span><span>In person &amp; telehealth</span>
+</div></section>
+
+<section class="vl-sec" id="services"><div class="vl-wrap">
+  <div class="vl-head reveal">
+    <span class="vl-eye" data-field="servicesEyebrow"><span class="vl-chev"><i></i><i></i></span> What we offer</span>
+    <h2 data-field="servicesTitle">Support built around service.</h2>
+    <p data-field="servicesSub">PTSD, transition, and everything that comes with the uniform.</p>
+  </div>
+  <div class="vl-serv reveal">
+    <div class="vl-serv__row">
+      <div class="vl-cell"><div class="vl-cell__no">01</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div><h3 data-field="svc1Title">Combat trauma &amp; PTSD</h3><p data-field="svc1Desc">Specialist, evidence-based care.</p></div>
+      <div class="vl-cell"><div class="vl-cell__no">02</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><h3 data-field="svc2Title">Transition support</h3><p data-field="svc2Desc">Civilian life, without losing yourself.</p></div>
+      <div class="vl-cell"><div class="vl-cell__no">03</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3 data-field="svc3Title">Couples &amp; family</h3><p data-field="svc3Desc">Reconnect after deployment.</p></div>
+    </div>
+    <div class="vl-serv__row">
+      <div class="vl-cell"><div class="vl-cell__no">04</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3 data-field="svc4Title">Substance use</h3><p data-field="svc4Desc">Integrated, judgment-free care.</p></div>
+      <div class="vl-cell"><div class="vl-cell__no">05</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3 data-field="svc5Title">Peer support</h3><p data-field="svc5Desc">Veterans who&#x27;ve walked it too.</p></div>
+      <div class="vl-cell"><div class="vl-cell__no">06</div><div class="vl-cell__ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg></div><h3 data-field="svc6Title">VA coordination</h3><p data-field="svc6Desc">We help navigate benefits.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="vl-sec vl-sec--card" id="approach"><div class="vl-wrap"><div class="vl-split reveal">
+  <div class="vl-split__media"><div class="vl-split__frame"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80" alt="Valor Veteran Care" loading="lazy" data-img="about"></div></div>
+  <div>
+    <span class="vl-eye" data-field="aboutEyebrow"><span class="vl-chev"><i></i><i></i></span> Our approach</span>
+    <h2 style="font-size:clamp(30px,4.2vw,50px)" data-field="aboutTitle">By people who <em>served</em>, too.</h2>
+    <p style="font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);margin-top:18px;max-width:50ch" data-field="aboutText">Many of our clinicians and peers are veterans. You won&#x27;t have to explain the basics.</p>
+    <ul class="vl-checks">
+      <li data-field="check1"><span class="vl-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Veteran and military-informed clinicians</li>
+      <li data-field="check2"><span class="vl-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> TRICARE and VA Community Care</li>
+      <li data-field="check3"><span class="vl-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Peer specialists with lived experience</li>
+      <li data-field="check4"><span class="vl-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Confidential and stigma-free</li>
+    </ul>
+  </div>
+</div></div></section>
+
+<section class="vl-band"><div class="vl-wrap"><div class="vl-band__grid reveal">
+  <div class="vl-band__c"><b data-field="stat1Num">Vet-led</b><span data-field="stat1Label">Peer support</span></div>
+  <div class="vl-band__c"><b data-field="stat2Num">TRICARE</b><span data-field="stat2Label">&amp; VA accepted</span></div>
+  <div class="vl-band__c"><b data-field="stat3Num">Free</b><span data-field="stat3Label">Confidential first call</span></div>
+  <div class="vl-band__c"><b>Evenings</b><span>Appointments available</span></div>
+</div></div></section>
+
+<section class="vl-sec"><div class="vl-wrap"><div class="vl-quote reveal">
+  <span class="vl-eye" style="justify-content:center;margin-bottom:22px">A note from Marcus</span>
+  <p data-field="quoteText">&ldquo;I served before I became a clinician, so I know how hard it can be to walk through our door. You won&#x27;t have to explain the basics here. We start where you are, and we move at your pace.&rdquo;</p>
+  <div class="vl-quote__rule"></div>
+  <div class="vl-quote__who"><b data-field="quoteAuthor">Marcus Reed, LCSW</b> · <span data-field="quoteRole">Clinical Director and Army veteran</span></div>
+</div></div></section>
+
+<section class="vl-sec vl-sec--card" id="contact"><div class="vl-wrap"><div class="vl-contact">
+  <div class="reveal">
+    <span class="vl-eye" data-field="contactEyebrow"><span class="vl-chev"><i></i><i></i></span> Get in touch</span>
+    <h2 style="font-size:clamp(30px,4.2vw,50px)" data-field="contactTitle">Take the <em>first</em> step.</h2>
+    <p style="font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--muted);margin:18px 0 8px;max-width:48ch" data-field="contactSub">Whether you&#x27;re active, reserve or a veteran, we&#x27;re here. Reach out in confidence.</p>
+    <ul class="vl-info">
+      <li><span class="vl-info__ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2L8 10a16 16 0 006 6l1.4-1.4a2 2 0 012-.4c.9.3 1.9.6 2.9.7A2 2 0 0122 16.9z"/></svg></span><div><span>Phone</span><b data-field="phone">(555) 010-2400</b></div></li>
+      <li><span class="vl-info__ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><span>Email</span><b data-field="email">hello@veterans.example</b></div></li>
+      <li><span class="vl-info__ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span>Location</span><b data-field="address">In person &amp; telehealth</b></div></li>
+    </ul>
+  </div>
+  <form class="vl-form reveal" onsubmit="return false">
+    <div class="vl-field"><label for="vl-name">Name</label><input id="vl-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+    <div class="vl-field"><label for="vl-email">Email</label><input id="vl-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+    <div class="vl-field"><label for="vl-phone">Phone (optional)</label><input id="vl-phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 000-0000"></div>
+    <div class="vl-field"><label for="vl-pref">Best way to reach you</label><select id="vl-pref" name="preferred_contact"><option>Phone call</option><option>Text message</option><option>Email</option></select></div>
+    <div class="vl-field"><label for="vl-reason">What can we help with?</label><select id="vl-reason" name="reason"><option>Combat trauma &amp; PTSD</option><option>Transition support</option><option>Couples &amp; family</option><option>Recovery support</option><option>Something else</option></select></div>
+    <p style="font-size:13px;opacity:.8;margin:0">Please don't include health details here. We'll talk it through on the call.</p>
+    <button class="vl-btn vl-btn--solid" type="submit">Connect with care</button>
+  </form>
+</div></div></section>
+
+<footer class="vl-foot"><div class="vl-wrap">
+  <div class="vl-foot__top">
+    <div class="vl-foot__brand"><a href="#" class="vl-brand"><span class="vl-badge" data-field="brandMark">V</span> <span data-field="brandName">Valor Veteran Care</span></a><p data-field="footerText">Mental health care for veterans.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#contact">(555) 010-2400</a></li><li><a href="#contact">hello@veterans.example</a></li></ul></div>
+  </div>
+  <div class="vl-foot__bot"><span data-field="footerLegal">© 2026 Valor Veteran Care. All rights reserved.</span><span>A FrontDoor website template.</span></div>
+</div></footer>
+<a href="../../index.html" class="t-ribbon"><span class="t-logo__mark">FD</span> Built with FrontDoor</a>
+<script src="../../js/template.js?v=20261021b"></script>
+</body>
+</html>
