@@ -487,8 +487,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ================= Motion & interactivity ================= */
 /* Why image: gentle looping ping-pong (Ken Burns) */
-@keyframes fdKen{0%{transform:scale(1.06) translate3d(0,0,0)}100%{transform:scale(1.13) translate3d(-1.5%,-1.5%,0)}}
-.why__crop img{animation:fdKen 17s ease-in-out infinite alternate;will-change:transform}
+@keyframes fdKen{0%{transform:scale(1.05) translate3d(0,0,0)}100%{transform:scale(1.18) translate3d(-3%,-2.5%,0)}}
+.why__crop img{animation:fdKen 11s ease-in-out infinite alternate;will-change:transform}
 /* numbered rows: hover + staggered reveal */
 .numrow__n,.numrow__h{transition:color .25s var(--ease),transform .25s var(--ease)}
 .numrow:hover .numrow__n{color:var(--green)}
